@@ -51,12 +51,20 @@ Cloudflare 普通项目
 
 这张图的重点是：**Workers Paid 不是 Cloudflare Pro**。升级到 `$5/month` 可以放大开发者平台的动态计算、存储、日志和后台任务额度，但不会自动提高 WAF、Bot、Cache Rules、Zone 级上传体积、Enterprise 网络、安全日志等配额。
 
-## 核心额度一屏表
+## 免费额度大全（先看这张）
 
-下面这张表先解决“我做一个普通项目到底能免费用多少、$5 Workers Paid 又买到多少”的问题。更完整的产品级细节继续看后面的长表。
+下面这张表先解决“我做一个普通项目到底能免费用多少、$5 Workers Paid 又买到多少”的问题。它把普通人最常用的建站、API、数据库、文件、AI、安全和内网能力放在一起看；更完整的产品级细节继续看后面的长表。
 
 | 产品 / 能力 | Free / 免费边界 | Workers Paid / 付费边界 | 普通项目判断 |
 | --- | --- | --- | --- |
+| DNS | Free/Pro/Business 不对 DNS queries 收费；新 Free zone 为 200 records/zone，旧 Free zone 为 1,000。 | Workers Paid 不改变 DNS 配额；Enterprise 把 DNS queries 作为报价输入之一。 | 域名先接 Cloudflare，Web 记录代理，邮件、验证和第三方服务记录保持 DNS-only。 |
+| CDN / Cache | CDN 可用于所有计划；Free 有 10 条 Cache Rules，最大可缓存文件 512 MB。 | Workers Paid 不提升 Cache Rules；更高规则数、Edge TTL 和 purge 能力看 zone plan。 | 静态 hash 资源长缓存，HTML 谨慎缓存；不要让静态资源进 Worker。 |
+| SSL/TLS | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3、Authenticated Origin Pulls 可在 Free 使用。 | Workers Paid 不提升证书能力；Advanced Certificate Manager、Custom Certificates、Keyless SSL 单独看计划。 | 普通项目默认 Full (strict)，边缘用 Universal SSL，源站用 Origin CA 或公开 CA。 |
+| DDoS | 所有计划都有 standard, unmetered DDoS protection，HTTP DDoS 和 Network-layer DDoS 都覆盖。 | Workers Paid 不提升 DDoS 规则；Advanced DDoS、更多 overrides 和 Log action 看 Enterprise / add-on。 | 先把 Web 入口设为 Proxied，隐藏源站 IP；API 再叠 WAF、Rate Limiting、Turnstile。 |
+| WAF / Rate Limiting | WAF all plans；Free 有 5 条 Custom Rules、1 条 Rate Limiting Rule、Free Managed Ruleset。 | Workers Paid 不提升 WAF 配额；更多规则、事件历史和高级检测看 Pro / Business / Enterprise。 | 登录、后台、评论、上传先写最小规则；先观察 Security Events，再逐步 block。 |
+| Turnstile | Free 最多 20 widgets，每个 widget 10 hostnames；挑战和验证请求不限量。 | Enterprise widgets 不限量，每个 widget 最多 200 hostnames。 | 表单、登录、评论、注册都先用 Turnstile；服务端必须调用 Siteverify。 |
+| Zero Trust / Access / Tunnel | Zero Trust Free 为 $0 forever，50 user limit；Tunnel 可发布 public hostname。 | Workers Paid 不提升 seats；Pay-as-you-go / Contract 看用户数、日志、Gateway 和设备策略。 | 50 人以内后台、预览环境、内网工具先用 Access + Tunnel；没有 Access policy 的 Tunnel public hostname 仍然公开。 |
+| Web Analytics | 免费、隐私优先；代理站点不限，非代理站点 10 个。 | Workers Paid 不提升 Web Analytics rules；规则数量看 zone plan。 | 文档站和官网先开它，不急着自建复杂埋点。 |
 | Workers 动态请求 | 100,000 requests/day，UTC 0 点重置。 | 每账号每月最低 `$5`；10M requests/month included，超出 `$0.30/million`。 | 评论、Webhook、小 API 免费可起步；公开 API 稳定有人用后再升。 |
 | Workers CPU | 10 ms CPU/invocation。 | 30M CPU ms/month included，超出 `$0.02/million CPU ms`；单次默认 30s，可设到 5min。 | SSR、AI 前处理、批任务要看 CPU，不只看请求数。 |
 | 静态资产请求 | Workers Static Assets / Pages 静态资产请求免费且不限量。 | 静态资产请求仍免费且不限量。 | 文档、官网、博客主流量要停在静态资产层。 |
@@ -70,6 +78,7 @@ Cloudflare 普通项目
 | Workers AI | Free / Paid 都有 10,000 Neurons/day 免费分配。 | 超过每日免费分配需要 Workers Paid，之后 `$0.011/1,000 Neurons`。 | AI 调用先接 AI Gateway，小模型和短输出优先。 |
 | AI Gateway | 所有计划可用，核心功能免费；Persistent logs Free 为所有 gateway 合计 100,000 logs。 | Workers Paid 为 10M logs/gateway；Logpush 仅 Workers Paid。 | 外部模型、Workers AI、缓存、限流和日志统一从网关进。 |
 | Vectorize | 30M queried vector dimensions/month、5M stored vector dimensions。 | 50M queried vector dimensions/month、10M stored vector dimensions included。 | 文档少时先 Pagefind；自然语言搜索确定有价值后再上。 |
+| Budget alerts / Usage notifications | Budget alerts 面向 Pay-as-you-go，用邮件提醒 usage-based spend；usage notifications 按产品阈值提醒。 | Budget alerts 不是硬封顶；usage notifications 需要 Professional plans or higher。 | 付费前先开提醒，但真正的成本控制仍是静态优先、限流、队列、配额和权限。 |
 
 ## 免费阶段先用什么
 

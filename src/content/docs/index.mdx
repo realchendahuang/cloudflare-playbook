@@ -22,6 +22,27 @@ Cloudflare Playbook 不是官方文档的搬运，而是一份面向真实项目
 
 Cloudflare 覆盖了计算、存储、网络、安全、AI 和可观测性等基础设施能力。对独立开发者和早期团队来说，理解这些产品的边界和组合方式，可以显著降低项目启动和运维成本。这份知识库的目标，是把这些能力整理成一张能看懂、能落地、能持续更新的大图谱。
 
+## 免费额度先看这里
+
+多数人真正关心的不是产品名，而是一个项目能不能先免费跑起来。下面这张表是全站的入口摘要：先看 Free 边界，再判断什么时候值得开 `$5/month` 的 Workers Paid 或其他付费产品。详细版见 [免费与付费边界](/platform/free-paid/) 和 [Billing](/platform/billing/)。
+
+| 场景 | Free 可以做到什么 | 什么时候付费 |
+| --- | --- | --- |
+| 静态文档 / 官网 | Workers Static Assets 和 Pages 的静态资产请求免费且不限量；Pages Free 有 500 builds/month、20,000 files/site、25 MiB/file。 | 文件数、构建并发、构建次数或动态 Functions 变成瓶颈时再升；大文件放 R2。 |
+| 小 API / Webhook / 评论后端 | Workers Free 有 100,000 requests/day、10 ms CPU/invocation。 | 接近每日请求上限、CPU 超过 10 ms、需要更长任务或生产日志时，优先看 Workers Paid。 |
+| 数据库 | D1 Free 有 5M rows read/day、100k rows written/day、5 GB total storage。 | 查询量稳定增长、需要移除每日读写硬限制或更大数据库时再升。 |
+| 配置 / 缓存 | KV Free 有 100k reads/day、1k writes/day、1k deletes/day、1k lists/day、1 GB storage。 | 写入、删除、列表操作变多，或需要月度包和按量扩展时再升。 |
+| 文件对象 | R2 Standard Free 有 10 GB-month/month、1M Class A/month、10M Class B/month，egress 免费。 | 存储、上传、读取次数超过免费包，或需要冷数据 Infrequent Access 时单独估算。 |
+| 异步任务 | Queues Free 有 10,000 operations/day，消息保留 24 小时。 | 导入、通知、邮件、转码等后台任务稳定后再升到月度包。 |
+| 强一致 / 实时状态 | Durable Objects Free 可用 SQLite-backed DO，含 100,000 requests/day、13,000 GB-s/day。 | 房间、会话、限流器、WebSocket 状态成为核心路径后再付费，并用 hibernation 控制成本。 |
+| AI 调用 | Workers AI Free / Paid 都有 10,000 Neurons/day；AI Gateway 核心功能免费，Free 持久日志为 100,000 logs total。 | 超过每日 Neurons、需要 AI Gateway 更大日志或 Logpush 时再升 Workers Paid。 |
+| 搜索 | 文档站先用 Pagefind，搜索请求不打后端；Vectorize 可用于小规模向量检索试验。 | 内容量和自然语言检索价值明确后，再评估 AI Search、Vectorize 或 Workers AI。 |
+| 基础安全 | DNS、CDN、Universal SSL、标准 DDoS 防护适合默认开启；Turnstile Free 有 20 widgets、每个 10 hostnames。 | WAF 规则、Bot、长期安全日志、API Shield 或企业级策略不足时再升 zone plan 或专项产品。 |
+| 内部后台 | Zero Trust Free 适合 50 users 以内团队；Tunnel 可以把源站放到内网后面。 | 用户数、日志留存、设备姿态、Gateway 策略和企业审计要求上来后再升级。 |
+| 成本提醒 | Budget alerts 和 usage notifications 用来提前发现趋势。 | 预算提醒不是硬封顶；真正控制成本要靠静态优先、限流、队列、配额和权限。 |
+
+第一条成本铁律：**主流量尽量停在静态资产、CDN、R2 和缓存层，只让真正需要计算的请求进入 Worker。**
+
 <CardGrid>
 	<Card title="产品地图" icon="document">
 		从 Workers、Pages、D1、KV、R2、Durable Objects、Queues、AI、安全和网络产品开始理解 Cloudflare。

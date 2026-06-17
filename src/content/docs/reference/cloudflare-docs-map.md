@@ -210,6 +210,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | WAF 精读 | 已整理 Custom Rules、Managed Rules、Rate Limiting、Ruleset Engine、Skip/Allow、误伤排查、计划边界和开源参考。 |
 | 已完成首版 | DDoS Protection 精读 | 已整理 unmetered DDoS、HTTP DDoS、Network-layer DDoS、Under Attack、源站保护、误伤排查、计划边界和开源参考。 |
 | 已完成首版 | Billing 精读 | 已整理账单类型、免费额度入口、Workers Paid、usage-based billing、Billable Usage dashboard、Budget alerts、threshold billing、权限、发票和开源参考。 |
+| 已完成复核 | Billing 二次精读 | 已把 [Billing](/platform/billing/) 对齐 Cloudflare Billing、How billing works、Usage-based billing、How charges accrue、Billable Usage、Budget alerts、Optimize costs、Threshold billing、Billing permissions / policy、Invoices、Cancel / Change plan、Payment failure、Additional payment method auto-retry、Stablecoin payments、Workers Pricing 和 Static Assets billing，补齐账单生命周期、请求成本路径、付款失败 / 预授权、threshold 一次触发、取消降级清单和 GitHub 源文件索引。 |
 | 已完成首版 | Rules 精读 | 已整理 Redirects、Transform、Configuration、Origin、Snippets、Cloud Connector、Custom Errors、Page Rules 迁移、执行顺序、Trace 排查、计划边界和开源参考。 |
 | 已完成复核 | Rules 二次精读 | 已把 [Rules](/platform/rules/) 对齐 Cloudflare Rules、Ruleset Engine、Page Rules migration、Trace、Troubleshooting、Snippets vs Workers、Origin Rules 和 Cache Rules，补齐规则分层、first match vs stackable、迁移清单、raw 字段避坑、Trace / Log Explorer 边界、排查保留路径和 IaC 真源。 |
 | 已完成首版 | Fundamentals 精读 | 已整理 Profile / Account / Zone、域名接入、Proxied / DNS-only、源站保护、成员权限、API Token、Ray ID、请求头、`/cdn-cgi/`、连接限制、端口和 Under Attack。 |
@@ -237,7 +238,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 架构模式二次精读 | 已把 [架构模式](/architecture/) 对齐 Reference Architecture、How to use、Find by solution、Use cases 和 GitHub 源目录，补齐从需求到架构的判断顺序、Use cases 映射、架构写作标准、路线图、常见误判和开源参考。 |
 | 已完成复核 | 额度与 Codex 基线二次精读 | 已把 [免费与付费边界](/platform/free-paid/) 对齐 Workers Pricing / Limits、Static Assets billing、usage-based billing 和 `cloudflare/cloudflare-docs` 源文件；同步强化 [Codex 协作](/best-practices/codex-cloudflare/) 的官方 Codex setup、Docs for agents、Skills、MCP 和 GitHub 来源。 |
 | 已完成复核 | API 网关架构二次精读 | 已把 [API 网关](/architecture/api-gateway/) 对齐 Serverless global APIs 与 APIs and microservices，补齐请求路径、三种架构形态、拆分时机、安全/成本/观测边界和官方模板来源。 |
-| 已完成复核 | 静态内容站与额度表二次精读 | 已把 [静态内容站](/architecture/static-site/) 对齐 Deploy frontend applications、Workers Static Assets、Pages Limits 和 Cloudflare 官方模板；同步给 [免费与付费边界](/platform/free-paid/) 增加核心额度一屏表和 GitHub 源仓库参考。 |
+| 已完成复核 | 静态内容站与额度表二次精读 | 已把 [静态内容站](/architecture/static-site/) 对齐 Deploy frontend applications、Workers Static Assets、Pages Limits 和 Cloudflare 官方模板；同步给 [免费与付费边界](/platform/free-paid/) 增加免费额度大全和 GitHub 源仓库参考。 |
+| 已完成复核 | 首页免费额度强化 | 已把 [首页](/) 前置为免费额度入口，按静态站、小 API、D1、KV、R2、Queues、Durable Objects、AI、安全、Zero Trust 和成本提醒整理 Free 边界与付费信号。 |
 | 已完成复核 | 学习路线二次精读 | 已把 [学习路线](/start/) 对齐 Learning Paths、Use cases、Docs for agents、全站 `llms.txt` 和 cloudflare/cloudflare-docs 源目录，补齐官方资料读取方式、六轮阅读顺序、Use cases 到本站专题映射和学习检查表。 |
 | 已完成复核 | 最佳实践入口二次精读 | 已把 [最佳实践](/best-practices/) 对齐 Workers Best Practices、Solution guides、Static Assets billing、WAF Rate Limiting、D1 indexes、R2 CORS 和 GitHub 源目录，补齐按阶段、按风险域、Workers 项目底线和交付检查。 |
 | 已完成复核 | 独立开发者推荐栈二次精读 | 已把 [独立开发者推荐栈](/best-practices/indie-stack/) 对齐 Deploy frontend applications、APIs and microservices、Solution guides、Workers pricing、storage options、AI Gateway、Turnstile、Zero Trust setup 和 cloudflare/templates，补齐免费起步栈、三阶段路线、数据产品选择、安全最小集、常见组合和开源模板参考。 |
