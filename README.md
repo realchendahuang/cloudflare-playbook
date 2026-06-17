@@ -36,6 +36,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | 源站保护与流量洪峰 | [src/content/docs/platform/origin-surge.md](src/content/docs/platform/origin-surge.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/origin-surge/) |
 | 公共网络与专项服务 | [src/content/docs/platform/public-network-specialties.md](src/content/docs/platform/public-network-specialties.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/public-network-specialties/) |
 | 治理、合规与学习路径 | [src/content/docs/platform/governance-compliance-learning.md](src/content/docs/platform/governance-compliance-learning.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/governance-compliance-learning/) |
+| 低频协议与平台工具 | [src/content/docs/platform/edge-protocols-utilities.md](src/content/docs/platform/edge-protocols-utilities.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/edge-protocols-utilities/) |
 | WAF | [src/content/docs/platform/waf.md](src/content/docs/platform/waf.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/waf/) |
 | DDoS Protection | [src/content/docs/platform/ddos.md](src/content/docs/platform/ddos.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ddos/) |
 | Rules | [src/content/docs/platform/rules.md](src/content/docs/platform/rules.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/rules/) |

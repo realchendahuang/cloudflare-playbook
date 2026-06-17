@@ -453,6 +453,25 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Learning Paths llms.txt](https://developers.cloudflare.com/learning-paths/llms.txt)
 - [Use cases](https://developers.cloudflare.com/use-cases/)
 - [Use cases solution guides](https://developers.cloudflare.com/use-cases/solutions/)
+- [Network Error Logging](https://developers.cloudflare.com/network-error-logging/)
+- [Network Error Logging get started](https://developers.cloudflare.com/network-error-logging/get-started/)
+- [Network Error Logging reference](https://developers.cloudflare.com/network-error-logging/reference/)
+- [Randomness Beacon](https://developers.cloudflare.com/randomness-beacon/)
+- [drand developer docs](https://drand.love/developer/)
+- [Resource Tagging](https://developers.cloudflare.com/resource-tagging/)
+- [Resource Tagging limits](https://developers.cloudflare.com/resource-tagging/reference/limits/)
+- [Tenant API](https://developers.cloudflare.com/tenant/)
+- [Tenant get started](https://developers.cloudflare.com/tenant/get-started/)
+- [Version Management](https://developers.cloudflare.com/version-management/)
+- [Privacy Gateway](https://developers.cloudflare.com/privacy-gateway/)
+- [Privacy Gateway limitations](https://developers.cloudflare.com/privacy-gateway/reference/limitations/)
+- [Privacy Proxy](https://developers.cloudflare.com/privacy-proxy/)
+- [Privacy Proxy deployment models](https://developers.cloudflare.com/privacy-proxy/concepts/deployment-models/)
+- [MoQ](https://developers.cloudflare.com/moq/)
+- [MoQ Feature Matrix](https://developers.cloudflare.com/moq/feature-matrix/)
+- [Agent Memory](https://developers.cloudflare.com/agent-memory/)
+- [Agent Memory pricing](https://developers.cloudflare.com/agent-memory/platform/pricing/)
+- [Agent Memory limits](https://developers.cloudflare.com/agent-memory/platform/limits/)
 - [Cloudflare Free Plan](https://www.cloudflare.com/plans/free/)
 - [Starlight Site Search](https://starlight.astro.build/guides/site-search/)
 
@@ -553,6 +572,17 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Support source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/support) | 官方 Support 文档源文件，适合追踪 support plan、case 信息清单、状态页和错误码排障。 |
 | [cloudflare/cloudflare-docs Learning Paths source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/learning-paths) | 官方 Learning Paths 源文件，适合反推本站学习路线。 |
 | [cloudflare/cloudflare-docs Use cases source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/use-cases) | 官方 Use cases 源文件，适合反推跨产品方案和案例分类。 |
+| [cloudflare/cloudflare-docs NEL source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/network-error-logging) | 官方 Network Error Logging 源文件，适合追踪 NEL 可用性、隐私边界和错误类型。 |
+| [drand/drand](https://github.com/drand/drand) | 分布式 Randomness Beacon 的 Go 实现，适合理解公开、可验证随机数的运行模型。 |
+| [cloudflare/cloudflare-docs Resource Tagging source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/resource-tagging) | 官方 Resource Tagging 源文件，适合追踪 public beta、limits、supported resources 和 API 行为。 |
+| [cloudflare/cloudflare-docs Tenant source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/tenant) | 官方 Tenant API 源文件，适合追踪 Channel / Alliance partner provisioning 流程。 |
+| [cloudflare/cloudflare-docs Version Management source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/version-management) | 官方 Version Management 源文件，适合追踪 Enterprise-only、dashboard-only 和兼容限制。 |
+| [cloudflare/cloudflare-docs Privacy Gateway source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/privacy-gateway) | 官方 Privacy Gateway 源文件，适合追踪 OHTTP、closed beta、legal、metrics 和 limitations。 |
+| [cloudflare/cloudflare-docs Privacy Proxy source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/privacy-proxy) | 官方 Privacy Proxy 源文件，适合追踪 MASQUE、single-hop / double-hop、headers 和 observability。 |
+| [cloudflare/moq-rs](https://github.com/cloudflare/moq-rs) | Cloudflare 维护的 MoQ Transport Rust 实现，适合看协议实现和 draft 跟进状态。 |
+| [cloudflare/quiche](https://github.com/cloudflare/quiche) | Cloudflare QUIC / HTTP3 实现，适合理解 MoQ 所依赖的底层协议生态。 |
+| [cloudflare/cloudflare-docs Agent Memory source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/agent-memory) | 官方 Agent Memory 源文件，适合追踪 private beta、Workers API、HTTP API、pricing 和 limits。 |
+| [cloudflare/agents](https://github.com/cloudflare/agents) | Cloudflare Agents SDK 源码，适合判断 Agent 应用是否真的需要托管记忆。 |
 | [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets、WAF、Access、zone 设置和资源声明变成 IaC。 |
 | [cloudflare/cf-terraforming](https://github.com/cloudflare/cf-terraforming) | 从现有 Cloudflare 配置生成 Terraform HCL 和 import 命令的官方迁移工具。 |
 | [pulumi/pulumi-cloudflare](https://github.com/pulumi/pulumi-cloudflare) | Pulumi Cloudflare provider 源码，适合追踪 Pulumi 资源覆盖。 |

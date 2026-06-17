@@ -109,25 +109,25 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Network](https://developers.cloudflare.com/network/llms.txt) | 9 | 网络设置。 |
 | [Notifications](https://developers.cloudflare.com/notifications/llms.txt) | 10 | 告警通知。 |
 | [Pulumi](https://developers.cloudflare.com/pulumi/llms.txt) | 7 | Pulumi 管理 Cloudflare。 |
-| [Randomness Beacon](https://developers.cloudflare.com/randomness-beacon/llms.txt) | 9 | drand 随机数。 |
+| [Randomness Beacon](https://developers.cloudflare.com/randomness-beacon/llms.txt) | 9 | 已完成首版专题；drand 公共随机数、公开可验证随机性、适用场景和 GitHub 开源参考。 |
 | [Reference Architecture](https://developers.cloudflare.com/reference-architecture/llms.txt) | 71 | 架构图和企业级集成参考。 |
 | [Registrar](https://developers.cloudflare.com/registrar/llms.txt) | 22 | 已完成首版专题；at-cost registration、renewal、DNSSEC、WHOIS redaction、supported TLDs 和企业域名保护。 |
-| [Resource Tagging](https://developers.cloudflare.com/resource-tagging/llms.txt) | 7 | 资源标签、权限和账单归因。 |
+| [Resource Tagging](https://developers.cloudflare.com/resource-tagging/llms.txt) | 7 | 已完成首版专题；all plans、public beta、10,000 tags/account、API 限制和资源归因实践。 |
 | [Rules](https://developers.cloudflare.com/rules/llms.txt) | 183 | 必读，Redirect、Transform、Cache、Origin、Configuration Rules 等。 |
 | [Ruleset Engine](https://developers.cloudflare.com/ruleset-engine/llms.txt) | 43 | 规则底层模型，WAF/Rules 深入时看。 |
 | [Support](https://developers.cloudflare.com/support/llms.txt) | 112 | 已完成首版专题；support channels、Free / paid plan 边界、case 信息清单、SLA / SLO 和状态页。 |
-| [Tenant](https://developers.cloudflare.com/tenant/llms.txt) | 9 | 多租户账号管理。 |
+| [Tenant](https://developers.cloudflare.com/tenant/llms.txt) | 9 | 已完成首版专题；Channel / Alliance partner provisioning，和普通 SaaS 多租户区分。 |
 | [Terraform](https://developers.cloudflare.com/terraform/llms.txt) | 29 | 团队化和 IaC 优先看。 |
 | [Time Services](https://developers.cloudflare.com/time-services/llms.txt) | 9 | 已完成首版专题；NTP、NTS、Roughtime 和系统时间同步边界。 |
 | [Cloudflare Tunnel](https://developers.cloudflare.com/tunnel/llms.txt) | 31 | 内网服务暴露和后台保护常用。 |
-| [Version Management](https://developers.cloudflare.com/version-management/llms.txt) | 11 | 配置版本、灰度和回滚。 |
+| [Version Management](https://developers.cloudflare.com/version-management/llms.txt) | 11 | 已完成首版专题；Enterprise-only、dashboard-only、staging / rollback、Terraform 和 Wrangler 限制。 |
 
 ## Developer Platform
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
 | [Agent Lee](https://developers.cloudflare.com/agent-lee/llms.txt) | 1 | Dashboard 内置 AI 助手。 |
-| [Agent Memory](https://developers.cloudflare.com/agent-memory/llms.txt) | 8 | Agent 记忆能力。 |
+| [Agent Memory](https://developers.cloudflare.com/agent-memory/llms.txt) | 8 | 已完成首版专题；private beta、暂不计费、30 天通知、ingest / recall limits 和 Agent 记忆边界。 |
 | [Agents](https://developers.cloudflare.com/agents/llms.txt) | 92 | 构建有状态 AI Agent、MCP、实时交互。 |
 | [AI](https://developers.cloudflare.com/ai/llms.txt) | 13 | Cloudflare AI 总入口。 |
 | [AI Gateway](https://developers.cloudflare.com/ai-gateway/llms.txt) | 83 | AI 请求观测、缓存、限流、fallback；AI 项目优先。 |
@@ -144,11 +144,11 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Hyperdrive](https://developers.cloudflare.com/hyperdrive/llms.txt) | 55 | 连接已有 Postgres/MySQL，提供连接池和查询缓存。 |
 | [Cloudflare Images](https://developers.cloudflare.com/images/llms.txt) | 56 | 图片存储、变换和分发。 |
 | [KV](https://developers.cloudflare.com/kv/llms.txt) | 29 | 读多写少的全局 key-value。 |
-| [MoQ](https://developers.cloudflare.com/moq/llms.txt) | 3 | Live media 协议。 |
+| [MoQ](https://developers.cloudflare.com/moq/llms.txt) | 3 | 已完成首版专题；Media over QUIC、draft feature matrix、live media 协议边界和 moq-rs。 |
 | [Pages](https://developers.cloudflare.com/pages/llms.txt) | 118 | 静态站和 Pages Functions，理解和 Workers Static Assets 的边界。 |
 | [Pipelines](https://developers.cloudflare.com/pipelines/llms.txt) | 32 | 实时事件流经 SQL transform 写入 R2、Parquet 或 Iceberg。 |
-| [Privacy Gateway](https://developers.cloudflare.com/privacy-gateway/llms.txt) | 6 | Oblivious HTTP。 |
-| [Privacy Proxy](https://developers.cloudflare.com/privacy-proxy/llms.txt) | 12 | MASQUE forward proxy。 |
+| [Privacy Gateway](https://developers.cloudflare.com/privacy-gateway/llms.txt) | 6 | 已完成首版专题；OHTTP relay、Enterprise-only、closed beta、隐私边界和 limitations。 |
+| [Privacy Proxy](https://developers.cloudflare.com/privacy-proxy/llms.txt) | 12 | 已完成首版专题；MASQUE forward proxy、Enterprise managed service、single-hop / double-hop 和隐私分离模型。 |
 | [Queues](https://developers.cloudflare.com/queues/llms.txt) | 38 | 异步任务和削峰。 |
 | [R2](https://developers.cloudflare.com/r2/llms.txt) | 97 | 对象存储和 S3 兼容，独立开发者必读。 |
 | [R2 SQL](https://developers.cloudflare.com/r2-sql/llms.txt) | 15 | 查询 R2 Data Catalog 数据。 |
@@ -174,7 +174,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | --- | ---: | --- |
 | [BYOIP](https://developers.cloudflare.com/byoip/llms.txt) | 20 | 已完成首版专题；自带 IP 段、address maps、service bindings、RPKI 和 route leak detection。 |
 | [Magic Transit](https://developers.cloudflare.com/magic-transit/llms.txt) | 44 | 已完成首版专题；企业 IP 网络 L3/L4 DDoS、防护、tunnels、traffic steering 和 Network Firewall。 |
-| [Network Error Logging](https://developers.cloudflare.com/network-error-logging/llms.txt) | 4 | 网络错误报告。 |
+| [Network Error Logging](https://developers.cloudflare.com/network-error-logging/llms.txt) | 4 | 已完成首版专题；all plan types、浏览器网络失败报告、last-mile 排障、隐私和 opt-out 边界。 |
 | [Network Flow](https://developers.cloudflare.com/network-flow/llms.txt) | 21 | 网络流量分析。 |
 | [Network Interconnect](https://developers.cloudflare.com/network-interconnect/llms.txt) | 5 | 已完成首版专题；Direct / Partner / Cloud Interconnect、dataplane、MTU、维护和冗余。 |
 
@@ -225,7 +225,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 源站保护与流量洪峰精读 | 已整理 Waiting Room、Smart Shield、Automatic Platform Optimization、plans、advanced features、APO pricing、Smart Shield packages 和 GitHub 开源参考。 |
 | 已完成首版 | 公共网络与专项服务精读 | 已整理 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway 的免费边界、付费边界、使用场景和 GitHub 开源参考。 |
 | 已完成首版 | 治理、合规与学习路径精读 | 已整理 Data Localization Suite、Client-side security、DMARC Management、Registrar、Support、Learning Paths、Use cases 的计划边界、合规边界、排障清单和 GitHub 开源参考。 |
-| 进行中 | 后续低频专项精读 | Network Error Logging、Randomness Beacon、Resource Tagging、Tenant、Version Management、Privacy Gateway、Privacy Proxy、MoQ、Agent Memory 等。 |
+| 已完成首版 | 低频协议与平台工具精读 | 已整理 Network Error Logging、Randomness Beacon、Resource Tagging、Tenant、Version Management、Privacy Gateway、Privacy Proxy、MoQ、Agent Memory 的计划边界、普通项目取舍和 GitHub 开源参考。 |
+| 进行中 | 后续低频专项精读 | Agent Lee、Artifacts、Email Service、Flagship、Network、Network Flow、R2 SQL、Sandbox SDK、Style Guide 等。 |
 | 待开始 | 后续专题 | 更多迁移案例、参考架构和真实项目拆解。 |
 
 ## 整理规则
@@ -306,5 +307,14 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Cloudflare Reference Architecture llms.txt](https://developers.cloudflare.com/reference-architecture/llms.txt)
 - [Cloudflare Migration Guides llms.txt](https://developers.cloudflare.com/migration-guides/llms.txt)
 - [Cloudflare Workers llms.txt](https://developers.cloudflare.com/workers/llms.txt)
+- [Network Error Logging llms.txt](https://developers.cloudflare.com/network-error-logging/llms.txt)
+- [Randomness Beacon llms.txt](https://developers.cloudflare.com/randomness-beacon/llms.txt)
+- [Resource Tagging llms.txt](https://developers.cloudflare.com/resource-tagging/llms.txt)
+- [Tenant llms.txt](https://developers.cloudflare.com/tenant/llms.txt)
+- [Version Management llms.txt](https://developers.cloudflare.com/version-management/llms.txt)
+- [Privacy Gateway llms.txt](https://developers.cloudflare.com/privacy-gateway/llms.txt)
+- [Privacy Proxy llms.txt](https://developers.cloudflare.com/privacy-proxy/llms.txt)
+- [MoQ llms.txt](https://developers.cloudflare.com/moq/llms.txt)
+- [Agent Memory llms.txt](https://developers.cloudflare.com/agent-memory/llms.txt)
 - [Docs for agents](https://developers.cloudflare.com/docs-for-agents/)
 - [Cloudflare Docs for Agents llms.txt](https://developers.cloudflare.com/docs-for-agents/llms.txt)

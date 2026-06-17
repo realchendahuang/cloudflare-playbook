@@ -62,6 +62,11 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │    ├─ Learning Paths / Use cases
   │    └─ Terraform / Pulumi / Wrangler
   │
+  ├─ 低频协议与平台工具
+  │    ├─ NEL / Randomness Beacon / MoQ
+  │    ├─ Resource Tagging / Tenant / Version Management
+  │    └─ Privacy Gateway / Privacy Proxy / Agent Memory
+  │
   └─ 观测与安全
        ├─ Web Analytics / Logs / GraphQL Analytics / Notifications
        ├─ Turnstile / WAF / Bot / API Shield
@@ -120,6 +125,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | [源站保护与流量洪峰](/platform/origin-surge/) | Waiting Room Free/Pro 不可用，Business 有 1 个 basic room；Smart Shield 可 opt-in；APO Free 站点 `$5/month`、Pro/Business/Enterprise included。 | Waiting Room Advanced、Smart Shield + Argo、Smart Shield Advanced、APO Free 站点付费。 | 合法用户峰值排队、回源请求和连接保护、WordPress 动态 HTML 缓存。 | 活动峰值看 Waiting Room；源站连接/回源压力看 Smart Shield；WordPress 才看 APO。 |
 | [公共网络与专项服务](/platform/public-network-specialties/) | 1.1.1.1 available on all plans；Radar API free；NTP public service；Google tag gateway free。 | Web3 是 add-on / usage-based；China Network 是 Enterprise separate subscription；部分 Radar / URL Scanner 能力受 token、可见性和企业功能限制。 | 终端 DNS、互联网趋势、时间同步、Web3 gateway、中国大陆网络和广告标签治理。 | 把它们当专项能力，不要放进默认架构；只有对应场景明确时再启用。 |
 | [治理、合规与学习路径](/platform/governance-compliance-learning/) | DMARC Management、Registrar、Client-side security 基础入口 available on all plans；Learning Paths / Use cases 是官方免费资料。 | Data Localization Suite 是 Enterprise-only paid add-on；Client-side security 高级检测和 blocking 需要 Advanced；Support 入口和 SLA 跟随计划。 | 数据驻留、前端供应链、邮件域名防伪、域名注册、支持排障和官方学习路线。 | 普通项目先做好 DNS / 邮件记录 / 排障材料；合规和高级前端安全按真实风险升级。 |
+| [低频协议与平台工具](/platform/edge-protocols-utilities/) | NEL available to all plan types；Resource Tagging available on all plans 且 public beta；Randomness Beacon 是公开 drand 文档入口；Agent Memory private beta 当前暂不计费。 | Version Management Enterprise-only；Privacy Gateway Enterprise closed beta；Privacy Proxy Enterprise managed service；Tenant API 面向 Channel / Alliance partners；MoQ 是低延迟媒体协议专项能力。 | 网络错误报告、公开随机数、资源标签、partner provisioning、企业配置灰度、隐私代理、MoQ 和 Agent 持久记忆。 | 普通项目默认不用；资源变多先看 Resource Tagging，做 Agent 再看 Agent Memory，企业配置和隐私代理按合同边界评估。 |
 | [SSL/TLS](/platform/ssl-tls/) | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 等基础能力在 Free 可用。 | Advanced Certificate Manager、Custom Certificates、Keyless SSL、Enterprise-only 模式按需求升级。 | 给站点建立完整 HTTPS 链路。 | 默认目标是 Full (strict)；源站也要有有效证书，别停在 Flexible。 |
 | [DDoS Protection](/platform/ddos/) | 官方说明所有计划都有 standard, unmetered DDoS protection，HTTP DDoS 和 Network-layer DDoS 也覆盖所有计划。 | Enterprise / Advanced DDoS 提供更多 override、Log action、Adaptive / Advanced DDoS、告警过滤和支持。 | 自动检测和缓解 L3/L4 与 L7 DDoS。 | Web 入口先保持 Proxied，隐藏源站 IP；被打时再结合 WAF、Rate Limiting、Under Attack 和日志排查。 |
 | [Rules](/platform/rules/) | Rules available on all plans；Free 有 10 条常见现代规则、15 条 Bulk Redirect Rules、10,000 条 Bulk Redirect URL。 | Pro/Business/Enterprise 提升多数现代规则到 25/50/300；Snippets 和 Custom Errors 从 paid plans 起。 | 管理跳转、重写、回源、配置、压缩、错误页和轻量边缘逻辑。 | 新项目优先现代 Rules，不再新写 Page Rules；用 Trace 验证执行顺序。 |
@@ -176,6 +182,9 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | 广告测量第一方标签 | Google tag gateway + Google Tag Manager triggers |
 | 数据驻留和企业合规 | Data Localization Suite + Logpush + product compatibility checklist |
 | 域名和邮件治理 | Registrar + DNSSEC + DMARC Management |
+| 多资源归因治理 | Resource Tagging + 命名规范 + Billing / Cost Center |
+| Enterprise 配置灰度 | Version Management + WAF / Rules 变更 review + dashboard rollback |
+| Agent 持久记忆 | Agents SDK + Agent Memory + D1/R2 会话归档 + AI Gateway |
 | 生产故障排查 | Support checklist + Cloudflare Status + Ray ID / HAR / origin logs |
 
 ## 官方资料
@@ -290,3 +299,16 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Workers VPC Pricing](https://developers.cloudflare.com/workers-vpc/reference/pricing/)
 - [Workers VPC Limits](https://developers.cloudflare.com/workers-vpc/reference/limits/)
 - [Secrets Store](https://developers.cloudflare.com/secrets-store/)
+- [Network Error Logging](https://developers.cloudflare.com/network-error-logging/)
+- [Network Error Logging get started](https://developers.cloudflare.com/network-error-logging/get-started/)
+- [Randomness Beacon](https://developers.cloudflare.com/randomness-beacon/)
+- [Resource Tagging](https://developers.cloudflare.com/resource-tagging/)
+- [Resource Tagging limits](https://developers.cloudflare.com/resource-tagging/reference/limits/)
+- [Tenant API](https://developers.cloudflare.com/tenant/)
+- [Version Management](https://developers.cloudflare.com/version-management/)
+- [Privacy Gateway](https://developers.cloudflare.com/privacy-gateway/)
+- [Privacy Proxy](https://developers.cloudflare.com/privacy-proxy/)
+- [MoQ](https://developers.cloudflare.com/moq/)
+- [Agent Memory](https://developers.cloudflare.com/agent-memory/)
+- [Agent Memory pricing](https://developers.cloudflare.com/agent-memory/platform/pricing/)
+- [Agent Memory limits](https://developers.cloudflare.com/agent-memory/platform/limits/)
