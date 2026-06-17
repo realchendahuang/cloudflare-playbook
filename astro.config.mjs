@@ -76,7 +76,7 @@ export default defineConfig({
 						{ label: 'Zero Trust 与企业网络', slug: 'platform/zero-trust-networking' },
 						{ label: '自有网络与专线', slug: 'platform/private-networking' },
 						{ label: '免费额度大全', slug: 'platform/free-paid' },
-						{ label: 'Billing', slug: 'platform/billing' },
+						{ label: '账单与预算', slug: 'platform/billing' },
 					],
 				},
 				{

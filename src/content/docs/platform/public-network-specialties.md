@@ -1,22 +1,22 @@
 ---
 title: 公共网络能力
-description: 普通项目后置评估的公共网络、趋势、时间、Web3、区域交付和广告测量能力。
+description: 终端 DNS、趋势研究、时间同步、Web3、区域交付和广告测量怎么判断。
 ---
 
-最后核对日期：2026-06-18。
+最后核对日期：2026-06-18。具体价格、计划和可用区域以官方页面为准。
 
-这些能力不是 Cloudflare 项目的默认主干。它们更像后置工具：终端 DNS、互联网趋势、时间同步、区域交付、Web3 网关和广告测量。
+这些能力不是 Cloudflare 项目的默认主干。普通项目先把 DNS、SSL/TLS、Cache、WAF、DDoS、Workers 和数据产品跑通，再按真实场景补。
 
 ## 先判断是不是你的问题
 
 | 你遇到的问题 | 看什么 | 不要误会 |
 | --- | --- | --- |
-| 给设备或团队终端换 DNS resolver。 | 1.1.1.1 | 它不是你域名的 DNS 托管后台。 |
-| 做行业研究、趋势报告、安全背景分析。 | Radar | 它不是你站点的访问日志。 |
-| 服务器、设备、签名和日志依赖可靠时间。 | Time Services | 应放在系统和基础设施层，不写成业务逻辑。 |
-| 业务确实需要 IPFS 或 Ethereum RPC。 | Web3 Gateways | 有 usage-based billing，不是为了“架构完整”而开。 |
-| 面向中国大陆用户做合规和性能交付。 | China Network | Enterprise separate subscription，还要 ICP 和产品兼容检查。 |
-| 已经使用 Google 广告 / 分析标签。 | Google tag gateway | 它不是通用第三方脚本治理。 |
+| 给设备或团队终端换 DNS resolver。 | 1.1.1.1。 | 它不是域名记录后台。 |
+| 做行业研究、趋势报告、安全背景分析。 | Radar。 | 它不是站点访问日志。 |
+| 服务器、设备、签名和日志依赖可靠时间。 | Time Services。 | 不要写成业务逻辑。 |
+| 业务确实需要 IPFS 或 Ethereum RPC。 | Web3 Gateways。 | 不要为了“架构完整”而开。 |
+| 面向中国大陆用户做合规和性能交付。 | China Network。 | 它不是免费加速开关。 |
+| 已经使用 Google 广告 / 分析标签。 | Google tag gateway。 | 它不是通用第三方脚本治理。 |
 
 ## 普通项目顺序
 
@@ -30,9 +30,9 @@ description: 普通项目后置评估的公共网络、趋势、时间、Web3、
 | 误区 | 更好的判断 |
 | --- | --- |
 | 1.1.1.1 是域名后台。 | 域名记录管理看 Cloudflare DNS。 |
-| Radar 能看本站全部用户。 | 本站数据看 Web Analytics、Workers Logs、Logpush 或 GraphQL Analytics API。 |
-| Web3 included usage 等于随便用。 | 启用前看 dashboard、limits 和 usage-based billing。 |
-| China Network 是免费优化中国访问。 | 它是企业订阅，并且有 ICP、IPv6、兼容性和监管边界。 |
+| Radar 能看本站全部用户。 | 站点数据看 Web Analytics、Workers Logs 或业务数据。 |
+| Web3 免费包等于随便用。 | 启用前看 dashboard、limits 和预算提醒。 |
+| China Network 是免费优化中国访问。 | 它有合同、ICP备案、产品兼容和监管边界。 |
 | Google tag gateway 可以替代 Zaraz。 | 它只服务 Google measurement tags。 |
 
 ## 事实来源

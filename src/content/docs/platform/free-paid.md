@@ -3,7 +3,7 @@ title: 免费额度大全
 description: Cloudflare 免费额度、5 USD/month Workers Paid、付费入口和成本控制建议。
 ---
 
-最后核对日期：2026-06-18。Cloudflare 的额度和价格变化很快，本页优先整理普通项目最关心的免费额度、`$5/month` Workers Paid 和容易误判的付费边界；最终数字以官方 pricing / limits 为准。账单类型、预算提醒、发票和 usage-based billing 见 [Billing](/platform/billing/)。
+最后核对日期：2026-06-18。Cloudflare 的额度和价格变化很快，本页优先整理普通项目最关心的免费额度、`$5/month` Workers Paid 和容易误判的付费边界；最终数字以官方 pricing / limits 为准。账单类型、预算提醒、发票和 usage-based billing 见 [账单与预算](/platform/billing/)。
 
 这页是本站的 Cloudflare 额度事实源。首页负责快速判断，这里负责把 Free、`$5/month` Workers Paid、zone plan、add-on 和 Enterprise 边界放到同一套表格里。准备启用任何付费能力前，先回到这页核对对应产品的计量单位和最容易误判的收费点。
 

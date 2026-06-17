@@ -20,7 +20,7 @@ description: Data Localization、Client-side security、DMARC、Registrar、Supp
 
 | 能力 | 触发信号 | 普通项目判断 |
 | --- | --- | --- |
-| Data Localization Suite | 客户、合同或监管明确要求数据区域。 | Enterprise-only paid add-on；没有合规要求先跳过。 |
+| Data Localization Suite | 客户、合同或监管明确要求数据区域。 | 企业合同能力；没有合规要求先跳过。 |
 | Client-side security | 页面有广告、分析、支付、客服等第三方脚本。 | Free / Pro 先做监控；高级检测和 blocking 另看计划。 |
 | DMARC Management | 域名用于收发邮件或品牌容易被仿冒。 | 应尽早做，不等项目变大。 |
 | Registrar | 想统一域名注册、续费、DNSSEC 和隐私。 | 可用，但域名注册和续费仍要付注册局成本。 |

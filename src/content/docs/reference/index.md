@@ -42,7 +42,7 @@ Cloudflare 官方文档页面会提示 Agent 优先请求 Markdown，因为 HTML
 | 状态和异步 | [Durable Objects Pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)、[Queues Pricing](https://developers.cloudflare.com/queues/platform/pricing/) | [Durable Objects](/platform/durable-objects/)、[Queues](/platform/queues/) |
 | 安全 | [WAF](https://developers.cloudflare.com/waf/)、[DDoS Protection](https://developers.cloudflare.com/ddos-protection/)、[Turnstile Plans](https://developers.cloudflare.com/turnstile/plans/) | [安全与网络](/platform/security-networking/) |
 | AI 和搜索 | [AI Gateway Pricing](https://developers.cloudflare.com/ai-gateway/reference/pricing/)、[Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)、[AI Search Limits](https://developers.cloudflare.com/ai-search/platform/limits-pricing/) | [AI 产品](/platform/ai/) |
-| 观测和账单 | [Workers Logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/)、[Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/) | [观测与日志](/platform/observability/)、[Billing](/platform/billing/) |
+| 观测和账单 | [Workers Logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/)、[Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/) | [观测与日志](/platform/observability/)、[账单与预算](/platform/billing/) |
 
 ## 写作规范
 

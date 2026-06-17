@@ -1,88 +1,63 @@
 ---
 title: 观测与日志
-description: Cloudflare Web Analytics、Workers Logs、Logpush、Log Explorer、Notifications 和 Analytics Engine 的实践路线。
+description: 普通项目怎么先看访问、错误和成本，什么时候再做长期日志。
 ---
 
-最后核对日期：2026-06-18。日志、分析、告警和计费口径变化快；价格、保留期、采样、可用计划和 API 限制以官方 pricing / limits 页面为准。
+最后核对日期：2026-06-18。额度和保留期会变化，具体数字统一回到 [免费额度大全](/platform/free-paid/) 和官方页面核对。
 
-观测不是把所有数据都存下来。普通项目先回答三个问题：免费阶段能看到什么，`$5/month` Workers Paid 多买到什么，什么时候才需要长期日志。
+观测的目标不是把所有东西都存下来，而是在出问题时知道三件事：有没有人访问，哪里失败了，会不会超预算。
 
-## 一句话判断
+## 先看这个
 
-| 项目阶段 | 先用什么 | 先别做什么 |
+| 项目阶段 | 先做什么 | 先别做什么 |
 | --- | --- | --- |
-| 文档站、官网、博客 | Web Analytics + Budget alerts | 自建埋点和长期日志管道。 |
-| 有 Worker API | Real-time logs + Workers Logs | 把请求体、token、cookie、邮箱写进日志。 |
-| 有评论、表单、上传 | Workers Logs + Security Events | 只看应用日志，忽略 WAF / Rate Limiting。 |
-| 有产品指标 | Analytics Engine；业务事实仍写 D1 / R2 | 用日志当数据库。 |
-| 需要长期取证 | Log Explorer 或 Logpush | 只靠 3 到 7 天 Workers Logs。 |
+| 只有文档站、官网、博客 | 开 Web Analytics，看访问趋势和页面表现。 | 自建复杂埋点。 |
+| 有 Worker API | 用 Workers Logs 和临时 tail 排查错误。 | 记录 token、cookie、邮箱、正文。 |
+| 有评论、表单、上传 | 同时看应用日志和 Security Events。 | 只看业务错误，忽略刷量和拦截。 |
+| 有产品指标 | 把业务事实写进 D1 / R2，指标再进 Analytics Engine。 | 用日志当数据库。 |
+| 需要长期追溯 | 再看 Logpush、Log Explorer 或外部日志平台。 | 一开始就搭完整日志管道。 |
 
-## 免费与付费边界
+## 最小日志字段
 
-| 能力 | 免费阶段 | 付费或升级信号 |
-| --- | --- | --- |
-| Web Analytics | 所有计划可用；适合看页面趋势。 | 需要更复杂规则和归因时再看更高计划。 |
-| Real-time logs | 临时排障够用，不负责长期存储。 | 生产问题要追溯时看 Workers Logs。 |
-| Workers Logs | Free 有每日额度和短留存。 | 日志量、留存和排障窗口不够时看 Workers Paid。 |
-| Workers Trace Events Logpush | Free 不可用。 | 需要把 Worker trace 长期推到 R2 或日志平台时再用。 |
-| Cloudflare Logpush / Log Explorer | 普通项目通常先不用。 | 安全取证、合规审计、客户支持要求明确后再买。 |
-| Analytics Engine | 适合产品指标和高基数事件。 | 不要替代事务数据库。 |
-| Budget alerts | 付费前就该开。 | 它只提醒，不会自动封顶。 |
-
-完整数字见 [免费额度大全](/platform/free-paid/)。
-
-## 先看什么
-
-| 要回答的问题 | 优先事实源 |
-| --- | --- |
-| 用户是不是访问变慢了？ | Web Analytics、Dashboard Analytics、Speed / Observatory。 |
-| 某个请求为什么失败？ | Ray ID、Workers Logs、Real-time logs、源站日志。 |
-| 是不是被 WAF 或 Rate Limiting 拦了？ | Security Events。 |
-| 某个功能是否被真实使用？ | Analytics Engine、D1 业务表或产品事件表。 |
-| 会不会超预算？ | Billing、Billable Usage、Budget alerts、产品 pricing。 |
-
-## 日志只记这些
+普通项目先把日志压到能排障的最小集合。
 
 | 字段 | 用途 |
 | --- | --- |
 | `event` | 稳定事件名，例如 `api_error`、`comment_created`。 |
-| `request_id` | 串联前端、Worker、D1、R2 和队列任务。 |
+| `request_id` | 串起前端、Worker、D1、R2 和队列任务。 |
 | `ray_id` | 回查 Cloudflare 边缘请求和安全事件。 |
-| `path` | 记录路由类型，避免完整敏感 query。 |
+| `path` | 记录路由类型，不保存完整敏感 query。 |
 | `status` | HTTP 状态码或业务错误码。 |
 | `duration_ms` | 判断慢请求和外部依赖耗时。 |
 | `error_type` | 稳定错误类别。 |
 
-不要记录：`authorization`、cookie、API token、secret、评论全文、邮件正文、完整 query string、完整 request body。日志要能定位问题，也要能控制成本和隐私风险。
+不要记录：`authorization`、cookie、API token、secret、评论全文、邮件正文、完整 query string、完整 request body。
 
 ## 升级信号
 
-| 信号 | 该看什么 |
+| 信号 | 下一步 |
 | --- | --- |
-| 3 天日志不够排查问题 | Workers Paid 的 Workers Logs，或外部日志出口。 |
-| 需要长期留存 Worker trace events | Workers Trace Events Logpush。 |
-| 需要多产品安全取证和内部搜索 | Log Explorer 或 Enterprise Logpush。 |
-| 需要按用户、租户、功能统计高基数事件 | Analytics Engine。 |
-| 日志量开始接近免费额度 | 先采样、减少字段、脱敏，再考虑付费。 |
+| 几天前的问题已经查不到。 | 看 Workers Paid 的日志留存，或把关键日志导出。 |
+| 客户支持需要按用户、租户、订单追溯。 | 设计业务事件表，不只依赖请求日志。 |
+| 安全事件需要长期取证。 | 看 Logpush、Log Explorer 或企业日志能力。 |
+| 日志量开始接近免费额度。 | 先采样、减少字段、脱敏，再考虑付费。 |
+| AI、上传、评论有开放入口。 | 给入口加限流、Turnstile、WAF，再看日志。 |
 
 ## 常见误区
 
-| 误区 | 更好的做法 |
+| 误区 | 更好的判断 |
 | --- | --- |
-| Real-time logs 就是日志存储。 | 它适合临时排障；存储和过滤看 Workers Logs。 |
-| 免费日志可以全量记录所有内容。 | 高流量要采样，敏感字段要脱敏。 |
-| Workers Paid 等于企业日志能力。 | 它主要改善 Workers 侧日志，不等于全平台 Logpush。 |
-| Budget alerts 能阻止扣费。 | 它只发邮件，不暂停服务。 |
-| GraphQL Analytics API 可以算账单。 | 分析看 GraphQL，账单看 Billing。 |
+| 能 tail 到日志就等于有日志系统。 | tail 适合现场排障，长期追溯要看留存和导出。 |
+| 日志越全越安全。 | 只记录能定位问题的字段，敏感内容不要进日志。 |
+| Workers Paid 等于全平台日志能力。 | 它主要改善 Workers 侧日志，不等于所有产品日志都可长期导出。 |
+| Budget alerts 会阻止扣费。 | 它只提醒，不会暂停服务。 |
+| 访问统计可以替代账单。 | 访问看 Analytics，费用看 Billing 和产品用量。 |
 
 ## 事实来源
 
-| 来源 | 用途 |
-| --- | --- |
-| [Workers Logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/) | Workers 日志。 |
-| [Workers Real-time logs](https://developers.cloudflare.com/workers/observability/logs/real-time-logs/) | 临时排障。 |
-| [Workers Logpush](https://developers.cloudflare.com/workers/observability/logs/logpush/) | Worker trace 导出。 |
-| [Web Analytics Limits](https://developers.cloudflare.com/web-analytics/limits/) | Web Analytics 限制。 |
-| [GraphQL Analytics API Limits](https://developers.cloudflare.com/analytics/graphql-api/limits/) | GraphQL Analytics API。 |
-| [Analytics Engine Pricing](https://developers.cloudflare.com/analytics/analytics-engine/pricing/) | Analytics Engine 成本。 |
-| [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/) | 预算提醒。 |
+- [Workers Logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/)
+- [Workers Real-time logs](https://developers.cloudflare.com/workers/observability/logs/real-time-logs/)
+- [Workers Logpush](https://developers.cloudflare.com/workers/observability/logs/logpush/)
+- [Web Analytics Limits](https://developers.cloudflare.com/web-analytics/limits/)
+- [Analytics Engine Pricing](https://developers.cloudflare.com/analytics/analytics-engine/pricing/)
+- [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/)

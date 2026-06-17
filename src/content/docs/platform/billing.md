@@ -1,9 +1,9 @@
 ---
-title: Billing
+title: 账单与预算
 description: Cloudflare 账单、免费额度、Workers Paid、按量计费和预算提醒的普通项目判断。
 ---
 
-最后核对日期：2026-06-18。账单、价格、免费额度和计划边界会变化；涉及金额、included usage、发票和取消订阅时，以 Cloudflare 官方 Billing / Pricing / Limits 页面为准。
+最后核对日期：2026-06-18。账单、价格、免费额度和计划边界会变化；涉及金额、发票和取消订阅时，以 Cloudflare 官方 Billing / Pricing / Limits 页面为准。
 
 这页只解决普通项目最常见的账单判断：哪些能免费跑，`$5/month` Workers Paid 买到什么，哪些付费和 Workers Paid 没关系，什么时候要看用量。
 
@@ -32,7 +32,7 @@ Workers Paid 值得付费的信号很具体：
 
 | 信号 | 为什么 |
 | --- | --- |
-| Worker 请求接近 100,000/day。 | Free 是日额度；Paid 变成月度 included usage，并允许继续按量扩展。 |
+| Worker 请求接近 100,000/day。 | Free 是日额度；Paid 变成月度额度，并允许继续按量扩展。 |
 | CPU 经常超过 10 ms。 | SSR、AI 前处理、批量解析和复杂代理会先撞 CPU。 |
 | Workers Logs 3 天留存不够。 | Paid 的日志额度和留存更适合生产排障。 |
 | D1、KV、Queues、Durable Objects 已经成为核心路径。 | 这些产品在 Paid 下会进入更高额度或更完整能力。 |
@@ -87,7 +87,7 @@ Workers Paid 不会提升 WAF、Bot、Cache Rules、SSL/TLS、DNS 记录数、Lo
 | 来源 | 用途 |
 | --- | --- |
 | [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/) | 账单、发票、订阅、付款和预算提醒入口。 |
-| [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/) | 哪些产品按用量计费，以及 included usage 的判断方式。 |
+| [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/) | 哪些产品按用量计费，以及已包含用量的判断方式。 |
 | [Monitor billable usage](https://developers.cloudflare.com/billing/manage/billable-usage/) | Billable Usage dashboard 能看什么、不能看什么。 |
 | [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/) | 预算提醒的触发方式和限制。 |
 | [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/) | Workers Paid、请求、CPU、日志和开发者平台额度。 |
