@@ -51,7 +51,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 Astro + Starlight
   ├─ Markdown / MDX 文档
   ├─ Pagefind 站内搜索
-  ├─ Starlight Flexoki 主题
+  ├─ Starlight Theme Next 主题
   ├─ Twikoo 评论组件
   └─ dist 静态资产
 

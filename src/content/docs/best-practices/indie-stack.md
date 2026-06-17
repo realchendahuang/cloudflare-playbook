@@ -77,5 +77,5 @@ Cloudflare Playbook 当前选择：
 | 搜索 | Pagefind | 免费、静态、低复杂度。 |
 | 部署 | Workers Static Assets | 静态站和 API 在同一个 Worker 项目。 |
 | 评论 | Twikoo + twikoo-cloudflare | 复用成熟评论组件，并把服务托管在 Cloudflare。 |
-| 主题 | Starlight Flexoki | 复用成熟主题，并使用橙色强调色。 |
+| 主题 | Starlight Theme Next + Cloudflare 主题变量 | 复用成熟文档主题，只通过主题变量收敛品牌色。 |
 | 未来增强 | AI Search / Turnstile | 内容和流量真的上来后再加。 |

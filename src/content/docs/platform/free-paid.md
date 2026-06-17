@@ -50,7 +50,7 @@ Cloudflare 最适合普通人的地方，不是“永远不要花钱”，而是
 | 文档页面 | Astro + Starlight + Workers Static Assets | 静态资产请求免费不限量，部署到 Worker 还能带 API。 |
 | 站内搜索 | Pagefind | 构建期索引，用户搜索不打后端。 |
 | 评论 | Twikoo + twikoo-cloudflare | 复用成熟评论组件，评论服务托管在 Cloudflare Workers，数据进入 D1。 |
-| 主题 | Starlight Flexoki | 复用成熟 Starlight 主题，用橙色强调色保持品牌识别。 |
+| 主题 | Starlight Theme Next + Cloudflare 主题变量 | 复用成熟 Starlight 主题，用橙色主题变量保持品牌识别。 |
 | 未来 AI 搜索 | AI Search 或 Vectorize | 等内容足够多后再为自然语言搜索付费。 |
 
 ## 常见误区

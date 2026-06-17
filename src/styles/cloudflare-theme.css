@@ -1,0 +1,16 @@
+/* 只覆盖 Starlight 主题变量，不重写布局和组件样式。 */
+:root {
+	--sl-color-accent-low: #3b210b;
+	--sl-color-accent: #f38020;
+	--sl-color-accent-high: #ffd6a3;
+	--sl-color-text-accent: #ffb56b;
+	--sl-color-bg-accent: #f38020;
+}
+
+:root[data-theme='light'] {
+	--sl-color-accent-low: #ffe3c7;
+	--sl-color-accent: #f38020;
+	--sl-color-accent-high: #7a3100;
+	--sl-color-text-accent: #a64400;
+	--sl-color-bg-accent: #f38020;
+}

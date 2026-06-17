@@ -29,7 +29,7 @@
     "@astrojs/starlight": "^0.40.0",
     "astro": "^6.4.7",
     "sharp": "^0.34.5",
-    "starlight-theme-flexoki": "^0.2.2",
+    "starlight-theme-next": "0.4.0",
     "twikoo": "1.7.12",
     "twikoo-cloudflare": "1.6.41"
   },

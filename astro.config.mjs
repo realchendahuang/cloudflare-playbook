@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import starlightThemeFlexoki from 'starlight-theme-flexoki';
+import starlightThemeNext from 'starlight-theme-next';
 
 // 文档站的导航保持稳定，正文内容再通过目录逐步扩展。
 export default defineConfig({
@@ -10,13 +10,12 @@ export default defineConfig({
 		starlight({
 			title: 'Cloudflare Playbook',
 			description: '面向普通开发者和小团队的 Cloudflare 最佳实践知识库。',
+			customCss: ['./src/styles/cloudflare-theme.css'],
 			components: {
 				Footer: './src/components/TwikooFooter.astro',
 			},
 			plugins: [
-				starlightThemeFlexoki({
-					accentColor: 'orange',
-				}),
+				starlightThemeNext(),
 			],
 			// 当前内容以简体中文为主，根路径直接作为中文站点。
 			locales: {
