@@ -199,6 +199,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | D1 精读 | 已整理 Serverless SQL 定位、免费/付费边界、索引、迁移、备份、Read Replication 和开源参考。 |
 | 已完成首版 | KV 精读 | 已整理读多写少模型、免费/付费边界、最终一致、cacheTtl、API 习惯、批量操作和开源参考。 |
 | 已完成首版 | R2 精读 | 已整理对象存储定位、免费/付费边界、Class A/B、一致性、Workers API、公开访问、签名 URL 和开源参考。 |
+| 已完成复核 | 实战案例二次精读 | 已把 Worker API + D1、R2 签名上传从案例骨架补成资源准备、配置、最小代码、验证、风险和官方 / GitHub 来源。 |
 | 已完成首版 | Durable Objects 精读 | 已整理单实体强一致状态、免费/付费边界、SQLite storage、WebSocket Hibernation、Alarms、迁移和开源参考。 |
 | 已完成首版 | Queues 精读 | 已整理异步任务定位、免费/付费边界、at least once、批处理、重试、死信队列、Pull Consumer 和开源参考。 |
 | 已完成首版 | Workers Static Assets 精读 | 已整理静态资产免费边界、文件限制、路由模型、ASSETS binding、`_headers` / `_redirects`、Pages 取舍和开源参考。 |

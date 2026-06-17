@@ -3,18 +3,24 @@ title: 实战案例
 description: 可复现的 Cloudflare 产品组合案例。
 ---
 
-案例用于把产品地图和架构模式落到代码、配置、部署和验证里。
+最后核对日期：2026-06-17。
+
+案例用于把产品地图和架构模式落到代码、配置、部署和验证里。每个案例都尽量保留“能照着做”的最小路径，同时把生产环境需要补上的权限、成本和风险边界写清楚。
 
 ## 当前案例
 
-| 案例 | 核心产品 | 学习目标 |
+| 案例 | 核心产品 | 适合先学什么 |
 | --- | --- | --- |
-| [Worker API + D1](/recipes/worker-api-d1/) | Workers、D1 | 写一个轻量 API 并读写 SQLite 数据 |
-| [R2 签名上传](/recipes/r2-signed-upload/) | Workers、R2 | 实现文件上传、下载和权限控制 |
+| [Worker API + D1](/recipes/worker-api-d1/) | Workers、Hono、D1 | API 路由、D1 binding、SQL migration、prepared statement、CRUD 验证 |
+| [R2 签名上传](/recipes/r2-signed-upload/) | Workers、Hono、R2 | Worker 代理上传、presigned URL 直传、CORS、私有下载授权 |
 
-## 案例模板
+## 选择顺序
 
-每个案例建议包含：
+- 先看 [Worker API + D1](/recipes/worker-api-d1/)：理解 Worker 如何接收请求、校验输入、调用绑定资源。
+- 再看 [R2 签名上传](/recipes/r2-signed-upload/)：理解文件为什么放 R2，元数据为什么更适合放 D1。
+- 做真实项目时，把 D1 案例里的用户/状态数据和 R2 案例里的文件 key 关联起来。
+
+## 案例标准
 
 - 背景：为什么要做。
 - 架构：请求路径和产品组合。
