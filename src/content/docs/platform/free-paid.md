@@ -27,6 +27,30 @@ Cloudflare 最适合普通人的地方，不是“永远不要花钱”，而是
 3. 静态资产请求、R2 egress、D1 数据访问 egress 等关键链路有很友好的边界。
 4. 最容易浪费钱的地方，是把静态访问、搜索、图片、视频、后台任务都错误地打到动态计算里。
 
+## 免费额度优先级
+
+先别急着看所有数字。普通项目最应该先盯住四类额度：
+
+| 优先级 | 额度类型 | 代表产品 | 实践判断 |
+| --- | --- | --- | --- |
+| 1 | 默认就该用的免费能力 | DNS、CDN、Universal SSL、DDoS、Workers Static Assets、Web Analytics。 | 这些是把项目放上 Cloudflare 的基础收益，能降低源站压力和运维复杂度。 |
+| 2 | 能验证产品的免费能力 | Workers Free、D1、KV、R2、Queues、Durable Objects、Turnstile、Access、Workers AI。 | 适合把文档站、小 API、评论、表单、后台和 AI 试验先跑起来。 |
+| 3 | 值得为 `$5/month` 升级的能力 | Workers Paid、Pages Functions、Workers Logs、Trace Events Logpush、Containers、Email Sending。 | 当请求、CPU、日志、后台任务或开发者平台限制成为真实瓶颈，再升级。 |
+| 4 | 不能靠 Workers Paid 解决的能力 | Pro / Business / Enterprise zone plan、Images Paid、Stream、Load Balancing、Argo、Magic Transit、Logpush、Bot Management。 | 这些要按域名计划、add-on、媒体用量、网络合同或企业安全需求单独评估。 |
+
+如果只记一条：**免费额度先服务架构顺序，不是用来堆产品名。** 静态内容留在静态层，文件进 R2，关系数据进 D1，配置缓存进 KV，强一致状态进 Durable Objects，耗时任务进 Queues，高风险写操作加 Turnstile。
+
+## 免费阶段玩法矩阵
+
+| 场景 | 零成本起步组合 | 撞墙信号 | 下一步 |
+| --- | --- | --- | --- |
+| 开源文档站 | Workers Static Assets / Pages + Pagefind + Web Analytics。 | 构建次数、文件数量、搜索体验或评论写入成为瓶颈。 | 先优化构建和静态资源；再考虑 D1 评论、AI Search 或 Workers Paid。 |
+| 小型 SaaS API | Workers Free + D1 Free + KV cache + Turnstile。 | 100,000 requests/day、10 ms CPU、D1 写入或日志留存不够。 | 升 Workers Paid，拆静态和动态路径，给写操作做限流。 |
+| 内容社区雏形 | Workers + D1 + Turnstile + WAF Rate Limiting。 | 写入、审核、恶意提交、日志追踪成为主要工作。 | 加 Workers Paid、队列、审核后台和更明确的安全规则。 |
+| 文件服务 | R2 Standard Free + presigned URL + CDN cache。 | 超过 10 GB-month、Class A / B operations 增长、冷数据比例上升。 | 优化缓存和上传策略；冷数据再评估 Infrequent Access。 |
+| 内部工具 | Access + Tunnel + Zero Trust Free。 | 超过 50 users、日志留存、设备姿态、Gateway、DLP 或审计要求上来。 | 看 Zero Trust Pay-as-you-go 或合同计划。 |
+| AI 搜索试验 | Pagefind + Workers AI + AI Gateway + AI Search Free。 | 自然语言查询、向量维度、日志审计或模型调用成为核心体验。 | 再上 AI Search Paid、Vectorize 或更完整的 AI Gateway 日志策略。 |
+
 ## 免费额度阅读顺序
 
 不要从产品名开始背。普通项目先按流量路径读免费额度，会更容易判断哪些东西能免费起步，哪些东西会很快进入账单。

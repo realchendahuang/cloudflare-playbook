@@ -224,6 +224,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 媒体与性能二次精读 | 已把 [媒体与性能](/platform/media-performance/) 对齐 Images Pricing / Limits / Workers transformation / Direct Creator Upload、Stream Pricing / FAQ、Speed / Observatory、Zaraz Pricing / Consent Management、Browser Run Pricing / Limits / Reuse sessions / `/crawl` 和 GitHub 源文件，补齐免费额度玩法、媒体资产路径、成本边界、浏览器任务异步路线和升级信号。 |
 | 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |
 | 已完成首版 | 企业网络精读 | 已整理 Cloudflare One、Access、Gateway、Tunnel、Cloudflare One Client、Zero Trust Free / Pay-as-you-go / Contract、Cloudflare WAN 和 Network Firewall 的边界。 |
+| 已完成复核 | 企业网络二次精读 | 已把 [Zero Trust 与企业网络](/platform/zero-trust-networking/) 对齐 Zero Trust & SASE pricing、Cloudflare One setup / account limits、Access policies / authentication logs、Tunnel published/private networks / firewall、Gateway traffic policies / order of enforcement / activity logs、Cloudflare One Client setup / modes、User-side certificates、Cloudflare WAN 和 Network Firewall plans，补齐普通项目免费起步路线、Access / Tunnel / Gateway 责任边界、上线证据清单和 Client modes。 |
 | 已完成首版 | 扩展计算与数据管道精读 | 已整理 Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog 的定位、免费/付费边界、limits、计费维度和开源参考。 |
 | 已完成首版 | Realtime 精读 | 已整理 RealtimeKit、Realtime SFU、TURN、Durable Objects WebSocket 的边界、Beta / GA 价格模型、SFU / TURN 免费额度、limits 和开源参考。 |
 | 已完成首版 | 平台化与多租户精读 | 已整理 Cloudflare for SaaS、Workers for Platforms、Dynamic Workers、custom hostnames、dispatch namespace、worker isolation、outbound worker、免费/付费边界和 GitHub 开源参考。 |
@@ -241,7 +242,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 额度与 Codex 基线二次精读 | 已把 [免费与付费边界](/platform/free-paid/) 对齐 Workers Pricing / Limits、Static Assets billing、usage-based billing 和 `cloudflare/cloudflare-docs` 源文件；同步强化 [Codex 协作](/best-practices/codex-cloudflare/) 的官方 Codex setup、Docs for agents、Skills、MCP 和 GitHub 来源。 |
 | 已完成复核 | API 网关架构二次精读 | 已把 [API 网关](/architecture/api-gateway/) 对齐 Serverless global APIs 与 APIs and microservices，补齐请求路径、三种架构形态、拆分时机、安全/成本/观测边界和官方模板来源。 |
 | 已完成复核 | 静态内容站与额度表二次精读 | 已把 [静态内容站](/architecture/static-site/) 对齐 Deploy frontend applications、Workers Static Assets、Pages Limits 和 Cloudflare 官方模板；同步给 [免费与付费边界](/platform/free-paid/) 增加免费额度大全和 GitHub 源仓库参考。 |
-| 已完成复核 | 首页免费额度强化 | 已把 [首页](/) 前置为免费额度入口，按静态站、小 API、D1、KV、R2、Queues、Durable Objects、AI、安全、Zero Trust 和成本提醒整理 Free 边界与付费信号。 |
+| 已完成复核 | 首页免费额度强化 | 已把 [首页](/) 前置为免费额度入口，按静态站、小 API、D1、KV、R2、Queues、Durable Objects、AI、安全、Zero Trust 和成本提醒整理 Free 边界、免费阶段玩法矩阵和 `$5 Workers Paid` 触发信号。 |
+| 已完成复核 | 免费额度操作手册 | 已把 [免费与付费边界](/platform/free-paid/) 扩展为免费额度优先级、免费阶段玩法矩阵、Workers Paid 购买边界、完整额度速查和官方 pricing / limits 来源索引。 |
 | 已完成复核 | 免费额度首页二次强化 | 已把 [首页](/) 的免费额度入口扩展为大全表，覆盖 DNS、CDN、SSL/TLS、DDoS、WAF、Turnstile、Zero Trust、Static Assets、Pages、Workers、D1、KV、R2、Queues、Durable Objects、Workers Logs、AI Search、Vectorize、Images、Browser Run、Zaraz 和 Budget alerts；同步在 [免费与付费边界](/platform/free-paid/) 增加项目类型判断表。 |
 | 已完成复核 | 学习路线二次精读 | 已把 [学习路线](/start/) 对齐 Learning Paths、Use cases、Docs for agents、全站 `llms.txt` 和 cloudflare/cloudflare-docs 源目录，补齐官方资料读取方式、六轮阅读顺序、Use cases 到本站专题映射和学习检查表。 |
 | 已完成复核 | 最佳实践入口二次精读 | 已把 [最佳实践](/best-practices/) 对齐 Workers Best Practices、Solution guides、Static Assets billing、WAF Rate Limiting、D1 indexes、R2 CORS 和 GitHub 源目录，补齐按阶段、按风险域、Workers 项目底线和交付检查。 |

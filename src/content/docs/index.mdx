@@ -18,7 +18,7 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 ## 这是什么
 
-Cloudflare Playbook 不是官方文档的搬运，而是一份面向真实项目的实践索引。它会把 Cloudflare 的产品能力翻译成普通开发者能使用的判断框架：什么时候用、免费边界在哪里、怎么组合、怎么部署、怎么验证、有什么风险。
+Cloudflare Playbook 不是官方文档的搬运，而是一份面向真实项目的实践索引。它会把 Cloudflare 的产品能力翻译成普通开发者能使用的判断框架：免费额度能撑到哪里、什么时候用、怎么组合、怎么部署、怎么验证、有什么风险。
 
 Cloudflare 覆盖了计算、存储、网络、安全、AI 和可观测性等基础设施能力。对独立开发者和早期团队来说，理解这些产品的边界和组合方式，可以显著降低项目启动和运维成本。这份知识库的目标，是把这些能力整理成一张能看懂、能落地、能持续更新的大图谱。
 
@@ -28,13 +28,39 @@ Cloudflare 覆盖了计算、存储、网络、安全、AI 和可观测性等基
 
 多数人先关心的不是产品名，而是一个项目能不能先免费跑起来。本站把 Cloudflare 的免费额度当作主线来读：先确认静态流量、动态请求、数据库、对象存储、安全和搜索的免费边界，再判断什么时候值得开 `$5/month` 的 Workers Paid 或其他付费产品。
 
-三个结论先放前面：
+四个结论先放前面：
 
-1. 静态站、文档站、官网和博客很适合先放在 Workers Static Assets 或 Pages，静态资产请求免费且不限量。
-2. 小 API、评论、Webhook、表单、D1、KV、R2、Queues、Durable Objects、Turnstile、Access、Workers AI 都有可用的免费起步空间。
-3. 免费额度不是消费封顶。Budget alerts 只发提醒，真正控制成本要靠静态优先、缓存、限流、队列、配额和权限。
+1. 静态站、文档站、官网和博客优先放在 Workers Static Assets 或 Pages，静态资产请求免费且不限量。
+2. 小 API、评论、Webhook、表单、D1、KV、R2、Queues、Durable Objects、Turnstile、Access、Workers AI、AI Search 都有可用的免费起步空间。
+3. `$5/month` 的 Workers Paid 是动态能力和工程化能力的第一道付费台阶，不是 Cloudflare Pro，也不是预算封顶。
+4. 免费额度不是消费封顶。Budget alerts 只发提醒，真正控制成本要靠静态优先、缓存、限流、队列、配额和权限。
 
-## 免费额度大全
+## 免费阶段能怎么玩
+
+这份 Playbook 的默认路线很简单：先让项目站在免费额度里跑通，再为明确的瓶颈付费。能静态就静态，能缓存就缓存，能异步就异步，真正需要计算、写入、AI 或浏览器自动化的请求再进入对应产品。
+
+| 你想做什么 | 免费阶段优先组合 | 为什么划算 |
+| --- | --- | --- |
+| 文档站、官网、博客 | Workers Static Assets / Pages + CDN + Pagefind + Web Analytics | 主流量是静态资产，搜索在浏览器本地完成。 |
+| 小 API、Webhook、评论 | Workers Free + D1 Free + Turnstile + WAF 最小规则 | 动态请求和写入量低时，可以先验证真实需求。 |
+| 文件上传和下载 | R2 Standard Free + presigned URL + CDN cache | 不收 R2 egress bandwidth charge，重点盯 storage 和 operations。 |
+| 后台、预览环境、内网工具 | Zero Trust Free + Access + Tunnel | 50 users 内能先把后台从公网裸露状态收回来。 |
+| 搜索和 AI 试验 | Pagefind + Workers AI 免费 Neurons + AI Gateway + AI Search Free | 先把索引和调用链路跑通，再看自然语言搜索是否值得付费。 |
+| 异步任务和实时状态 | Queues Free + Durable Objects Free + WebSocket hibernation | 后台任务、房间、限流器先小规模跑，等成为核心路径再升级。 |
+
+## 什么时候付 $5 Workers Paid
+
+不要为了“看起来专业”提前付费。下面这些信号出现时，再认真考虑 Workers Paid：
+
+| 信号 | 为什么可能要付费 |
+| --- | --- |
+| Worker 接近 100,000 requests/day | Paid 改成月度 included usage，并允许继续按量扩展。 |
+| 单次 CPU 经常超过 10 ms | Paid 有更高单次 CPU 上限和月度 CPU included usage。 |
+| 生产排障需要更久日志 | Paid 的 Workers Logs、Trace Events Logpush 和观测能力更适合线上服务。 |
+| D1、KV、Queues、Durable Objects 已经是正式链路 | Paid 把这些开发者平台产品放进更高的月度额度和付费模型里。 |
+| 需要 Containers、任意收件人 Email Sending、Sandbox SDK 等能力 | 这些通常不是免费文档站需求，而是业务进入下一阶段的信号。 |
+
+## 免费额度大全（首页版）
 
 | 能力 | Free 重点额度 | 付费信号 |
 | --- | --- | --- |
