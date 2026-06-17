@@ -108,6 +108,20 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [DNS TTL](https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/)
 - [DNSSEC](https://developers.cloudflare.com/dns/dnssec/)
 - [CNAME flattening](https://developers.cloudflare.com/dns/cname-flattening/)
+- [SSL/TLS Docs](https://developers.cloudflare.com/ssl/)
+- [SSL/TLS features and plans](https://developers.cloudflare.com/ssl/reference/all-features/)
+- [SSL/TLS encryption modes](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/)
+- [Full (strict)](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/)
+- [Universal SSL](https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/)
+- [Origin CA](https://developers.cloudflare.com/ssl/origin-configuration/origin-ca/)
+- [Authenticated Origin Pulls](https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull/)
+- [Always Use HTTPS](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/always-use-https/)
+- [Automatic HTTPS Rewrites](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/automatic-https-rewrites/)
+- [HSTS](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/)
+- [TLS 1.3](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/tls-13/)
+- [Minimum TLS Version](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/minimum-tls/)
+- [SSL/TLS browser compatibility](https://developers.cloudflare.com/ssl/reference/browser-compatibility/)
+- [SSL/TLS redirect loops](https://developers.cloudflare.com/ssl/troubleshooting/too-many-redirects/)
 - [Cache Plans](https://developers.cloudflare.com/cache/plans/)
 - [WAF Docs](https://developers.cloudflare.com/waf/)
 - [WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/)
@@ -138,7 +152,12 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Pages source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pages) | 官方 Pages 文档源文件，适合追踪 Pages、Functions、limits 和 known issues。 |
 | [cloudflare/workers-sdk pages-template-worker](https://github.com/cloudflare/workers-sdk/blob/main/packages/wrangler/templates/pages-template-worker.ts) | Pages Functions 运行包装逻辑，适合理解 `EventContext` 和 `waitUntil`。 |
 | [cloudflare/cloudflare-docs DNS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/dns) | 官方 DNS 文档源文件，适合追踪 DNS limits、proxy status、DNSSEC 和 troubleshooting。 |
+| [cloudflare/cloudflare-docs SSL/TLS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ssl) | 官方 SSL/TLS 文档源文件，适合追踪 encryption modes、edge certificates、Origin CA、HSTS 和 AOP。 |
 | [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets 和 zone 设置变成 IaC。 |
+| [cloudflare/sslconfig](https://github.com/cloudflare/sslconfig) | Cloudflare 公开的 Internet-facing SSL cipher 配置历史，适合理解边缘 TLS 配置变迁。 |
+| [cloudflare/cfssl](https://github.com/cloudflare/cfssl) | Cloudflare 的 PKI/TLS 工具箱，适合学习证书签发、验证和 bundle。 |
+| [cloudflare/certmgr](https://github.com/cloudflare/certmgr) | 基于 CFSSL 的证书管理工具，适合看证书自动续期和服务 reload 模式。 |
+| [cloudflare/gokeyless](https://github.com/cloudflare/gokeyless) | Keyless SSL 的 Go 实现，适合理解企业私钥托管边界。 |
 | [favonia/cloudflare-ddns](https://github.com/favonia/cloudflare-ddns) | Cloudflare DDNS updater，适合看动态 IP 更新和 API token 权限。 |
 | [cloudflare/workers-rs](https://github.com/cloudflare/workers-rs) | Rust / WebAssembly 写 Workers 的生态入口。 |
 | [cloudflare/workers-oauth-provider](https://github.com/cloudflare/workers-oauth-provider) | 在 Workers 上实现 OAuth 2.1 provider 的库，适合学习 API 鉴权边界。 |

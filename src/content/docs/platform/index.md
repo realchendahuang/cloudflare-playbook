@@ -86,7 +86,7 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 | --- | --- | --- | --- | --- |
 | [DNS](/platform/dns/) | Free/Pro/Business 不对 DNS query 收费且不限制查询；新 Free zone 为 200 records/zone，旧 Free zone 为 1,000，Pro/Business 为 3,500。 | Enterprise 以 DNS query 等作为报价输入，records/zone 可申请提高。 | 域名解析、代理状态和流量入口。 | Web 入口用 Proxied，邮件和验证记录 DNS-only；迁移前导出旧 zone 并处理 DNSSEC。 |
 | CDN Cache | Free 计划可用 CDN/cache，部分高级缓存能力按计划开放。 | Pro/Business/Enterprise 解锁更高限制和高级能力。 | 缓存静态内容，减少源站压力。 | 静态资源用长缓存；HTML 谨慎缓存；用 Cache Rules 替代到处写代码。 |
-| SSL/TLS | Free 计划提供基础 HTTPS。 | 高级证书、更多控制和企业需求再升级。 | 给站点加 HTTPS。 | 默认全站 HTTPS；源站也保持 TLS，别只在边缘加密。 |
+| [SSL/TLS](/platform/ssl-tls/) | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 等基础能力在 Free 可用。 | Advanced Certificate Manager、Custom Certificates、Keyless SSL、Enterprise-only 模式按需求升级。 | 给站点建立完整 HTTPS 链路。 | 默认目标是 Full (strict)；源站也要有有效证书，别停在 Flexible。 |
 | DDoS Protection | DDoS Protection 官方标注 available on all plans。 | 企业场景需要更细策略、支持和 SLA 时升级。 | 自动检测和缓解 DDoS。 | 普通项目先接入即可；被打时再组合 WAF、Rate Limiting、规则和日志排查。 |
 | WAF | 官方 WAF 标注 available on all plans，不同计划能力不同。 | 托管规则、Bot、更多安全能力随计划增强。 | 拦常见攻击、写自定义规则。 | 登录、API、后台先加规则；不要一开始就写过度复杂的拦截策略。 |
 | Turnstile | Free 计划适合个人站、博客、中小业务、开发测试和大多数生产应用。 | Enterprise 面向核心业务和更高要求。 | 免费 CAPTCHA 替代，降低表单滥用。 | 只放前端组件不够，必须服务端验证 token；适合接入表单、登录和高频提交入口。 |
