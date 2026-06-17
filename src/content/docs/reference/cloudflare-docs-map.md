@@ -239,6 +239,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | Realtime 精读 | 已整理 RealtimeKit、Realtime SFU、TURN、Durable Objects WebSocket 的边界、Beta / GA 价格模型、SFU / TURN 免费额度、limits 和开源参考。 |
 | 已完成首版 | 平台化与多租户精读 | 已整理 Cloudflare for SaaS、Workers for Platforms、Dynamic Workers、custom hostnames、dispatch namespace、worker isolation、outbound worker、免费/付费边界和 GitHub 开源参考。 |
 | 已完成首版 | 自有网络与专线精读 | 已整理 Magic Transit、BYOIP、Network Interconnect、Workers VPC、Network Firewall 标准/高级功能、Enterprise-only 边界、Workers VPC Open Beta 免费边界和 GitHub 开源参考。 |
+| 已完成复核 | 自有网络与专线文案收敛 | 已把 [自有网络与专线](/platform/private-networking/) 收敛为普通项目取舍、免费与计划边界、产品选择、成本风险、Workers VPC 位置、升级信号和常见误区；保留 Magic Transit、BYOIP、Network Interconnect、Workers VPC、Network Firewall 的官方来源，删除 ASCII 网络图、本站当前选择、BGP / GRE / IPsec / MSS、BYOIP service binding、CNI dataplane、Tunnel 版本与防火墙端口等过细网络工程说明。 |
 | 已完成首版 | 流量调度与四层入口精读 | 已整理 Load Balancing、Health Checks、Spectrum、Argo Smart Routing、usage-based billing、limits、plans、private network load balancing 和 GitHub 开源参考。 |
 | 已完成首版 | 源站保护与流量洪峰精读 | 已整理 Waiting Room、Smart Shield、Automatic Platform Optimization、plans、advanced features、APO pricing、Smart Shield packages 和 GitHub 开源参考。 |
 | 已完成首版 | 公共网络与专项服务精读 | 已整理 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway 的免费边界、付费边界、使用场景和 GitHub 开源参考。 |
