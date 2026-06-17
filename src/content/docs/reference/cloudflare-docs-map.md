@@ -205,6 +205,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | R2 二次精读 | 已把 [R2](/platform/r2/) 对齐 R2 Pricing / Limits、How R2 works、Consistency、Workers API、S3 compatibility、Presigned URLs、Public buckets、CORS、Storage classes、Object lifecycles、Bucket locks、Event notifications、Local Uploads、Data location、Metrics / Analytics 和 GitHub 源文件，补齐二次精读结论、上线前问题、计费证据、数据位置、上传性能、S3 兼容边界、Bucket locks 和排障路径。 |
 | 已完成复核 | 实战案例二次精读 | 已把 Worker API + D1、R2 签名上传从案例骨架补成资源准备、配置、最小代码、验证、风险和官方 / GitHub 来源。 |
 | 已完成首版 | Durable Objects 精读 | 已整理单实体强一致状态、免费/付费边界、SQLite storage、WebSocket Hibernation、Alarms、迁移和开源参考。 |
+| 已完成复核 | Durable Objects 二次精读 | 已把 [Durable Objects](/platform/durable-objects/) 对齐 Durable Objects Pricing / Limits、Lifecycle、State API、SQLite storage API、WebSocket Hibernation、Alarms、Migrations、Metrics / Analytics、Troubleshooting、Error handling、FAQ 和 GitHub 源文件，补齐免费额度成本线、上线前问题、生命周期并发边界、SQLite 细节、WebSocket Hibernation 对比、迁移删除清单和观测排障路径。 |
 | 已完成首版 | Queues 精读 | 已整理异步任务定位、免费/付费边界、at least once、批处理、重试、死信队列、Pull Consumer 和开源参考。 |
 | 已完成首版 | Workers Static Assets 精读 | 已整理静态资产免费边界、文件限制、路由模型、ASSETS binding、`_headers` / `_redirects`、Pages 取舍和开源参考。 |
 | 已完成首版 | Pages 精读 | 已整理 Git 部署、预览部署、Direct Upload、免费边界、Pages Functions、`_routes.json`、Advanced Mode、域名和开源参考。 |
