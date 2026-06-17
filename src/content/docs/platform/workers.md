@@ -3,8 +3,6 @@ title: Workers
 description: Cloudflare Workers 的定位、适用场景和学习重点。
 ---
 
-# Workers
-
 Workers 是 Cloudflare 的边缘运行时，适合写轻量 API、代理、Webhook、鉴权中间层和边缘数据访问逻辑。
 
 ## 适合什么

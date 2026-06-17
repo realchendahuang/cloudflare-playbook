@@ -3,8 +3,6 @@ title: 免费与付费边界
 description: Cloudflare 常用产品的免费额度、付费入口和成本控制建议。
 ---
 
-# 免费与付费边界
-
 最后核对日期：2026-06-17。Cloudflare 的额度和价格变化很快，本页用于建立判断框架，最终以官方 pricing / limits 页面为准。
 
 ## 一句话判断
@@ -51,7 +49,7 @@ Cloudflare 最适合普通人的地方，不是“永远不要花钱”，而是
 | --- | --- | --- |
 | 文档页面 | Astro + Starlight + Workers Static Assets | 静态资产请求免费不限量，部署到 Worker 还能带 API。 |
 | 站内搜索 | Pagefind | 构建期索引，用户搜索不打后端。 |
-| 评论 | Starlight Giscus | 复用成熟评论组件，讨论内容进入 GitHub Discussions。 |
+| 评论 | Twikoo + twikoo-cloudflare | 复用成熟评论组件，评论服务托管在 Cloudflare Workers，数据进入 D1。 |
 | 主题 | Starlight Flexoki | 复用成熟 Starlight 主题，用橙色强调色保持品牌识别。 |
 | 未来 AI 搜索 | AI Search 或 Vectorize | 等内容足够多后再为自然语言搜索付费。 |
 

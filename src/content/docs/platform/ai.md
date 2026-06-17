@@ -3,8 +3,6 @@ title: AI 产品
 description: Workers AI、AI Gateway、Vectorize 和 Agents SDK 的选择方式。
 ---
 
-# AI 产品
-
 Cloudflare 的 AI 产品可以先按“推理、检索、网关、状态”来理解。
 
 ## 产品定位

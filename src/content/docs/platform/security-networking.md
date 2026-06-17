@@ -3,8 +3,6 @@ title: 安全与网络
 description: DNS、CDN、DDoS、WAF、Turnstile、Tunnel 和 Zero Trust 的普通项目实践。
 ---
 
-# 安全与网络
-
 Cloudflare 最容易被低估的免费能力，不是某个单点产品，而是入口层的一整套组合：DNS、CDN、HTTPS、DDoS、WAF、缓存规则、Turnstile、Tunnel。
 
 ## 推荐默认组合

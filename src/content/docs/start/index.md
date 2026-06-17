@@ -3,8 +3,6 @@ title: 学习路线
 description: Cloudflare Playbook 的推荐阅读顺序和学习目标。
 ---
 
-# 学习路线
-
 这份 Playbook 的目标不是让你背产品名，而是建立一套能用于真实项目的判断顺序。
 
 ## 第一轮：先建立地图

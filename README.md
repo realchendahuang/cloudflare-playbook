@@ -2,7 +2,7 @@
 
 Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队的 Cloudflare 最佳实践知识库。它不只罗列产品名，而是帮助读者理解 Workers、Pages、D1、KV、R2、Durable Objects、Queues、AI、安全、缓存、部署和可观测性在真实项目里应该怎么选、怎么组合、怎么验证。
 
-这个仓库使用 Astro + Starlight 搭建文档站，通过 Cloudflare Workers Static Assets 部署，并使用 Starlight 生态主题与 Giscus 评论组件。它不是只放静态页面，而是一个面向 Cloudflare 实践的开源知识库样板。
+这个仓库使用 Astro + Starlight 搭建文档站，通过 Cloudflare Workers Static Assets 部署，并使用 Starlight 生态主题与 Twikoo 评论组件。它不是只放静态页面，而是一个面向 Cloudflare 实践的开源知识库样板。
 
 > Cloudflare 提供了覆盖计算、存储、网络、安全、AI 和可观测性的完整平台。对独立开发者和早期团队来说，理解这些产品的边界和组合方式，可以显著降低项目启动和运维成本。
 
@@ -52,14 +52,18 @@ Astro + Starlight
   ├─ Markdown / MDX 文档
   ├─ Pagefind 站内搜索
   ├─ Starlight Flexoki 主题
-  ├─ Giscus 评论组件
+  ├─ Twikoo 评论组件
   └─ dist 静态资产
 
 Cloudflare Worker
-  └─ Workers Static Assets 托管文档站
+  ├─ Workers Static Assets 托管文档站
+  └─ Twikoo Cloudflare Worker 承载评论服务
+
+Cloudflare D1
+  └─ 保存 Twikoo 评论数据
 ```
 
-搜索先使用 Starlight 默认的 Pagefind，评论使用 Giscus 连接 GitHub Discussions。等内容规模变大后，再评估 Cloudflare AI Search 做自然语言搜索。
+搜索先使用 Starlight 默认的 Pagefind，评论使用 Twikoo 连接 Cloudflare Worker 和 D1。等内容规模变大后，再评估 Cloudflare AI Search 做自然语言搜索。
 
 ## 本地开发
 
@@ -99,6 +103,13 @@ pnpm run deploy
 ```text
 assets.directory = ./dist
 routes.pattern = cloudflare-playbook.chendahuang.top
+```
+
+评论服务使用单独的 Worker 配置：
+
+```text
+wrangler.comments.jsonc
+comments.cloudflare-playbook.chendahuang.top
 ```
 
 ## 写作原则

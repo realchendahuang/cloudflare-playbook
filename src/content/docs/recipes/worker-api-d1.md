@@ -3,8 +3,6 @@ title: Worker API + D1
 description: 使用 Workers 和 D1 构建轻量 API 的案例骨架。
 ---
 
-# Worker API + D1
-
 这个案例用于演示如何用 Workers 提供 API，并用 D1 存储关系型数据。
 
 ## 适合场景

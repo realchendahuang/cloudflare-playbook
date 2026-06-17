@@ -1,0 +1,54 @@
+---
+import DefaultFooter from '@astrojs/starlight/components/Footer.astro';
+
+const commentsEnvId = 'https://comments.cloudflare-playbook.chendahuang.top';
+const shouldShowComments = Astro.locals.starlightRoute.entry.id !== '404';
+---
+
+<DefaultFooter />
+
+{
+	shouldShowComments && (
+		<div id="tcomment" data-pagefind-ignore data-twikoo-env-id={commentsEnvId} />
+	)
+}
+
+<script>
+	let observer: IntersectionObserver | undefined;
+
+	// 真正加载 Twikoo 官方组件，评论 UI、交互和表单都由 Twikoo 自身维护。
+	async function mountTwikooComments(container: HTMLElement) {
+		if (container.dataset.twikooMounted === 'true') return;
+		container.dataset.twikooMounted = 'true';
+
+		const { default: twikoo } = await import('twikoo');
+
+		twikoo.init({
+			el: '#tcomment',
+			envId: container.dataset.twikooEnvId || '',
+			// 使用规范化后的路径，避免同一页面因尾斜杠差异产生两组评论。
+			path: window.location.pathname.replace(/\/$/, '') || '/',
+			lang: 'zh-CN',
+		});
+	}
+
+	// 评论区进入视口附近时再加载 Twikoo，避免拖慢文档正文首屏。
+	function initTwikooComments() {
+		const container = document.querySelector('[data-twikoo-env-id]');
+		if (!(container instanceof HTMLElement)) return;
+
+		observer?.disconnect();
+		observer = new IntersectionObserver(
+			(entries) => {
+				if (!entries.some((entry) => entry.isIntersecting)) return;
+				observer?.disconnect();
+				void mountTwikooComments(container);
+			},
+			{ rootMargin: '800px 0px' },
+		);
+		observer.observe(container);
+	}
+
+	initTwikooComments();
+	document.addEventListener('astro:page-load', initTwikooComments);
+</script>

@@ -3,8 +3,6 @@ title: API 网关
 description: 用 Workers 做鉴权、代理、缓存和轻量后端的架构模式。
 ---
 
-# API 网关
-
 API 网关适合把多个后端、第三方 API 或内部服务包装成一个统一入口。
 
 ## 架构

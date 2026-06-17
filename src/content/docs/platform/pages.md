@@ -3,8 +3,6 @@ title: Pages
 description: Cloudflare Pages 的定位、适用场景和部署方式。
 ---
 
-# Pages
-
 Pages 适合部署静态站点、前端应用、文档站和带少量动态接口的全栈项目。这个 Playbook 自身也推荐先部署到 Pages。
 
 ## 适合什么

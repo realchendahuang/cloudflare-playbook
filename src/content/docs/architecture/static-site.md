@@ -3,8 +3,6 @@ title: 静态内容站
 description: 用 Cloudflare Pages 部署文档站、官网和博客的架构模式。
 ---
 
-# 静态内容站
-
 静态内容站是普通人最容易从 Cloudflare 获益的场景。文档站、官网、博客和作品集都适合从 Pages 开始。
 
 ## 架构

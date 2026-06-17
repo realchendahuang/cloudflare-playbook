@@ -3,8 +3,6 @@ title: 本站技术栈
 description: Cloudflare Playbook 当前阶段使用的文档、搜索、评论、主题和部署组合。
 ---
 
-# 本站技术栈
-
 这个仓库当前使用：
 
 ```text
@@ -12,12 +10,16 @@ Astro + Starlight
   ├─ Markdown / MDX 写内容
   ├─ Pagefind 做站内搜索
   ├─ Starlight Flexoki 做主题
-  ├─ Starlight Giscus 做评论
+  ├─ Twikoo 做评论
   └─ 生成 dist 静态资产
 
 Cloudflare Worker
   ├─ Workers Static Assets 托管 dist
+  ├─ Twikoo Cloudflare Worker 承载评论服务
   └─ Wrangler 管理部署配置
+
+Cloudflare D1
+  └─ 保存 Twikoo 评论数据
 ```
 
 ## 为什么这是当前最优解
@@ -27,7 +29,7 @@ Cloudflare Worker
 | 写 Cloudflare 最佳实践文档 | Astro + Starlight | 文档结构、侧边栏、搜索、SEO 都现成，Markdown 对开源协作友好。 |
 | 普通关键词搜索 | Starlight 默认 Pagefind | Starlight 默认内置 Pagefind，全静态、低带宽，不占 Worker API 请求。 |
 | 主题 | Starlight Flexoki | Starlight 官方资源页收录的社区主题，暖色系、可读性好，并支持橙色强调色。 |
-| 评论功能 | Starlight Giscus | 直接接入 GitHub Discussions，不维护自定义评论组件和样式。 |
+| 评论功能 | Twikoo + twikoo-cloudflare | 前端评论组件成熟，后端托管在 Cloudflare Workers，数据进入 D1。 |
 | 统一部署 | Workers Static Assets | 静态页面可以在 Worker 项目里统一部署，配置集中在 `wrangler.jsonc`。 |
 | 后续自然语言搜索 | Cloudflare AI Search | 等内容量变大后再加，适合知识库搜索、混合检索和 Agent 使用。 |
 
@@ -55,24 +57,29 @@ Cloudflare Pages 很适合纯静态站。这个项目更希望把 Cloudflare Wor
 
 ## 评论系统
 
-当前评论使用 Giscus：
+当前评论使用 Twikoo：
 
-- 评论数据存储在 GitHub Discussions。
-- 页面评论组件由 `starlight-giscus` 插件注入。
-- 样式和交互由 Giscus 和 Starlight 插件维护。
-- 页面和评论通过 `pathname` 关联，便于每篇文档拥有独立讨论区。
+- 评论前端来自 `twikoo` 官方包。
+- 评论后端复用 `twikoo-cloudflare`，作为单独 Worker 部署。
+- 评论数据存储在 Cloudflare D1。
+- 页面和评论通过规范化后的路径关联，便于每篇文档拥有独立讨论区。
 
-如果后续需要更开放的匿名评论体验，可以评估 Waline、Cusdis 或其它独立评论服务，但不要在本站内维护自定义评论组件。
+如果后续评论量明显增加，再补 Turnstile、邮件通知和更细的管理策略。
 
 ## 当前仓库落地
 
 | 文件 | 职责 |
 | --- | --- |
 | `astro.config.mjs` | Starlight 站点配置、导航、全站注入评论资源。 |
-| `wrangler.jsonc` | Worker、静态资产、域名和可观测性的部署配置。 |
+| `wrangler.jsonc` | 文档站 Worker、静态资产、域名和可观测性的部署配置。 |
+| `wrangler.comments.jsonc` | Twikoo 评论 Worker、D1 和评论域名配置。 |
 | `src/worker.ts` | 将请求交给 Cloudflare Static Assets。 |
+| `src/components/TwikooFooter.astro` | 在 Starlight 页脚接入 Twikoo 官方组件。 |
+| `comments-worker/src/index.js` | 复用 `twikoo-cloudflare` 的 Worker 入口。 |
+| `comments-worker/schema.sql` | Twikoo Cloudflare 版需要的 D1 表结构。 |
 | `starlight-theme-flexoki` | 站点主题。 |
-| `starlight-giscus` | 文档评论组件。 |
+| `twikoo` | 文档评论组件。 |
+| `twikoo-cloudflare` | Cloudflare 上的评论服务适配。 |
 
 ## 资料来源
 
@@ -80,4 +87,5 @@ Cloudflare Pages 很适合纯静态站。这个项目更希望把 Cloudflare Wor
 - [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
 - [Cloudflare AI Search](https://developers.cloudflare.com/ai-search/)
 - [Starlight Flexoki](https://delucis.github.io/starlight-theme-flexoki/)
-- [Starlight Giscus](https://dragomano.github.io/starlight-giscus/)
+- [Twikoo](https://twikoo.js.org/)
+- [twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare)

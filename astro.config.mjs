@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import starlightGiscus from 'starlight-giscus';
 import starlightThemeFlexoki from 'starlight-theme-flexoki';
 
 // 文档站的导航保持稳定，正文内容再通过目录逐步扩展。
@@ -11,22 +10,10 @@ export default defineConfig({
 		starlight({
 			title: 'Cloudflare Playbook',
 			description: '面向普通开发者和小团队的 Cloudflare 最佳实践知识库。',
+			components: {
+				Footer: './src/components/TwikooFooter.astro',
+			},
 			plugins: [
-				starlightGiscus({
-					repo: 'realchendahuang/cloudflare-playbook',
-					repoId: 'R_kgDOS8EG0Q',
-					category: 'General',
-					categoryId: 'DIC_kwDOS8EG0c4C_TRh',
-					mapping: 'pathname',
-					reactions: true,
-					inputPosition: 'bottom',
-					theme: {
-						light: 'noborder_light',
-						dark: 'noborder_dark',
-						auto: 'preferred_color_scheme',
-					},
-					lazy: true,
-				}),
 				starlightThemeFlexoki({
 					accentColor: 'orange',
 				}),

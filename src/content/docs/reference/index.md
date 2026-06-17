@@ -3,8 +3,6 @@ title: 官方资料
 description: Cloudflare Playbook 的官方资料索引。
 ---
 
-# 官方资料
-
 Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和配置字段时，以官方资料为准。
 
 ## 核心入口

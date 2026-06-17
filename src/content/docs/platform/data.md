@@ -3,8 +3,6 @@ title: 数据产品
 description: D1、KV、R2、Durable Objects 和 Queues 的选择方式。
 ---
 
-# 数据产品
-
 Cloudflare 的数据产品不要只按“数据库”理解，应该按访问模式选择。
 
 ## 选择表

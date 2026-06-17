@@ -3,8 +3,6 @@ title: Cloudflare 产品大图谱
 description: 面向独立开发者和小团队的 Cloudflare 产品地图、免费额度、付费入口和最佳实践。
 ---
 
-# Cloudflare 产品大图谱
-
 最后核对日期：2026-06-17。
 
 Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等能力放在同一个平台里。对独立开发者和小团队来说，这些产品能把早期项目的基础设施成本和维护成本压到很低。
@@ -116,7 +114,7 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 | 场景 | 推荐组合 |
 | --- | --- |
 | 文档站 / 公开知识库 | Astro/Starlight + Workers Static Assets + Pagefind + Web Analytics |
-| 有评论的文档社区 | Workers Static Assets + Giscus 或 Waline + 后续 Turnstile |
+| 有评论的文档社区 | Workers Static Assets + Twikoo Cloudflare + 后续 Turnstile |
 | 小型 SaaS | Workers + D1 + KV + R2 + AI Gateway |
 | 文件上传和下载 | Workers + R2 + Signed URL + D1 metadata |
 | AI 问答知识库 | Workers + AI Search 或 Vectorize + R2/D1 + AI Gateway |

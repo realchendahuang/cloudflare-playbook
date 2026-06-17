@@ -3,8 +3,6 @@ title: 实时应用
 description: 用 Durable Objects 承载房间、协作和强一致状态的架构模式。
 ---
 
-# 实时应用
-
 实时应用通常需要“某个房间、某个用户、某个资源”拥有强一致状态。Durable Objects 很适合承载这种单对象协调逻辑。
 
 ## 架构
