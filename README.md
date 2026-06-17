@@ -31,6 +31,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | DNS | [src/content/docs/platform/dns.md](src/content/docs/platform/dns.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/dns/) |
 | SSL/TLS | [src/content/docs/platform/ssl-tls.md](src/content/docs/platform/ssl-tls.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ssl-tls/) |
 | Cache / CDN | [src/content/docs/platform/cache.md](src/content/docs/platform/cache.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/cache/) |
+| WAF | [src/content/docs/platform/waf.md](src/content/docs/platform/waf.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/waf/) |
 | 数据产品 | [src/content/docs/platform/data.md](src/content/docs/platform/data.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/data/) |
 | D1 | [src/content/docs/platform/d1.md](src/content/docs/platform/d1.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/d1/) |
 | KV | [src/content/docs/platform/kv.md](src/content/docs/platform/kv.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/kv/) |

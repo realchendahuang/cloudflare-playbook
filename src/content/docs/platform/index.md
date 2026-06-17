@@ -88,9 +88,9 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 | [Cache / CDN](/platform/cache/) | Cache / CDN、Cache Rules、Purge、Tiered Cache 基础能力在 Free 可用。 | Cache Rules 数量、Edge TTL 最小值、Cache Reserve、企业拓扑和高级 cache key 随计划或 add-on 提升。 | 缓存静态内容，减少源站压力。 | 静态 hash 资源长缓存；HTML 短缓存；用户态默认 bypass；用版本化 URL 少 purge。 |
 | [SSL/TLS](/platform/ssl-tls/) | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 等基础能力在 Free 可用。 | Advanced Certificate Manager、Custom Certificates、Keyless SSL、Enterprise-only 模式按需求升级。 | 给站点建立完整 HTTPS 链路。 | 默认目标是 Full (strict)；源站也要有有效证书，别停在 Flexible。 |
 | DDoS Protection | DDoS Protection 官方标注 available on all plans。 | 企业场景需要更细策略、支持和 SLA 时升级。 | 自动检测和缓解 DDoS。 | 普通项目先接入即可；被打时再组合 WAF、Rate Limiting、规则和日志排查。 |
-| WAF | 官方 WAF 标注 available on all plans，不同计划能力不同。 | 托管规则、Bot、更多安全能力随计划增强。 | 拦常见攻击、写自定义规则。 | 登录、API、后台先加规则；不要一开始就写过度复杂的拦截策略。 |
+| [WAF](/platform/waf/) | WAF 可用于所有计划；Free 有 5 条 Custom Rules、1 条 Rate Limiting Rule、Free Managed Ruleset 和 sampled Security Events。 | Pro/Business/Enterprise 提升规则数量、Managed Rules、Attack Score、Security Events 和高级检测能力。 | 拦常见攻击、写自定义规则、限速高风险入口。 | 登录、API、后台、评论和上传先加最小规则；先看 Security Events，再逐步收紧。 |
 | Turnstile | Free 计划适合个人站、博客、中小业务、开发测试和大多数生产应用。 | Enterprise 面向核心业务和更高要求。 | 免费 CAPTCHA 替代，降低表单滥用。 | 只放前端组件不够，必须服务端验证 token；适合接入表单、登录和高频提交入口。 |
-| Rate Limiting | 基础限流能力随计划变化。 | 高级规则和更大规模流量再升级。 | 防刷、防撞库、防 API 滥用。 | 对登录、评论、验证码、搜索 API 先做最小限流。 |
+| Rate Limiting | WAF Rate Limiting 在 Free 有 1 条规则。 | Pro 2 条、Business 5 条、Enterprise 100 条，更多高级特征随计划提升。 | 防刷、防撞库、防 API 滥用。 | 对登录、评论、验证码、搜索 API 先做最小限流；注意 NAT 用户误伤。 |
 | Bot Management | 高级 Bot 能力通常面向付费/企业。 | 业务受爬虫、撞库、黄牛影响时升级。 | 识别和处理自动化流量。 | 先用 Turnstile、WAF、限流；明确 bot 成本后再买更高级能力。 |
 | API Shield | 多为 API 保护能力集合。 | 生产 API、有客户数据、有移动端时评估。 | mTLS、schema validation、API 安全。 | 公开 API 先定义 schema 和认证边界，再加 Shield 能力。 |
 | Tunnel | 基础 Tunnel 可用于把内网服务安全暴露。 | Zero Trust 团队场景按 Access/Gateway 计划评估。 | 不开公网端口暴露内网服务。 | 个人后台、内网面板优先 Tunnel + Access，不要裸奔公网。 |

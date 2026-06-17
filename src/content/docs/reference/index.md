@@ -137,7 +137,20 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Cache Plans](https://developers.cloudflare.com/cache/plans/)
 - [Workers Cache API](https://developers.cloudflare.com/workers/runtime-apis/cache/)
 - [WAF Docs](https://developers.cloudflare.com/waf/)
+- [WAF concepts](https://developers.cloudflare.com/waf/concepts/)
+- [WAF custom rules](https://developers.cloudflare.com/waf/custom-rules/)
+- [WAF custom rules settings](https://developers.cloudflare.com/waf/custom-rules/settings/)
 - [WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/)
+- [Cloudflare Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/)
+- [Cloudflare Free Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-free-managed-ruleset/)
+- [Cloudflare OWASP Core Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/owasp-core-ruleset/)
+- [Rate limiting rules](https://developers.cloudflare.com/waf/rate-limiting-rules/)
+- [WAF availability](https://developers.cloudflare.com/waf/#availability)
+- [WAF phases](https://developers.cloudflare.com/waf/reference/phases/)
+- [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/)
+- [Troubleshooting WAF](https://developers.cloudflare.com/waf/troubleshooting/)
+- [Ruleset Engine](https://developers.cloudflare.com/ruleset-engine/)
+- [Rules language](https://developers.cloudflare.com/ruleset-engine/rules-language/)
 - [DDoS Protection Docs](https://developers.cloudflare.com/ddos-protection/)
 - [DDoS Protection About](https://developers.cloudflare.com/ddos-protection/about/)
 - [Turnstile Plans](https://developers.cloudflare.com/turnstile/plans/)
@@ -168,8 +181,11 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs SSL/TLS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ssl) | 官方 SSL/TLS 文档源文件，适合追踪 encryption modes、edge certificates、Origin CA、HSTS 和 AOP。 |
 | [cloudflare/cloudflare-docs Cache source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cache) | 官方 Cache / CDN 文档源文件，适合追踪 Cache Rules、Purge、TTL 和 Cache Reserve。 |
 | [cloudflare/cloudflare-docs Workers Cache API source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/runtime-apis/cache) | 官方 Workers Cache API 文档源文件，适合追踪 `fetch()`、`caches.default` 和 Cache API 限制。 |
+| [cloudflare/cloudflare-docs WAF source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/waf) | 官方 WAF 文档源文件，适合追踪 Custom Rules、Managed Rules、Rate Limiting 和 troubleshooting。 |
+| [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | 官方 Ruleset Engine 文档源文件，适合理解 phases、actions、expressions 和 API 模型。 |
 | [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets 和 zone 设置变成 IaC。 |
 | [cloudflare/skills Cache Reserve reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/cache-reserve) | Cloudflare 官方 Agent Skills 里的 Cache Reserve 参考，适合看常见误区和检查清单。 |
+| [cloudflare/skills WAF reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/waf) | Cloudflare 官方 Agent Skills 里的 WAF 参考，适合看配置模式、常见误区和 Rulesets API 写法。 |
 | [cloudflare/cloudflare-go](https://github.com/cloudflare/cloudflare-go) | Cloudflare 官方 Go SDK，适合自动化 purge、rulesets 和 cache 配置。 |
 | [cloudflare/sslconfig](https://github.com/cloudflare/sslconfig) | Cloudflare 公开的 Internet-facing SSL cipher 配置历史，适合理解边缘 TLS 配置变迁。 |
 | [cloudflare/cfssl](https://github.com/cloudflare/cfssl) | Cloudflare 的 PKI/TLS 工具箱，适合学习证书签发、验证和 bundle。 |
