@@ -34,6 +34,9 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [R2 Pricing](https://developers.cloudflare.com/r2/pricing/)
 - [KV Docs](https://developers.cloudflare.com/kv/)
 - [KV Pricing](https://developers.cloudflare.com/kv/platform/pricing/)
+- [KV Limits](https://developers.cloudflare.com/kv/platform/limits/)
+- [How KV works](https://developers.cloudflare.com/kv/concepts/how-kv-works/)
+- [Wrangler KV commands](https://developers.cloudflare.com/kv/reference/kv-commands/)
 - [Durable Objects Docs](https://developers.cloudflare.com/durable-objects/)
 - [Durable Objects Pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)
 - [Queues Docs](https://developers.cloudflare.com/queues/)
@@ -77,7 +80,10 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/agents](https://github.com/cloudflare/agents) | Agents SDK、Code Mode 和构建 Cloudflare agent 的实现参考。 |
 | [cloudflare/templates/d1-template](https://github.com/cloudflare/templates/tree/main/d1-template) | Worker + D1 binding + migrations 的最小官方模板。 |
 | [cloudflare/templates/d1-starter-sessions-api-template](https://github.com/cloudflare/templates/tree/main/d1-starter-sessions-api-template) | D1 Sessions API 和 Read Replication 官方模板。 |
+| [cloudflare/templates/to-do-list-kv-template](https://github.com/cloudflare/templates/tree/main/to-do-list-kv-template) | Workers Static Assets + Remix + KV 的官方模板。 |
 | [cloudflare/d1-northwind](https://github.com/cloudflare/d1-northwind) | D1 示例应用，适合学习数据导入、查询和前端组合。 |
+| [cloudflare/workerskv.gui](https://github.com/cloudflare/workerskv.gui) | KV namespace 数据浏览器示例。 |
+| [cloudflare/kv-worker-migrate](https://github.com/cloudflare/kv-worker-migrate) | 历史 KV namespace 迁移工具，适合了解迁移成本和一致性注意事项。 |
 | [twikoojs/twikoo](https://github.com/twikoojs/twikoo) | 本站评论系统的开源来源。 |
 
 ## 写作规范

@@ -44,6 +44,7 @@ export default defineConfig({
 						{ label: 'Pages', slug: 'platform/pages' },
 						{ label: '数据产品', slug: 'platform/data' },
 						{ label: 'D1', slug: 'platform/d1' },
+						{ label: 'KV', slug: 'platform/kv' },
 						{ label: 'AI 产品', slug: 'platform/ai' },
 						{ label: '安全与网络', slug: 'platform/security-networking' },
 						{ label: '免费与付费边界', slug: 'platform/free-paid' },

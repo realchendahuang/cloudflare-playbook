@@ -10,7 +10,7 @@ Cloudflare 的数据产品不要只按“数据库”理解，应该按访问模
 | 产品 | 更适合 | 不适合 |
 | --- | --- | --- |
 | [D1](/platform/d1/) | SQL、关系型数据、小型应用数据 | 超大数据库、复杂 OLAP |
-| KV | 高读低写、配置、缓存、公开索引 | 强一致写入、频繁更新 |
+| [KV](/platform/kv/) | 高读低写、配置、缓存、公开索引 | 强一致写入、频繁更新 |
 | R2 | 文件、图片、导出物、备份 | 小粒度高频结构化查询 |
 | Durable Objects | 单对象强一致状态、房间、限流器 | 全局大表扫描 |
 | Queues | 异步任务、削峰、后台处理 | 需要立即同步返回的流程 |
@@ -30,3 +30,4 @@ Cloudflare 的数据产品不要只按“数据库”理解，应该按访问模
 ## 已精读产品
 
 - [D1](/platform/d1/)：Serverless SQL、rows read/write 计费、索引、迁移、Time Travel 和 Read Replication。
+- [KV](/platform/kv/)：读多写少、最终一致、cacheTtl、同 key 写入限制、批量操作和开源参考。
