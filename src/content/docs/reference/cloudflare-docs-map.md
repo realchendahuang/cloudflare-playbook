@@ -221,6 +221,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 安全增强精读 | 已整理 Turnstile、Cloudflare Challenges、API Shield、Bots、Access / Tunnel、Secrets Store、Security Center、AI Crawl Control、Key Transparency、Firewall Rules deprecated 的免费/付费边界、落地顺序和开源参考。 |
 | 已完成复核 | 安全增强二次精读 | 已把 [安全与网络](/platform/security-networking/) 对齐 Turnstile Plans / Siteverify、Cloudflare Challenges、Challenge Passage、API Shield Plans、Bot Fight Mode / Bot Management、Access / Tunnel、Secrets Store、Security Insights、Security dashboard、AI Crawl Control 和 GitHub 源文件，补齐免费层优先清单、滥用场景决策、请求入口分层、表单/评论/上传保护路线和升级信号。 |
 | 已完成首版 | 媒体与性能精读 | 已整理 Images、Stream、Speed / Observatory、Zaraz、Browser Run 的定位、免费/付费边界、落地顺序和开源参考。 |
+| 已完成复核 | 媒体与性能二次精读 | 已把 [媒体与性能](/platform/media-performance/) 对齐 Images Pricing / Limits / Workers transformation / Direct Creator Upload、Stream Pricing / FAQ、Speed / Observatory、Zaraz Pricing / Consent Management、Browser Run Pricing / Limits / Reuse sessions / `/crawl` 和 GitHub 源文件，补齐免费额度玩法、媒体资产路径、成本边界、浏览器任务异步路线和升级信号。 |
 | 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |
 | 已完成首版 | 企业网络精读 | 已整理 Cloudflare One、Access、Gateway、Tunnel、Cloudflare One Client、Zero Trust Free / Pay-as-you-go / Contract、Cloudflare WAN 和 Network Firewall 的边界。 |
 | 已完成首版 | 扩展计算与数据管道精读 | 已整理 Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog 的定位、免费/付费边界、limits、计费维度和开源参考。 |

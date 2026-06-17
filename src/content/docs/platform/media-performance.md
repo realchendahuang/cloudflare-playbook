@@ -25,6 +25,60 @@ Cloudflare 的媒体和性能产品很容易被混在一起：图片、视频、
 
 普通项目的默认策略是：**静态构建产物只放页面和小资源；用户上传、大图、附件、视频不要塞进 `dist`；图片原图优先 R2，需要裁剪和格式转换再接 Images；视频产品直接看 Stream；前端速度先用 Cache、Web Analytics 和 Speed 诊断；第三方脚本变多再看 Zaraz；截图、PDF、爬虫任务再上 Browser Run。**
 
+## 二次精读结论
+
+媒体与性能产品最重要的不是“能不能做”，而是“这类资产应该放在哪条链路上”。静态站、图片、视频、第三方脚本和浏览器自动化的成本模型完全不同，混在一起会导致两个后果：构建产物膨胀，免费额度被不可控参数消耗掉。
+
+这轮复核后，普通项目可以按下面的顺序判断：
+
+| 问题 | 默认位置 | 免费 / 默认边界 | 付费或升级信号 |
+| --- | --- | --- | --- |
+| 小 logo、少量文档配图 | Git + Workers Static Assets | 跟随静态站构建和部署。 | 图片数量、体积、变体明显变多。 |
+| 大图、用户上传、附件 | R2 存原始对象，必要时 Worker 鉴权。 | R2 有独立免费额度和 Class A/B 操作边界，见 [R2](/platform/r2/)。 | 需要自动裁剪、格式转换、私有图片分发。 |
+| 响应式图片和缩略图 | Images transformations。 | Free 每月 5,000 unique transformations；超出后新 transformation 返回 `9422`，不会自动收费。 | 需要更多 transformation、Images storage、稳定变体治理。 |
+| 视频播放 | Stream。 | Ingress / encoding 免费；存储和播放按分钟计费。 | 课程、会员视频、直播、回放、签名播放、播放分析。 |
+| 性能诊断 | Speed / Observatory + Web Analytics。 | Speed all plans；Free RUM 默认启用且排除 EU traffic；synthetic quota 表主要列 Pro/Business/Enterprise。 | 需要持续 synthetic tests、团队性能回归流程。 |
+| 第三方脚本治理 | Zaraz。 | 每个 account 每月 1,000,000 free Zaraz Events；超出且未启用 paid 会停用到下个账期。 | 营销脚本多、consent 复杂、事件量超过免费额度。 |
+| 截图、PDF、动态抓取 | Browser Run + Queues + R2。 | Workers Free 10 分钟 / day、3 个 Browser Sessions concurrent、Quick Actions 1 次 / 10 秒；`/crawl` 5 jobs/day、100 pages/crawl。 | 需要更高吞吐、长任务、稳定会话、批量爬取。 |
+
+## 免费额度的正确玩法
+
+媒体产品的免费层很有用，但要先把入口收窄。最稳的玩法是固定参数、限制来源、异步处理和缓存结果。
+
+| 产品 | 免费层可以放心做什么 | 最容易烧额度的做法 | 控制办法 |
+| --- | --- | --- | --- |
+| Images | 少量固定尺寸缩略图、头像、封面图。 | 允许用户随意传 `width` / `height` / `quality`。 | 用 preset 名称映射固定参数，比如 `thumb`、`card`、`hero`。 |
+| Stream | 验证视频播放体验和小规模产品演示。 | 把大量公开视频当免费 CDN 用。 | 先估算分钟数；首屏外播放器 lazy load。 |
+| Speed | 看真实用户性能、理解 LCP / INP / 网络瓶颈。 | 只盯一次 synthetic 分数。 | 结合 Web Analytics、缓存命中、源站响应和图片尺寸看。 |
+| Zaraz | 管少量统计、营销和 consent 事件。 | 把高频业务事件全丢进 Zaraz。 | 只发需要第三方工具消费的事件，业务日志走应用自己的链路。 |
+| Browser Run | 少量截图、PDF、网页转 Markdown、动态页检查。 | 在用户同步请求里每次新开浏览器。 | 放进 Queues，复用 session，结果写 R2 / D1。 |
+
+## 媒体资产路径
+
+不要把所有东西都放到 `public/` 或 `dist/`。更好的分层是：
+
+```text
+构建产物
+  └─ 图标、小配图、站点自身静态资源
+
+R2
+  └─ 原图、附件、用户上传、可下载文件
+
+Images
+  └─ 缩略图、响应式图、格式转换、图片私有分发
+
+Stream
+  └─ 课程、演示、直播、回放、签名播放
+
+Zaraz
+  └─ 第三方脚本、事件、consent、营销工具治理
+
+Browser Run
+  └─ 截图、PDF、动态网页抓取、预渲染、AI 浏览任务
+```
+
+这个分层的好处是：构建更快，部署更轻，媒体成本可预测，免费额度也不会被一个错误参数打爆。
+
 ## 产品怎么选
 
 | 场景 | 推荐组合 | 不推荐 |
@@ -173,6 +227,31 @@ Browser Run 以前叫 Browser Rendering，用来在 Cloudflare 上跑 headless C
 - Browser Sessions 结束后必须 `browser.close()`，最好放在 `try/finally`。
 - 需要高并发时复用 session、tab 或 Durable Objects 管理会话。
 - 截图、PDF、OG image、动态站预渲染是合适场景；普通 API 转换不是。
+
+Browser Run 有两个使用形态：
+
+| 形态 | 适合什么 | 成本心智 |
+| --- | --- | --- |
+| Quick Actions | 取 HTML、截图、PDF、`/crawl` 这类固定动作。 | 只看 browser hours；适合少量自动化任务。 |
+| Browser Sessions | Puppeteer、Playwright、CDP 直接控制浏览器。 | 同时看 browser hours 和 concurrent browsers。 |
+
+如果任务会超过几秒，建议这样落地：
+
+```text
+用户触发任务
+  ↓
+Worker 校验权限和参数
+  ↓
+Queues 接收浏览器任务
+  ↓
+Browser Run 执行截图 / PDF / crawl
+  ↓
+结果写入 R2 / D1
+  ↓
+前端轮询或通知读取结果
+```
+
+Browser Sessions 默认每次请求启动新浏览器。需要降低冷启动时，可以复用 session：无状态任务用 `browser.disconnect()` 后重连已有 session；需要按用户或任务维持状态时，再考虑 Durable Objects 管长会话。无论哪种方式，能 `fetch` 解决的网页抓取，都不要先开浏览器。
 
 ## 本站当前选择
 
