@@ -214,6 +214,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | Fundamentals 精读 | 已整理 Profile / Account / Zone、域名接入、Proxied / DNS-only、源站保护、成员权限、API Token、Ray ID、请求头、`/cdn-cgi/`、连接限制、端口和 Under Attack。 |
 | 已完成首版 | AI 产品精读 | 已整理 AI Gateway、Workers AI、AI Search、Vectorize、Agents SDK 的定位、免费/付费边界、搜索路线、常见误区和开源参考。 |
 | 已完成首版 | 观测与日志精读 | 已整理 Web Analytics、Dashboard Analytics、GraphQL Analytics API、ABR sampling、Workers Logs、Workers Trace Events Logpush、常规 Logpush、Log Explorer、Notifications、Analytics Engine 的免费/付费边界、事实口径、采样、留存、日志写法和开源参考。 |
+| 已完成复核 | 观测与日志二次精读 | 已把 [观测与日志](/platform/observability/) 对齐 Workers Logs、Real-time logs、Workers Logpush、Logpush、Logs Engine、Log Explorer、Web Analytics、GraphQL Analytics API、Analytics Engine 和 Notifications，补齐观测分层、上线前最小配置、Worker 日志基线、长期日志出口、敏感字段边界和本站落地顺序。 |
 | 已完成首版 | 安全增强精读 | 已整理 Turnstile、Cloudflare Challenges、API Shield、Bots、Access / Tunnel、Secrets Store、Security Center、AI Crawl Control、Key Transparency、Firewall Rules deprecated 的免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 媒体与性能精读 | 已整理 Images、Stream、Speed / Observatory、Zaraz、Browser Run 的定位、免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |
