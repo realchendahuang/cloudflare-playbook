@@ -252,6 +252,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 流量调度与四层入口精读 | 已整理 Load Balancing、Health Checks、Spectrum、Argo Smart Routing、usage-based billing、limits、plans、private network load balancing 和 GitHub 开源参考。 |
 | 已完成复核 | 流量调度与四层入口文案收敛 | 已把 [流量调度与四层入口](/platform/traffic-routing/) 收敛为普通项目取舍、六个启用前问题、免费与付费边界、推荐启用顺序、Load Balancing / Health Checks / Spectrum / Argo Smart Routing 的升级信号和常见误区；保留官方 Load Balancing、Health Checks、Spectrum、Argo Smart Routing、usage-based billing 和 GitHub 源文件来源，删除 ASCII 流程图、组件配置拆解、Traffic steering 长表、本站当前选择、Terraform / SDK 参考和过细实现限制说明。 |
 | 已完成首版 | 源站保护与流量洪峰精读 | 已整理 Waiting Room、Smart Shield、Automatic Platform Optimization、plans、advanced features、APO pricing、Smart Shield packages 和 GitHub 开源参考。 |
+| 已完成复核 | 源站保护与流量洪峰文案收敛 | 已把 [源站保护与流量洪峰](/platform/origin-surge/) 收敛为普通项目取舍、免费阶段先做什么、免费与付费边界、推荐启用顺序、Waiting Room / Smart Shield / APO 的升级信号和常见误区；保留官方 Waiting Room、Smart Shield、APO、Cache Reserve、Dedicated CDN Egress IPs 和 GitHub 源文件来源，删除 ASCII 流程图、Waiting Room 配置长表、Smart Shield 网络图、APO 验证命令、本站当前选择、Terraform / SDK 参考和过细实现说明。 |
 | 已完成首版 | 公共网络与专项服务精读 | 已整理 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway 的免费边界、付费边界、使用场景和 GitHub 开源参考。 |
 | 已完成首版 | 治理、合规与学习路径精读 | 已整理 Data Localization Suite、Client-side security、DMARC Management、Registrar、Support、Learning Paths、Use cases 的计划边界、合规边界、排障清单和 GitHub 开源参考。 |
 | 已完成首版 | 低频协议与平台工具精读 | 已整理 Network Error Logging、Randomness Beacon、Resource Tagging、Tenant、Version Management、Privacy Gateway、Privacy Proxy、MoQ、Agent Memory 的计划边界、普通项目取舍和 GitHub 开源参考。 |
