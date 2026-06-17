@@ -44,6 +44,22 @@ Cloudflare 的 Codex setup 页给出的重点可以收敛成四件事：
 
 官方站对 Agent 读取文档还有一个很实用的约定：任意 Cloudflare docs 页面都可以追加 `/index.md` 读取干净的 Markdown；每个顶级产品也有自己的 `llms.txt`，适合先拿索引再深入。涉及价格、免费额度、limits、beta 状态、配置字段、权限名和 API shape 时，不要让 Codex 靠训练记忆回答，必须回到这些官方入口核对。
 
+## 官方工作流落地
+
+这个仓库以后让 Codex 写 Cloudflare 内容或代码时，默认按下面的顺序执行。
+
+```text
+Cloudflare 任务
+  ├─ 先读本仓库：目录、wrangler、现有文章、部署方式
+  ├─ 再查官方：developers.cloudflare.com/<product>/llms.txt 或 index.md
+  ├─ 再看 GitHub：cloudflare/skills、templates、workers-sdk、cloudflare-docs
+  ├─ 再修改：文章、配置或代码只改当前问题需要的部分
+  ├─ 再验证：build、typecheck、wrangler deploy、线上 URL
+  └─ 最后记录：来源、核对日期、免费/付费边界、开源参考
+```
+
+Cloudflare 官方 Codex setup 把三类能力分得很清楚：Skills 负责长期平台知识，MCP 负责实时读取配置和文档，Wrangler 负责本地开发、部署和迁移。这个分工对开源仓库尤其重要，因为文章里的价格、额度和 limits 会变，不能让 Codex 只靠记忆生成。
+
 | 官方能力 | 普通项目怎么用 |
 | --- | --- |
 | Cloudflare Skills | 让 Codex 先知道 Workers、D1、R2、KV、WAF、DDoS、Terraform 等产品边界。 |
@@ -66,6 +82,21 @@ Cloudflare 的 Codex setup 页给出的重点可以收敛成四件事：
 | 流式处理 | 大响应、大文件和代理场景优先 stream，不要把整个 body 读进内存。 |
 | 全局状态 | 不把 request-scoped state 放在全局变量，避免跨请求泄漏。 |
 | 可观测性 | 日志结构化，错误要能从 Workers Logs / Observability 定位。 |
+
+## Workers 代码底线
+
+只要 Codex 开始写 Worker 代码，就按官方 Workers Best Practices 收紧到这几条：
+
+| 底线 | 项目规则 |
+| --- | --- |
+| `compatibility_date` | 新项目用当前日期；旧项目升级前单独验证。 |
+| `nodejs_compat` | 依赖 Node 内置模块或现代 npm 包时显式开启。 |
+| `Env` 类型 | 不手写，使用 `wrangler types` 从配置生成。 |
+| 密钥 | 生产密钥使用 `wrangler secret` 或 Secrets Store，不进入 `wrangler.jsonc`、源码、文档和日志。 |
+| 静态资产 | 文档、官网、SPA 默认 Workers Static Assets；不要让静态请求进入 Worker 脚本。 |
+| 大 body | 代理、大文件、下载和响应拼接优先 stream，不把整个 body 读进内存。 |
+| 全局状态 | 全局只放可复用、无请求私密信息的对象；用户态、token、request-scoped 数据只在请求内流转。 |
+| 日志 | 记录能定位问题的 ID、状态、耗时和错误类型，不记录 token、cookie、密钥和正文隐私。 |
 
 ## 额度核对口径
 

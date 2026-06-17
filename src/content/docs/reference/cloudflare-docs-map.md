@@ -231,7 +231,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 2026-06-17 官方索引复核 | 重新读取 `developers.cloudflare.com/llms.txt` 和 103 个产品级 `llms.txt`；本地产品集合、官方产品集合和 6,145 页计数一致，无新增、删除或页数漂移。 |
 | 已完成复核 | 数据产品入口二次精读 | 已把 [数据产品](/platform/data/) 从选择表扩展为数据形态、一致性、访问方式、常见组合、官方资料和 GitHub 源仓库索引。 |
 | 已完成复核 | 架构模式二次精读 | 已把 [架构模式](/architecture/) 对齐 Cloudflare Reference Architecture / Use cases，补齐静态内容站、API 网关、实时应用的产品组合、落地步骤、验证方式和官方来源。 |
-| 进行中 | 单产品复核与案例深化 | 后续继续补真实项目拆解、参考架构和单产品深水区。 |
+| 已完成复核 | 额度与安全基线二次精读 | 已把 [免费与付费边界](/platform/free-paid/) 补成普通项目额度地图和 `$5 Workers Paid` 边界；同步强化 [Codex 协作](/best-practices/codex-cloudflare/) 与 [安全边界](/best-practices/security/) 的官方 / GitHub 来源。 |
+| 进行中 | 单产品复核与案例深化 | 持续补充真实项目拆解、参考架构和单产品深水区。 |
 
 ## 整理规则
 
