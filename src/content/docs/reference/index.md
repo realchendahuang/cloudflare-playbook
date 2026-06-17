@@ -112,9 +112,16 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 - [AI Gateway Docs](https://developers.cloudflare.com/ai-gateway/)
 - [AI Gateway Pricing](https://developers.cloudflare.com/ai-gateway/reference/pricing/)
+- [AI Gateway Limits](https://developers.cloudflare.com/ai-gateway/reference/limits/)
 - [Vectorize Docs](https://developers.cloudflare.com/vectorize/)
 - [Vectorize Pricing](https://developers.cloudflare.com/vectorize/platform/pricing/)
+- [Vectorize Limits](https://developers.cloudflare.com/vectorize/platform/limits/)
 - [AI Search Docs](https://developers.cloudflare.com/ai-search/)
+- [AI Search Limits & pricing](https://developers.cloudflare.com/ai-search/platform/limits-pricing/)
+- [AI Search search modes](https://developers.cloudflare.com/ai-search/concepts/search-modes/)
+- [Agents Docs](https://developers.cloudflare.com/agents/)
+- [Agents Limits](https://developers.cloudflare.com/agents/platform/limits/)
+- [What are agents?](https://developers.cloudflare.com/agents/concepts/what-are-agents/)
 - [Web Analytics Docs](https://developers.cloudflare.com/web-analytics/)
 - [Analytics Engine Pricing](https://developers.cloudflare.com/analytics/analytics-engine/pricing/)
 - [DNS Docs](https://developers.cloudflare.com/dns/)
@@ -231,6 +238,11 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | 官方 Ruleset Engine 文档源文件，适合理解 phases、actions、expressions 和 API 模型。 |
 | [cloudflare/cloudflare-docs DDoS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ddos-protection) | 官方 DDoS Protection 文档源文件，适合追踪 managed rulesets、best practices、analytics、alerts 和 changelog。 |
 | [cloudflare/cloudflare-docs Billing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/billing) | 官方 Billing 文档源文件，适合追踪账单、预算、付款、发票和 usage-based billing。 |
+| [cloudflare/cloudflare-docs AI Gateway source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ai-gateway) | 官方 AI Gateway 文档源文件，适合追踪 pricing、limits、provider、fallback 和 observability。 |
+| [cloudflare/cloudflare-docs Workers AI source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers-ai) | 官方 Workers AI 文档源文件，适合追踪模型、pricing、limits、binding、batch 和 function calling。 |
+| [cloudflare/cloudflare-docs AI Search source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ai-search) | 官方 AI Search 文档源文件，适合追踪托管 RAG、search modes、limits/pricing、MCP 和 UI snippets。 |
+| [cloudflare/cloudflare-docs Vectorize source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/vectorize) | 官方 Vectorize 文档源文件，适合追踪 pricing、limits、metadata filtering、Wrangler commands 和 API。 |
+| [cloudflare/cloudflare-docs Agents source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/agents) | 官方 Agents 文档源文件，适合追踪 Agents SDK、MCP、tools、runtime、limits 和 examples。 |
 | [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets 和 zone 设置变成 IaC。 |
 | [cloudflare/skills Cache Reserve reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/cache-reserve) | Cloudflare 官方 Agent Skills 里的 Cache Reserve 参考，适合看常见误区和检查清单。 |
 | [cloudflare/skills WAF reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/waf) | Cloudflare 官方 Agent Skills 里的 WAF 参考，适合看配置模式、常见误区和 Rulesets API 写法。 |
@@ -244,6 +256,9 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/workers-rs](https://github.com/cloudflare/workers-rs) | Rust / WebAssembly 写 Workers 的生态入口。 |
 | [cloudflare/workers-oauth-provider](https://github.com/cloudflare/workers-oauth-provider) | 在 Workers 上实现 OAuth 2.1 provider 的库，适合学习 API 鉴权边界。 |
 | [cloudflare/agents](https://github.com/cloudflare/agents) | Agents SDK、Code Mode 和构建 Cloudflare agent 的实现参考。 |
+| [cloudflare/ai](https://github.com/cloudflare/ai) | Cloudflare AI packages and examples，包含 Workers AI provider、AI Gateway adapter 和示例。 |
+| [cloudflare/agents-starter](https://github.com/cloudflare/agents-starter) | 官方 Agent starter，适合学习 Workers AI + Agents SDK 的最小组合。 |
+| [cloudflare/ai-search-snippet](https://github.com/cloudflare/ai-search-snippet) | AI Search 前端 snippet 组件，适合后续把托管搜索嵌入文档站。 |
 | [cloudflare/templates/d1-template](https://github.com/cloudflare/templates/tree/main/d1-template) | Worker + D1 binding + migrations 的最小官方模板。 |
 | [cloudflare/templates/d1-starter-sessions-api-template](https://github.com/cloudflare/templates/tree/main/d1-starter-sessions-api-template) | D1 Sessions API 和 Read Replication 官方模板。 |
 | [cloudflare/templates/to-do-list-kv-template](https://github.com/cloudflare/templates/tree/main/to-do-list-kv-template) | Workers Static Assets + Remix + KV 的官方模板。 |

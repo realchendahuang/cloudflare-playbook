@@ -69,7 +69,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | [KV](/platform/kv/) | Free 计划读 100,000/day、写 1,000/day、删 1,000/day、列 1,000/day、存储 1 GB。 | Paid 每月包含 10M reads、1M writes/deletes/lists 和 1 GB 存储，超出按 key/容量计费。 | 全局 key-value，适合配置、缓存、低频更新索引。 | 读多写少才舒服；同一个 key 仍然只有 1 次/秒写入，不要依赖强一致。 |
 | [R2](/platform/r2/) | Standard storage 10 GB-month/month、Class A 1M/month、Class B 10M/month；无 egress bandwidth charge。 | Standard storage $0.015/GB-month，Class A $4.50/million，Class B $0.36/million；Infrequent Access 不包含免费额度。 | S3 兼容对象存储，放图片、附件、备份、导出文件。 | 大文件和媒体不要塞进 Git 或 Pages bundle；公开下载注意 Class B 次数。 |
 | Hyperdrive | Workers Free/Paid 都包含一定使用。 | 访问外部数据库量大时看 Workers Paid/Hyperdrive 额度。 | 给外部 Postgres/MySQL 做连接池和加速。 | 已有数据库时用它；新小项目优先 D1，少维护一套外部 DB。 |
-| Vectorize | Pricing 页列出 Free 的 queried/stored vector dimensions 额度，但可用性变化较快。 | Paid 包含更高 queried/stored vector dimensions，超出按量。 | 向量数据库，做 RAG、语义搜索、相似推荐。 | 文档站早期先 Pagefind；需要语义检索时再上 Vectorize 或 AI Search，上线前再核对 dashboard 和官方 limits。 |
+| Vectorize | 30M queried vector dimensions/month、5M stored vector dimensions。 | Paid 包含 50M queried vector dimensions/month、10M stored vector dimensions，超出按 dimensions 计费。 | 向量数据库，做 RAG、语义搜索、相似推荐。 | 文档站早期先 Pagefind；需要自定义召回、metadata、namespace 和 rerank 时再上。 |
 | Analytics Engine | Free 计划 100,000 data points/day、10,000 read queries/day；官方说明当前价格信息用于预估。 | Paid 每月包含更高写入和查询额度，之后按量。 | 高基数事件、指标和自定义分析。 | 用来记录产品事件、Worker 业务指标；不要替代事务数据库。 |
 | Secrets Store | 适合集中管理密钥，具体可用性看官方当前状态。 | 生产多项目、多环境密钥管理时评估。 | 管理 API key、数据库密码、第三方 token。 | 本地 `.env` 只用于开发；生产密钥放 Cloudflare secret/binding。 |
 
@@ -78,7 +78,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | 产品 | 免费边界 | 付费入口 | 作用 | 最佳实践 |
 | --- | --- | --- | --- | --- |
 | Pagefind | 不是 Cloudflare 产品；构建期生成索引，运行时不消耗 Worker API。 | 无额外后端成本。 | 普通文档站关键词搜索。 | 本站当前默认使用 Pagefind，因为开源文档最划算。 |
-| AI Search | 官方标注可用于所有计划；新实例包含托管存储、向量索引和网页抓取能力。 | 具体限制和费用看 AI Search limits/pricing。 | 自然语言知识库搜索、Agent 工具、混合检索。 | 内容足够多后再上；先让 Markdown 结构、标题和标签干净。 |
+| [AI Search](/platform/ai/) | Available on all plans；2026-04-16 后新实例 open beta 内免费，Free 有 100 instances/account、20,000 queries/month、500 crawled pages/day。 | Paid 有 5,000 instances/account、unlimited queries、unlimited crawled pages/day；正式计费前官方会提前沟通。 | 自然语言知识库搜索、Agent 工具、混合检索、MCP endpoint。 | 内容足够多后再上；技术文档优先 hybrid search。 |
 | Workers AI | Free/Paid 都包含；每天 10,000 Neurons 免费。 | Paid 超过免费额度后按 $0.011 / 1,000 Neurons。 | 在 Cloudflare 上跑模型推理。 | 适合低延迟边缘推理；复杂生成任务要先估算 token/模型成本。 |
 | AI Gateway | 所有计划可用，核心功能免费。 | 可能结合日志、统一计费、模型提供商成本使用。 | AI 请求网关、缓存、日志、限流、fallback。 | 只要调用外部模型，优先接 AI Gateway 做观测和成本控制。 |
 | Vectorize | 见数据与存储。 | 见数据与存储。 | RAG 和语义搜索的向量层。 | 文本原文仍放 D1/R2，Vectorize 放 embedding 和 metadata。 |
@@ -148,8 +148,15 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Queues Limits](https://developers.cloudflare.com/queues/platform/limits/)
 - [Durable Objects Pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)
 - [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
+- [Workers AI Limits](https://developers.cloudflare.com/workers-ai/platform/limits/)
 - [AI Gateway Pricing](https://developers.cloudflare.com/ai-gateway/reference/pricing/)
+- [AI Gateway Limits](https://developers.cloudflare.com/ai-gateway/reference/limits/)
 - [AI Search](https://developers.cloudflare.com/ai-search/)
+- [AI Search Limits & pricing](https://developers.cloudflare.com/ai-search/platform/limits-pricing/)
+- [Vectorize Pricing](https://developers.cloudflare.com/vectorize/platform/pricing/)
+- [Vectorize Limits](https://developers.cloudflare.com/vectorize/platform/limits/)
+- [Agents](https://developers.cloudflare.com/agents/)
+- [Agents Limits](https://developers.cloudflare.com/agents/platform/limits/)
 - [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)
 - [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)
 - [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/)
