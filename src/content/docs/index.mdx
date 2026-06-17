@@ -3,7 +3,7 @@ title: Cloudflare Playbook
 description: 面向普通开发者和小团队的 Cloudflare 最佳实践知识库。
 template: splash
 hero:
-  tagline: 从产品地图、架构模式到实战案例，系统理解 Cloudflare 能帮普通项目解决什么问题。
+  tagline: 一个面向独立开发者和小团队的 Cloudflare 产品大图谱、免费额度速查表和最佳实践社区。
   actions:
     - text: 开始学习
       link: /start/
@@ -18,22 +18,32 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 ## 这是什么
 
-Cloudflare Playbook 不是官方文档的搬运，而是一份面向真实项目的实践索引。它会把 Cloudflare 的产品能力翻译成普通开发者能使用的判断框架：什么时候用、怎么组合、怎么部署、怎么验证、有什么风险。
+Cloudflare Playbook 不是官方文档的搬运，而是一份面向真实项目的实践索引。它会把 Cloudflare 的产品能力翻译成普通开发者能使用的判断框架：什么时候用、免费边界在哪里、怎么组合、怎么部署、怎么验证、有什么风险。
+
+Cloudflare 很像赛博世界里慷慨的基础设施菩萨：它有太多免费产品，也有很多付费但足够好用的产品，能显著降低独立开发者和初创公司的运营成本。这份知识库就是为了解决一个急缺的问题：把这些产品整理成一张能看懂、能落地、能持续更新的大图谱。
 
 <CardGrid>
 	<Card title="产品地图" icon="document">
-		从 Workers、Pages、D1、KV、R2、Durable Objects、Queues、AI 和安全产品开始理解 Cloudflare。
+		从 Workers、Pages、D1、KV、R2、Durable Objects、Queues、AI、安全和网络产品开始理解 Cloudflare。
 	</Card>
 	<Card title="架构模式" icon="setting">
 		把单个产品组合成静态内容站、API 网关、实时协作、AI 应用和文件服务。
 	</Card>
 	<Card title="最佳实践" icon="pencil">
-		沉淀安全边界、成本控制、缓存策略、可观测性和部署回滚经验。
+		沉淀免费/付费边界、安全边界、成本控制、缓存策略、可观测性和部署回滚经验。
 	</Card>
 	<Card title="实战案例" icon="add-document">
 		用可复现的案例展示配置、代码、部署命令和验证方式。
 	</Card>
 </CardGrid>
+
+## 先看这几篇
+
+- [Cloudflare 产品大图谱](/platform/)
+- [免费与付费边界](/platform/free-paid/)
+- [独立开发者推荐栈](/best-practices/indie-stack/)
+- [本站技术栈](/best-practices/site-stack/)
+- [Worker API + D1 案例](/recipes/worker-api-d1/)
 
 ## 推荐阅读顺序
 

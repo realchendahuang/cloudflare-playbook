@@ -4,6 +4,10 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 
 这个仓库使用 Astro + Starlight 搭建文档站，并使用 Cloudflare Workers Static Assets + D1 承载评论 API。它不是只放静态页面，而是一个 Worker-first 的 Cloudflare 最佳实践样板。
 
+> Cloudflare 很像赛博世界里慷慨的基础设施菩萨：它有太多免费产品，也有很多付费但足够好用的产品，能极大降低独立开发者和初创公司的运营成本。
+
+线上站点：[cloudflare-playbook.chendahuang.top](https://cloudflare-playbook.chendahuang.top/)
+
 ## 当前定位
 
 - **产品地图**：解释 Cloudflare 主要产品各自解决什么问题。
@@ -11,6 +15,35 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 - **最佳实践**：沉淀成本、安全、缓存、可观测性、部署和回滚经验。
 - **实战案例**：用可复现步骤展示如何把产品组合落到代码和配置里。
 - **资料索引**：优先链接 Cloudflare 官方文档、变更日志和可验证来源。
+
+## 文档主页
+
+所有文档既可以在 GitHub 仓库里直接看，也可以在网站里看。
+
+| 文档 | 仓库文件 | 网站 |
+| --- | --- | --- |
+| 首页 | [src/content/docs/index.mdx](src/content/docs/index.mdx) | [打开](https://cloudflare-playbook.chendahuang.top/) |
+| 学习路线 | [src/content/docs/start/index.md](src/content/docs/start/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/start/) |
+| Cloudflare 产品大图谱 | [src/content/docs/platform/index.md](src/content/docs/platform/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/) |
+| Workers | [src/content/docs/platform/workers.md](src/content/docs/platform/workers.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/workers/) |
+| Pages | [src/content/docs/platform/pages.md](src/content/docs/platform/pages.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/pages/) |
+| 数据产品 | [src/content/docs/platform/data.md](src/content/docs/platform/data.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/data/) |
+| AI 产品 | [src/content/docs/platform/ai.md](src/content/docs/platform/ai.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ai/) |
+| 安全与网络 | [src/content/docs/platform/security-networking.md](src/content/docs/platform/security-networking.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/security-networking/) |
+| 免费与付费边界 | [src/content/docs/platform/free-paid.md](src/content/docs/platform/free-paid.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/free-paid/) |
+| 架构模式总览 | [src/content/docs/architecture/index.md](src/content/docs/architecture/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/) |
+| 静态内容站 | [src/content/docs/architecture/static-site.md](src/content/docs/architecture/static-site.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/static-site/) |
+| API 网关 | [src/content/docs/architecture/api-gateway.md](src/content/docs/architecture/api-gateway.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/api-gateway/) |
+| 实时应用 | [src/content/docs/architecture/realtime-app.md](src/content/docs/architecture/realtime-app.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/realtime-app/) |
+| 最佳实践总览 | [src/content/docs/best-practices/index.md](src/content/docs/best-practices/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/) |
+| 本站技术栈 | [src/content/docs/best-practices/site-stack.md](src/content/docs/best-practices/site-stack.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/site-stack/) |
+| 独立开发者推荐栈 | [src/content/docs/best-practices/indie-stack.md](src/content/docs/best-practices/indie-stack.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/indie-stack/) |
+| 安全边界 | [src/content/docs/best-practices/security.md](src/content/docs/best-practices/security.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/security/) |
+| 成本控制 | [src/content/docs/best-practices/cost.md](src/content/docs/best-practices/cost.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/cost/) |
+| 实战案例总览 | [src/content/docs/recipes/index.md](src/content/docs/recipes/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/recipes/) |
+| Worker API + D1 | [src/content/docs/recipes/worker-api-d1.md](src/content/docs/recipes/worker-api-d1.md) | [打开](https://cloudflare-playbook.chendahuang.top/recipes/worker-api-d1/) |
+| R2 签名上传 | [src/content/docs/recipes/r2-signed-upload.md](src/content/docs/recipes/r2-signed-upload.md) | [打开](https://cloudflare-playbook.chendahuang.top/recipes/r2-signed-upload/) |
+| 官方资料索引 | [src/content/docs/reference/index.md](src/content/docs/reference/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/reference/) |
 
 ## 当前技术栈
 
@@ -29,18 +62,6 @@ Cloudflare D1
 ```
 
 搜索先使用 Starlight 默认的 Pagefind，评论使用 Worker API + D1。等内容规模变大后，再评估 Cloudflare AI Search 做自然语言搜索。
-
-## 内容结构
-
-```text
-Cloudflare Playbook
-├─ start              # 学习路线和入门顺序
-├─ platform           # Workers、Pages、数据、AI 等产品地图
-├─ architecture       # 常见 Cloudflare 架构模式
-├─ best-practices     # 安全、成本、缓存、部署等实践原则
-├─ recipes            # 可复现的实战案例
-└─ reference          # 官方资料和事实来源
-```
 
 ## 本地开发
 

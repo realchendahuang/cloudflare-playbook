@@ -40,6 +40,7 @@ export default defineConfig({
 						{ label: 'Pages', slug: 'platform/pages' },
 						{ label: '数据产品', slug: 'platform/data' },
 						{ label: 'AI 产品', slug: 'platform/ai' },
+						{ label: '安全与网络', slug: 'platform/security-networking' },
 						{ label: '免费与付费边界', slug: 'platform/free-paid' },
 					],
 				},
@@ -57,6 +58,7 @@ export default defineConfig({
 					items: [
 						{ label: '总览', slug: 'best-practices' },
 						{ label: '本站技术栈', slug: 'best-practices/site-stack' },
+						{ label: '独立开发者推荐栈', slug: 'best-practices/indie-stack' },
 						{ label: '安全边界', slug: 'best-practices/security' },
 						{ label: '成本控制', slug: 'best-practices/cost' },
 					],
