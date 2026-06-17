@@ -1,6 +1,6 @@
 ---
 title: Workers
-description: Cloudflare Workers 的普通项目取舍、免费额度、付费边界和架构分工。
+description: Cloudflare Workers 的普通项目取舍、架构分工和升级判断。
 ---
 
 最后核对日期：2026-06-18。
@@ -19,16 +19,19 @@ Workers 是 Cloudflare 的请求级计算层，不是一台长期运行的小服
 | 邮件、导入、重试、后处理 | 不要靠请求硬撑。 | Workers + Queues / Workflows |
 | SSR、复杂搜索、AI 前处理 | 谨慎。 | 先估 CPU，再决定 Paid |
 
-## 免费与付费边界
+## 什么时候升级
 
-| 能力 | Free | Workers Paid | 普通项目判断 |
-| --- | --- | --- | --- |
-| 动态请求 | 100,000 requests/day。 | 10M requests/month included，超出按量。 | 早期 API 足够；公开接口要限流和缓存。 |
-| CPU | 10 ms/invocation。 | 30M CPU ms/month included，单次默认 30s。 | 代理和轻 API 省；SSR、解析大文件、AI 前处理要小心。 |
-| 静态资产请求 | 免费且不限量。 | 免费且不限量。 | 前端、文档、图片索引能静态化就别进 Worker。 |
-| Static Assets 文件 | 20,000 files/version，25 MiB/file。 | 100,000 files/version，25 MiB/file。 | 大附件和媒体进 R2 / Stream。 |
-| Workers Logs | 200,000 events/day，保留 3 天。 | 20M events/month included，保留 7 天。 | 排障够用；长期审计另看日志产品。 |
-| 固定月费 | 无。 | 最低 5 USD/month。 | 请求、CPU、日志或 DO 进入生产后再买。 |
+Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产命中不该消耗 Worker 请求，SSR、API、评论、搜索代理、AI 前处理才进入动态口径。
+
+| 升级信号 | 判断 |
+| --- | --- |
+| 动态请求稳定接近 Free 边界。 | 公开 API、评论、搜索代理或 SSR 已经有人持续使用。 |
+| CPU 经常不够。 | 解析大 payload、SSR、加密、AI 前处理和批量数据处理都要单独看 CPU。 |
+| 日志留存不够排障。 | 生产问题需要更长留存、Trace Events 或外部日志目的地。 |
+| D1、KV、Queues、Durable Objects 成为核心路径。 | 这些产品的免费层也会一起决定是否进入 Workers Paid。 |
+| 需要更多 Cron、Worker 数量、Subrequests 或更大 bundle。 | 这是工程化能力升级，不是单纯流量问题。 |
+
+完整数字见 [免费额度大全](/platform/free-paid/)。
 
 ## 架构分工
 

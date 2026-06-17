@@ -1,6 +1,6 @@
 ---
 title: Pages
-description: Cloudflare Pages 的普通项目取舍、免费边界、Functions 计费和 Workers Static Assets 迁移判断。
+description: Cloudflare Pages 的普通项目取舍、Functions 边界和 Workers Static Assets 迁移判断。
 ---
 
 最后核对日期：2026-06-18。
@@ -17,18 +17,19 @@ Pages 适合前端和内容项目的 Git 协作部署：push 自动构建，PR /
 | 静态站 + 大量 Worker API | 不优先。 | Worker-first 项目用 Static Assets 更清楚。 |
 | 用户上传、附件、下载包 | 不放 Pages。 | 文件进 R2，Pages 只放构建产物。 |
 
-## 免费与限制
+## 免费阶段怎么用
 
-| 能力 | Free | 更高计划 / 备注 | 普通项目判断 |
-| --- | ---: | --- | --- |
-| 静态资产请求 | 免费且不限量 | 免费且不限量 | 主流量停在静态层。 |
-| Pages Functions | 计入 Workers Free 100,000 requests/day | 计入 Workers Paid | Functions 和 Workers 共用动态请求口径。 |
-| 构建次数 | 500 builds/month | Pro / Business 更高 | 高频提交先减少无意义构建。 |
-| 并发构建 | 1 | Pro / Business 更高 | 小项目通常够用。 |
-| 自定义域名 | 100/project | 更高计划更多 | 多租户不要靠 Pages custom domain 硬扛。 |
-| 文件数 | 20,000/site | Paid 100,000/site | 大量图片、索引和附件放 R2。 |
-| 单文件大小 | 25 MiB | 25 MiB | 大文件不要进构建产物。 |
-| 预览部署 | 默认公开 | 可用 Access 保护 | 有敏感内容必须加 Access。 |
+Pages 的免费价值在静态发布、Git 集成和预览部署。静态资产请求免费且不限量；一旦使用 Pages Functions，就进入 Workers 的动态请求和 CPU 口径。
+
+| 边界 | 判断 |
+| --- | --- |
+| 静态资产 | 文档、官网、博客和前端 bundle 应尽量停在静态层。 |
+| Functions | 少量表单、Webhook 和 API 可以起步，复杂平台能力优先迁到 Workers Static Assets。 |
+| 构建和预览 | 高频提交、大型构建、多分支预览会先撞到构建侧限制。 |
+| 文件和附件 | Pages 只放构建产物，大文件、图片原图、上传和下载包放 R2。 |
+| 预览安全 | 默认预览地址不是权限系统，有敏感内容必须加 Access。 |
+
+完整数字见 [免费额度大全](/platform/free-paid/)。
 
 ## 和 Workers Static Assets 怎么选
 

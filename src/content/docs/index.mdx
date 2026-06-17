@@ -3,7 +3,7 @@ title: Cloudflare Playbook
 description: 以 Cloudflare 免费额度和 5 USD/month Workers Paid 为第一入口，再选择产品和架构的实践知识库。
 template: splash
 hero:
-  tagline: 面向独立开发者、小团队和开源项目。首页先把 Cloudflare 免费额度讲透： 0 元能跑什么、哪里会撞墙、5 USD/month Workers Paid 到底买到什么。
+  tagline: 面向独立开发者、小团队和开源项目。先把 Cloudflare 免费额度讲透：0 元能跑什么、哪里会撞墙、5 USD/month Workers Paid 到底买到什么。
   actions:
     - text: 免费额度大全
       link: /platform/free-paid/
@@ -16,18 +16,25 @@ hero:
 
 import { Aside, Card, CardGrid } from '@astrojs/starlight/components';
 
-## 免费额度就是首页主线
+## 先看免费额度
 
 最后核对日期：2026-06-18。
 
-Cloudflare 的价格、额度和计划边界会变化。本站数字以官方 pricing / limits 为最终依据；首页只放普通项目最该先看的数字，完整口径见 [免费额度大全](/platform/free-paid/)。
+Cloudflare 的价格、额度和计划边界会变化。本站数字以官方 pricing / limits 为最终依据；首页把普通项目最该先看的免费额度直接摊开，完整口径见 [免费额度大全](/platform/free-paid/)。
 
-这个 Playbook 把免费额度放在首页最前面。普通开发者真正关心的是四件事：
+这个 Playbook 不从产品名开始，而是从免费额度开始。普通开发者真正关心的是四件事：
 
 - 项目能不能先 0 元跑起来。
 - 0 元能跑到什么程度。
 - 跑到哪里才该付费。
 - 付的那 5 美元到底买到什么。
+
+| 先问 | 直接答案 |
+| --- | --- |
+| 文档站、官网、博客能不能 0 元跑？ | 可以。静态资产请求免费且不限量，先用 Workers Static Assets / Pages。 |
+| 小 API、评论、表单能不能 0 元验证？ | 可以。Workers Free、D1、KV、R2、Queues、Durable Objects 都有免费层。 |
+| 免费阶段最该防什么？ | 防公开写入口被刷、防静态流量误进 Worker、防数据库全表扫描、防 AI 调用不设限。 |
+| 什么时候付 5 USD/month？ | 动态请求、CPU、日志、队列、D1/KV/DO 等开发者平台能力进入真实生产后再付。 |
 
 <Aside type="caution" title="先记住这条">
 免费额度先服务架构顺序：静态内容 -> 静态层；文件 -> R2；关系数据 -> D1；配置缓存 -> KV；强一致状态 -> Durable Objects；耗时任务 -> Queues；公开写入口 -> Turnstile。

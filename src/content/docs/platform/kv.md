@@ -1,6 +1,6 @@
 ---
 title: KV
-description: Cloudflare Workers KV 的定位、免费额度、付费边界、一致性风险和普通项目取舍。
+description: Cloudflare Workers KV 的定位、一致性风险和普通项目取舍。
 ---
 
 最后核对日期：2026-06-18。
@@ -22,16 +22,20 @@ KV 是 Cloudflare 的全球 key-value 存储，适合读多写少、可以接受
 | 计数器、库存、排行榜 | 不适合，交给 Durable Objects 或 D1。 |
 | 文件、图片、大对象 | 不适合，交给 R2。 |
 
-## 免费与付费边界
+## 成本和一致性边界
 
-| 能力 | Workers Free | Workers Paid | 实践判断 |
-| --- | --- | --- | --- |
-| Reads | 100,000/day | 10M/month included | 页面不要散读太多 key。 |
-| Writes | 1,000/day | 1M/month included | 写比读贵，适合低频后台写入。 |
-| Deletes / Lists | 1,000/day | 1M/month included | 用户请求路径不要扫 namespace。 |
-| Stored data | 1 GB | 1 GB included，超出按量 | 大对象和附件去 R2。 |
-| 同一个 key 写入 | 1 write/second | 1 write/second | 付费也不会放宽，这是核心边界。 |
-| Key / value size | key 512 bytes；value 25 MiB | 相同 | key 要短，大文件不要进 KV。 |
+KV 的免费层适合验证读多写少的配置和缓存，但它的核心边界不是价格，而是一致性和写入形态。写多、list 多、同 key 高频写入、用户请求里扫 namespace，都会让 KV 变得别扭。
+
+| 边界 | 判断 |
+| --- | --- |
+| Reads | 页面不要散读太多 key，能合并就合并成 manifest。 |
+| Writes | 适合低频后台写入，不适合评论、订单、计数器和状态流。 |
+| Deletes / Lists | 用户请求路径不要扫 namespace，分页和筛选交给 D1。 |
+| Stored data | 大对象、附件和图片进 R2。 |
+| 同一个 key 写入 | 付费也不会把同 key 高频写入变成强项。 |
+| 一致性 | 权限撤销、订单确认、库存和锁不要依赖 KV 立刻全球可见。 |
+
+完整数字见 [免费额度大全](/platform/free-paid/)。
 
 ## 最重要的坑
 

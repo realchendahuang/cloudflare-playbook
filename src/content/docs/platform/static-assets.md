@@ -1,6 +1,6 @@
 ---
 title: Workers Static Assets
-description: Cloudflare Workers Static Assets 的定位、免费边界、Pages 取舍和常见避坑。
+description: Cloudflare Workers Static Assets 的定位、Pages 取舍和常见避坑。
 ---
 
 最后核对日期：2026-06-18。
@@ -20,18 +20,18 @@ Workers Static Assets 用来托管构建好的静态文件：HTML、CSS、JavaSc
 | 用户上传、图片原图、附件、导出文件 | 不适合，放 R2。 |
 | 视频、大安装包、超过 25 MiB 的文件 | 不适合，放 R2 或 Stream。 |
 
-## 免费边界
+## 免费阶段怎么用
 
-| 能力 | Free | Workers Paid | 判断 |
-| --- | --- | --- | --- |
-| 静态资产请求 | 免费且不限量 | 免费且不限量 | 文档站主流量应该停在这里。 |
-| 静态资产存储 | 无额外费用 | 无额外费用 | 只适合部署产物，不适合用户文件库。 |
-| 文件数 | 20,000 files/version | 100,000 files/version | 大文档站要注意搜索索引、图片和构建碎片数量。 |
-| 单文件大小 | 25 MiB | 25 MiB | 大文件不要进构建产物。 |
-| 动态 Worker 请求 | 100,000 requests/day | 10M requests/month included | 只有进入 Worker 脚本才算。 |
-| Worker CPU | 10 ms/invocation | 30M CPU ms/month included | SSR、鉴权、动态渲染才要估算。 |
+Static Assets 的关键不是“能不能免费”，而是“有没有让静态请求真的停在静态层”。页面、CSS、JS、字体、图片索引和 Pagefind 文件都应该由资产层直接返回；评论、表单、Webhook、后台接口再进入 Worker。
 
-最容易踩的坑是让所有请求先进入 Worker。这样会把本来免费的静态流量变成动态请求。
+| 边界 | 判断 |
+| --- | --- |
+| 静态资产请求 | 命中资产层时免费且不限量，是文档站和官网的主流量入口。 |
+| 部署产物 | 适合放构建结果，不适合放用户上传、附件、导出包和媒体库。 |
+| 动态 Worker 请求 | 只有进入 Worker 脚本才按 Workers 请求和 CPU 计算。 |
+| 文件大小和数量 | 大量图片、下载包、原始附件和视频应进入 R2 / Stream。 |
+
+完整数字见 [免费额度大全](/platform/free-paid/)。
 
 ## 最省钱的路径
 
