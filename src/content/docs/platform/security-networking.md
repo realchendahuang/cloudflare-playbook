@@ -128,6 +128,8 @@ Free 计划有 Bot Fight Mode，它会针对简单 bot、云主机来源和 head
 
 ## Access 与 Tunnel
 
+更完整的 Zero Trust、Gateway、Cloudflare One Client、Cloudflare WAN 和 Network Firewall 取舍，见 [Zero Trust 与企业网络](/platform/zero-trust-networking/)。
+
 Tunnel 可以把本地应用通过 public hostname 暴露到公网，不需要 paid Access plan 才能发布。但官方文档也说得很清楚：如果没有 Access application 和策略保护，发布出来的应用任何人都能访问。
 
 后台入口建议这样处理：

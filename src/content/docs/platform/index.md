@@ -51,7 +51,8 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │
   └─ 观测与安全
        ├─ Web Analytics / Logs / GraphQL Analytics / Notifications
-       └─ Turnstile / WAF / Bot / API Shield
+       ├─ Turnstile / WAF / Bot / API Shield
+       └─ Zero Trust / Access / Tunnel / Gateway / Cloudflare WAN
 ```
 
 先从免费能力起步，等产品真的被用户使用，再为明确的瓶颈付费。不要为了“架构漂亮”提前买复杂度。
@@ -109,8 +110,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | Rate Limiting | WAF Rate Limiting 在 Free 有 1 条规则。 | Pro 2 条、Business 5 条、Enterprise 100 条，更多高级特征随计划提升。 | 防刷、防撞库、防 API 滥用。 | 对登录、评论、验证码、搜索 API 先做最小限流；注意 NAT 用户误伤。 |
 | Bots | Free 有 Bot Fight Mode、Block AI bots、AI Labyrinth 和 robots.txt 相关能力。 | Pro/Business 为 Super Bot Fight Mode；Enterprise Bot Management 才有 bot score、JA3/JA4 和路径级控制。 | 识别和处理自动化流量。 | 先用 Turnstile、WAF、限流；明确 bot 成本后再买更高级能力。 |
 | API Shield | Free 可用 Endpoint Management 和 Schema validation：100 endpoints、5 schemas、200 kB schema size。 | 完整 API Shield 需要 Enterprise 订阅。 | mTLS、schema validation、JWT、API 安全。 | 公开 API 先定义 schema、认证和限流，再加 Shield 能力。 |
-| Tunnel / Access | Tunnel 发布 public hostname 不需要 paid Access plan；Access policies 需要 Access seats。 | 团队身份、Gateway、设备 posture、DLP、长期日志按 Zero Trust 计划评估。 | 不开公网端口暴露内网服务。 | 个人后台、内网面板优先 Tunnel + Access；没有 Access policy 的 Tunnel published application 仍然公开。 |
-| Zero Trust | Free 计划适合小规模团队入门，具体 seat/功能看官方。 | 团队、日志、策略、SLA 要求提升后付费。 | Access、Gateway、设备和身份安全。 | 管理后台优先用 Access 保护，比自己写登录更稳。 |
+| [Zero Trust 与企业网络](/platform/zero-trust-networking/) | Zero Trust Free 为 $0 forever，50 user limit，标准日志最长 24 小时；Tunnel 发布 public hostname 不需要 paid Access plan。 | Pay-as-you-go 为 $7/user/month paid annually；Contract 是自定义价格，面向完整 SSE / SASE、长日志、支持和网络服务。 | Access、Gateway、Tunnel、Cloudflare One Client、Cloudflare WAN 和 Network Firewall 的组合。 | 普通项目先用 Tunnel + Access 保护后台；Cloudflare WAN / Network Firewall 属于企业网络，不是个人项目默认项。 |
 | Security Center / Security Insights | 默认自动扫描所有账户和 zone；Free 每 7 天，Pro/Business 每 3 天，Enterprise 每天。 | Brand Protection、Threat Intelligence、Security Reports、手动扫描资格按当前计划看。 | 发现 DNS、SSL/TLS、WAF、Access 等配置风险。 | 把它当安全巡检入口，先处理 Critical / High findings。 |
 
 ## 媒体、观测与开发工具
@@ -142,6 +142,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | 实时协作 | Workers + Durable Objects + D1/R2 持久化 |
 | 后台任务 | Workers + Queues + Cron Triggers + D1/R2 |
 | 管理后台 | Workers Static Assets + Access/Tunnel + D1 |
+| 小团队内网和运维入口 | Tunnel + Access + Cloudflare One Client + Gateway |
 
 ## 官方资料
 
@@ -213,5 +214,11 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Bot solutions Free plan](https://developers.cloudflare.com/bots/plans/free/)
 - [Security Insights how it works](https://developers.cloudflare.com/security/security-insights/how-it-works/)
 - [Cloudflare One account limits](https://developers.cloudflare.com/cloudflare-one/account-limits/)
+- [Cloudflare Access product and pricing](https://www.cloudflare.com/sase/products/access/)
+- [Cloudflare One setup](https://developers.cloudflare.com/cloudflare-one/setup/)
+- [Gateway traffic policies](https://developers.cloudflare.com/cloudflare-one/traffic-policies/)
 - [Published applications with Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/routing-to-tunnel/)
+- [Private networks with Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/private-net/)
+- [Cloudflare WAN](https://developers.cloudflare.com/cloudflare-wan/)
+- [Cloudflare Network Firewall plans](https://developers.cloudflare.com/cloudflare-network-firewall/plans/)
 - [Secrets Store](https://developers.cloudflare.com/secrets-store/)

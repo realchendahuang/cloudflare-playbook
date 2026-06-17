@@ -61,6 +61,7 @@ export default defineConfig({
 						{ label: '迁移与 IaC', slug: 'platform/iac-migration' },
 						{ label: '观测与日志', slug: 'platform/observability' },
 						{ label: '安全与网络', slug: 'platform/security-networking' },
+						{ label: 'Zero Trust 与企业网络', slug: 'platform/zero-trust-networking' },
 						{ label: '免费与付费边界', slug: 'platform/free-paid' },
 						{ label: 'Billing', slug: 'platform/billing' },
 					],

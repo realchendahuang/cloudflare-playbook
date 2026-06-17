@@ -82,9 +82,9 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
-| [Cloudflare Network Firewall](https://developers.cloudflare.com/cloudflare-network-firewall/llms.txt) | 31 | 企业网络防火墙。 |
+| [Cloudflare Network Firewall](https://developers.cloudflare.com/cloudflare-network-firewall/llms.txt) | 31 | 企业网络防火墙，通常随 Cloudflare WAN 或 Magic Transit 评估。 |
 | [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/llms.txt) | 689 | Access、Gateway、WARP、Zero Trust 总入口；后台保护优先看 Access/Tunnel。 |
-| [Cloudflare WAN](https://developers.cloudflare.com/cloudflare-wan/llms.txt) | 100 | 企业 WAN 替换。 |
+| [Cloudflare WAN](https://developers.cloudflare.com/cloudflare-wan/llms.txt) | 100 | Enterprise-only，替代 MPLS、hub-and-spoke routing 和传统站点网络。 |
 | [Data Localization Suite](https://developers.cloudflare.com/data-localization/llms.txt) | 25 | 数据驻留和合规。 |
 | [Multi-Cloud Networking](https://developers.cloudflare.com/multi-cloud-networking/llms.txt) | 6 | 多云网络自动化。 |
 
@@ -216,8 +216,9 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 安全增强精读 | 已整理 Turnstile、API Shield、Bots、Access / Tunnel、Secrets Store、Security Center、AI Crawl Control 的免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 媒体与性能精读 | 已整理 Images、Stream、Speed / Observatory、Zaraz、Browser Run 的定位、免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |
-| 进行中 | P1 产品精读 | 企业网络。 |
-| 待开始 | 后续专题 | P2/P3 产品、更多迁移案例、参考架构和真实项目拆解。 |
+| 已完成首版 | 企业网络精读 | 已整理 Cloudflare One、Access、Gateway、Tunnel、Cloudflare One Client、Zero Trust Free / Pay-as-you-go / Contract、Cloudflare WAN 和 Network Firewall 的边界。 |
+| 进行中 | 后续 P2/P3 精读 | Realtime、Hyperdrive、Workflows、Pipelines、Containers、Magic Transit、BYOIP、Network Interconnect 等。 |
+| 待开始 | 后续专题 | 更多迁移案例、参考架构和真实项目拆解。 |
 
 ## 整理规则
 
@@ -254,6 +255,10 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Cloudflare Security dashboard llms.txt](https://developers.cloudflare.com/security/llms.txt)
 - [Cloudflare One llms.txt](https://developers.cloudflare.com/cloudflare-one/llms.txt)
 - [Cloudflare Tunnel llms.txt](https://developers.cloudflare.com/tunnel/llms.txt)
+- [Cloudflare WAN llms.txt](https://developers.cloudflare.com/cloudflare-wan/llms.txt)
+- [Cloudflare Network Firewall llms.txt](https://developers.cloudflare.com/cloudflare-network-firewall/llms.txt)
+- [Magic Transit llms.txt](https://developers.cloudflare.com/magic-transit/llms.txt)
+- [Network Interconnect llms.txt](https://developers.cloudflare.com/network-interconnect/llms.txt)
 - [Cloudflare Images llms.txt](https://developers.cloudflare.com/images/llms.txt)
 - [Cloudflare Stream llms.txt](https://developers.cloudflare.com/stream/llms.txt)
 - [Cloudflare Speed llms.txt](https://developers.cloudflare.com/speed/llms.txt)
