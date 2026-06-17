@@ -3,7 +3,7 @@ title: Cloudflare Playbook
 description: 先看免费额度，再选 Cloudflare 产品和架构的实践知识库。
 template: splash
 hero:
-  tagline: 面向独立开发者、小团队和开源项目。先把免费额度、5 USD/month Workers Paid 和容易收费的边界讲清楚，再谈产品选型。
+  tagline: 面向独立开发者、小团队和开源项目。免费额度是第一章：先看 0 元能跑什么、5 USD/month Workers Paid 买到什么，再谈产品选型。
   actions:
     - text: 免费额度大全
       link: /platform/free-paid/
@@ -19,6 +19,25 @@ hero:
 最后核对日期：2026-06-18。Cloudflare 的价格、额度和计划边界会变化，本站数字以官方 pricing / limits 为最终依据。
 
 这个 Playbook 先回答一个问题：**一个普通项目能不能 0 元跑起来。**
+
+### 先记这 12 个数字
+
+用户最关心的不是产品名，而是“免费能用到什么程度”。先把这些数字记住，后面的选型会轻松很多。
+
+| 关键数字 | 代表什么 | 普通项目怎么用 |
+| --- | --- | --- |
+| 静态资产请求免费且不限量 | Workers Static Assets / Pages 命中静态资源时不消耗 Worker 请求。 | 文档站、官网、博客、前端 bundle 先放静态层。 |
+| 100,000 requests/day | Workers Free 每日动态请求额度，UTC 0 点重置。 | 小 API、Webhook、评论、表单先用它验证。 |
+| 10 ms CPU/invocation | Workers Free 单次 CPU 额度。 | I/O 型接口通常够用；SSR、解析大文件、AI 前处理要谨慎。 |
+| 5 USD/month | Workers Paid 账号级最低月费。 | 不是 Cloudflare Pro，也不是账单封顶；它买的是开发者平台动态能力。 |
+| 10M requests/month | Workers Paid 已包含的动态请求量。 | 公开 API 或评论系统稳定有人用后，再考虑升级。 |
+| 30M CPU ms/month | Workers Paid 已包含的 CPU 用量。 | SSR、队列消费者、定时任务和数据处理要一起看 CPU。 |
+| 5M rows read/day | D1 Free 每日读取行数。 | 评论、反馈、小后台够起步；全表扫描会很快浪费额度。 |
+| 100k rows written/day | D1 Free 每日写入行数。 | 写入型功能要做 Turnstile、限流和去重。 |
+| 10 GB-month | R2 Standard Free storage。 | 附件、图片原图、导出文件先放 R2，不塞进站点包。 |
+| 1M / 10M operations/month | R2 Free 每月 Class A / Class B 操作。 | 上传看 Class A，下载和读取看 Class B。 |
+| 10,000 Neurons/day | Workers AI Free 每日免费分配。 | AI 搜索和摘要先做小模型、短输出、缓存和限流。 |
+| 20,000 queries/month | AI Search 新实例 Free 查询额度，open beta 内免费。 | 文档搜索先 Pagefind；自然语言搜索确定有价值后再上 AI Search。 |
 
 多数情况下可以。文档站、官网、博客、小 API、Webhook、评论、反馈、轻后台、文件下载和 AI 搜索原型，都可以先从 Free 额度里验证。关键不是把所有产品都打开，而是让流量停在最便宜的位置：
 
