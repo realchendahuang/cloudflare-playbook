@@ -434,6 +434,25 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [China Network available products and features](https://developers.cloudflare.com/china-network/reference/available-products/)
 - [China Network ICP](https://developers.cloudflare.com/china-network/concepts/icp/)
 - [Google tag gateway for advertisers](https://developers.cloudflare.com/google-tag-gateway/)
+- [Data Localization Suite](https://developers.cloudflare.com/data-localization/)
+- [Data Localization Suite region support](https://developers.cloudflare.com/data-localization/region-support/)
+- [Data Localization Suite compatibility](https://developers.cloudflare.com/data-localization/compatibility/)
+- [Data Localization Suite limitations](https://developers.cloudflare.com/data-localization/limitations/)
+- [Client-side security](https://developers.cloudflare.com/client-side-security/)
+- [Client-side security best practices](https://developers.cloudflare.com/client-side-security/best-practices/deploy-rules-in-production/)
+- [Client-side security and PCI DSS](https://developers.cloudflare.com/client-side-security/reference/pci-dss/)
+- [DMARC Management](https://developers.cloudflare.com/dmarc-management/)
+- [DMARC Management security records](https://developers.cloudflare.com/dmarc-management/security-records/)
+- [DMARC Management DNS lookup limit](https://developers.cloudflare.com/dmarc-management/dns-lookup-limits/)
+- [Cloudflare Registrar](https://developers.cloudflare.com/registrar/)
+- [Registrar supported TLDs](https://developers.cloudflare.com/registrar/top-level-domains/)
+- [Transfer domain to Cloudflare](https://developers.cloudflare.com/registrar/get-started/transfer-domain-to-cloudflare/)
+- [Contacting Cloudflare Support](https://developers.cloudflare.com/support/contacting-cloudflare-support/)
+- [Cloudflare Status](https://developers.cloudflare.com/support/cloudflare-status/)
+- [Gathering information for troubleshooting sites](https://developers.cloudflare.com/support/troubleshooting/general-troubleshooting/gathering-information-for-troubleshooting-sites/)
+- [Learning Paths llms.txt](https://developers.cloudflare.com/learning-paths/llms.txt)
+- [Use cases](https://developers.cloudflare.com/use-cases/)
+- [Use cases solution guides](https://developers.cloudflare.com/use-cases/solutions/)
 - [Cloudflare Free Plan](https://www.cloudflare.com/plans/free/)
 - [Starlight Site Search](https://starlight.astro.build/guides/site-search/)
 
@@ -527,6 +546,13 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Web3 source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/web3) | 官方 Web3 文档源文件，适合追踪 IPFS Gateway、Ethereum Gateway、limits 和访问限制。 |
 | [cloudflare/cloudflare-docs China Network source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/china-network) | 官方 China Network 文档源文件，适合追踪 ICP、可用产品、Global Acceleration 和 JD Cloud 网络边界。 |
 | [cloudflare/cloudflare-docs Google tag gateway source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/google-tag-gateway) | 官方 Google tag gateway 文档源文件，适合追踪免费边界、zone-level 限制和 Google 侧配置。 |
+| [cloudflare/cloudflare-docs Data Localization source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/data-localization) | 官方 DLS 文档源文件，适合追踪 Regional Services、Customer Metadata Boundary、Geo Key Manager、compatibility 和 limitations。 |
+| [cloudflare/cloudflare-docs Client-side security source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/client-side-security) | 官方 Client-side security 文档源文件，适合追踪 resource monitoring、alerts、content security rules 和 PCI DSS。 |
+| [cloudflare/cloudflare-docs DMARC Management source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/dmarc-management) | 官方 DMARC Management 文档源文件，适合追踪 SPF、DKIM、DMARC、reports 和 DNS lookup limits。 |
+| [cloudflare/cloudflare-docs Registrar source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/registrar) | 官方 Registrar 文档源文件，适合追踪 supported TLDs、domain transfer、DNSSEC、renewal 和 WHOIS redaction。 |
+| [cloudflare/cloudflare-docs Support source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/support) | 官方 Support 文档源文件，适合追踪 support plan、case 信息清单、状态页和错误码排障。 |
+| [cloudflare/cloudflare-docs Learning Paths source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/learning-paths) | 官方 Learning Paths 源文件，适合反推本站学习路线。 |
+| [cloudflare/cloudflare-docs Use cases source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/use-cases) | 官方 Use cases 源文件，适合反推跨产品方案和案例分类。 |
 | [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets、WAF、Access、zone 设置和资源声明变成 IaC。 |
 | [cloudflare/cf-terraforming](https://github.com/cloudflare/cf-terraforming) | 从现有 Cloudflare 配置生成 Terraform HCL 和 import 命令的官方迁移工具。 |
 | [pulumi/pulumi-cloudflare](https://github.com/pulumi/pulumi-cloudflare) | Pulumi Cloudflare provider 源码，适合追踪 Pulumi 资源覆盖。 |

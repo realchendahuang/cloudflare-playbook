@@ -67,10 +67,10 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | --- | ---: | --- |
 | [API Shield](https://developers.cloudflare.com/api-shield/llms.txt) | 36 | 公开 API、移动端 API、客户数据 API 需要关注。 |
 | [Bots](https://developers.cloudflare.com/bots/llms.txt) | 45 | 爬虫、撞库、黄牛、刷接口明显时再深入。 |
-| [Client-side security](https://developers.cloudflare.com/client-side-security/llms.txt) | 26 | 第三方脚本风险和前端供应链安全。 |
+| [Client-side security](https://developers.cloudflare.com/client-side-security/llms.txt) | 26 | 已完成首版专题；script monitoring、alerts、content security rules、Advanced 能力和前端供应链边界。 |
 | [Challenges](https://developers.cloudflare.com/cloudflare-challenges/llms.txt) | 17 | Challenge 平台，和 Turnstile / WAF 相关。 |
 | [DDoS Protection](https://developers.cloudflare.com/ddos-protection/llms.txt) | 150 | 必读，理解 Cloudflare 免费入口层价值。 |
-| [DMARC Management](https://developers.cloudflare.com/dmarc-management/llms.txt) | 5 | 邮件域名防伪，做品牌或邮件发送时看。 |
+| [DMARC Management](https://developers.cloudflare.com/dmarc-management/llms.txt) | 5 | 已完成首版专题；SPF、DKIM、DMARC、reports、DNS lookup limits 和 Cloudflare DNS 边界。 |
 | [Firewall Rules (deprecated)](https://developers.cloudflare.com/firewall/llms.txt) | 27 | 历史资料，优先看 WAF custom rules。 |
 | [Key Transparency Auditor](https://developers.cloudflare.com/key-transparency/llms.txt) | 5 | E2EE 公钥透明度，专项场景。 |
 | [Secrets Store](https://developers.cloudflare.com/secrets-store/llms.txt) | 8 | 多 Worker、多环境密钥管理。 |
@@ -85,7 +85,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Cloudflare Network Firewall](https://developers.cloudflare.com/cloudflare-network-firewall/llms.txt) | 31 | 企业网络防火墙，通常随 Cloudflare WAN 或 Magic Transit 评估。 |
 | [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/llms.txt) | 689 | Access、Gateway、WARP、Zero Trust 总入口；后台保护优先看 Access/Tunnel。 |
 | [Cloudflare WAN](https://developers.cloudflare.com/cloudflare-wan/llms.txt) | 100 | Enterprise-only，替代 MPLS、hub-and-spoke routing 和传统站点网络。 |
-| [Data Localization Suite](https://developers.cloudflare.com/data-localization/llms.txt) | 25 | 数据驻留和合规。 |
+| [Data Localization Suite](https://developers.cloudflare.com/data-localization/llms.txt) | 25 | 已完成首版专题；Enterprise-only paid add-on、Geo Key Manager、CMB、Regional Services 和 compatibility。 |
 | [Multi-Cloud Networking](https://developers.cloudflare.com/multi-cloud-networking/llms.txt) | 6 | 多云网络自动化。 |
 
 ## Consumer Services
@@ -111,11 +111,11 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Pulumi](https://developers.cloudflare.com/pulumi/llms.txt) | 7 | Pulumi 管理 Cloudflare。 |
 | [Randomness Beacon](https://developers.cloudflare.com/randomness-beacon/llms.txt) | 9 | drand 随机数。 |
 | [Reference Architecture](https://developers.cloudflare.com/reference-architecture/llms.txt) | 71 | 架构图和企业级集成参考。 |
-| [Registrar](https://developers.cloudflare.com/registrar/llms.txt) | 22 | 域名注册和续费。 |
+| [Registrar](https://developers.cloudflare.com/registrar/llms.txt) | 22 | 已完成首版专题；at-cost registration、renewal、DNSSEC、WHOIS redaction、supported TLDs 和企业域名保护。 |
 | [Resource Tagging](https://developers.cloudflare.com/resource-tagging/llms.txt) | 7 | 资源标签、权限和账单归因。 |
 | [Rules](https://developers.cloudflare.com/rules/llms.txt) | 183 | 必读，Redirect、Transform、Cache、Origin、Configuration Rules 等。 |
 | [Ruleset Engine](https://developers.cloudflare.com/ruleset-engine/llms.txt) | 43 | 规则底层模型，WAF/Rules 深入时看。 |
-| [Support](https://developers.cloudflare.com/support/llms.txt) | 112 | 支持、故障和排错。 |
+| [Support](https://developers.cloudflare.com/support/llms.txt) | 112 | 已完成首版专题；support channels、Free / paid plan 边界、case 信息清单、SLA / SLO 和状态页。 |
 | [Tenant](https://developers.cloudflare.com/tenant/llms.txt) | 9 | 多租户账号管理。 |
 | [Terraform](https://developers.cloudflare.com/terraform/llms.txt) | 29 | 团队化和 IaC 优先看。 |
 | [Time Services](https://developers.cloudflare.com/time-services/llms.txt) | 9 | 已完成首版专题；NTP、NTS、Roughtime 和系统时间同步边界。 |
@@ -166,7 +166,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
-| [Learning Paths](https://developers.cloudflare.com/learning-paths/llms.txt) | 322 | 官方学习路径，适合反推本站教程路线。 |
+| [Learning Paths](https://developers.cloudflare.com/learning-paths/llms.txt) | 322 | 已完成首版专题；官方 guided modules，可反推本站学习路线。 |
 
 ## Network Security
 
@@ -187,7 +187,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Migration Guides](https://developers.cloudflare.com/migration-guides/llms.txt) | 1 | 从其他平台迁移。 |
 | [Security dashboard](https://developers.cloudflare.com/security/llms.txt) | 10 | Security dashboard 新 UI。 |
 | [Style Guide](https://developers.cloudflare.com/style-guide/llms.txt) | 164 | 贡献 Cloudflare docs 的写作规范。 |
-| [Use cases](https://developers.cloudflare.com/use-cases/llms.txt) | 59 | 官方场景解决方案。 |
+| [Use cases](https://developers.cloudflare.com/use-cases/llms.txt) | 59 | 已完成首版专题；官方跨产品 solution guides，可反推真实项目组合。 |
 
 ## 整理进度
 
@@ -224,7 +224,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 流量调度与四层入口精读 | 已整理 Load Balancing、Health Checks、Spectrum、Argo Smart Routing、usage-based billing、limits、plans、private network load balancing 和 GitHub 开源参考。 |
 | 已完成首版 | 源站保护与流量洪峰精读 | 已整理 Waiting Room、Smart Shield、Automatic Platform Optimization、plans、advanced features、APO pricing、Smart Shield packages 和 GitHub 开源参考。 |
 | 已完成首版 | 公共网络与专项服务精读 | 已整理 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway 的免费边界、付费边界、使用场景和 GitHub 开源参考。 |
-| 进行中 | 后续 P2/P3 精读 | Data Localization Suite、Client-side security、DMARC Management、Registrar、Support、Learning Paths、Use cases 等。 |
+| 已完成首版 | 治理、合规与学习路径精读 | 已整理 Data Localization Suite、Client-side security、DMARC Management、Registrar、Support、Learning Paths、Use cases 的计划边界、合规边界、排障清单和 GitHub 开源参考。 |
+| 进行中 | 后续低频专项精读 | Network Error Logging、Randomness Beacon、Resource Tagging、Tenant、Version Management、Privacy Gateway、Privacy Proxy、MoQ、Agent Memory 等。 |
 | 待开始 | 后续专题 | 更多迁移案例、参考架构和真实项目拆解。 |
 
 ## 整理规则
@@ -265,6 +266,13 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Cloudflare Web3 llms.txt](https://developers.cloudflare.com/web3/llms.txt)
 - [Cloudflare China Network llms.txt](https://developers.cloudflare.com/china-network/llms.txt)
 - [Google tag gateway llms.txt](https://developers.cloudflare.com/google-tag-gateway/llms.txt)
+- [Data Localization Suite llms.txt](https://developers.cloudflare.com/data-localization/llms.txt)
+- [Client-side security llms.txt](https://developers.cloudflare.com/client-side-security/llms.txt)
+- [DMARC Management llms.txt](https://developers.cloudflare.com/dmarc-management/llms.txt)
+- [Cloudflare Registrar llms.txt](https://developers.cloudflare.com/registrar/llms.txt)
+- [Cloudflare Support llms.txt](https://developers.cloudflare.com/support/llms.txt)
+- [Learning Paths llms.txt](https://developers.cloudflare.com/learning-paths/llms.txt)
+- [Use cases llms.txt](https://developers.cloudflare.com/use-cases/llms.txt)
 - [Cloudflare Turnstile llms.txt](https://developers.cloudflare.com/turnstile/llms.txt)
 - [Cloudflare API Shield llms.txt](https://developers.cloudflare.com/api-shield/llms.txt)
 - [Cloudflare Bots llms.txt](https://developers.cloudflare.com/bots/llms.txt)
