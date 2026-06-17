@@ -1,9 +1,9 @@
 ---
 title: Cloudflare Playbook
-description: 以免费额度为第一入口，再选择 Cloudflare 产品和架构的实践知识库。
+description: 以 Cloudflare 免费额度和 5 USD/month Workers Paid 为第一入口，再选择产品和架构的实践知识库。
 template: splash
 hero:
-  tagline: 面向独立开发者、小团队和开源项目。先把 0 元能跑什么、5 USD/month Workers Paid 买到什么讲清楚，再谈产品选型和最佳实践。
+  tagline: 面向独立开发者、小团队和开源项目。先看 0 元能跑什么、哪里会撞额度、5 USD/month Workers Paid 到底有没有用，再谈产品选型。
   actions:
     - text: 免费额度大全
       link: /platform/free-paid/
@@ -14,13 +14,13 @@ hero:
       variant: minimal
 ---
 
-## 免费额度是第一屏
+## 先看额度，再谈架构
 
 最后核对日期：2026-06-18。Cloudflare 的价格、额度和计划边界会变化，本站数字以官方 pricing / limits 为最终依据。
 
-这个 Playbook 故意把免费额度放在首页最前面。普通开发者真正关心的不是产品名，而是：**一个项目能不能先 0 元跑起来，跑到哪里该付费，付的那 5 美元到底买到什么。**
+这个 Playbook 把免费额度放在首页最前面。普通开发者真正关心的不是产品名，而是：**项目能不能先 0 元跑起来，跑到哪里该付费，付的那 5 美元到底买到什么。**
 
-### 免费额度先记这 12 个数字
+### 免费额度先记这些数字
 
 先把这些数字记住，后面的选型会轻松很多。
 
@@ -34,12 +34,17 @@ hero:
 | 30M CPU ms/month | Workers Paid 已包含的 CPU 用量。 | SSR、队列消费者、定时任务和数据处理要一起看 CPU。 |
 | 5M rows read/day | D1 Free 每日读取行数。 | 评论、反馈、小后台够起步；全表扫描会很快浪费额度。 |
 | 100k rows written/day | D1 Free 每日写入行数。 | 写入型功能要做 Turnstile、限流和去重。 |
+| 100k reads/day | KV Free 每日读取额度。 | 配置、开关、低频缓存适合；不要拿 KV 当强一致数据库。 |
+| 1k writes/day | KV Free 每日写入额度。 | 写多的计数、评论、订单状态不适合放 KV。 |
 | 10 GB-month | R2 Standard Free storage。 | 附件、图片原图、导出文件先放 R2，不塞进站点包。 |
 | 1M / 10M operations/month | R2 Free 每月 Class A / Class B 操作。 | 上传看 Class A，下载和读取看 Class B。 |
+| 10,000 operations/day | Queues Free 每日操作额度。 | 邮件、通知、导入、后处理适合；小消息通常会产生写、读、删三类操作。 |
+| 100k requests/day + 13k GB-s/day | Durable Objects Free 计算额度。 | 房间、会话、限流器可以起步；WebSocket 要用 hibernation。 |
+| 200k log events/day | Workers Logs Free 每日日志额度，保留 3 天。 | 早期排障够用；生产长期排障再看 Workers Paid 和 Logpush。 |
 | 10,000 Neurons/day | Workers AI Free 每日免费分配。 | AI 搜索和摘要先做小模型、短输出、缓存和限流。 |
 | 20,000 queries/month | AI Search 新实例 Free 查询额度，open beta 内免费。 | 文档搜索先 Pagefind；自然语言搜索确定有价值后再上 AI Search。 |
 
-## 0 元能玩什么
+## 0 元项目怎么组
 
 多数情况下可以。文档站、官网、博客、小 API、Webhook、评论、反馈、轻后台、文件下载和 AI 搜索原型，都可以先从 Free 额度里验证。关键不是把所有产品都打开，而是让流量停在最便宜的位置：
 
@@ -57,7 +62,7 @@ hero:
 
 ## Cloudflare 免费额度大全
 
-这张表就是首页重点。完整产品级表格、计费解释和官方来源见 [免费额度大全](/platform/free-paid/)。
+这张表就是首页重点。它先回答“免费能不能跑”和“5 美元有没有帮助”；完整产品级表格、计费解释和官方来源见 [免费额度大全](/platform/free-paid/)。
 
 | 能力 | Free 额度 / 免费边界 | 5 USD/month Workers Paid 是否相关 | 最容易撞墙 |
 | --- | --- | --- | --- |
@@ -91,6 +96,7 @@ hero:
 | Vectorize | 30M queried vector dimensions/month、5M stored vector dimensions。 | Paid 含更高维度包。 | 文档未整理好就上向量库。 |
 | Images | 5,000 unique transformations/month。 | Images Paid 另算，不由 Workers Paid 包掉。 | 原图存储、转换量、图片交付量。 |
 | Browser Run | 10 minutes/day browser hours、3 concurrent browsers。 | Paid 含 10 hours/month。 | 截图、PDF、网页抓取不关闭 session。 |
+| Zaraz | 1,000,000 events/month 免费。 | Zaraz Paid 另算，不由 Workers Paid 包掉。 | 第三方脚本事件量、同意管理、脚本治理。 |
 | Realtime SFU / TURN | Cloudflare 到客户端出站前 1,000 GB/month 免费；STUN 免费且不限量。 | 超出按 realtime 产品计费，不是 Workers Paid 包掉。 | 音视频出站流量、并发会议、TURN 用量。 |
 | Budget alerts | Pay-as-you-go 账号可按美元阈值邮件提醒 usage-based spend。 | 付费前必须开，但它不是封顶。 | 以为提醒会自动暂停服务。 |
 
