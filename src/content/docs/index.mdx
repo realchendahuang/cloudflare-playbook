@@ -3,30 +3,26 @@ title: Cloudflare Playbook
 description: 面向普通开发者和小团队的 Cloudflare 最佳实践知识库。
 template: splash
 hero:
-  tagline: 先看免费额度，再选产品和架构。面向独立开发者和小团队的 Cloudflare 最佳实践知识库。
+  tagline: 免费额度先行，再选产品和架构。面向独立开发者和小团队的 Cloudflare 最佳实践知识库。
   actions:
-    - text: 开始学习
+    - text: 免费额度大全
+      link: /platform/free-paid/
+      icon: open-book
+    - text: 学习路线
       link: /start/
       icon: right-arrow
-    - text: 查看产品地图
-      link: /platform/
-      icon: open-book
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## 这是什么
-
-Cloudflare Playbook 不是官方文档的搬运，而是一份面向真实项目的实践索引。它会把 Cloudflare 的产品能力翻译成普通开发者能使用的判断框架：免费额度能撑到哪里、什么时候用、怎么组合、怎么部署、怎么验证、有什么风险。
-
-Cloudflare 覆盖了计算、存储、网络、安全、AI 和可观测性等基础设施能力。对独立开发者和早期团队来说，理解这些产品的边界和组合方式，可以显著降低项目启动和运维成本。这份知识库的目标，是把这些能力整理成一张能看懂、能落地、能持续更新的大图谱。
-
 ## 先看免费额度
 
 最后核对日期：2026-06-17。Cloudflare 的额度和价格变化很快，下面这张表只做入口判断；写预算、报价或上线方案时，请回到 [免费与付费边界](/platform/free-paid/) 和 [Billing](/platform/billing/) 继续核对官方 pricing / limits。
 
-多数人先关心的不是产品名，而是一个项目能不能先免费跑起来。本站把 Cloudflare 的免费额度当作主线来读：先确认静态流量、动态请求、数据库、对象存储、安全和搜索的免费边界，再判断什么时候值得开 `$5/month` 的 Workers Paid 或其他付费产品。
+多数人先关心的不是产品名，而是一个项目能不能先免费跑起来、免费额度会在哪里撞墙、什么时候付费才算值得。本站把 Cloudflare 的免费额度当作第一主线来读：先确认静态流量、动态请求、数据库、对象存储、安全和搜索的免费边界，再判断什么时候值得开 `$5/month` 的 Workers Paid 或其他付费产品。
+
+Cloudflare 产品很多，但普通项目的预算判断可以先压成一句话：**主流量停在静态资产、CDN、R2 和缓存层，只让真正需要计算、写入、鉴权、排队或 AI 推理的请求进入计费路径。**
 
 四个结论先放前面：
 
@@ -114,6 +110,12 @@ Cloudflare 覆盖了计算、存储、网络、安全、AI 和可观测性等基
 | Budget alerts | Pay-as-you-go 账号可按美元阈值发邮件提醒 usage-based spend。 | 它不是硬封顶；需要在业务侧做限流、配额、队列和权限。 |
 
 第一条成本铁律：**主流量尽量停在静态资产、CDN、R2 和缓存层，只让真正需要计算的请求进入 Worker。**
+
+## 这是什么
+
+Cloudflare Playbook 不是官方文档的搬运，而是一份面向真实项目的实践索引。它会把 Cloudflare 的产品能力翻译成普通开发者能使用的判断框架：免费额度能撑到哪里、什么时候用、怎么组合、怎么部署、怎么验证、有什么风险。
+
+Cloudflare 覆盖了计算、存储、网络、安全、AI 和可观测性等基础设施能力。对独立开发者和早期团队来说，理解这些产品的边界和组合方式，可以显著降低项目启动和运维成本。这份知识库的目标，是把这些能力整理成一张能看懂、能落地、能持续更新的大图谱。
 
 <CardGrid>
 	<Card title="产品地图" icon="document">
