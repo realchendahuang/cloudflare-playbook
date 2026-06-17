@@ -209,7 +209,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | WAF 精读 | 已整理 Custom Rules、Managed Rules、Rate Limiting、Ruleset Engine、Skip/Allow、误伤排查、计划边界和开源参考。 |
 | 已完成首版 | DDoS Protection 精读 | 已整理 unmetered DDoS、HTTP DDoS、Network-layer DDoS、Under Attack、源站保护、误伤排查、计划边界和开源参考。 |
 | 已完成首版 | Billing 精读 | 已整理账单类型、免费额度入口、Workers Paid、usage-based billing、Billable Usage dashboard、Budget alerts、threshold billing、权限、发票和开源参考。 |
-| 进行中 | P0 产品精读 | Fundamentals、Rules。 |
+| 已完成首版 | Rules 精读 | 已整理 Redirects、Transform、Configuration、Origin、Snippets、Cloud Connector、Custom Errors、Page Rules 迁移、执行顺序、Trace 排查、计划边界和开源参考。 |
+| 进行中 | P0 产品精读 | Fundamentals。 |
 | 待开始 | P1/P2/P3 产品精读 | AI、观测、安全增强、媒体、企业网络、迁移和 IaC。 |
 
 ## 整理规则
@@ -224,5 +225,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 - [Cloudflare Developer Documentation llms.txt](https://developers.cloudflare.com/llms.txt)
 - [Cloudflare Billing llms.txt](https://developers.cloudflare.com/billing/llms.txt)
+- [Cloudflare Rules llms.txt](https://developers.cloudflare.com/rules/llms.txt)
+- [Cloudflare Ruleset Engine llms.txt](https://developers.cloudflare.com/ruleset-engine/llms.txt)
 - [Docs for agents](https://developers.cloudflare.com/docs-for-agents/)
 - [Cloudflare Docs for Agents llms.txt](https://developers.cloudflare.com/docs-for-agents/llms.txt)

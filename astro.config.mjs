@@ -48,6 +48,7 @@ export default defineConfig({
 						{ label: 'Cache / CDN', slug: 'platform/cache' },
 						{ label: 'WAF', slug: 'platform/waf' },
 						{ label: 'DDoS Protection', slug: 'platform/ddos' },
+						{ label: 'Rules', slug: 'platform/rules' },
 						{ label: '数据产品', slug: 'platform/data' },
 						{ label: 'D1', slug: 'platform/d1' },
 						{ label: 'KV', slug: 'platform/kv' },

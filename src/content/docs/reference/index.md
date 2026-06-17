@@ -158,6 +158,21 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [WAF phases](https://developers.cloudflare.com/waf/reference/phases/)
 - [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/)
 - [Troubleshooting WAF](https://developers.cloudflare.com/waf/troubleshooting/)
+- [Cloudflare Rules](https://developers.cloudflare.com/rules/)
+- [Rules examples](https://developers.cloudflare.com/rules/examples/)
+- [Redirects](https://developers.cloudflare.com/rules/url-forwarding/)
+- [Single Redirects](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/)
+- [Bulk Redirects](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/)
+- [Transform Rules](https://developers.cloudflare.com/rules/transform/)
+- [Configuration Rules](https://developers.cloudflare.com/rules/configuration-rules/)
+- [Origin Rules](https://developers.cloudflare.com/rules/origin-rules/)
+- [Cloudflare Snippets](https://developers.cloudflare.com/rules/snippets/)
+- [Snippets vs Workers](https://developers.cloudflare.com/rules/snippets/when-to-use/)
+- [Cloud Connector](https://developers.cloudflare.com/rules/cloud-connector/)
+- [Compression Rules](https://developers.cloudflare.com/rules/compression-rules/)
+- [Custom Errors](https://developers.cloudflare.com/rules/custom-errors/)
+- [Trace a request](https://developers.cloudflare.com/rules/trace-request/)
+- [Page Rules migration guide](https://developers.cloudflare.com/rules/reference/page-rules-migration/)
 - [Ruleset Engine](https://developers.cloudflare.com/ruleset-engine/)
 - [Rules language](https://developers.cloudflare.com/ruleset-engine/rules-language/)
 - [DDoS Protection Docs](https://developers.cloudflare.com/ddos-protection/)
@@ -199,6 +214,7 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Cache source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cache) | 官方 Cache / CDN 文档源文件，适合追踪 Cache Rules、Purge、TTL 和 Cache Reserve。 |
 | [cloudflare/cloudflare-docs Workers Cache API source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/runtime-apis/cache) | 官方 Workers Cache API 文档源文件，适合追踪 `fetch()`、`caches.default` 和 Cache API 限制。 |
 | [cloudflare/cloudflare-docs WAF source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/waf) | 官方 WAF 文档源文件，适合追踪 Custom Rules、Managed Rules、Rate Limiting 和 troubleshooting。 |
+| [cloudflare/cloudflare-docs Rules source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/rules) | 官方 Rules 文档源文件，适合追踪 Redirects、Transform、Origin、Snippets、Trace 和 Page Rules 迁移。 |
 | [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | 官方 Ruleset Engine 文档源文件，适合理解 phases、actions、expressions 和 API 模型。 |
 | [cloudflare/cloudflare-docs DDoS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ddos-protection) | 官方 DDoS Protection 文档源文件，适合追踪 managed rulesets、best practices、analytics、alerts 和 changelog。 |
 | [cloudflare/cloudflare-docs Billing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/billing) | 官方 Billing 文档源文件，适合追踪账单、预算、付款、发票和 usage-based billing。 |
