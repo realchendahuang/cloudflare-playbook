@@ -70,7 +70,10 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/mcp](https://github.com/cloudflare/mcp) | Cloudflare Code Mode MCP Server，用少量工具覆盖 Cloudflare API。 |
 | [cloudflare/mcp-server-cloudflare](https://github.com/cloudflare/mcp-server-cloudflare) | Cloudflare domain-specific MCP servers，覆盖 docs、bindings、builds、observability、AI Gateway 等。 |
 | [cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk) | Wrangler、Miniflare、Workers SDK 源码和 issue 入口。 |
+| [cloudflare/workerd](https://github.com/cloudflare/workerd) | Workers JavaScript/Wasm runtime 的开源实现，适合理解运行时和 compatibility date。 |
 | [cloudflare/templates](https://github.com/cloudflare/templates) | Cloudflare Workers 官方模板集合。 |
+| [cloudflare/workers-rs](https://github.com/cloudflare/workers-rs) | Rust / WebAssembly 写 Workers 的生态入口。 |
+| [cloudflare/workers-oauth-provider](https://github.com/cloudflare/workers-oauth-provider) | 在 Workers 上实现 OAuth 2.1 provider 的库，适合学习 API 鉴权边界。 |
 | [cloudflare/agents](https://github.com/cloudflare/agents) | Agents SDK、Code Mode 和构建 Cloudflare agent 的实现参考。 |
 | [twikoojs/twikoo](https://github.com/twikoojs/twikoo) | 本站评论系统的开源来源。 |
 

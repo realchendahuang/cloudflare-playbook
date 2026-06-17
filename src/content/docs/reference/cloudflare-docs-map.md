@@ -195,7 +195,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | --- | --- | --- |
 | 已完成 | 官方总索引 | 已读取 `developers.cloudflare.com/llms.txt` 并按 9 个官方分类归档。 |
 | 已完成 | 产品级索引 | 已读取 103 个产品级 `llms.txt`，统计出 6,145 个官方 Markdown 页面。 |
-| 进行中 | P0 产品精读 | Workers、Static Assets、Pages、D1、KV、R2、Queues、Durable Objects、DNS、SSL/TLS、Cache、WAF、DDoS、Billing。 |
+| 已完成首版 | Workers 精读 | 已整理运行模型、Static Assets、免费/付费边界、配置习惯、代码习惯和开源参考。 |
+| 进行中 | P0 产品精读 | Static Assets、Pages、D1、KV、R2、Queues、Durable Objects、DNS、SSL/TLS、Cache、WAF、DDoS、Billing。 |
 | 待开始 | P1/P2/P3 产品精读 | AI、观测、安全增强、媒体、企业网络、迁移和 IaC。 |
 
 ## 整理规则
