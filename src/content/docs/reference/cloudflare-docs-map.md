@@ -210,7 +210,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | Queues 二次精读 | 已把 [Queues](/platform/queues/) 收敛为适用场景、免费/付费边界、关键坑、设计原则和产品取舍，保留 Queues Pricing / Limits、Delivery guarantees、DLQ、Pull Consumers、Changelog 和 GitHub 源文件索引，删除 Producer / Consumer 代码、配置细节和生命周期长说明。 |
 | 已完成首版 | Workers Static Assets 精读 | 已整理静态资产免费边界、文件限制、路由模型、ASSETS binding、`_headers` / `_redirects`、Pages 取舍和开源参考。 |
 | 已完成复核 | Workers Static Assets 二次精读 | 已把 [Workers Static Assets](/platform/static-assets/) 收敛为选型、免费边界、Pages 取舍和常见误区，保留官方 pricing / limits 与 GitHub 源文件索引，删除过细代码示例和路由实现说明。 |
-| 已完成首版 | Pages 精读 | 已整理 Git 部署、预览部署、Direct Upload、免费边界、Pages Functions、`_routes.json`、Advanced Mode、域名和开源参考。 |
+| 已完成复核 | Pages 文案收敛 | 已把 [Pages](/platform/pages/) 收敛为普通项目取舍、免费限制、Pages vs Workers Static Assets、部署方式、Functions 边界和常见误区；保留 Pages Limits、Functions Pricing / Routing、Advanced Mode、Direct Upload、Preview Deployments、Known Issues 和 Pages to Workers 迁移来源，删除运行模型图、Wrangler 配置样例、Functions 代码、`_routes.json` 示例、Advanced Mode 代码、静态服务行为长表、Headers / Redirects 细节和本站内部选择。 |
 | 已完成首版 | DNS 精读 | 已整理 DNS query 免费边界、records/zone 限制、Full/Partial/Secondary setup、proxy status、TTL、DNSSEC、CNAME flattening、Wildcard 和迁移清单。 |
 | 已完成首版 | SSL/TLS 精读 | 已整理 Universal SSL、Origin CA、Full (strict)、HTTPS 重定向、HSTS、TLS 1.3、Authenticated Origin Pulls、常见错误和开源参考。 |
 | 已完成首版 | Cache / CDN 精读 | 已整理默认缓存行为、Cache Rules、TTL、Purge、Workers Cache API、Cache Reserve、计划边界和开源参考。 |
@@ -262,7 +262,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 本站技术栈二次精读 | 已把 [本站技术栈](/best-practices/site-stack/) 对齐 Starlight Site Search、Pagefind、Workers Static Assets、Static Assets billing、Workers pricing / limits、AI Search、Docs for agents、Twikoo / twikoo-cloudflare 和 GitHub 源仓库，补齐 Worker-first 架构、搜索路线、评论边界、免费额度影响和落地文件清单。 |
 | 已完成复核 | 实时应用架构二次精读 | 已把 [实时应用](/architecture/realtime-app/) 对齐 Add real-time features、Durable Objects WebSockets、control/data plane、lifecycle、pricing/limits 和 GitHub 示例，补齐实时类型判断、三层平面、对象切分、Hibernation、状态归位、成本边界和验证清单。 |
 | 已完成复核 | 迁移与 IaC 文案收敛 | 已把 [迁移与 IaC](/platform/iac-migration/) 收敛为 IaC 启用判断、工具边界、纳入优先级、迁移顺序、真源原则和常见误区；保留 Terraform best practices、Import Cloudflare resources、Remote R2 backend、Workers Infrastructure as Code、Pulumi、Reference Architecture how-to-use 和 Migration Guides 来源，删除目录结构图、Terraform / Wrangler / R2 backend 命令示例、Ruleset `ref` 细节、Pulumi + Wrangler 长表、CI 守门长表、参考架构映射和本站内部选择。 |
-| 已完成复核 | 平台文案收敛 | 已把 [Cloudflare 产品大图谱](/platform/) 改为产品入口和选型路线，删掉长链路图与百科式堆叠；同步压缩 [免费与付费边界](/platform/free-paid/) 的核对过程、重复导读和本站内部技术栈说明，并继续收敛 [Workers](/platform/workers/)、[迁移与 IaC](/platform/iac-migration/)、[安全与网络](/platform/security-networking/)、[KV](/platform/kv/)、[D1](/platform/d1/)、[Queues](/platform/queues/)、[R2](/platform/r2/)、[Durable Objects](/platform/durable-objects/) 与 [Zero Trust 与企业网络](/platform/zero-trust-networking/) 的代码、配置、价格长表和过细实现说明。 |
+| 已完成复核 | 平台文案收敛 | 已把 [Cloudflare 产品大图谱](/platform/) 改为产品入口和选型路线，删掉长链路图与百科式堆叠；同步压缩 [免费与付费边界](/platform/free-paid/) 的核对过程、重复导读和本站内部技术栈说明，并继续收敛 [Workers](/platform/workers/)、[Pages](/platform/pages/)、[迁移与 IaC](/platform/iac-migration/)、[安全与网络](/platform/security-networking/)、[KV](/platform/kv/)、[D1](/platform/d1/)、[Queues](/platform/queues/)、[R2](/platform/r2/)、[Durable Objects](/platform/durable-objects/) 与 [Zero Trust 与企业网络](/platform/zero-trust-networking/) 的代码、配置、价格长表和过细实现说明。 |
 | 进行中 | 单产品复核与案例深化 | 持续补充真实项目拆解、参考架构和单产品深水区。 |
 
 ## 整理规则

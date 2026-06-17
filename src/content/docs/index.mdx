@@ -3,7 +3,7 @@ title: Cloudflare Playbook
 description: 面向普通开发者和小团队的 Cloudflare 最佳实践知识库。
 template: splash
 hero:
-  tagline: 先查免费额度，再选产品、架构和付费时机。面向独立开发者和小团队的 Cloudflare 最佳实践知识库。
+  tagline: 免费额度先行：先判断能不能零成本跑起来，再选产品、架构和付费时机。面向独立开发者和小团队的 Cloudflare 最佳实践知识库。
   actions:
     - text: 免费额度大全
       link: /platform/free-paid/
@@ -21,6 +21,15 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 最后核对日期：2026-06-18。Cloudflare 的价格、额度和计划边界会变化，本站所有数字都以官方 pricing / limits 为最终依据。
 
 普通项目最先需要的不是产品百科，而是预算判断：哪些东西可以免费起步，哪些东西会先撞额度，什么时候该付 `$5/month` 的 Workers Paid，哪些能力必须看 zone plan、add-on 或 Enterprise。
+
+| 第一眼先看 | 免费额度 / 免费边界 | 直接判断 |
+| --- | --- | --- |
+| 静态流量 | Workers Static Assets / Pages 静态资产请求免费且不限量。 | 文档站、官网、博客和前端页面先放静态层。 |
+| 动态入口 | Workers Free 100,000 requests/day，10 ms CPU/invocation。 | 评论、Webhook、表单、小 API 可以先免费验证。 |
+| 关系数据 | D1 Free 5M rows read/day、100k rows written/day、5 GB storage。 | 评论、表单、小后台、轻量 SaaS 先用 D1。 |
+| 文件对象 | R2 Standard 10 GB-month、1M Class A/month、10M Class B/month，egress 免费。 | 图片、附件、导出文件不要塞进站点包。 |
+| AI 试验 | Workers AI 10,000 Neurons/day；AI Search 新实例 open beta 内免费。 | 搜索先 Pagefind；自然语言搜索再接 AI Gateway / AI Search。 |
+| 预算提醒 | Budget alerts 只发邮件提醒 usage-based spend，不会自动封顶。 | 付费前先开提醒，代码和架构仍要限流。 |
 
 | 判断 | 结论 |
 | --- | --- |
@@ -58,7 +67,7 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 | Durable Objects SQLite storage | 5M rows read/day、100k rows written/day、5 GB total。 | Paid 25B rows read/month、50M rows written/month、5 GB-month included。 | 每个实体的小状态可以放，报表和全局查询不要放。 |
 | Workers AI | 10,000 Neurons/day 免费分配。 | 超过每日分配需要 Workers Paid，之后按 Neurons 计费。 | 小模型、短输出、原型验证先跑起来。 |
 | AI Gateway | 核心能力免费；Workers Free 持久日志 100,000 logs total。 | Paid 10M logs/gateway、Logpush、长期审计。 | 外部模型、Workers AI、缓存、限流和调用日志统一入口。 |
-| AI Search | Open beta 新实例免费；Free 100 instances/account、20,000 queries/month、500 crawled pages/day。 | Paid unlimited queries / crawling，Workers AI 和 AI Gateway 另算。 | 文档多起来再试自然语言搜索。 |
+| AI Search | Open beta 新实例免费；Free 100 instances/account、20,000 queries/month、500 crawled pages/day；Workers AI 和 AI Gateway 另算。 | Paid unlimited queries / crawling。 | 文档多起来再试自然语言搜索。 |
 | Vectorize | 30M queried vector dimensions/month、5M stored vector dimensions。 | Paid 更高维度包和按量扩展。 | RAG 价值明确后再用，早期搜索先 Pagefind。 |
 | Images | 5,000 unique transformations/month。 | Images Paid、storage、delivery。 | 原图放 R2，需要裁剪、格式转换、响应式图时再接。 |
 | Browser Run | 10 minutes/day browser hours、3 concurrent browsers。 | Paid 10 hours/month included，更多并发和小时数按量。 | 截图、PDF、动态网页抓取先小规模验证。 |
