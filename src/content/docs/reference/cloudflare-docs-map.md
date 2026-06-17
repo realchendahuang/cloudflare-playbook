@@ -207,7 +207,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | SSL/TLS 精读 | 已整理 Universal SSL、Origin CA、Full (strict)、HTTPS 重定向、HSTS、TLS 1.3、Authenticated Origin Pulls、常见错误和开源参考。 |
 | 已完成首版 | Cache / CDN 精读 | 已整理默认缓存行为、Cache Rules、TTL、Purge、Workers Cache API、Cache Reserve、计划边界和开源参考。 |
 | 已完成首版 | WAF 精读 | 已整理 Custom Rules、Managed Rules、Rate Limiting、Ruleset Engine、Skip/Allow、误伤排查、计划边界和开源参考。 |
-| 进行中 | P0 产品精读 | DDoS、Billing。 |
+| 已完成首版 | DDoS Protection 精读 | 已整理 unmetered DDoS、HTTP DDoS、Network-layer DDoS、Under Attack、源站保护、误伤排查、计划边界和开源参考。 |
+| 进行中 | P0 产品精读 | Billing。 |
 | 待开始 | P1/P2/P3 产品精读 | AI、观测、安全增强、媒体、企业网络、迁移和 IaC。 |
 
 ## 整理规则

@@ -87,7 +87,7 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 | [DNS](/platform/dns/) | Free/Pro/Business 不对 DNS query 收费且不限制查询；新 Free zone 为 200 records/zone，旧 Free zone 为 1,000，Pro/Business 为 3,500。 | Enterprise 以 DNS query 等作为报价输入，records/zone 可申请提高。 | 域名解析、代理状态和流量入口。 | Web 入口用 Proxied，邮件和验证记录 DNS-only；迁移前导出旧 zone 并处理 DNSSEC。 |
 | [Cache / CDN](/platform/cache/) | Cache / CDN、Cache Rules、Purge、Tiered Cache 基础能力在 Free 可用。 | Cache Rules 数量、Edge TTL 最小值、Cache Reserve、企业拓扑和高级 cache key 随计划或 add-on 提升。 | 缓存静态内容，减少源站压力。 | 静态 hash 资源长缓存；HTML 短缓存；用户态默认 bypass；用版本化 URL 少 purge。 |
 | [SSL/TLS](/platform/ssl-tls/) | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 等基础能力在 Free 可用。 | Advanced Certificate Manager、Custom Certificates、Keyless SSL、Enterprise-only 模式按需求升级。 | 给站点建立完整 HTTPS 链路。 | 默认目标是 Full (strict)；源站也要有有效证书，别停在 Flexible。 |
-| DDoS Protection | DDoS Protection 官方标注 available on all plans。 | 企业场景需要更细策略、支持和 SLA 时升级。 | 自动检测和缓解 DDoS。 | 普通项目先接入即可；被打时再组合 WAF、Rate Limiting、规则和日志排查。 |
+| [DDoS Protection](/platform/ddos/) | 官方说明所有计划都有 standard, unmetered DDoS protection，HTTP DDoS 和 Network-layer DDoS 也覆盖所有计划。 | Enterprise / Advanced DDoS 提供更多 override、Log action、Adaptive / Advanced DDoS、告警过滤和支持。 | 自动检测和缓解 L3/L4 与 L7 DDoS。 | Web 入口先保持 Proxied，隐藏源站 IP；被打时再结合 WAF、Rate Limiting、Under Attack 和日志排查。 |
 | [WAF](/platform/waf/) | WAF 可用于所有计划；Free 有 5 条 Custom Rules、1 条 Rate Limiting Rule、Free Managed Ruleset 和 sampled Security Events。 | Pro/Business/Enterprise 提升规则数量、Managed Rules、Attack Score、Security Events 和高级检测能力。 | 拦常见攻击、写自定义规则、限速高风险入口。 | 登录、API、后台、评论和上传先加最小规则；先看 Security Events，再逐步收紧。 |
 | Turnstile | Free 计划适合个人站、博客、中小业务、开发测试和大多数生产应用。 | Enterprise 面向核心业务和更高要求。 | 免费 CAPTCHA 替代，降低表单滥用。 | 只放前端组件不够，必须服务端验证 token；适合接入表单、登录和高频提交入口。 |
 | Rate Limiting | WAF Rate Limiting 在 Free 有 1 条规则。 | Pro 2 条、Business 5 条、Enterprise 100 条，更多高级特征随计划提升。 | 防刷、防撞库、防 API 滥用。 | 对登录、评论、验证码、搜索 API 先做最小限流；注意 NAT 用户误伤。 |
@@ -141,4 +141,5 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 - [DNS FAQ](https://developers.cloudflare.com/dns/faq/)
 - [WAF Docs](https://developers.cloudflare.com/waf/)
 - [DDoS Protection Docs](https://developers.cloudflare.com/ddos-protection/)
+- [DDoS Protection About](https://developers.cloudflare.com/ddos-protection/about/)
 - [Turnstile Plans](https://developers.cloudflare.com/turnstile/plans/)
