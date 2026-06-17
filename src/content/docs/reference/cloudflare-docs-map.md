@@ -55,7 +55,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Load Balancing](https://developers.cloudflare.com/load-balancing/llms.txt) | 59 | 已完成首版专题；paid add-on，多源站、health monitors、traffic steering、PNLB。 |
 | [Smart Shield](https://developers.cloudflare.com/smart-shield/llms.txt) | 19 | 已完成首版专题；Smart Tiered Cache、Connection Reuse、Argo、Cache Reserve 和 Dedicated CDN Egress IPs。 |
 | [Spectrum](https://developers.cloudflare.com/spectrum/llms.txt) | 17 | 已完成首版专题；paid plans，TCP/UDP 非 HTTP 代理，协议/计划/限制。 |
-| [Speed](https://developers.cloudflare.com/speed/llms.txt) | 42 | 性能优化入口，图片、协议、浏览器体验相关。 |
+| [Speed](https://developers.cloudflare.com/speed/llms.txt) | 42 | 已完成首版专题；Observatory、RUM、Origin Analytics、synthetic tests、Core Web Vitals 和性能建议。 |
 | [SSL/TLS](https://developers.cloudflare.com/ssl/llms.txt) | 131 | 已完成首版专题；Universal SSL、Origin CA、Full (strict)、Automatic SSL/TLS、HTTPS 重定向、HSTS、TLS 1.3 和 AOP。 |
 | [Waiting Room](https://developers.cloudflare.com/waiting-room/llms.txt) | 27 | 已完成首版专题；Business 起可用，合法峰值排队、events、queueing methods 和 JSON response。 |
 | [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/llms.txt) | 16 | 已完成首版专题；available on all plans、proxied sites no limit、non-proxied 10 sites、rules limits 和 RUM 边界。 |
@@ -82,9 +82,9 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
-| [Cloudflare Network Firewall](https://developers.cloudflare.com/cloudflare-network-firewall/llms.txt) | 31 | 企业网络防火墙，通常随 Cloudflare WAN 或 Magic Transit 评估。 |
-| [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/llms.txt) | 689 | Access、Gateway、WARP、Zero Trust 总入口；后台保护优先看 Access/Tunnel。 |
-| [Cloudflare WAN](https://developers.cloudflare.com/cloudflare-wan/llms.txt) | 100 | Enterprise-only，替代 MPLS、hub-and-spoke routing 和传统站点网络。 |
+| [Cloudflare Network Firewall](https://developers.cloudflare.com/cloudflare-network-firewall/llms.txt) | 31 | 已完成首版专题；FWaaS、IDS、packet captures、Magic Transit / Cloudflare WAN 关系和普通项目不默认使用的边界。 |
+| [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/llms.txt) | 689 | 已完成首版专题；Access、Gateway、Tunnel、Cloudflare One Client、Zero Trust Free / Paid 边界和后台保护顺序。 |
+| [Cloudflare WAN](https://developers.cloudflare.com/cloudflare-wan/llms.txt) | 100 | 已完成首版专题；Enterprise-only、站点网络、on-ramps、Network Firewall 关系和普通项目取舍。 |
 | [Data Localization Suite](https://developers.cloudflare.com/data-localization/llms.txt) | 25 | 已完成首版专题；Enterprise-only paid add-on、Geo Key Manager、CMB、Regional Services 和 compatibility。 |
 | [Multi-Cloud Networking](https://developers.cloudflare.com/multi-cloud-networking/llms.txt) | 6 | 多云网络自动化。 |
 
@@ -94,7 +94,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | --- | ---: | --- |
 | [1.1.1.1 (DNS Resolver)](https://developers.cloudflare.com/1.1.1.1/llms.txt) | 37 | 已完成首版专题；public resolver、Families、DoH / DoT / ODoH、IP 地址和隐私边界。 |
 | [Radar](https://developers.cloudflare.com/radar/llms.txt) | 23 | 已完成首版专题；Radar dashboard/API、免费 API、URL Scanner、趋势和威胁数据。 |
-| [WARP Client](https://developers.cloudflare.com/warp-client/llms.txt) | 12 | 终端客户端和 Zero Trust 入口。 |
+| [WARP Client](https://developers.cloudflare.com/warp-client/llms.txt) | 12 | 已完成首版专题；Cloudflare One Client、Traffic and DNS mode、DNS-only mode、device posture 和 Gateway 策略入口。 |
 
 ## Core Platform
 
@@ -108,18 +108,18 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Logs](https://developers.cloudflare.com/logs/llms.txt) | 97 | 已完成首版专题；Logpush、datasets、destinations、4 jobs/zone、no backfill、Workers Trace Events Logpush 例外。 |
 | [Network](https://developers.cloudflare.com/network/llms.txt) | 9 | 已完成首版专题；gRPC、IP Geolocation、IPv6、WebSockets、Pseudo IPv4、True-Client-IP、Onion Routing 和计划边界。 |
 | [Notifications](https://developers.cloudflare.com/notifications/llms.txt) | 10 | 已完成首版专题；available on all plans、Free email、Pro+ webhooks、Business+ PagerDuty、traffic alerts 和 notification history。 |
-| [Pulumi](https://developers.cloudflare.com/pulumi/llms.txt) | 7 | Pulumi 管理 Cloudflare。 |
+| [Pulumi](https://developers.cloudflare.com/pulumi/llms.txt) | 7 | 已完成首版专题；Pulumi Cloudflare provider、Pulumi + Wrangler、ESC secrets、D1 migrations 和 Terraform 取舍。 |
 | [Randomness Beacon](https://developers.cloudflare.com/randomness-beacon/llms.txt) | 9 | 已完成首版专题；drand 公共随机数、公开可验证随机性、适用场景和 GitHub 开源参考。 |
-| [Reference Architecture](https://developers.cloudflare.com/reference-architecture/llms.txt) | 71 | 架构图和企业级集成参考。 |
+| [Reference Architecture](https://developers.cloudflare.com/reference-architecture/llms.txt) | 71 | 已完成首版专题；Reference Architectures、Design Guides、Implementation Guides、diagrams 和小项目降维使用。 |
 | [Registrar](https://developers.cloudflare.com/registrar/llms.txt) | 22 | 已完成首版专题；at-cost registration、renewal、DNSSEC、WHOIS redaction、supported TLDs 和企业域名保护。 |
 | [Resource Tagging](https://developers.cloudflare.com/resource-tagging/llms.txt) | 7 | 已完成首版专题；all plans、public beta、10,000 tags/account、API 限制和资源归因实践。 |
 | [Rules](https://developers.cloudflare.com/rules/llms.txt) | 183 | 已完成首版专题；Redirect、Transform、Configuration、Origin、Cache、Snippets、Cloud Connector、Custom Errors、Trace 和 Page Rules 迁移。 |
 | [Ruleset Engine](https://developers.cloudflare.com/ruleset-engine/llms.txt) | 43 | 已完成首版专题；phases、rulesets、rules、actions、expressions、execute / skip / override 和 Terraform 管理边界。 |
 | [Support](https://developers.cloudflare.com/support/llms.txt) | 112 | 已完成首版专题；support channels、Free / paid plan 边界、case 信息清单、SLA / SLO 和状态页。 |
 | [Tenant](https://developers.cloudflare.com/tenant/llms.txt) | 9 | 已完成首版专题；Channel / Alliance partner provisioning，和普通 SaaS 多租户区分。 |
-| [Terraform](https://developers.cloudflare.com/terraform/llms.txt) | 29 | 团队化和 IaC 优先看。 |
+| [Terraform](https://developers.cloudflare.com/terraform/llms.txt) | 29 | 已完成首版专题；provider、best practices、cf-terraforming、import、R2 remote state、ruleset `ref` 和 Wrangler 边界。 |
 | [Time Services](https://developers.cloudflare.com/time-services/llms.txt) | 9 | 已完成首版专题；NTP、NTS、Roughtime 和系统时间同步边界。 |
-| [Cloudflare Tunnel](https://developers.cloudflare.com/tunnel/llms.txt) | 31 | 内网服务暴露和后台保护常用。 |
+| [Cloudflare Tunnel](https://developers.cloudflare.com/tunnel/llms.txt) | 31 | 已完成首版专题；published applications、private networks、Access 关系、cloudflared replicas 和源站不暴露公网。 |
 | [Version Management](https://developers.cloudflare.com/version-management/llms.txt) | 11 | 已完成首版专题；Enterprise-only、dashboard-only、staging / rollback、Terraform 和 Wrangler 限制。 |
 
 ## Developer Platform
@@ -128,25 +128,25 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | --- | ---: | --- |
 | [Agent Lee](https://developers.cloudflare.com/agent-lee/llms.txt) | 1 | 已完成首版专题；Free plan beta、Dashboard AI co-pilot、account-aware answers、写操作审批和网络诊断。 |
 | [Agent Memory](https://developers.cloudflare.com/agent-memory/llms.txt) | 8 | 已完成首版专题；private beta、暂不计费、30 天通知、ingest / recall limits 和 Agent 记忆边界。 |
-| [Agents](https://developers.cloudflare.com/agents/llms.txt) | 92 | 构建有状态 AI Agent、MCP、实时交互。 |
-| [AI](https://developers.cloudflare.com/ai/llms.txt) | 13 | Cloudflare AI 总入口。 |
-| [AI Gateway](https://developers.cloudflare.com/ai-gateway/llms.txt) | 83 | AI 请求观测、缓存、限流、fallback；AI 项目优先。 |
-| [AI Search](https://developers.cloudflare.com/ai-search/llms.txt) | 51 | 托管 RAG 和自然语言搜索。 |
+| [Agents](https://developers.cloudflare.com/agents/llms.txt) | 92 | 已完成首版专题；有状态 Agent、Durable Objects runtime、MCP / tools、WebSocket、scheduled work、1 GB state 和 AI Search / Vectorize 组合。 |
+| [AI](https://developers.cloudflare.com/ai/llms.txt) | 13 | 已完成首版专题；AI Gateway、Workers AI、AI Search、Vectorize、Agents SDK 的总入口和普通项目选型顺序。 |
+| [AI Gateway](https://developers.cloudflare.com/ai-gateway/llms.txt) | 83 | 已完成首版专题；all plans core features free、persistent logs、caching、rate limiting、fallback、DLP / guardrails 和 Logpush。 |
+| [AI Search](https://developers.cloudflare.com/ai-search/llms.txt) | 51 | 已完成首版专题；托管 RAG、built-in storage / vector index、web crawling、Free / Paid limits、hybrid search、MCP endpoint 和 UI snippet。 |
 | [Artifacts](https://developers.cloudflare.com/artifacts/llms.txt) | 24 | 已完成首版专题；Workers Paid repo artifacts、Git protocol、ArtifactFS、pricing、limits、namespaces/repos。 |
-| [Browser Run](https://developers.cloudflare.com/browser-run/llms.txt) | 46 | 截图、PDF、抓取、浏览器自动化。 |
-| [Cloudflare for Platforms](https://developers.cloudflare.com/cloudflare-for-platforms/llms.txt) | 87 | 多租户平台、Cloudflare for SaaS、Workers for Platforms、custom hostnames 和 dispatch namespace。 |
-| [Containers](https://developers.cloudflare.com/containers/llms.txt) | 28 | Workers Paid 的容器运行时补位，适合完整文件系统、自定义 runtime、并行 CPU 和现有镜像。 |
+| [Browser Run](https://developers.cloudflare.com/browser-run/llms.txt) | 46 | 已完成首版专题；Free 10 minutes/day、Paid 10 hours/month、Playwright / Puppeteer / CDP、Quick Actions、`/crawl` 和 Queues / R2 组合。 |
+| [Cloudflare for Platforms](https://developers.cloudflare.com/cloudflare-for-platforms/llms.txt) | 87 | 已完成首版专题；Cloudflare for SaaS、Workers for Platforms、custom hostnames、dispatch namespace、isolation、limits / pricing。 |
+| [Containers](https://developers.cloudflare.com/containers/llms.txt) | 28 | 已完成首版专题；Workers Paid、instance types、GiB-hours / vCPU-minutes / disk、egress、Durable Objects / logs 叠加成本和运行时补位。 |
 | [D1](https://developers.cloudflare.com/d1/llms.txt) | 52 | 已完成首版专题；Serverless SQL、Free 5M rows read / 100k rows written / day、Workers Paid 月额度、索引、迁移、备份和 Read Replication。 |
 | [Durable Objects](https://developers.cloudflare.com/durable-objects/llms.txt) | 52 | 已完成首版专题；单实体强一致、SQLite-backed DO、requests / GB-s、WebSocket Hibernation、Alarms、storage billing 和迁移。 |
-| [Dynamic Workers](https://developers.cloudflare.com/dynamic-workers/llms.txt) | 15 | 运行时加载用户代码、AI code mode、sandbox、bindings、egress control 和按量计费。 |
+| [Dynamic Workers](https://developers.cloudflare.com/dynamic-workers/llms.txt) | 15 | 已完成首版专题；运行时代码加载、stable ID、unique Dynamic Workers/day、capability bindings、globalOutbound、AI code mode 和 sandbox 边界。 |
 | [Email Service](https://developers.cloudflare.com/email-service/llms.txt) | 38 | 已完成首版专题；Email Routing Free/Paid、Email Sending Workers Paid、3,000 outbound/month、inbound unlimited、limits。 |
 | [Flagship](https://developers.cloudflare.com/flagship/llms.txt) | 15 | 已完成首版专题；edge feature flags、Workers binding、OpenFeature SDK、local evaluation、limits。 |
-| [Hyperdrive](https://developers.cloudflare.com/hyperdrive/llms.txt) | 55 | 连接已有 Postgres/MySQL，提供连接池和查询缓存。 |
-| [Cloudflare Images](https://developers.cloudflare.com/images/llms.txt) | 56 | 图片存储、变换和分发。 |
+| [Hyperdrive](https://developers.cloudflare.com/hyperdrive/llms.txt) | 55 | 已完成首版专题；外部 Postgres / MySQL、连接池、查询缓存、100k queries/day Free、Paid unlimited 和 D1 取舍。 |
+| [Cloudflare Images](https://developers.cloudflare.com/images/llms.txt) | 56 | 已完成首版专题；Images transformations、storage / delivery pricing、5,000 unique transformations、R2 原图和安全限制。 |
 | [KV](https://developers.cloudflare.com/kv/llms.txt) | 29 | 已完成首版专题；读多写少、Free 100k reads / 1k writes / day、eventual consistency、cacheTtl、bulk API 和 wrangler commands。 |
 | [MoQ](https://developers.cloudflare.com/moq/llms.txt) | 3 | 已完成首版专题；Media over QUIC、draft feature matrix、live media 协议边界和 moq-rs。 |
 | [Pages](https://developers.cloudflare.com/pages/llms.txt) | 118 | 已完成首版专题；Git 部署、预览部署、Direct Upload、Free 500 builds/month、Pages Functions、`_routes.json`、Advanced Mode 和迁移边界。 |
-| [Pipelines](https://developers.cloudflare.com/pipelines/llms.txt) | 32 | 实时事件流经 SQL transform 写入 R2、Parquet 或 Iceberg。 |
+| [Pipelines](https://developers.cloudflare.com/pipelines/llms.txt) | 32 | 已完成首版专题；streams、SQL transforms、R2 JSON / Parquet / Iceberg sinks、open beta、pricing / limits 和数据湖边界。 |
 | [Privacy Gateway](https://developers.cloudflare.com/privacy-gateway/llms.txt) | 6 | 已完成首版专题；OHTTP relay、Enterprise-only、closed beta、隐私边界和 limitations。 |
 | [Privacy Proxy](https://developers.cloudflare.com/privacy-proxy/llms.txt) | 12 | 已完成首版专题；MASQUE forward proxy、Enterprise managed service、single-hop / double-hop 和隐私分离模型。 |
 | [Queues](https://developers.cloudflare.com/queues/llms.txt) | 38 | 已完成首版专题；Free 10k operations/day、operations 计费、at least once、batching、retries、DLQ、Pull consumers 和 metrics。 |
@@ -154,13 +154,13 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [R2 SQL](https://developers.cloudflare.com/r2-sql/llms.txt) | 15 | 已完成首版专题；R2 Data Catalog SQL engine、open beta、1 GB / 10 GB data scanned、`$0.0025/GB`、read-only limitations。 |
 | [Realtime](https://developers.cloudflare.com/realtime/llms.txt) | 712 | 已完成首版专题；RealtimeKit、SFU、TURN 和 Durable Objects WebSocket 的边界、价格与落地顺序。 |
 | [Sandbox SDK](https://developers.cloudflare.com/sandbox/llms.txt) | 62 | 已完成首版专题；Workers + Containers secure code execution、pricing inherits Containers、subrequest limits、RPC transport、GitHub SDK。 |
-| [Stream](https://developers.cloudflare.com/stream/llms.txt) | 64 | 视频存储、编码、播放。 |
-| [Vectorize](https://developers.cloudflare.com/vectorize/llms.txt) | 21 | 向量数据库和语义检索。 |
+| [Stream](https://developers.cloudflare.com/stream/llms.txt) | 64 | 已完成首版专题；视频上传、编码、播放、直播、signed URLs、按 minutes stored / delivered 计费和 R2 取舍。 |
+| [Vectorize](https://developers.cloudflare.com/vectorize/llms.txt) | 21 | 已完成首版专题；queried / stored vector dimensions、metadata、namespace、topK、batch upsert、自定义 RAG 和 AI Search 取舍。 |
 | [Workers](https://developers.cloudflare.com/workers/llms.txt) | 415 | 已完成首版专题；Free 100k requests/day / 10 ms CPU、Workers Paid $5 minimum、Static Assets、bindings、limits、observability、Wrangler 和开源参考。 |
-| [Workers AI](https://developers.cloudflare.com/workers-ai/llms.txt) | 59 | 模型推理、embedding、价格和模型列表。 |
+| [Workers AI](https://developers.cloudflare.com/workers-ai/llms.txt) | 59 | 已完成首版专题；模型推理、embeddings、10,000 Neurons/day、per-model pricing、rate limits、binding / REST API 和 AI Gateway 组合。 |
 | [Workers VPC](https://developers.cloudflare.com/workers-vpc/llms.txt) | 17 | 已完成首版专题；Worker 访问私有 API、数据库和服务，Open Beta 免费但仍按 Workers 请求/CPU。 |
-| [Workflows](https://developers.cloudflare.com/workflows/llms.txt) | 33 | durable multi-step、sleep、retry、waitForEvent 和长生命周期状态编排。 |
-| [Zaraz](https://developers.cloudflare.com/zaraz/llms.txt) | 47 | 第三方脚本和标签治理。 |
+| [Workflows](https://developers.cloudflare.com/workflows/llms.txt) | 33 | 已完成首版专题；durable steps、sleep、retry、waitForEvent、state retention、storage billing、Queues / Durable Objects 取舍。 |
+| [Zaraz](https://developers.cloudflare.com/zaraz/llms.txt) | 47 | 已完成首版专题；第三方脚本治理、consent、1M free events/month、paid events、Monitoring 和前端性能边界。 |
 
 ## Docs Collections
 
