@@ -212,6 +212,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | Workers Static Assets 二次精读 | 已把 [Workers Static Assets](/platform/static-assets/) 收敛为选型、免费边界、Pages 取舍和常见误区，保留官方 pricing / limits 与 GitHub 源文件索引，删除过细代码示例和路由实现说明。 |
 | 已完成复核 | Pages 文案收敛 | 已把 [Pages](/platform/pages/) 收敛为普通项目取舍、免费限制、Pages vs Workers Static Assets、部署方式、Functions 边界和常见误区；保留 Pages Limits、Functions Pricing / Routing、Advanced Mode、Direct Upload、Preview Deployments、Known Issues 和 Pages to Workers 迁移来源，删除运行模型图、Wrangler 配置样例、Functions 代码、`_routes.json` 示例、Advanced Mode 代码、静态服务行为长表、Headers / Redirects 细节和本站内部选择。 |
 | 已完成首版 | DNS 精读 | 已整理 DNS query 免费边界、records/zone 限制、Full/Partial/Secondary setup、proxy status、TTL、DNSSEC、CNAME flattening、Wildcard 和迁移清单。 |
+| 已完成复核 | DNS 文案收敛 | 已把 [DNS](/platform/dns/) 收敛为普通项目接入判断、免费与计划边界、Full / Partial / Secondary setup 取舍、记录放置、Proxied / DNS-only、TTL / DNSSEC / CNAME flattening / Wildcard 的最低必要判断和迁移顺序；删除运行模型图、API / curl / Terraform 示例、dig 验证命令和过细排障说明。 |
 | 已完成首版 | SSL/TLS 精读 | 已整理 Universal SSL、Origin CA、Full (strict)、HTTPS 重定向、HSTS、TLS 1.3、Authenticated Origin Pulls、常见错误和开源参考。 |
 | 已完成首版 | Cache / CDN 精读 | 已整理默认缓存行为、Cache Rules、TTL、Purge、Workers Cache API、Cache Reserve、计划边界和开源参考。 |
 | 已完成首版 | WAF 精读 | 已整理 Custom Rules、Managed Rules、Rate Limiting、Ruleset Engine、Skip/Allow、误伤排查、计划边界和开源参考。 |
