@@ -86,7 +86,6 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 ## 事实来源
 
 - [Cloudflare Developer Documentation llms.txt](https://developers.cloudflare.com/llms.txt)
-- [Cloudflare Developer Documentation llms-full.txt](https://developers.cloudflare.com/llms-full.txt)
 - [Docs for agents](https://developers.cloudflare.com/docs-for-agents/)
 - [Markdown for agents](https://developers.cloudflare.com/fundamentals/reference/markdown-for-agents/)
 - [Cloudflare Changelog](https://developers.cloudflare.com/changelog/)
