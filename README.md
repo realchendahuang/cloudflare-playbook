@@ -45,6 +45,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | Worker API + D1 | [src/content/docs/recipes/worker-api-d1.md](src/content/docs/recipes/worker-api-d1.md) | [打开](https://cloudflare-playbook.chendahuang.top/recipes/worker-api-d1/) |
 | R2 签名上传 | [src/content/docs/recipes/r2-signed-upload.md](src/content/docs/recipes/r2-signed-upload.md) | [打开](https://cloudflare-playbook.chendahuang.top/recipes/r2-signed-upload/) |
 | 官方资料索引 | [src/content/docs/reference/index.md](src/content/docs/reference/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/reference/) |
+| Cloudflare 文档地图 | [src/content/docs/reference/cloudflare-docs-map.md](src/content/docs/reference/cloudflare-docs-map.md) | [打开](https://cloudflare-playbook.chendahuang.top/reference/cloudflare-docs-map/) |
 
 ## 当前技术栈
 

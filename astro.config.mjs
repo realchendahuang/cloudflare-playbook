@@ -78,7 +78,10 @@ export default defineConfig({
 				},
 				{
 					label: '资料索引',
-					items: [{ label: '官方资料', slug: 'reference' }],
+					items: [
+						{ label: '官方资料', slug: 'reference' },
+						{ label: 'Cloudflare 文档地图', slug: 'reference/cloudflare-docs-map' },
+					],
 				},
 			],
 		}),

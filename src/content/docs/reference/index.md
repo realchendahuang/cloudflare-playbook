@@ -5,9 +5,15 @@ description: Cloudflare Playbook 的官方资料索引。
 
 Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和配置字段时，以官方资料为准。
 
+## 本站整理入口
+
+- [Cloudflare 文档地图](/reference/cloudflare-docs-map/)：基于官方 `llms.txt` 的 9 大类、103 个产品 / 文档集合、6,145 个 Markdown 页面索引。
+
 ## 核心入口
 
 - [Cloudflare Developer Docs](https://developers.cloudflare.com/)
+- [Cloudflare Developer Documentation llms.txt](https://developers.cloudflare.com/llms.txt)
+- [Cloudflare Developer Documentation llms-full.txt](https://developers.cloudflare.com/llms-full.txt)
 - [Cloudflare Changelog](https://developers.cloudflare.com/changelog/)
 - [Cloudflare Docs for Agents](https://developers.cloudflare.com/docs-for-agents/)
 - [Codex + Cloudflare](https://developers.cloudflare.com/agent-setup/codex/)
