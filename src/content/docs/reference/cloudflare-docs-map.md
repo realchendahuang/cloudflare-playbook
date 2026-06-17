@@ -69,14 +69,14 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Bots](https://developers.cloudflare.com/bots/llms.txt) | 45 | 已完成首版专题；Bot Fight Mode、Super Bot Fight Mode、Enterprise Bot Management、AI bots、AI Labyrinth、robots.txt 和 bot score 边界。 |
 | [Client-side security](https://developers.cloudflare.com/client-side-security/llms.txt) | 26 | 已完成首版专题；script monitoring、alerts、content security rules、Advanced 能力和前端供应链边界。 |
 | [Challenges](https://developers.cloudflare.com/cloudflare-challenges/llms.txt) | 17 | 已完成首版专题；Challenge Pages、Turnstile、JavaScript Detections、`cf_clearance`、Challenge Passage 和 challenge loop 限制。 |
-| [DDoS Protection](https://developers.cloudflare.com/ddos-protection/llms.txt) | 150 | 必读，理解 Cloudflare 免费入口层价值。 |
+| [DDoS Protection](https://developers.cloudflare.com/ddos-protection/llms.txt) | 150 | 已完成首版专题；all plans unmetered L3/L4/L7 防护、HTTP DDoS managed ruleset、overrides、Adaptive DDoS、Under Attack、origin protection。 |
 | [DMARC Management](https://developers.cloudflare.com/dmarc-management/llms.txt) | 5 | 已完成首版专题；SPF、DKIM、DMARC、reports、DNS lookup limits 和 Cloudflare DNS 边界。 |
 | [Firewall Rules (deprecated)](https://developers.cloudflare.com/firewall/llms.txt) | 27 | 已完成首版专题；旧 Filters / Firewall Rules API 迁移资料，新项目改用 WAF Custom Rules / Ruleset Engine。 |
 | [Key Transparency Auditor](https://developers.cloudflare.com/key-transparency/llms.txt) | 5 | 已完成首版专题；E2EE public key distribution、append-only log、auditor API、epoch / namespace、本地验证边界。 |
 | [Secrets Store](https://developers.cloudflare.com/secrets-store/llms.txt) | 8 | 已完成首版专题；open beta、账号级密钥中心、Workers / AI Gateway integration、China Network 不可用。 |
 | [Security Center](https://developers.cloudflare.com/security-center/llms.txt) | 16 | 已完成首版专题；Security Insights 自动扫描、Free 7 天、Pro/Business 3 天、Enterprise daily、findings 巡检。 |
 | [Turnstile](https://developers.cloudflare.com/turnstile/llms.txt) | 45 | 已完成首版专题；Free 20 widgets、10 hostnames/widget、unlimited challenges、Siteverify、token 5 分钟单次验证。 |
-| [WAF](https://developers.cloudflare.com/waf/llms.txt) | 160 | 必读，Custom Rules、Managed Rules、Rate Limiting 都是常用安全边界。 |
+| [WAF](https://developers.cloudflare.com/waf/llms.txt) | 160 | 已完成首版专题；Custom Rules、Managed Rules、Rate Limiting、phases、Security Events、Skip / exception、计划边界和误伤排查。 |
 
 ## Cloudflare One
 
@@ -113,8 +113,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Reference Architecture](https://developers.cloudflare.com/reference-architecture/llms.txt) | 71 | 架构图和企业级集成参考。 |
 | [Registrar](https://developers.cloudflare.com/registrar/llms.txt) | 22 | 已完成首版专题；at-cost registration、renewal、DNSSEC、WHOIS redaction、supported TLDs 和企业域名保护。 |
 | [Resource Tagging](https://developers.cloudflare.com/resource-tagging/llms.txt) | 7 | 已完成首版专题；all plans、public beta、10,000 tags/account、API 限制和资源归因实践。 |
-| [Rules](https://developers.cloudflare.com/rules/llms.txt) | 183 | 必读，Redirect、Transform、Cache、Origin、Configuration Rules 等。 |
-| [Ruleset Engine](https://developers.cloudflare.com/ruleset-engine/llms.txt) | 43 | 规则底层模型，WAF/Rules 深入时看。 |
+| [Rules](https://developers.cloudflare.com/rules/llms.txt) | 183 | 已完成首版专题；Redirect、Transform、Configuration、Origin、Cache、Snippets、Cloud Connector、Custom Errors、Trace 和 Page Rules 迁移。 |
+| [Ruleset Engine](https://developers.cloudflare.com/ruleset-engine/llms.txt) | 43 | 已完成首版专题；phases、rulesets、rules、actions、expressions、execute / skip / override 和 Terraform 管理边界。 |
 | [Support](https://developers.cloudflare.com/support/llms.txt) | 112 | 已完成首版专题；support channels、Free / paid plan 边界、case 信息清单、SLA / SLO 和状态页。 |
 | [Tenant](https://developers.cloudflare.com/tenant/llms.txt) | 9 | 已完成首版专题；Channel / Alliance partner provisioning，和普通 SaaS 多租户区分。 |
 | [Terraform](https://developers.cloudflare.com/terraform/llms.txt) | 29 | 团队化和 IaC 优先看。 |

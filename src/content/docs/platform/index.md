@@ -114,6 +114,43 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 
 这条链路的免费能力已经足够支撑大多数开源站、文档站、官网和小型 SaaS：DNS 查询 Free/Pro/Business 不收费，Universal SSL 和 Origin CA 可用，Cache / CDN 和基础 Cache Rules 可用。真正需要付费的通常不是“能不能上线”，而是更高规则数量、更细缓存控制、企业日志、专线、高级证书或多源站高可用。
 
+## 防护规则链路
+
+入口链路跑通后，第二步是把“流量洪水、坏请求、业务刷量、配置改写”拆成不同层。不要把 WAF、DDoS、Rules、Rate Limiting、Turnstile 混成一个万能安全开关。
+
+```text
+请求进入 Cloudflare
+  ├─ DDoS Protection
+  │    ├─ L3/L4：网络层攻击自动缓解
+  │    └─ L7：HTTP DDoS managed ruleset 始终启用
+  │
+  ├─ Rules
+  │    ├─ Redirect / Transform / Configuration / Origin
+  │    ├─ Cache Rules / Snippets / Cloud Connector
+  │    └─ Trace 用来模拟规则命中路径
+  │
+  ├─ WAF
+  │    ├─ Custom Rules：明确路径、IP、国家、header、cookie
+  │    ├─ Rate Limiting：登录、评论、搜索、上传、写 API
+  │    └─ Managed Rules：已知漏洞、OWASP、Cloudflare 规则集
+  │
+  └─ 应用层
+       ├─ Turnstile：表单和高风险写操作
+       ├─ Access：后台和内部工具身份边界
+       └─ Worker / 源站：业务鉴权和权限判断
+```
+
+| 目标 | 优先用什么 | 判断 |
+| --- | --- | --- |
+| 抗大流量攻击 | DDoS Protection + Cache + 源站隐藏 | DDoS 防护覆盖所有计划；普通项目先确保入口 Proxied，源站不能被绕过。 |
+| 管路径和入口策略 | Rules | 跳转、改 header、改回源、缓存和轻量逻辑先用现代 Rules，不新写 Page Rules。 |
+| 拦明确坏请求 | WAF Custom Rules | 保护后台、API、上传、评论等明确入口；规则少而准比一堆宽泛规则更好。 |
+| 防刷写操作 | WAF Rate Limiting + Turnstile | Rate Limiting 不是精确业务配额；高风险表单还要服务端验证 Turnstile token。 |
+| 处理已知漏洞 | WAF Managed Rules | 先观察 Security Events，再对具体规则做 override 或 exception。 |
+| 排查规则冲突 | Trace + Security Events + Log Explorer | Trace 是模拟请求；真实历史流量看 Security Events / Log Explorer。 |
+
+免费计划已经能做最小闭环：DDoS 自动防护、WAF Free Managed Ruleset、5 条 Custom Rules、1 条 Rate Limiting Rule、现代 Rules 的基础配额。Workers Paid 每月 $5 会提升 Workers / KV / DO / 日志等开发者平台额度，但不会自动提升 WAF、DDoS override 或 Rules 的 zone 计划配额。
+
 ## 计算与部署
 
 | 产品 | 免费边界 | 付费入口 | 作用 | 最佳实践 |
