@@ -209,6 +209,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | Queues 精读 | 已整理异步任务定位、免费/付费边界、at least once、批处理、重试、死信队列、Pull Consumer 和开源参考。 |
 | 已完成复核 | Queues 二次精读 | 已把 [Queues](/platform/queues/) 对齐 Queues Pricing / Limits、How Queues works、JavaScript APIs、Batching / Retries / Delays、Dead Letter Queues、Pull Consumers、Consumer Concurrency、Delivery Guarantees、Pause / Purge、Metrics、Error codes、Event subscriptions、Changelog 和 GitHub 源文件，补齐免费额度成本线、上线前问题、消息生命周期、Producer 投递取舍、Pull Consumer 配置变化、错误码排障和事件订阅边界。 |
 | 已完成首版 | Workers Static Assets 精读 | 已整理静态资产免费边界、文件限制、路由模型、ASSETS binding、`_headers` / `_redirects`、Pages 取舍和开源参考。 |
+| 已完成复核 | Workers Static Assets 二次精读 | 已把 [Workers Static Assets](/platform/static-assets/) 收敛为选型、免费边界、Pages 取舍和常见误区，保留官方 pricing / limits 与 GitHub 源文件索引，删除过细代码示例和路由实现说明。 |
 | 已完成首版 | Pages 精读 | 已整理 Git 部署、预览部署、Direct Upload、免费边界、Pages Functions、`_routes.json`、Advanced Mode、域名和开源参考。 |
 | 已完成首版 | DNS 精读 | 已整理 DNS query 免费边界、records/zone 限制、Full/Partial/Secondary setup、proxy status、TTL、DNSSEC、CNAME flattening、Wildcard 和迁移清单。 |
 | 已完成首版 | SSL/TLS 精读 | 已整理 Universal SSL、Origin CA、Full (strict)、HTTPS 重定向、HSTS、TLS 1.3、Authenticated Origin Pulls、常见错误和开源参考。 |
@@ -261,6 +262,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 本站技术栈二次精读 | 已把 [本站技术栈](/best-practices/site-stack/) 对齐 Starlight Site Search、Pagefind、Workers Static Assets、Static Assets billing、Workers pricing / limits、AI Search、Docs for agents、Twikoo / twikoo-cloudflare 和 GitHub 源仓库，补齐 Worker-first 架构、搜索路线、评论边界、免费额度影响和落地文件清单。 |
 | 已完成复核 | 实时应用架构二次精读 | 已把 [实时应用](/architecture/realtime-app/) 对齐 Add real-time features、Durable Objects WebSockets、control/data plane、lifecycle、pricing/limits 和 GitHub 示例，补齐实时类型判断、三层平面、对象切分、Hibernation、状态归位、成本边界和验证清单。 |
 | 已完成复核 | 迁移与 IaC 二次精读 | 已把 [迁移与 IaC](/platform/iac-migration/) 对齐 Terraform best practices、Import Cloudflare resources、Remote R2 backend、Workers Infrastructure as Code、Pulumi + Wrangler、Pulumi ESC、Reference Architecture how-to-use / by-solution 和 GitHub 源文件，补齐分阶段路线、配置真源矩阵、Worker IaC binding 边界、CI / PR 守门和参考架构到本站专题映射。 |
+| 已完成复核 | 平台文案收敛 | 已把 [Cloudflare 产品大图谱](/platform/) 改为产品入口和选型路线，删掉长链路图与百科式堆叠；同步压缩 [免费与付费边界](/platform/free-paid/) 的核对过程、重复导读和本站内部技术栈说明。 |
 | 进行中 | 单产品复核与案例深化 | 持续补充真实项目拆解、参考架构和单产品深水区。 |
 
 ## 整理规则
