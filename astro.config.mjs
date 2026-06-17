@@ -45,6 +45,7 @@ export default defineConfig({
 						{ label: 'Pages', slug: 'platform/pages' },
 						{ label: 'DNS', slug: 'platform/dns' },
 						{ label: 'SSL/TLS', slug: 'platform/ssl-tls' },
+						{ label: 'Cache / CDN', slug: 'platform/cache' },
 						{ label: '数据产品', slug: 'platform/data' },
 						{ label: 'D1', slug: 'platform/d1' },
 						{ label: 'KV', slug: 'platform/kv' },

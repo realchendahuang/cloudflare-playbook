@@ -205,7 +205,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | Pages 精读 | 已整理 Git 部署、预览部署、Direct Upload、免费边界、Pages Functions、`_routes.json`、Advanced Mode、域名和开源参考。 |
 | 已完成首版 | DNS 精读 | 已整理 DNS query 免费边界、records/zone 限制、Full/Partial/Secondary setup、proxy status、TTL、DNSSEC、CNAME flattening、Wildcard 和迁移清单。 |
 | 已完成首版 | SSL/TLS 精读 | 已整理 Universal SSL、Origin CA、Full (strict)、HTTPS 重定向、HSTS、TLS 1.3、Authenticated Origin Pulls、常见错误和开源参考。 |
-| 进行中 | P0 产品精读 | Cache、WAF、DDoS、Billing。 |
+| 已完成首版 | Cache / CDN 精读 | 已整理默认缓存行为、Cache Rules、TTL、Purge、Workers Cache API、Cache Reserve、计划边界和开源参考。 |
+| 进行中 | P0 产品精读 | WAF、DDoS、Billing。 |
 | 待开始 | P1/P2/P3 产品精读 | AI、观测、安全增强、媒体、企业网络、迁移和 IaC。 |
 
 ## 整理规则

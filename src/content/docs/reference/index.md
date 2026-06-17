@@ -122,7 +122,20 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Minimum TLS Version](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/minimum-tls/)
 - [SSL/TLS browser compatibility](https://developers.cloudflare.com/ssl/reference/browser-compatibility/)
 - [SSL/TLS redirect loops](https://developers.cloudflare.com/ssl/troubleshooting/too-many-redirects/)
+- [Cache Docs](https://developers.cloudflare.com/cache/)
+- [Get started with Cache](https://developers.cloudflare.com/cache/get-started/)
+- [Default cache behavior](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/)
+- [Origin Cache Control](https://developers.cloudflare.com/cache/concepts/cache-control/)
+- [CDN-Cache-Control](https://developers.cloudflare.com/cache/concepts/cdn-cache-control/)
+- [Cloudflare cache responses](https://developers.cloudflare.com/cache/concepts/cache-responses/)
+- [Cache Rules](https://developers.cloudflare.com/cache/how-to/cache-rules/)
+- [Cache Rules settings](https://developers.cloudflare.com/cache/how-to/cache-rules/settings/)
+- [Edge and Browser Cache TTL](https://developers.cloudflare.com/cache/how-to/edge-browser-cache-ttl/)
+- [Purge cache](https://developers.cloudflare.com/cache/how-to/purge-cache/)
+- [Tiered Cache](https://developers.cloudflare.com/cache/how-to/tiered-cache/)
+- [Cache Reserve](https://developers.cloudflare.com/cache/advanced-configuration/cache-reserve/)
 - [Cache Plans](https://developers.cloudflare.com/cache/plans/)
+- [Workers Cache API](https://developers.cloudflare.com/workers/runtime-apis/cache/)
 - [WAF Docs](https://developers.cloudflare.com/waf/)
 - [WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/)
 - [DDoS Protection Docs](https://developers.cloudflare.com/ddos-protection/)
@@ -153,7 +166,11 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/workers-sdk pages-template-worker](https://github.com/cloudflare/workers-sdk/blob/main/packages/wrangler/templates/pages-template-worker.ts) | Pages Functions 运行包装逻辑，适合理解 `EventContext` 和 `waitUntil`。 |
 | [cloudflare/cloudflare-docs DNS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/dns) | 官方 DNS 文档源文件，适合追踪 DNS limits、proxy status、DNSSEC 和 troubleshooting。 |
 | [cloudflare/cloudflare-docs SSL/TLS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ssl) | 官方 SSL/TLS 文档源文件，适合追踪 encryption modes、edge certificates、Origin CA、HSTS 和 AOP。 |
+| [cloudflare/cloudflare-docs Cache source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cache) | 官方 Cache / CDN 文档源文件，适合追踪 Cache Rules、Purge、TTL 和 Cache Reserve。 |
+| [cloudflare/cloudflare-docs Workers Cache API source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/runtime-apis/cache) | 官方 Workers Cache API 文档源文件，适合追踪 `fetch()`、`caches.default` 和 Cache API 限制。 |
 | [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets 和 zone 设置变成 IaC。 |
+| [cloudflare/skills Cache Reserve reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/cache-reserve) | Cloudflare 官方 Agent Skills 里的 Cache Reserve 参考，适合看常见误区和检查清单。 |
+| [cloudflare/cloudflare-go](https://github.com/cloudflare/cloudflare-go) | Cloudflare 官方 Go SDK，适合自动化 purge、rulesets 和 cache 配置。 |
 | [cloudflare/sslconfig](https://github.com/cloudflare/sslconfig) | Cloudflare 公开的 Internet-facing SSL cipher 配置历史，适合理解边缘 TLS 配置变迁。 |
 | [cloudflare/cfssl](https://github.com/cloudflare/cfssl) | Cloudflare 的 PKI/TLS 工具箱，适合学习证书签发、验证和 bundle。 |
 | [cloudflare/certmgr](https://github.com/cloudflare/certmgr) | 基于 CFSSL 的证书管理工具，适合看证书自动续期和服务 reload 模式。 |

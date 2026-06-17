@@ -36,7 +36,11 @@ HTTPS 重定向、Automatic HTTPS Rewrites、TLS 1.3、Minimum TLS Version 和 H
 
 ## CDN 与缓存
 
-CDN 的目标不是“所有东西都缓存”，而是让静态资源尽可能靠近用户。
+CDN 的目标不是“所有东西都缓存”，而是让静态资源尽可能靠近用户。细节看 [Cache / CDN 精读](/platform/cache/)，普通项目先抓三件事：
+
+- 静态 hash 资源长缓存，HTML 短缓存或 revalidate。
+- 登录态、后台、用户数据和带敏感 cookie 的响应默认 bypass。
+- 内容更新优先靠版本化 URL，其次再用 purge by URL / prefix / tag。
 
 适合缓存：
 
@@ -98,6 +102,8 @@ Worker 服务端调用 Siteverify
 - [SSL/TLS](https://developers.cloudflare.com/ssl/)
 - [SSL/TLS features and plans](https://developers.cloudflare.com/ssl/reference/all-features/)
 - [Cache plans](https://developers.cloudflare.com/cache/plans/)
+- [Cache Rules](https://developers.cloudflare.com/cache/how-to/cache-rules/)
+- [Workers Cache API](https://developers.cloudflare.com/workers/runtime-apis/cache/)
 - [DDoS Protection](https://developers.cloudflare.com/ddos-protection/)
 - [WAF](https://developers.cloudflare.com/waf/)
 - [Turnstile Plans](https://developers.cloudflare.com/turnstile/plans/)
