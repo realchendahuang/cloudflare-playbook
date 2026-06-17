@@ -108,6 +108,20 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Queues pause, resume and purge](https://developers.cloudflare.com/queues/configuration/pause-purge/)
 - [Queues metrics](https://developers.cloudflare.com/queues/observability/metrics/)
 - [Queues Wrangler commands](https://developers.cloudflare.com/queues/reference/wrangler-commands/)
+- [Hyperdrive](https://developers.cloudflare.com/hyperdrive/)
+- [Hyperdrive Pricing](https://developers.cloudflare.com/hyperdrive/platform/pricing/)
+- [Hyperdrive Limits](https://developers.cloudflare.com/hyperdrive/platform/limits/)
+- [Hyperdrive query caching](https://developers.cloudflare.com/hyperdrive/concepts/query-caching/)
+- [Workflows](https://developers.cloudflare.com/workflows/)
+- [Workflows Pricing](https://developers.cloudflare.com/workflows/reference/pricing/)
+- [Workflows Limits](https://developers.cloudflare.com/workflows/reference/limits/)
+- [Pipelines](https://developers.cloudflare.com/pipelines/)
+- [Pipelines Pricing](https://developers.cloudflare.com/pipelines/platform/pricing/)
+- [Pipelines Limits](https://developers.cloudflare.com/pipelines/platform/limits/)
+- [R2 Data Catalog](https://developers.cloudflare.com/r2/data-catalog/)
+- [Containers](https://developers.cloudflare.com/containers/)
+- [Containers Pricing](https://developers.cloudflare.com/containers/pricing/)
+- [Containers Limits and Instance Types](https://developers.cloudflare.com/containers/platform-details/limits/)
 - [Workers AI Docs](https://developers.cloudflare.com/workers-ai/)
 - [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 - [AI Gateway Docs](https://developers.cloudflare.com/ai-gateway/)
@@ -349,6 +363,11 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Speed source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/speed) | 官方 Speed 文档源文件，适合追踪 Observatory、Origin Analytics、RUM、optimization 和 test quotas。 |
 | [cloudflare/cloudflare-docs Zaraz source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/zaraz) | 官方 Zaraz 文档源文件，适合追踪 pricing、events、consent、Web API、HTTP Events API 和 Monitoring。 |
 | [cloudflare/cloudflare-docs Browser Run source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/browser-run) | 官方 Browser Run 文档源文件，适合追踪 pricing、limits、Quick Actions、Playwright、Puppeteer、CDP 和 Stagehand。 |
+| [cloudflare/cloudflare-docs Hyperdrive source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/hyperdrive) | 官方 Hyperdrive 文档源文件，适合追踪 connection pooling、query caching、pricing、limits 和数据库 provider 示例。 |
+| [cloudflare/cloudflare-docs Workflows source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workflows) | 官方 Workflows 文档源文件，适合追踪 durable steps、sleep、waitForEvent、pricing、limits 和 examples。 |
+| [cloudflare/cloudflare-docs Pipelines source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pipelines) | 官方 Pipelines 文档源文件，适合追踪 streams、sinks、SQL transforms、pricing 和 limits。 |
+| [cloudflare/cloudflare-docs Containers source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/containers) | 官方 Containers 文档源文件，适合追踪 instance types、pricing、limits、routing 和 Worker 连接方式。 |
+| [cloudflare/cloudflare-docs R2 Data Catalog source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/r2/data-catalog) | 官方 R2 Data Catalog 文档源文件，适合追踪 Iceberg REST catalog、public beta 和查询引擎配置。 |
 | [cloudflare/cloudflare-docs Terraform source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/terraform) | 官方 Terraform 文档源文件，适合追踪 best practices、import、R2 backend、provider customization 和 troubleshooting。 |
 | [cloudflare/cloudflare-docs Pulumi source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pulumi) | 官方 Pulumi 文档源文件，适合追踪 Pulumi + Wrangler、ESC secrets 和教程。 |
 | [cloudflare/cloudflare-docs Reference Architecture source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/reference-architecture) | 官方参考架构文档源文件，适合追踪 diagrams、design guides 和 implementation guides。 |

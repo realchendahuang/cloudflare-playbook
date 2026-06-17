@@ -41,6 +41,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | R2 | [src/content/docs/platform/r2.md](src/content/docs/platform/r2.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/r2/) |
 | Durable Objects | [src/content/docs/platform/durable-objects.md](src/content/docs/platform/durable-objects.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/durable-objects/) |
 | Queues | [src/content/docs/platform/queues.md](src/content/docs/platform/queues.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/queues/) |
+| 扩展计算与数据管道 | [src/content/docs/platform/extended-compute-data.md](src/content/docs/platform/extended-compute-data.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/extended-compute-data/) |
 | AI 产品 | [src/content/docs/platform/ai.md](src/content/docs/platform/ai.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ai/) |
 | 媒体与性能 | [src/content/docs/platform/media-performance.md](src/content/docs/platform/media-performance.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/media-performance/) |
 | 迁移与 IaC | [src/content/docs/platform/iac-migration.md](src/content/docs/platform/iac-migration.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/iac-migration/) |

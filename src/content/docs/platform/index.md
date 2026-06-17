@@ -27,12 +27,12 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │    ├─ Workers
   │    ├─ Durable Objects
   │    ├─ Queues
-  │    └─ Workflows
+  │    └─ Workflows / Containers
   │
   ├─ 数据存储
   │    ├─ D1 / KV / R2
   │    ├─ Vectorize / Hyperdrive
-  │    └─ Analytics Engine
+  │    └─ Analytics Engine / Pipelines / R2 Data Catalog
   │
   ├─ AI 能力
   │    ├─ Workers AI / AI Gateway
@@ -67,10 +67,10 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | Pages Functions | 请求计入 Workers 额度；Free 与 Workers 共享 100,000 requests/day。 | 随 Workers Paid / Standard 扩容。 | 给 Pages 项目加轻量 API。 | 适合已有 Pages 项目渐进加 API；加 Functions 后要用 `_routes.json` 排除静态资产。 |
 | [Durable Objects](/platform/durable-objects/) | Free 只支持 SQLite-backed DO；100,000 requests/day、13,000 GB-s/day，SQLite storage 读 5M rows/day、写 100k rows/day、5 GB total。 | Workers Paid 每月包含 1M requests、400,000 GB-s、25B rows read、50M rows written、5 GB-month SQL stored data，超出按量。 | 单对象强一致状态、房间、限流器、协作会话、WebSocket。 | 只把“必须强一致”的状态放进去；WebSocket 用 hibernation；不要拿它当全局大数据库。 |
 | [Queues](/platform/queues/) | Free 计划 10,000 operations/day；消息保留 24 小时。 | Paid 每月包含 1,000,000 operations，超出 $0.40/million；保留期默认 4 天，可配到 14 天。 | 异步任务、削峰、后台处理、跨 Worker 消息。 | 小消息成功处理通常是 write、read、delete 3 次操作；需要幂等和 DLQ。 |
-| Workflows | 适合长流程编排，具体额度随官方页面变动。 | 超出免费/包含额度后按平台规则计费。 | 多步骤、可重试、可观察的业务流程。 | 支付后开通、批量导入、AI 处理流水线适合；简单请求别上。 |
+| [扩展计算与数据管道](/platform/extended-compute-data/) | Hyperdrive Free 100,000 database queries/day；Workflows Free 与 Workers request / CPU 共享；Pipelines pricing 页列出 Free included usage；Containers 仅 Workers Paid。 | Hyperdrive Paid unlimited；Workflows 按 Workers 请求、CPU 和 storage；Pipelines 按 transforms / sinks；Containers 按 memory、vCPU、disk、egress、Workers、DO 和 logs。 | 已有外部数据库、长流程、事件数据湖、容器运行时补位。 | 新项目先用 Workers / D1 / R2 / Queues；需求长出来后再上 Hyperdrive / Workflows / Pipelines / Containers。 |
 | Cron Triggers | 随 Workers 使用。 | 主要受 Workers 计划和调用成本影响。 | 定时任务。 | 适合定时清理、同步、刷新索引；每次任务要可重入。 |
 | Workers for Platforms | 面向多租户代码运行，通常不是个人项目第一步。 | 生产多租户平台再评估付费。 | 让用户上传/运行自己的 Worker。 | 只有做开发者平台、插件平台、低代码平台时再看。 |
-| Containers | 面向需要容器运行时的场景，价格和可用性要看官方当前状态。 | 通常用于 Workers 无法覆盖的运行时需求。 | 跑不能轻易改成 Worker 的服务。 | 先问能不能 Worker 化；容器是补位，不是默认选项。 |
+| Containers | 见 [扩展计算与数据管道](/platform/extended-compute-data/)。 | Workers Paid 里包含一定 memory、vCPU 和 disk 用量，超出按量。 | 跑不能轻易改成 Worker 的服务。 | 先问能不能 Worker 化；容器是补位，不是默认选项。 |
 
 ## 数据与存储
 
@@ -79,7 +79,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | [D1](/platform/d1/) | Free 计划读 5,000,000 rows/day、写 100,000 rows/day、总存储 5 GB。 | Paid 每月前 25B rows read、50M rows written 和 5 GB 包含，超出按量。 | Serverless SQL，适合评论、文章元数据、配置后台、小型 SaaS。 | 常查字段建索引；不要把高频计数和超大分析表硬塞进去。 |
 | [KV](/platform/kv/) | Free 计划读 100,000/day、写 1,000/day、删 1,000/day、列 1,000/day、存储 1 GB。 | Paid 每月包含 10M reads、1M writes/deletes/lists 和 1 GB 存储，超出按 key/容量计费。 | 全局 key-value，适合配置、缓存、低频更新索引。 | 读多写少才舒服；同一个 key 仍然只有 1 次/秒写入，不要依赖强一致。 |
 | [R2](/platform/r2/) | Standard storage 10 GB-month/month、Class A 1M/month、Class B 10M/month；无 egress bandwidth charge。 | Standard storage $0.015/GB-month，Class A $4.50/million，Class B $0.36/million；Infrequent Access 不包含免费额度。 | S3 兼容对象存储，放图片、附件、备份、导出文件。 | 大文件和媒体不要塞进 Git 或 Pages bundle；公开下载注意 Class B 次数。 |
-| Hyperdrive | Workers Free/Paid 都包含一定使用。 | 访问外部数据库量大时看 Workers Paid/Hyperdrive 额度。 | 给外部 Postgres/MySQL 做连接池和加速。 | 已有数据库时用它；新小项目优先 D1，少维护一套外部 DB。 |
+| Hyperdrive | 见 [扩展计算与数据管道](/platform/extended-compute-data/)；Free 为 100,000 database queries/day。 | Workers Paid 为 unlimited。 | 给外部 Postgres/MySQL 做连接池和加速。 | 已有数据库时用它；新小项目优先 D1，少维护一套外部 DB。 |
 | Vectorize | 30M queried vector dimensions/month、5M stored vector dimensions。 | Paid 包含 50M queried vector dimensions/month、10M stored vector dimensions，超出按 dimensions 计费。 | 向量数据库，做 RAG、语义搜索、相似推荐。 | 文档站早期先 Pagefind；需要自定义召回、metadata、namespace 和 rerank 时再上。 |
 | Analytics Engine | Free 计划 100,000 data points/day、10,000 read queries/day；官方说明当前价格信息用于预估。 | Paid 每月包含更高写入和查询额度，之后按量。 | 高基数事件、指标和自定义分析。 | 用来记录产品事件、Worker 业务指标；不要替代事务数据库。 |
 | Secrets Store | Open beta，账号级密钥中心，兼容 Workers 和 AI Gateway。 | 多 Worker、多环境、多团队共享密钥时评估。 | 管理 API key、数据库密码、第三方 token。 | 单 Worker 先用 `wrangler secret`；多项目共享再用 Secrets Store + binding。 |
@@ -141,6 +141,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | AI 问答知识库 | Workers + AI Search 或 Vectorize + R2/D1 + AI Gateway |
 | 实时协作 | Workers + Durable Objects + D1/R2 持久化 |
 | 后台任务 | Workers + Queues + Cron Triggers + D1/R2 |
+| 长流程和数据管道 | Workflows + R2 / D1；Pipelines + R2 Data Catalog |
 | 管理后台 | Workers Static Assets + Access/Tunnel + D1 |
 | 小团队内网和运维入口 | Tunnel + Access + Cloudflare One Client + Gateway |
 
@@ -162,6 +163,15 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Queues Pricing](https://developers.cloudflare.com/queues/platform/pricing/)
 - [Queues Limits](https://developers.cloudflare.com/queues/platform/limits/)
 - [Durable Objects Pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)
+- [Hyperdrive Pricing](https://developers.cloudflare.com/hyperdrive/platform/pricing/)
+- [Hyperdrive Limits](https://developers.cloudflare.com/hyperdrive/platform/limits/)
+- [Workflows Pricing](https://developers.cloudflare.com/workflows/reference/pricing/)
+- [Workflows Limits](https://developers.cloudflare.com/workflows/reference/limits/)
+- [Pipelines Pricing](https://developers.cloudflare.com/pipelines/platform/pricing/)
+- [Pipelines Limits](https://developers.cloudflare.com/pipelines/platform/limits/)
+- [R2 Data Catalog](https://developers.cloudflare.com/r2/data-catalog/)
+- [Containers Pricing](https://developers.cloudflare.com/containers/pricing/)
+- [Containers Limits and Instance Types](https://developers.cloudflare.com/containers/platform-details/limits/)
 - [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 - [Workers AI Limits](https://developers.cloudflare.com/workers-ai/platform/limits/)
 - [AI Gateway Pricing](https://developers.cloudflare.com/ai-gateway/reference/pricing/)

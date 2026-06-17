@@ -135,18 +135,18 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Artifacts](https://developers.cloudflare.com/artifacts/llms.txt) | 24 | 文件树、构建产物、Agent 工作区。 |
 | [Browser Run](https://developers.cloudflare.com/browser-run/llms.txt) | 46 | 截图、PDF、抓取、浏览器自动化。 |
 | [Cloudflare for Platforms](https://developers.cloudflare.com/cloudflare-for-platforms/llms.txt) | 87 | 多租户平台和 Workers for Platforms。 |
-| [Containers](https://developers.cloudflare.com/containers/llms.txt) | 28 | Worker 无法覆盖的容器运行时。 |
+| [Containers](https://developers.cloudflare.com/containers/llms.txt) | 28 | Workers Paid 的容器运行时补位，适合完整文件系统、自定义 runtime、并行 CPU 和现有镜像。 |
 | [D1](https://developers.cloudflare.com/d1/llms.txt) | 52 | 独立开发者必读，Serverless SQL。 |
 | [Durable Objects](https://developers.cloudflare.com/durable-objects/llms.txt) | 52 | 强一致对象、房间、WebSocket、限流器。 |
 | [Dynamic Workers](https://developers.cloudflare.com/dynamic-workers/llms.txt) | 15 | 动态加载用户代码。 |
 | [Email Service](https://developers.cloudflare.com/email-service/llms.txt) | 38 | 事务邮件发送和邮件路由。 |
 | [Flagship](https://developers.cloudflare.com/flagship/llms.txt) | 15 | 边缘 feature flags。 |
-| [Hyperdrive](https://developers.cloudflare.com/hyperdrive/llms.txt) | 55 | 连接外部 Postgres/MySQL。 |
+| [Hyperdrive](https://developers.cloudflare.com/hyperdrive/llms.txt) | 55 | 连接已有 Postgres/MySQL，提供连接池和查询缓存。 |
 | [Cloudflare Images](https://developers.cloudflare.com/images/llms.txt) | 56 | 图片存储、变换和分发。 |
 | [KV](https://developers.cloudflare.com/kv/llms.txt) | 29 | 读多写少的全局 key-value。 |
 | [MoQ](https://developers.cloudflare.com/moq/llms.txt) | 3 | Live media 协议。 |
 | [Pages](https://developers.cloudflare.com/pages/llms.txt) | 118 | 静态站和 Pages Functions，理解和 Workers Static Assets 的边界。 |
-| [Pipelines](https://developers.cloudflare.com/pipelines/llms.txt) | 32 | 实时数据流进 R2。 |
+| [Pipelines](https://developers.cloudflare.com/pipelines/llms.txt) | 32 | 实时事件流经 SQL transform 写入 R2、Parquet 或 Iceberg。 |
 | [Privacy Gateway](https://developers.cloudflare.com/privacy-gateway/llms.txt) | 6 | Oblivious HTTP。 |
 | [Privacy Proxy](https://developers.cloudflare.com/privacy-proxy/llms.txt) | 12 | MASQUE forward proxy。 |
 | [Queues](https://developers.cloudflare.com/queues/llms.txt) | 38 | 异步任务和削峰。 |
@@ -159,7 +159,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Workers](https://developers.cloudflare.com/workers/llms.txt) | 415 | 必读，Cloudflare 开发者平台核心。 |
 | [Workers AI](https://developers.cloudflare.com/workers-ai/llms.txt) | 59 | 模型推理、embedding、价格和模型列表。 |
 | [Workers VPC](https://developers.cloudflare.com/workers-vpc/llms.txt) | 17 | Worker 连接私有网络。 |
-| [Workflows](https://developers.cloudflare.com/workflows/llms.txt) | 33 | 长流程、重试、状态编排。 |
+| [Workflows](https://developers.cloudflare.com/workflows/llms.txt) | 33 | durable multi-step、sleep、retry、waitForEvent 和长生命周期状态编排。 |
 | [Zaraz](https://developers.cloudflare.com/zaraz/llms.txt) | 47 | 第三方脚本和标签治理。 |
 
 ## Docs Collections
@@ -217,7 +217,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 媒体与性能精读 | 已整理 Images、Stream、Speed / Observatory、Zaraz、Browser Run 的定位、免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |
 | 已完成首版 | 企业网络精读 | 已整理 Cloudflare One、Access、Gateway、Tunnel、Cloudflare One Client、Zero Trust Free / Pay-as-you-go / Contract、Cloudflare WAN 和 Network Firewall 的边界。 |
-| 进行中 | 后续 P2/P3 精读 | Realtime、Hyperdrive、Workflows、Pipelines、Containers、Magic Transit、BYOIP、Network Interconnect 等。 |
+| 已完成首版 | 扩展计算与数据管道精读 | 已整理 Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog 的定位、免费/付费边界、limits、计费维度和开源参考。 |
+| 进行中 | 后续 P2/P3 精读 | Realtime、Magic Transit、BYOIP、Network Interconnect、Workers VPC、Cloudflare for Platforms 等。 |
 | 待开始 | 后续专题 | 更多迁移案例、参考架构和真实项目拆解。 |
 
 ## 整理规则
@@ -264,6 +265,10 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Cloudflare Speed llms.txt](https://developers.cloudflare.com/speed/llms.txt)
 - [Cloudflare Zaraz llms.txt](https://developers.cloudflare.com/zaraz/llms.txt)
 - [Cloudflare Browser Run llms.txt](https://developers.cloudflare.com/browser-run/llms.txt)
+- [Cloudflare Hyperdrive llms.txt](https://developers.cloudflare.com/hyperdrive/llms.txt)
+- [Cloudflare Workflows llms.txt](https://developers.cloudflare.com/workflows/llms.txt)
+- [Cloudflare Pipelines llms.txt](https://developers.cloudflare.com/pipelines/llms.txt)
+- [Cloudflare Containers llms.txt](https://developers.cloudflare.com/containers/llms.txt)
 - [Cloudflare Terraform llms.txt](https://developers.cloudflare.com/terraform/llms.txt)
 - [Cloudflare Pulumi llms.txt](https://developers.cloudflare.com/pulumi/llms.txt)
 - [Cloudflare Reference Architecture llms.txt](https://developers.cloudflare.com/reference-architecture/llms.txt)
