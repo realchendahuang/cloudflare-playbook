@@ -134,6 +134,32 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Realtime SFU Limits](https://developers.cloudflare.com/realtime/sfu/limits/)
 - [TURN Service](https://developers.cloudflare.com/realtime/turn/)
 - [TURN FAQ](https://developers.cloudflare.com/realtime/turn/faq/)
+- [Cloudflare for Platforms](https://developers.cloudflare.com/cloudflare-for-platforms/)
+- [Cloudflare for Platforms llms.txt](https://developers.cloudflare.com/cloudflare-for-platforms/llms.txt)
+- [Workers for Platforms](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/)
+- [How Workers for Platforms works](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/how-workers-for-platforms-works/)
+- [Workers for Platforms Pricing](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/pricing/)
+- [Workers for Platforms Limits](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/limits/)
+- [Worker Isolation](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/worker-isolation/)
+- [Workers for Platforms Custom limits](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/configuration/custom-limits/)
+- [Outbound Workers](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/configuration/outbound-workers/)
+- [Hostname routing](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/configuration/hostname-routing/)
+- [Workers for Platforms Bindings](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/configuration/bindings/)
+- [Cloudflare for SaaS](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/)
+- [Cloudflare for SaaS Plans](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/plans/)
+- [Configuring Cloudflare for SaaS](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/start/getting-started/)
+- [Custom hostnames](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/domain-support/)
+- [Hostname validation](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/domain-support/hostname-validation/)
+- [Workers as your fallback origin](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/start/advanced-settings/worker-as-origin/)
+- [Custom origin server](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/start/advanced-settings/custom-origin/)
+- [WAF for SaaS](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/security/waf-for-saas/)
+- [Connection request details](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/reference/connection-details/)
+- [Dynamic Workers](https://developers.cloudflare.com/dynamic-workers/)
+- [Dynamic Workers llms.txt](https://developers.cloudflare.com/dynamic-workers/llms.txt)
+- [Dynamic Workers Pricing](https://developers.cloudflare.com/dynamic-workers/pricing/)
+- [Dynamic Workers Bindings](https://developers.cloudflare.com/dynamic-workers/usage/bindings/)
+- [Dynamic Workers Egress control](https://developers.cloudflare.com/dynamic-workers/usage/egress-control/)
+- [Dynamic Workers Custom limits](https://developers.cloudflare.com/dynamic-workers/usage/limits/)
 - [Workers AI Docs](https://developers.cloudflare.com/workers-ai/)
 - [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 - [AI Gateway Docs](https://developers.cloudflare.com/ai-gateway/)
@@ -384,6 +410,12 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/realtimekit-web-examples](https://github.com/cloudflare/realtimekit-web-examples) | Cloudflare 官方 RealtimeKit Web examples，适合看 React、Angular、HTML / Web Components 集成。 |
 | [cloudflare/realtime-examples](https://github.com/cloudflare/realtime-examples) | Cloudflare 官方 Realtime SFU / TURN 示例集合，适合看 echo、simulcast、DataChannels、WHIP/WHEP 和 AI 组合。 |
 | [cloudflare/meet](https://github.com/cloudflare/meet) | Cloudflare Meet，原 Orange Meets，基于 Realtime SFU 的完整 demo 应用。 |
+| [cloudflare/cloudflare-docs Cloudflare for Platforms source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-for-platforms) | 官方 Cloudflare for Platforms 文档源文件，适合追踪 Cloudflare for SaaS、Workers for Platforms、custom hostnames 和 dispatch namespace。 |
+| [cloudflare/cloudflare-docs Dynamic Workers source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/dynamic-workers) | 官方 Dynamic Workers 文档源文件，适合追踪 runtime code execution、bindings、egress control、pricing 和 limits。 |
+| [cloudflare/templates worker-publisher-template](https://github.com/cloudflare/templates/tree/main/worker-publisher-template) | Workers for Platforms 最小发布平台模板，适合看 dispatch namespace、部署 user Worker 和平台路由。 |
+| [cloudflare/vibesdk](https://github.com/cloudflare/vibesdk) | Cloudflare 官方开源 vibe coding 平台，适合看 Workers、Durable Objects、D1、R2、AI Gateway、Containers 和 Workers for Platforms 的组合。 |
+| [cloudflare/agents dynamic-workers examples](https://github.com/cloudflare/agents/tree/main/examples/dynamic-workers) | Dynamic Workers 示例，适合看 loader、sandbox 和运行时代码执行。 |
+| [cloudflare/agents dynamic-workers-playground](https://github.com/cloudflare/agents/tree/main/examples/dynamic-workers-playground) | Dynamic Workers playground，适合看实时日志、代码执行和交互式调试体验。 |
 | [cloudflare/cloudflare-docs Terraform source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/terraform) | 官方 Terraform 文档源文件，适合追踪 best practices、import、R2 backend、provider customization 和 troubleshooting。 |
 | [cloudflare/cloudflare-docs Pulumi source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pulumi) | 官方 Pulumi 文档源文件，适合追踪 Pulumi + Wrangler、ESC secrets 和教程。 |
 | [cloudflare/cloudflare-docs Reference Architecture source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/reference-architecture) | 官方参考架构文档源文件，适合追踪 diagrams、design guides 和 implementation guides。 |

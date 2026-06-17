@@ -75,7 +75,7 @@ Workers Free 和 Workers Paid / Standard 的差异，先看最常影响架构的
 | Subrequests | 50/request。 | 默认 10,000/request，可配置到更高。 | 聚合多个上游 API 时要数清楚；优先并发控制和缓存。 |
 | 同时等待响应头的出站连接 | 6/request。 | 6/request。 | 批量抓取不要一次性打爆，分批或进 Queues。 |
 | Worker 压缩后大小 | 3 MB。 | 10 MB。 | 控制依赖体积，重型库先评估是否适合边缘运行。 |
-| Worker 数量 | 100/account。 | 500/account。 | 个人项目足够；多租户平台看 Workers for Platforms。 |
+| Worker 数量 | 100/account。 | 500/account。 | 个人项目足够；多租户平台看 [Workers for Platforms](/platform/platforms-saas/)。 |
 | Cron Triggers | 5/account。 | 250/account。 | 免费阶段只放关键定时任务。 |
 | Static Asset 文件数 | 20,000 files/Worker version。 | 100,000 files/Worker version。 | 大量媒体不要进静态包，放 R2/Images/Stream。 |
 | Static Asset 单文件 | 25 MiB。 | 25 MiB。 | 文档构建产物没问题；大附件不要塞进站点 bundle。 |

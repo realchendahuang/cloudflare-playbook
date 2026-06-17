@@ -30,6 +30,11 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │    ├─ Workflows / Containers
   │    └─ Realtime / WebSocket
   │
+  ├─ 平台化
+  │    ├─ Cloudflare for SaaS / Custom Hostnames
+  │    ├─ Workers for Platforms
+  │    └─ Dynamic Workers
+  │
   ├─ 数据存储
   │    ├─ D1 / KV / R2
   │    ├─ Vectorize / Hyperdrive
@@ -71,7 +76,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | [Realtime](/platform/realtime/) | RealtimeKit 当前 Beta 免费；Realtime SFU / TURN 共用 1,000 GB/month 免费出站额度。 | RealtimeKit GA 后按参与者分钟和导出分钟计费；SFU / TURN 超出后 `$0.05/GB` egress。 | 音视频、WebRTC、TURN relay；文本实时仍优先 Durable Objects。 | 会议/课堂优先 RealtimeKit；自定义 WebRTC 才看 SFU；只做 NAT 穿透才用 TURN。 |
 | [扩展计算与数据管道](/platform/extended-compute-data/) | Hyperdrive Free 100,000 database queries/day；Workflows Free 与 Workers request / CPU 共享；Pipelines pricing 页列出 Free included usage；Containers 仅 Workers Paid。 | Hyperdrive Paid unlimited；Workflows 按 Workers 请求、CPU 和 storage；Pipelines 按 transforms / sinks；Containers 按 memory、vCPU、disk、egress、Workers、DO 和 logs。 | 已有外部数据库、长流程、事件数据湖、容器运行时补位。 | 新项目先用 Workers / D1 / R2 / Queues；需求长出来后再上 Hyperdrive / Workflows / Pipelines / Containers。 |
 | Cron Triggers | 随 Workers 使用。 | 主要受 Workers 计划和调用成本影响。 | 定时任务。 | 适合定时清理、同步、刷新索引；每次任务要可重入。 |
-| Workers for Platforms | 面向多租户代码运行，通常不是个人项目第一步。 | 生产多租户平台再评估付费。 | 让用户上传/运行自己的 Worker。 | 只有做开发者平台、插件平台、低代码平台时再看。 |
+| [平台化与多租户](/platform/platforms-saas/) | Cloudflare for SaaS 在 Free/Pro/Business 包含 100 custom hostnames；Workers for Platforms 为 `$25/month` 起；Dynamic Workers 需要 Workers Paid。 | custom hostnames、WFP scripts、Dynamic Workers created daily、请求和 CPU 都可能计费。 | 客户自定义域名、用户代码运行、AI 生成应用、低代码/插件平台。 | 普通 SaaS 先用 tenant_id + D1/R2/KV；客户要自定义域名再用 Cloudflare for SaaS；客户代码运行再用 WFP。 |
 | Containers | 见 [扩展计算与数据管道](/platform/extended-compute-data/)。 | Workers Paid 里包含一定 memory、vCPU 和 disk 用量，超出按量。 | 跑不能轻易改成 Worker 的服务。 | 先问能不能 Worker 化；容器是补位，不是默认选项。 |
 
 ## 数据与存储
@@ -139,6 +144,8 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | 文档站 / 公开知识库 | Astro/Starlight + [Workers Static Assets](/platform/static-assets/) + Pagefind + Web Analytics |
 | 有评论的文档社区 | Workers Static Assets + Twikoo Cloudflare + 后续 Turnstile |
 | 小型 SaaS | Workers + D1 + KV + R2 + AI Gateway |
+| 多租户 SaaS 自定义域名 | Cloudflare for SaaS + Worker as origin + D1 tenant mapping |
+| 用户代码 / AI 生成应用平台 | Workers for Platforms 或 Dynamic Workers + Durable Objects + R2 / D1 |
 | 文件上传和下载 | Workers + R2 + Signed URL + D1 metadata |
 | AI 问答知识库 | Workers + AI Search 或 Vectorize + R2/D1 + AI Gateway |
 | 实时协作 | Workers + Durable Objects + D1/R2 持久化 |
@@ -181,6 +188,11 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Realtime SFU Limits](https://developers.cloudflare.com/realtime/sfu/limits/)
 - [TURN Service](https://developers.cloudflare.com/realtime/turn/)
 - [TURN FAQ](https://developers.cloudflare.com/realtime/turn/faq/)
+- [Cloudflare for Platforms](https://developers.cloudflare.com/cloudflare-for-platforms/)
+- [Workers for Platforms Pricing](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/pricing/)
+- [Workers for Platforms Limits](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/limits/)
+- [Cloudflare for SaaS Plans](https://developers.cloudflare.com/cloudflare-for-platforms/cloudflare-for-saas/plans/)
+- [Dynamic Workers Pricing](https://developers.cloudflare.com/dynamic-workers/pricing/)
 - [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 - [Workers AI Limits](https://developers.cloudflare.com/workers-ai/platform/limits/)
 - [AI Gateway Pricing](https://developers.cloudflare.com/ai-gateway/reference/pricing/)

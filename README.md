@@ -42,6 +42,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | Durable Objects | [src/content/docs/platform/durable-objects.md](src/content/docs/platform/durable-objects.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/durable-objects/) |
 | Queues | [src/content/docs/platform/queues.md](src/content/docs/platform/queues.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/queues/) |
 | Realtime | [src/content/docs/platform/realtime.md](src/content/docs/platform/realtime.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/realtime/) |
+| 平台化与多租户 | [src/content/docs/platform/platforms-saas.md](src/content/docs/platform/platforms-saas.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/platforms-saas/) |
 | 扩展计算与数据管道 | [src/content/docs/platform/extended-compute-data.md](src/content/docs/platform/extended-compute-data.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/extended-compute-data/) |
 | AI 产品 | [src/content/docs/platform/ai.md](src/content/docs/platform/ai.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ai/) |
 | 媒体与性能 | [src/content/docs/platform/media-performance.md](src/content/docs/platform/media-performance.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/media-performance/) |

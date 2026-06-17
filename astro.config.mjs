@@ -57,6 +57,7 @@ export default defineConfig({
 						{ label: 'Durable Objects', slug: 'platform/durable-objects' },
 						{ label: 'Queues', slug: 'platform/queues' },
 						{ label: 'Realtime', slug: 'platform/realtime' },
+						{ label: '平台化与多租户', slug: 'platform/platforms-saas' },
 						{ label: '扩展计算与数据管道', slug: 'platform/extended-compute-data' },
 						{ label: 'AI 产品', slug: 'platform/ai' },
 						{ label: '媒体与性能', slug: 'platform/media-performance' },

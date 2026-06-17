@@ -162,7 +162,7 @@ Wildcard DNS 记录适合让大量未知子域指向同一资源，例如 `*.exa
 | `*` 只在最左侧 label 作为通配符。 | `subdomain.*.example.com` 不会按预期通配。 |
 | 精确记录优先于 wildcard。 | 有 `api.example.com` 时，它会覆盖 `*.example.com`。 |
 | Wildcard 可 Proxied 或 DNS-only。 | Web 多租户可代理，验证和非 HTTP 不要代理。 |
-| Pages wildcard custom domains 不支持。 | 多租户站点更适合 Workers for Platforms / SaaS 方案。 |
+| Pages wildcard custom domains 不支持。 | 多租户站点更适合 [平台化与多租户](/platform/platforms-saas/) 里的 Workers for Platforms / SaaS 方案。 |
 
 ## 迁移清单
 
