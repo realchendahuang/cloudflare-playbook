@@ -231,11 +231,12 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 2026-06-17 官方索引复核 | 重新读取 `developers.cloudflare.com/llms.txt` 和 103 个产品级 `llms.txt`；本地产品集合、官方产品集合和 6,145 页计数一致，无新增、删除或页数漂移。 |
 | 已完成复核 | 数据产品入口二次精读 | 已把 [数据产品](/platform/data/) 从选择表扩展为数据形态、一致性、访问方式、常见组合、官方资料和 GitHub 源仓库索引。 |
 | 已完成复核 | 架构模式二次精读 | 已把 [架构模式](/architecture/) 对齐 Cloudflare Reference Architecture / Use cases，补齐静态内容站、API 网关、实时应用的产品组合、落地步骤、验证方式和官方来源。 |
-| 已完成复核 | 额度与安全基线二次精读 | 已把 [免费与付费边界](/platform/free-paid/) 补成普通项目额度地图和 `$5 Workers Paid` 边界；同步强化 [Codex 协作](/best-practices/codex-cloudflare/) 与 [安全边界](/best-practices/security/) 的官方 / GitHub 来源。 |
+| 已完成复核 | 额度与 Codex 基线二次精读 | 已把 [免费与付费边界](/platform/free-paid/) 对齐 Workers Pricing / Limits、Static Assets billing、usage-based billing 和 `cloudflare/cloudflare-docs` 源文件；同步强化 [Codex 协作](/best-practices/codex-cloudflare/) 的官方 Codex setup、Docs for agents、Skills、MCP 和 GitHub 来源。 |
 | 已完成复核 | API 网关架构二次精读 | 已把 [API 网关](/architecture/api-gateway/) 对齐 Serverless global APIs 与 APIs and microservices，补齐请求路径、三种架构形态、拆分时机、安全/成本/观测边界和官方模板来源。 |
 | 已完成复核 | 静态内容站与额度表二次精读 | 已把 [静态内容站](/architecture/static-site/) 对齐 Deploy frontend applications、Workers Static Assets、Pages Limits 和 Cloudflare 官方模板；同步给 [免费与付费边界](/platform/free-paid/) 增加核心额度一屏表和 GitHub 源仓库参考。 |
 | 已完成复核 | 学习路线二次精读 | 已把 [学习路线](/start/) 对齐 Learning Paths、Use cases、Docs for agents、全站 `llms.txt` 和 cloudflare/cloudflare-docs 源目录，补齐官方资料读取方式、六轮阅读顺序、Use cases 到本站专题映射和学习检查表。 |
 | 已完成复核 | 最佳实践入口二次精读 | 已把 [最佳实践](/best-practices/) 对齐 Workers Best Practices、Solution guides、Static Assets billing、WAF Rate Limiting、D1 indexes、R2 CORS 和 GitHub 源目录，补齐按阶段、按风险域、Workers 项目底线和交付检查。 |
+| 已完成复核 | 实战案例入口二次精读 | 已把 [实战案例](/recipes/) 对齐 Workers Tutorials / Examples / Templates、D1 Tutorials、R2 Tutorials、Use cases 和 cloudflare/templates，补齐案例选择顺序、路线图、验收标准、官方资料和 GitHub 源目录。 |
 | 进行中 | 单产品复核与案例深化 | 持续补充真实项目拆解、参考架构和单产品深水区。 |
 
 ## 整理规则
