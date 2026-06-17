@@ -151,6 +151,41 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 
 免费计划已经能做最小闭环：DDoS 自动防护、WAF Free Managed Ruleset、5 条 Custom Rules、1 条 Rate Limiting Rule、现代 Rules 的基础配额。Workers Paid 每月 $5 会提升 Workers / KV / DO / 日志等开发者平台额度，但不会自动提升 WAF、DDoS override 或 Rules 的 zone 计划配额。
 
+## 开发运行链路
+
+真正开始写应用时，先不要把所有产品都塞进架构图。普通项目更稳的顺序是：静态资产先免费分发，动态路径才进入 Worker；事务数据进 D1，读多写少配置进 KV，文件进 R2，强一致会话进 Durable Objects，耗时任务进 Queues。
+
+```text
+一个小型应用
+  ├─ 静态页面 / 前端资源
+  │    ├─ Workers Static Assets：和 Worker 同项目部署
+  │    └─ Pages：Git 部署、预览部署、纯静态站
+  │
+  ├─ 动态请求
+  │    └─ Workers：/api/*、Webhook、鉴权、代理、轻量后端
+  │
+  ├─ 数据
+  │    ├─ D1：事务、评论、用户、订单、后台配置
+  │    ├─ KV：读多写少配置、缓存、低频更新索引
+  │    └─ R2：图片、附件、导入导出、备份、公开下载
+  │
+  └─ 协调和后台
+       ├─ Durable Objects：房间、限流器、协作会话、WebSocket
+       └─ Queues：异步任务、削峰、重试、死信队列
+```
+
+| 判断问题 | 优先答案 | 不建议一开始做什么 |
+| --- | --- | --- |
+| 只是文档站、官网、前端应用？ | Workers Static Assets 或 Pages。 | 把每个静态请求都打进 Worker 脚本计费路径。 |
+| 需要 API 或后端逻辑？ | Workers，只让动态路径触发。 | 为简单 API 先买 VPS 或容器。 |
+| 需要 SQL 事务和查询？ | D1，常查字段建索引。 | 用 KV 存复杂关系数据，或让 D1 做高频分析表。 |
+| 需要全局配置和缓存？ | KV，接受最终一致和 1 key / 秒写入边界。 | 用 KV 做强一致锁、计数器或高频写入队列。 |
+| 需要文件和大对象？ | R2，注意 Class A / B 操作。 | 把图片、视频、附件塞进 Git、Pages bundle 或 D1。 |
+| 需要单实体强一致？ | Durable Objects。 | 把全局数据库职责塞进一个 Durable Object。 |
+| 需要异步处理？ | Queues + 幂等消费者 + DLQ。 | 在用户请求里同步做所有耗时工作。 |
+
+这条链路的成本边界很清楚：静态资产请求免费且不限量；Workers Free 适合原型和小流量 API；Workers Paid 的 $5 最小月费会把 Workers、KV、Hyperdrive、Durable Objects 等初始额度提升到更适合真实项目的水平。等读写量、文件量、队列量或实时连接真的起来，再按产品用量优化。
+
 ## 计算与部署
 
 | 产品 | 免费边界 | 付费入口 | 作用 | 最佳实践 |
