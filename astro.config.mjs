@@ -57,6 +57,7 @@ export default defineConfig({
 						{ label: 'Durable Objects', slug: 'platform/durable-objects' },
 						{ label: 'Queues', slug: 'platform/queues' },
 						{ label: 'AI 产品', slug: 'platform/ai' },
+						{ label: '媒体与性能', slug: 'platform/media-performance' },
 						{ label: '观测与日志', slug: 'platform/observability' },
 						{ label: '安全与网络', slug: 'platform/security-networking' },
 						{ label: '免费与付费边界', slug: 'platform/free-paid' },

@@ -39,6 +39,11 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │    ├─ AI Search / Vectorize
   │    └─ Agents SDK
   │
+  ├─ 媒体与性能
+  │    ├─ Images / Stream / Speed
+  │    ├─ Zaraz / Browser Run
+  │    └─ R2 / Cache / Web Analytics
+  │
   └─ 观测与安全
        ├─ Web Analytics / Logs / GraphQL Analytics / Notifications
        └─ Turnstile / WAF / Bot / API Shield
@@ -112,10 +117,11 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | Web Analytics | 官方标注 available on all plans；Pages 文档称它是免费、隐私优先分析。 | 更复杂产品分析用 Analytics Engine 或第三方。 | 站点访问和性能统计。 | 文档站和官网先开它，不急着上复杂埋点。 |
 | Workers Logs / Tail | 随 Workers 提供开发和排障能力。 | 更长留存、Logpush、企业日志再付费。 | 查看 Worker 日志和错误。 | 生产只记录必要上下文，别把 token/隐私数据写日志。 |
 | GraphQL Analytics API | Cloudflare 多产品指标查询。 | 大规模分析、企业报表时评估。 | 查询 DNS、HTTP、Workers 等指标。 | 先用 Dashboard；需要自动报表再接 API。 |
-| Images | Free 计划包含 5,000 unique transformations/month。 | Paid 前 5,000 transformations included，超出按 transformation、stored images、delivered images 计费。 | 图片优化、变换、存储和分发。 | 图片原文件优先 R2；需要动态裁剪和格式转换再接 Images。 |
-| Stream | ingress 和 encoding 免费；存储与播放按视频分钟计费。 | 存储 $5/1,000 minutes stored，播放 $1/1,000 minutes delivered。 | 视频托管和播放。 | 不要用 Pages/R2 裸扛完整视频产品；视频业务用 Stream 或专门服务。 |
-| Browser Run | Workers Free 有 10 minutes/day browser hours。 | Workers Paid 有 10 hours/month included，超出按 browser hours 和并发浏览器计费。 | 云端无头浏览器。 | 能用普通 fetch 就别开浏览器；浏览器时间贵，任务要短。 |
-| Zaraz | 第三方脚本管理。 | 高级需求看计划。 | 把分析、广告、营销脚本迁到边缘管理。 | 前端性能敏感站点再引入；先减少脚本数量。 |
+| [媒体与性能](/platform/media-performance/) | Images Free 每月 5,000 unique transformations；Speed available on all plans；Zaraz 每账号每月 1,000,000 free events；Browser Run Free 有 10 minutes/day。 | Images Paid、Stream、Zaraz Paid、Browser Run Paid 都是明确用量后再上。 | 图片、视频、前端性能、第三方脚本和浏览器自动化。 | 大图、附件、视频不要塞进静态包；图片看 Images，视频看 Stream，第三方脚本看 Zaraz，截图/PDF/爬虫看 Browser Run。 |
+| Images | Free 计划包含 5,000 unique transformations/month，超出后新 transformation 返回 `9422`，不会直接收费。 | Paid 前 5,000 transformations included，超出 $0.50/1,000；Images storage $5/100k images/month，delivery $1/100k images。 | 图片优化、变换、存储和分发。 | 图片原文件优先 R2；需要动态裁剪和格式转换再接 Images。 |
+| Stream | ingress 和 encoding 免费；存储与播放按视频分钟计费。 | 存储 $5/1,000 minutes stored，播放 $1/1,000 minutes delivered；Media Transformations 5,000 free operations/month 后 $0.50/1,000。 | 视频托管、编码、播放、直播和分析。 | 不要用 Pages/R2 裸扛完整视频产品；视频业务用 Stream 或专门服务。 |
+| Browser Run | Workers Free 有 10 minutes/day browser hours、Browser Sessions 3 concurrent browsers。 | Workers Paid 有 10 hours/month included，超出 $0.09/hour；并发浏览器 included 10 averaged monthly，超出 $2/browser。 | 云端无头浏览器。 | 能用普通 fetch 就别开浏览器；浏览器时间贵，任务要短，并且必须关闭 session。 |
+| Zaraz | 每个 Cloudflare account 每月 1,000,000 free Zaraz Events；所有功能和工具可用于所有账号。 | 每额外 1,000,000 Zaraz Events 为 $5/month。 | 把分析、广告、营销和聊天脚本迁到边缘管理。 | 前端脚本变多、需要 consent 或 selective loading 时再引入；先减少脚本数量。 |
 | Wrangler | 免费 CLI。 | 无。 | 管理 Workers、D1、R2、KV、部署。 | `wrangler.jsonc` 作为配置真源，生产变更走 Git。 |
 
 ## 独立开发者推荐组合
@@ -159,6 +165,15 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Vectorize Limits](https://developers.cloudflare.com/vectorize/platform/limits/)
 - [Agents](https://developers.cloudflare.com/agents/)
 - [Agents Limits](https://developers.cloudflare.com/agents/platform/limits/)
+- [Images Pricing](https://developers.cloudflare.com/images/pricing/)
+- [Images Limits and formats](https://developers.cloudflare.com/images/get-started/limits/)
+- [Stream Pricing](https://developers.cloudflare.com/stream/pricing/)
+- [Stream FAQ](https://developers.cloudflare.com/stream/faq/)
+- [Speed](https://developers.cloudflare.com/speed/)
+- [Observatory](https://developers.cloudflare.com/speed/observatory/)
+- [Zaraz Pricing](https://developers.cloudflare.com/zaraz/pricing-info/)
+- [Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)
+- [Browser Run Limits](https://developers.cloudflare.com/browser-run/limits/)
 - [Web Analytics Docs](https://developers.cloudflare.com/web-analytics/)
 - [Web Analytics Limits](https://developers.cloudflare.com/web-analytics/limits/)
 - [Cloudflare Analytics](https://developers.cloudflare.com/analytics/)

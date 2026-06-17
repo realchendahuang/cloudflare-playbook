@@ -248,9 +248,24 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Security Center](https://developers.cloudflare.com/security-center/)
 - [Security dashboard](https://developers.cloudflare.com/security/)
 - [Security Insights how it works](https://developers.cloudflare.com/security/security-insights/how-it-works/)
+- [Cloudflare Images](https://developers.cloudflare.com/images/)
 - [Images Pricing](https://developers.cloudflare.com/images/pricing/)
+- [Images Limits and formats](https://developers.cloudflare.com/images/get-started/limits/)
+- [Images Transform via Workers](https://developers.cloudflare.com/images/optimization/transformations/transform-via-workers/)
+- [Images Direct Creator Upload](https://developers.cloudflare.com/images/storage/upload-images/direct-creator-upload/)
+- [Cloudflare Stream](https://developers.cloudflare.com/stream/)
 - [Stream Pricing](https://developers.cloudflare.com/stream/pricing/)
+- [Stream FAQ](https://developers.cloudflare.com/stream/faq/)
+- [Secure your Stream](https://developers.cloudflare.com/stream/viewing-videos/securing-your-stream/)
+- [Speed](https://developers.cloudflare.com/speed/)
+- [Observatory](https://developers.cloudflare.com/speed/observatory/)
+- [Run Observatory test](https://developers.cloudflare.com/speed/observatory/run-speed-test/)
+- [Zaraz](https://developers.cloudflare.com/zaraz/)
+- [Zaraz Pricing](https://developers.cloudflare.com/zaraz/pricing-info/)
+- [Zaraz Consent Management](https://developers.cloudflare.com/zaraz/consent-management/)
+- [Browser Run](https://developers.cloudflare.com/browser-run/)
 - [Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)
+- [Browser Run Limits](https://developers.cloudflare.com/browser-run/limits/)
 - [Cloudflare Free Plan](https://www.cloudflare.com/plans/free/)
 - [Starlight Site Search](https://starlight.astro.build/guides/site-search/)
 
@@ -300,6 +315,11 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs AI Search source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ai-search) | 官方 AI Search 文档源文件，适合追踪托管 RAG、search modes、limits/pricing、MCP 和 UI snippets。 |
 | [cloudflare/cloudflare-docs Vectorize source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/vectorize) | 官方 Vectorize 文档源文件，适合追踪 pricing、limits、metadata filtering、Wrangler commands 和 API。 |
 | [cloudflare/cloudflare-docs Agents source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/agents) | 官方 Agents 文档源文件，适合追踪 Agents SDK、MCP、tools、runtime、limits 和 examples。 |
+| [cloudflare/cloudflare-docs Images source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/images) | 官方 Images 文档源文件，适合追踪 pricing、limits、transformations、bindings、storage 和 SVG 安全处理。 |
+| [cloudflare/cloudflare-docs Stream source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/stream) | 官方 Stream 文档源文件，适合追踪 pricing、upload、live、player、analytics、Media Transformations 和 FAQ。 |
+| [cloudflare/cloudflare-docs Speed source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/speed) | 官方 Speed 文档源文件，适合追踪 Observatory、Origin Analytics、RUM、optimization 和 test quotas。 |
+| [cloudflare/cloudflare-docs Zaraz source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/zaraz) | 官方 Zaraz 文档源文件，适合追踪 pricing、events、consent、Web API、HTTP Events API 和 Monitoring。 |
+| [cloudflare/cloudflare-docs Browser Run source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/browser-run) | 官方 Browser Run 文档源文件，适合追踪 pricing、limits、Quick Actions、Playwright、Puppeteer、CDP 和 Stagehand。 |
 | [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets 和 zone 设置变成 IaC。 |
 | [cloudflare/skills Cache Reserve reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/cache-reserve) | Cloudflare 官方 Agent Skills 里的 Cache Reserve 参考，适合看常见误区和检查清单。 |
 | [cloudflare/skills WAF reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/waf) | Cloudflare 官方 Agent Skills 里的 WAF 参考，适合看配置模式、常见误区和 Rulesets API 写法。 |
@@ -308,6 +328,7 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-prometheus-exporter](https://github.com/cloudflare/cloudflare-prometheus-exporter) | Cloudflare 指标导出到 Prometheus 的官方开源参考，适合看 Workers + Durable Objects 的指标累积方式。 |
 | [cloudflare/workers-honeycomb-logger](https://github.com/cloudflare/workers-honeycomb-logger) | Workers 请求事件和 traces 发送到 Honeycomb 的开源库，适合学习外部可观测平台接入。 |
 | [cloudflare/cloudflared](https://github.com/cloudflare/cloudflared) | Cloudflare Tunnel daemon 源码，适合理解 Tunnel 客户端、配置和发布应用的真实实现。 |
+| [cloudflare/svg-hush](https://github.com/cloudflare/svg-hush) | Cloudflare 用于清理 SVG 的开源工具，适合理解 Images 处理 SVG 的安全边界。 |
 | [cloudflare/sslconfig](https://github.com/cloudflare/sslconfig) | Cloudflare 公开的 Internet-facing SSL cipher 配置历史，适合理解边缘 TLS 配置变迁。 |
 | [cloudflare/cfssl](https://github.com/cloudflare/cfssl) | Cloudflare 的 PKI/TLS 工具箱，适合学习证书签发、验证和 bundle。 |
 | [cloudflare/certmgr](https://github.com/cloudflare/certmgr) | 基于 CFSSL 的证书管理工具，适合看证书自动续期和服务 reload 模式。 |

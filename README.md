@@ -42,6 +42,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | Durable Objects | [src/content/docs/platform/durable-objects.md](src/content/docs/platform/durable-objects.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/durable-objects/) |
 | Queues | [src/content/docs/platform/queues.md](src/content/docs/platform/queues.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/queues/) |
 | AI 产品 | [src/content/docs/platform/ai.md](src/content/docs/platform/ai.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ai/) |
+| 媒体与性能 | [src/content/docs/platform/media-performance.md](src/content/docs/platform/media-performance.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/media-performance/) |
 | 观测与日志 | [src/content/docs/platform/observability.md](src/content/docs/platform/observability.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/observability/) |
 | 安全与网络 | [src/content/docs/platform/security-networking.md](src/content/docs/platform/security-networking.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/security-networking/) |
 | 免费与付费边界 | [src/content/docs/platform/free-paid.md](src/content/docs/platform/free-paid.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/free-paid/) |
