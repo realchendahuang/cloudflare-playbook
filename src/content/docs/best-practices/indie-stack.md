@@ -25,7 +25,7 @@ AI 调用: AI Gateway
 | 项目 | 推荐组合 | 暂时不要上 |
 | --- | --- | --- |
 | 文档站 / 博客 | Starlight 或 Astro + Workers Static Assets + Pagefind + Web Analytics | D1、AI Search、Queues，除非有评论或问答。 |
-| 文档社区 | Workers Static Assets + D1 评论 + 限流 + 后续 Turnstile | 登录系统、异步审核、复杂管理端。 |
+| 文档社区 | Workers Static Assets + Giscus 或 Waline + 后续 Turnstile | 一开始就维护自定义评论组件和复杂管理端。 |
 | 小型 SaaS | Workers + D1 + KV + R2 + AI Gateway | 微服务、Kubernetes、自建 Postgres 集群。 |
 | AI 工具 | Workers + AI Gateway + D1 记录 + R2 文件 + 后续 Workers AI/Vectorize | 一开始就做多 Agent 框架。 |
 | 文件工具 | Workers + R2 + D1 metadata + Signed URL | 把文件放进 Git、Pages 或 D1。 |
@@ -46,7 +46,7 @@ AI 调用: AI Gateway
 
 ### 第二阶段：有人用了再补
 
-- 评论刷屏明显：加 Turnstile 服务端验证。
+- 表单提交量明显增加：加 Turnstile 服务端验证。
 - API 慢：看缓存、D1 索引、外部 API 延迟。
 - 文件变多：把图片、附件、导出统一进 R2。
 - AI 成本不清楚：先接 AI Gateway 记录请求。
@@ -78,6 +78,6 @@ Cloudflare Playbook 当前选择：
 | 文档 | Astro + Starlight | Markdown 友好，开源协作成本低。 |
 | 搜索 | Pagefind | 免费、静态、低复杂度。 |
 | 部署 | Workers Static Assets | 静态站和 API 在同一个 Worker 项目。 |
-| 评论 | Worker API + D1 | 自由评论，小型结构化数据。 |
-| 防刷 | 蜜罐 + IP 哈希限流 | 不登录、不审核，保留交流自由。 |
+| 评论 | Starlight Giscus | 复用成熟组件和 GitHub Discussions。 |
+| 主题 | Starlight Flexoki | 复用成熟主题，并使用橙色强调色。 |
 | 未来增强 | AI Search / Turnstile | 内容和流量真的上来后再加。 |

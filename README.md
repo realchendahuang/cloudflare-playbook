@@ -2,9 +2,9 @@
 
 Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队的 Cloudflare 最佳实践知识库。它不只罗列产品名，而是帮助读者理解 Workers、Pages、D1、KV、R2、Durable Objects、Queues、AI、安全、缓存、部署和可观测性在真实项目里应该怎么选、怎么组合、怎么验证。
 
-这个仓库使用 Astro + Starlight 搭建文档站，并使用 Cloudflare Workers Static Assets + D1 承载评论 API。它不是只放静态页面，而是一个 Worker-first 的 Cloudflare 最佳实践样板。
+这个仓库使用 Astro + Starlight 搭建文档站，通过 Cloudflare Workers Static Assets 部署，并使用 Starlight 生态主题与 Giscus 评论组件。它不是只放静态页面，而是一个面向 Cloudflare 实践的开源知识库样板。
 
-> Cloudflare 很像赛博世界里慷慨的基础设施菩萨：它有太多免费产品，也有很多付费但足够好用的产品，能极大降低独立开发者和初创公司的运营成本。
+> Cloudflare 提供了覆盖计算、存储、网络、安全、AI 和可观测性的完整平台。对独立开发者和早期团队来说，理解这些产品的边界和组合方式，可以显著降低项目启动和运维成本。
 
 线上站点：[cloudflare-playbook.chendahuang.top](https://cloudflare-playbook.chendahuang.top/)
 
@@ -51,17 +51,15 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 Astro + Starlight
   ├─ Markdown / MDX 文档
   ├─ Pagefind 站内搜索
+  ├─ Starlight Flexoki 主题
+  ├─ Giscus 评论组件
   └─ dist 静态资产
 
 Cloudflare Worker
-  ├─ Workers Static Assets 托管文档站
-  └─ /api/comments 评论接口
-
-Cloudflare D1
-  └─ comments 评论表
+  └─ Workers Static Assets 托管文档站
 ```
 
-搜索先使用 Starlight 默认的 Pagefind，评论使用 Worker API + D1。等内容规模变大后，再评估 Cloudflare AI Search 做自然语言搜索。
+搜索先使用 Starlight 默认的 Pagefind，评论使用 Giscus 连接 GitHub Discussions。等内容规模变大后，再评估 Cloudflare AI Search 做自然语言搜索。
 
 ## 本地开发
 
@@ -87,22 +85,6 @@ pnpm build
 pnpm preview
 ```
 
-## D1 评论数据库
-
-第一次部署前需要创建 D1 数据库，并把输出的 `database_id` 填入 `wrangler.jsonc`。
-
-```bash
-pnpm exec wrangler d1 create cloudflare-playbook
-pnpm exec wrangler d1 migrations apply cloudflare-playbook --remote
-```
-
-本地调试评论 API 时，可以先应用本地迁移：
-
-```bash
-pnpm exec wrangler d1 migrations apply cloudflare-playbook --local
-pnpm worker:dev
-```
-
 ## 部署到 Cloudflare Workers
 
 构建并部署：
@@ -116,8 +98,6 @@ pnpm run deploy
 
 ```text
 assets.directory = ./dist
-assets.run_worker_first = /api/*
-d1_databases.binding = DB
 routes.pattern = cloudflare-playbook.chendahuang.top
 ```
 

@@ -21,7 +21,7 @@ Cloudflare 最适合普通人的地方，不是“永远不要花钱”，而是
 | 产品 | Free / 免费边界 | Paid / 付费入口 | 成本控制建议 |
 | --- | --- | --- | --- |
 | Workers | 100,000 requests/day；10 ms CPU/invocation。 | Standard/Paid 每月最低 $5，包含 10M requests/month 和 CPU 额度，超出按量。 | 只让 API 进 Worker；静态资源走 Static Assets。 |
-| Workers Static Assets | 静态资产请求免费不限量；资产存储无额外费用。 | 只有 Worker 脚本被调用时才按 Workers 计费。 | `run_worker_first` 只匹配 `/api/*`。 |
+| Workers Static Assets | 静态资产请求免费不限量；资产存储无额外费用。 | 只有 Worker 脚本被调用时才按 Workers 计费。 | 静态页面交给 Static Assets；动态能力按路径逐步接入 Worker。 |
 | Pages | Free 计划 500 builds/month、1 concurrent build；静态请求和带宽非常适合公开站。 | Pro/Business 提升构建次数、并发构建和项目能力。 | 纯静态用 Pages；带 API 的新项目优先 Workers Static Assets。 |
 | D1 | 5M rows read/day、100k rows written/day、5 GB storage total。 | Paid 每月 25B rows read、50M rows written、5 GB included，超出按量。 | 建索引；别用 D1 做高频计数和大分析。 |
 | KV | 100k reads/day、1k writes/day、1k deletes/day、1k lists/day、1 GB storage。 | Paid 每月包含 10M reads、1M writes/deletes/lists、1 GB storage，超出按量。 | 读多写少、最终一致的场景才用 KV。 |
@@ -38,7 +38,7 @@ Cloudflare 最适合普通人的地方，不是“永远不要花钱”，而是
 | CDN / Cache | 基础 CDN/cache 能力免费可用。 | 高级缓存规则、限制、企业能力随计划升级。 | HTML 谨慎缓存，静态资源长缓存。 |
 | DDoS Protection | 官方标注 available on all plans。 | 企业级策略、支持、SLA 和更细控制再升级。 | 先接入 Cloudflare；被打时组合 WAF 和限流。 |
 | WAF | 官方标注 available on all plans，但功能随计划变化。 | 托管规则、更高级安全能力随计划升级。 | 后台、登录、API 先写最小规则。 |
-| Turnstile | Free 计划适合个人站、博客、中小业务和大多数生产应用。 | Enterprise 面向核心业务。 | 表单刷屏严重再加；必须服务端验证 token。 |
+| Turnstile | Free 计划适合个人站、博客、中小业务和大多数生产应用。 | Enterprise 面向核心业务。 | 表单提交量上来后再加；必须服务端验证 token。 |
 | Images | Free 包含外部图片 transformation 能力；官方产品页提到 5,000 transformations included。 | Paid 支持更多 transformations、Images 存储和交付计费。 | 原图放 R2，转换交给 Images。 |
 | Stream | 视频存储、编码和播放通常从付费入口开始，部分计划有赠送分钟。 | 视频业务按存储分钟和播放分钟评估。 | 不要把视频硬塞进静态站或普通对象下载。 |
 | Browser Run | 官方介绍有 free tier，按 browser time 使用。 | 自动化浏览器规模化后按用量付费。 | 能用 HTTP 抓取就别开浏览器。 |
@@ -51,8 +51,8 @@ Cloudflare 最适合普通人的地方，不是“永远不要花钱”，而是
 | --- | --- | --- |
 | 文档页面 | Astro + Starlight + Workers Static Assets | 静态资产请求免费不限量，部署到 Worker 还能带 API。 |
 | 站内搜索 | Pagefind | 构建期索引，用户搜索不打后端。 |
-| 评论 | Worker API + D1 | 评论是结构化小数据，D1 免费额度足够早期使用。 |
-| 防刷 | 蜜罐字段 + IP 哈希限流 | 保持自由评论，不引入登录和审核。 |
+| 评论 | Starlight Giscus | 复用成熟评论组件，讨论内容进入 GitHub Discussions。 |
+| 主题 | Starlight Flexoki | 复用成熟 Starlight 主题，用橙色强调色保持品牌识别。 |
 | 未来 AI 搜索 | AI Search 或 Vectorize | 等内容足够多后再为自然语言搜索付费。 |
 
 ## 常见误区
@@ -63,7 +63,7 @@ Cloudflare 最适合普通人的地方，不是“永远不要花钱”，而是
 | KV 可以当数据库。 | KV 用于读多写少的配置和缓存；关系数据用 D1。 |
 | R2 免 egress 就完全免费。 | R2 无 egress bandwidth charge，但存储和操作会计费。 |
 | AI 一开始就做向量搜索。 | 先把内容结构化，Pagefind 能解决大部分早期搜索。 |
-| 评论必须登录和审核。 | 文档社区可以先自由评论，再用限流和 Turnstile 分层防刷。 |
+| 一开始自建评论组件。 | 文档社区优先用成熟评论系统，减少自维护 UI 和安全边界。 |
 | 免费额度不用看。 | 免费额度不是无限额度；公开项目要知道硬限制在哪里。 |
 
 ## 官方资料

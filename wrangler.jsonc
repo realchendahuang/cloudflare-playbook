@@ -6,17 +6,9 @@
 	"assets": {
 		"directory": "./dist",
 		"binding": "ASSETS",
-		"run_worker_first": ["/api/*"],
 		"html_handling": "auto-trailing-slash",
 		"not_found_handling": "404-page"
 	},
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "cloudflare-playbook",
-			"database_id": "24b2c8fa-0ffe-4de1-8e1c-d44e0522de9b"
-		}
-	],
 	"routes": [
 		{
 			"pattern": "cloudflare-playbook.chendahuang.top",
