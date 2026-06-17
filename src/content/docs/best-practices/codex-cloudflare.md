@@ -18,7 +18,7 @@ Cloudflare 官方已经把 Codex、Cloudflare Skills、MCP、Wrangler 和 agent-
 | Cloudflare Code Mode MCP | 通过 Cloudflare API 管理账号资源。 | 替代代码审查、架构判断和权限治理。 |
 | Domain-specific MCP servers | 针对绑定、构建、观测、日志等产品域给出实时信息。 | 跨产品做完整架构设计。 |
 | Wrangler | 本地开发、类型、迁移、部署和日志闭环。 | 替代仓库里的配置真源。 |
-| 官方 GitHub 仓库 | 需要追踪文档修改历史、模板或 SDK 结构时再查看。 | 替代项目自己的约束和读者需求。 |
+| 官方文档历史 | 需要追踪文档修改历史、模板或 SDK 结构时再查看。 | 替代项目自己的约束和读者需求。 |
 
 ## 推荐顺序
 
@@ -30,7 +30,7 @@ Cloudflare 官方已经把 Codex、Cloudflare Skills、MCP、Wrangler 和 agent-
 | 4. 再做修改 | 只改当前问题需要的文章、配置或代码。 |
 | 5. 最后验证 | 构建、类型检查、部署和线上页面都要形成闭环。 |
 
-如果 Context7、Docs MCP 或外部检索工具不可用，就降级到 Cloudflare 官方 Markdown 页面和 `cloudflare/cloudflare-docs` 源仓库；不能因为工具失败就靠记忆补数字。
+如果 Context7、Docs MCP 或外部检索工具不可用，就降级到 Cloudflare 官方 Markdown 页面、Pricing / Limits 和 Changelog；不能因为工具失败就靠记忆补数字。
 
 ## 必须查官方的内容
 
@@ -86,4 +86,3 @@ Cloudflare 官方已经把 Codex、Cloudflare Skills、MCP、Wrangler 和 agent-
 - [Markdown for Agents](https://developers.cloudflare.com/fundamentals/reference/markdown-for-agents/)
 - [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/workers-best-practices/)
 - [MCP servers for Cloudflare](https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/)
-- [Cloudflare API OpenAPI specification](https://github.com/cloudflare/api-schemas)

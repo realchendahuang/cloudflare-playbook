@@ -35,11 +35,6 @@ description: 1.1.1.1、Radar、Time Services、Web3、China Network 和 Google t
 | China Network 是免费优化中国访问。 | 它是企业订阅，并且有 ICP、IPv6、兼容性和监管边界。 |
 | Google tag gateway 可以替代 Zaraz。 | 它只服务 Google measurement tags。 |
 
-## 开源参考
-
-- [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs)
-- [cloudflare/radar-notebooks](https://github.com/cloudflare/radar-notebooks)
-
 ## 事实来源
 
 - [1.1.1.1 overview](https://developers.cloudflare.com/1.1.1.1/)

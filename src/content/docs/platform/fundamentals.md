@@ -87,4 +87,3 @@ description: Cloudflare 账号、Zone、代理状态、源站保护、权限和�
 | [Protect your origin server](https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/) | 源站保护。 |
 | [Create API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) | API Token。 |
 | [Cloudflare Ray ID](https://developers.cloudflare.com/fundamentals/reference/cloudflare-ray-id/) | 排障证据。 |
-| [cloudflare/cloudflare-docs Fundamentals source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/fundamentals) | 官方 Markdown 源文件。 |

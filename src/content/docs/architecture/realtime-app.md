@@ -124,5 +124,3 @@ description: 用 Durable Objects 承载房间、协作和强一致状态的架�
 - [Durable Objects Pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)
 - [Durable Objects Limits](https://developers.cloudflare.com/durable-objects/platform/limits/)
 - [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
-- [Durable Objects source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/durable-objects)
-- [workers-chat-demo](https://github.com/cloudflare/workers-chat-demo)

@@ -91,4 +91,3 @@ Workers Paid 不会提升 WAF、Bot、Cache Rules、SSL/TLS、DNS 记录数、Lo
 | [Monitor billable usage](https://developers.cloudflare.com/billing/manage/billable-usage/) | Billable Usage dashboard 能看什么、不能看什么。 |
 | [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/) | 预算提醒的触发方式和限制。 |
 | [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/) | Workers Paid、请求、CPU、日志和开发者平台额度。 |
-| [cloudflare/cloudflare-docs Billing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/billing) | 官方 Billing Markdown 源文件。 |

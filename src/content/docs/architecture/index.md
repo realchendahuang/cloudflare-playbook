@@ -1,6 +1,6 @@
 ---
 title: 架构模式
-description: 常见 Cloudflare 架构组合、判断顺序、官方对照和开源参考。
+description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 ---
 
 最后核对日期：2026-06-18。

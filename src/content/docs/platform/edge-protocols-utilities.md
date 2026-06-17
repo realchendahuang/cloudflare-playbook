@@ -44,13 +44,6 @@ description: NEL、Randomness Beacon、Resource Tagging、Version Management、P
 | MoQ 是视频托管默认方案。 | 普通视频和实时场景先看 Stream、RealtimeKit、Realtime SFU / TURN。 |
 | Agent Memory 应该保存所有聊天原文。 | 长期记忆只放可复用的事实、偏好、约定和任务。 |
 
-## 开源参考
-
-- [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs)
-- [cloudflare/moq-rs](https://github.com/cloudflare/moq-rs)
-- [cloudflare/agents](https://github.com/cloudflare/agents)
-- [drand/drand](https://github.com/drand/drand)
-
 ## 事实来源
 
 - [Network Error Logging](https://developers.cloudflare.com/network-error-logging/)

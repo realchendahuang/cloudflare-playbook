@@ -68,4 +68,3 @@ description: Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog
 | [Pipelines](https://developers.cloudflare.com/pipelines/) | Pipelines 产品和 beta 状态。 |
 | [R2 Data Catalog](https://developers.cloudflare.com/r2/data-catalog/) | R2 Data Catalog 定位。 |
 | [Containers pricing](https://developers.cloudflare.com/containers/pricing/) | Containers 计费入口。 |
-| [cloudflare/cloudflare-docs developer platform source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs) | 官方 Markdown 源文件。 |

@@ -56,7 +56,7 @@ IaC 不是把所有 Cloudflare 配置都写成 Terraform。普通项目先问一
 | Worker 代码和静态资产部署 | Wrangler / 项目部署脚本 | 构建和发布节奏更适合部署工具。 |
 | D1 schema migrations | Wrangler | 资源创建和 schema 迁移是两件事。 |
 | R2 / KV / D1 / Queue 资源创建 | 小项目可 Wrangler；团队后进 IaC | 数据内容和业务 schema 不要进 state。 |
-| Secrets | Wrangler secret / CI secret store | 不写入源码、state、日志或脚本参数。 |
+| Secrets | Wrangler secret / CI secret store | 不写入仓库、state、日志或脚本参数。 |
 | 临时排障和日志 | Dashboard / Wrangler / Logs | 不是 IaC 职责。 |
 
 ## 最容易踩坑

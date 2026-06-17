@@ -272,9 +272,3 @@ pnpm wrangler r2 bucket cors set uploads-demo --file cors.json
 - [R2 presigned URLs](https://developers.cloudflare.com/r2/api/s3/presigned-urls/)
 - [R2 CORS](https://developers.cloudflare.com/r2/buckets/cors/)
 - [R2 Wrangler commands](https://developers.cloudflare.com/r2/reference/wrangler-commands/)
-
-## GitHub 开源参考
-
-- [cloudflare/templates: r2-explorer-template](https://github.com/cloudflare/templates/tree/main/r2-explorer-template)
-- [cloudflare/cloudflare-docs: R2 docs source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/r2)
-- [aws/aws-sdk-js-v3](https://github.com/aws/aws-sdk-js-v3)，可参考官方 SDK 的 S3 client 和 presigner 实现。

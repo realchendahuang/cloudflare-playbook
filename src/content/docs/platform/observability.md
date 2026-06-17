@@ -86,4 +86,3 @@ description: Cloudflare Web Analytics、Workers Logs、Logpush、Log Explorer、
 | [GraphQL Analytics API Limits](https://developers.cloudflare.com/analytics/graphql-api/limits/) | GraphQL Analytics API。 |
 | [Analytics Engine Pricing](https://developers.cloudflare.com/analytics/analytics-engine/pricing/) | Analytics Engine 成本。 |
 | [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/) | 预算提醒。 |
-| [cloudflare/cloudflare-docs Analytics source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/analytics) | 官方 Analytics Markdown 源文件。 |

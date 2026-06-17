@@ -51,7 +51,7 @@ Workers 是 Cloudflare 的请求级计算层，不是一台长期运行的小服
 | 把 KV 当数据库。 | 关系数据用 D1，强一致单实体用 Durable Objects。 |
 | 上传文件先读完整内容。 | Worker 做入口控制，文件流向 R2。 |
 | 把评论、搜索、AI、后台任务塞进一个 Worker。 | 先按路径、数据和成本拆清楚。 |
-| 密钥写进源码或普通变量。 | 非敏感配置用 vars，密钥用 secrets。 |
+| 密钥写进仓库或普通变量。 | 非敏感配置用 vars，密钥用 secrets。 |
 | 日志记录 token、cookie、请求正文。 | 只记 request id、Ray ID、状态、耗时和匿名化标识。 |
 
 ## 普通项目路线

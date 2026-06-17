@@ -37,14 +37,10 @@ description: Data Localization、Client-side security、DMARC、Registrar、Supp
 | Registrar 免费注册域名。 | Cloudflare Registrar 可用，但注册和续费仍有成本。 |
 | Use cases 里的产品组合都要照做。 | 先用免费或低成本能力完成 80%。 |
 
-## 开源参考
-
-- [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs)
-- [Cloudflare Learning Paths](https://developers.cloudflare.com/learning-paths/llms.txt)
-- [Cloudflare Use cases](https://developers.cloudflare.com/use-cases/)
-
 ## 事实来源
 
+- [Cloudflare Learning Paths](https://developers.cloudflare.com/learning-paths/llms.txt)
+- [Cloudflare Use cases](https://developers.cloudflare.com/use-cases/)
 - [Data Localization Suite](https://developers.cloudflare.com/data-localization/)
 - [Client-side security](https://developers.cloudflare.com/client-side-security/)
 - [DMARC Management](https://developers.cloudflare.com/dmarc-management/)

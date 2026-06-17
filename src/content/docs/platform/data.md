@@ -89,4 +89,3 @@ Cloudflare 的数据产品不要按“哪个数据库最强”来选。普通项
 | [R2](https://developers.cloudflare.com/r2/) | 对象存储、pricing、limits 和 S3 API。 |
 | [Durable Objects](https://developers.cloudflare.com/durable-objects/) | 单对象强一致状态和 WebSocket。 |
 | [Queues](https://developers.cloudflare.com/queues/) | 异步任务、重试和 operations。 |
-| [cloudflare/cloudflare-docs storage options source](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/workers/platform/storage-options.mdx) | 官方 Markdown 源文件。 |

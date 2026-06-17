@@ -18,7 +18,7 @@ Cloudflare 安全能力不要按产品名背。普通项目先按风险入口处
 | 3 | 静态内容缓存，动态和登录态谨慎缓存。 | 先减少源站和 Worker 压力。 |
 | 4 | 登录、评论、表单、上传、搜索加 WAF / Rate Limiting / Turnstile。 | 写入口是普通项目最常见的滥用点。 |
 | 5 | 后台、预览环境、内网工具走 Access / Tunnel。 | 管理面不要裸露公网。 |
-| 6 | 密钥进 Worker secrets 或 Secrets Store。 | 不把 token、数据库凭证、第三方 key 写进源码。 |
+| 6 | 密钥进 Worker secrets 或 Secrets Store。 | 不把 token、数据库凭证、第三方 key 写进仓库。 |
 | 7 | 每周看 Security Insights 和 Security Events。 | 规则调整要靠证据。 |
 
 ## 免费层能做什么

@@ -94,4 +94,3 @@ Authenticated Origin Pulls 可以让源站只接受经过 Cloudflare 的请求�
 | [Origin CA](https://developers.cloudflare.com/ssl/origin-configuration/origin-ca/) | 源站证书。 |
 | [Authenticated Origin Pulls](https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull/) | 回源认证。 |
 | [HSTS](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/) | HSTS 风险和配置。 |
-| [cloudflare/cloudflare-docs SSL/TLS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ssl) | 官方 Markdown 源文件。 |

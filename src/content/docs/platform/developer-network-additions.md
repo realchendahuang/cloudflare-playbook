@@ -51,13 +51,6 @@ description: Agent Lee、Artifacts、Email Service、Flagship、Network、Networ
 | R2 SQL 是数据库。 | 它是只读分析查询入口，按扫描量看成本。 |
 | Sandbox SDK 很酷所以先上。 | 没有不可信代码执行需求时不要引入。 |
 
-## 开源参考
-
-- [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs)
-- [cloudflare/flagship](https://github.com/cloudflare/flagship)
-- [cloudflare/sandbox-sdk](https://github.com/cloudflare/sandbox-sdk)
-- [cloudflare/agents](https://github.com/cloudflare/agents)
-
 ## 事实来源
 
 - [Agent Lee](https://developers.cloudflare.com/agent-lee/)

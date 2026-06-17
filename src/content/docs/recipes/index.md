@@ -41,7 +41,6 @@ Cloudflare 官方资料有三类适合做案例来源：
 | Tutorials | 学完整步骤和官方推荐命令，比如 D1 comments API、R2 upload、Queues rate limits、Realtime chat。 |
 | Examples | 学某个 Worker API 的小切片，比如 JSON response、CORS proxy、Cache API、WebSockets、Turnstile、security headers。 |
 | Templates | 学真实项目结构、`wrangler.jsonc`、测试、框架组合和部署方式。 |
-| GitHub 源目录 | 核对官方页面原始 Markdown、模板真实目录和变更历史。 |
 
 本站案例会优先选择“能代表常见普通项目”的组合，而不是把官方 tutorials 按顺序搬一遍。
 
@@ -71,7 +70,7 @@ Cloudflare 官方资料有三类适合做案例来源：
 | 成本 | Free / Workers Paid / usage-based 触发点。 |
 | 安全 | 输入校验、鉴权、CORS、Turnstile、Rate Limiting、密钥和日志边界。 |
 | 限制 | 文件大小、CPU、subrequests、读写次数、队列语义、一致性和缓存。 |
-| 来源 | 官方 docs、产品级 `llms.txt`、GitHub 源目录、模板仓库。 |
+| 来源 | 官方 docs、产品级 `llms.txt`、pricing / limits 和必要的教程页。 |
 
 ## 案例验收标准
 
@@ -86,7 +85,7 @@ Cloudflare 官方资料有三类适合做案例来源：
 - 涉及异步任务时说明重试、死信队列和幂等。
 - 涉及实时状态时说明 Durable Objects 的单实体边界。
 - 涉及 AI 时说明 AI Gateway、模型成本、token / Neuron / 向量检索边界。
-- 文末保留官方资料和 GitHub 开源参考。
+- 文末保留官方资料，具体版本和命令回到官方文档核对。
 
 ## 和官方教程的关系
 
@@ -112,17 +111,3 @@ Cloudflare 官方资料有三类适合做案例来源：
 - [R2 presigned URLs](https://developers.cloudflare.com/r2/api/s3/presigned-urls/)
 - [R2 CORS](https://developers.cloudflare.com/r2/buckets/cors/)
 - [Cloudflare Use cases](https://developers.cloudflare.com/use-cases/llms.txt)
-
-## GitHub 开源参考
-
-- [cloudflare/cloudflare-docs Workers tutorials source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/tutorials)
-- [cloudflare/cloudflare-docs D1 tutorials source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/d1/tutorials)
-- [cloudflare/cloudflare-docs R2 tutorials source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/r2/tutorials)
-- [cloudflare/templates](https://github.com/cloudflare/templates)
-- [cloudflare/templates d1-template](https://github.com/cloudflare/templates/tree/main/d1-template)
-- [cloudflare/templates d1-starter-sessions-api-template](https://github.com/cloudflare/templates/tree/main/d1-starter-sessions-api-template)
-- [cloudflare/templates r2-explorer-template](https://github.com/cloudflare/templates/tree/main/r2-explorer-template)
-- [cloudflare/templates durable-chat-template](https://github.com/cloudflare/templates/tree/main/durable-chat-template)
-- [cloudflare/templates workflows-starter-template](https://github.com/cloudflare/templates/tree/main/workflows-starter-template)
-- [cloudflare/docs-examples](https://github.com/cloudflare/docs-examples)
-- [freestylefly/CodexGuide](https://github.com/freestylefly/CodexGuide)

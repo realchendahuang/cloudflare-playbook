@@ -72,16 +72,6 @@ description: Cloudflare for SaaS、Workers for Platforms 和 Dynamic Workers 的
 | Dynamic Workers 只按请求计费。 | 还要看 unique Dynamic Workers created daily。 |
 | 平台产品只是技术升级。 | 它会带来账单、滥用治理、客户支持和生命周期管理。 |
 
-## GitHub 开源参考
-
-| 仓库 | 用途 |
-| --- | --- |
-| [cloudflare/templates worker-publisher-template](https://github.com/cloudflare/templates/tree/main/worker-publisher-template) | Workers for Platforms 最小发布平台模板。 |
-| [cloudflare/vibesdk](https://github.com/cloudflare/vibesdk) | AI app builder 参考，适合看 AI 生成、预览、部署和平台化组合。 |
-| [cloudflare/agents dynamic-workers examples](https://github.com/cloudflare/agents/tree/main/examples/dynamic-workers) | Dynamic Workers 示例，适合理解动态执行和 sandbox。 |
-| [cloudflare/cloudflare-docs Cloudflare for Platforms source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-for-platforms) | 官方 Cloudflare for Platforms 文档源文件。 |
-| [cloudflare/cloudflare-docs Dynamic Workers source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/dynamic-workers) | 官方 Dynamic Workers 文档源文件。 |
-
 ## 事实来源
 
 - [Cloudflare for Platforms](https://developers.cloudflare.com/cloudflare-for-platforms/)
