@@ -3,7 +3,7 @@ title: Cloudflare Playbook
 description: 面向普通开发者和小团队的 Cloudflare 最佳实践知识库。
 template: splash
 hero:
-  tagline: 免费额度先行，再选产品和架构。面向独立开发者和小团队的 Cloudflare 最佳实践知识库。
+  tagline: 先把免费额度吃透，再选择产品、架构和付费时机。面向独立开发者和小团队的 Cloudflare 最佳实践知识库。
   actions:
     - text: 免费额度大全
       link: /platform/free-paid/
@@ -16,41 +16,50 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## 先看免费额度
+## 免费额度优先
 
-最后核对日期：2026-06-17。Cloudflare 的额度和价格变化很快，下面这张表只做入口判断；写预算、报价或上线方案时，请回到 [免费与付费边界](/platform/free-paid/) 和 [Billing](/platform/billing/) 继续核对官方 pricing / limits。
+最后核对日期：2026-06-18。Cloudflare 的额度和价格变化很快，下面这张表只做入口判断；写预算、报价或上线方案时，请回到 [免费与付费边界](/platform/free-paid/) 和 [Billing](/platform/billing/) 继续核对官方 pricing / limits。
 
-多数人先关心的不是产品名，而是一个项目能不能先免费跑起来、免费额度会在哪里撞墙、什么时候付费才算值得。本站把 Cloudflare 的免费额度当作第一主线来读：先确认静态流量、动态请求、数据库、对象存储、安全和搜索的免费边界，再判断什么时候值得开 `$5/month` 的 Workers Paid 或其他付费产品。
+多数人先关心的不是产品名，而是一个项目能不能先免费跑起来、免费额度会在哪里撞墙、什么时候付费才算值得。本站把 Cloudflare 的免费额度当作第一主线来读：先确认静态流量、动态请求、数据库、对象存储、安全、日志、搜索、AI 和媒体处理的免费边界，再判断什么时候值得开 `$5/month` 的 Workers Paid 或其他付费产品。
 
 Cloudflare 产品很多，但普通项目的预算判断可以先压成一句话：**主流量停在静态资产、CDN、R2 和缓存层，只让真正需要计算、写入、鉴权、排队或 AI 推理的请求进入计费路径。**
 
 四个结论先放前面：
 
 1. 静态站、文档站、官网和博客优先放在 Workers Static Assets 或 Pages，静态资产请求免费且不限量。
-2. 小 API、评论、Webhook、表单、D1、KV、R2、Queues、Durable Objects、Turnstile、Access、Workers AI、AI Search 都有可用的免费起步空间。
+2. 小 API、评论、Webhook、表单、D1、KV、R2、Queues、Durable Objects、Turnstile、Access、Workers AI、AI Gateway、AI Search 都有可用的免费起步空间。
 3. `$5/month` 的 Workers Paid 是动态能力和工程化能力的第一道付费台阶，不是 Cloudflare Pro，也不是预算封顶。
 4. 免费额度不是消费封顶。Budget alerts 只发提醒，真正控制成本要靠静态优先、缓存、限流、队列、配额和权限。
 
-## 免费额度最重要的 12 个数字
+## 免费额度第一屏速查
 
-如果你只想先判断一个普通项目能不能零成本起步，先记这 12 个数字：
+如果你只想先判断一个普通项目能不能零成本起步，先看这些数字。它们覆盖页面访问、动态 API、数据读写、对象存储、异步任务、实时状态、防刷、后台访问、日志、AI、搜索、图片、浏览器自动化和第三方脚本治理。
 
 | 额度 | 免费边界 | 普通项目怎么用 |
 | --- | --- | --- |
+| DNS records | 新 Free zone 200 records/zone；旧 Free zone 1,000 records/zone | 域名先接 Cloudflare，Web 记录代理，邮件和第三方验证记录保持 DNS-only。 |
+| Cache Rules | Free 有 10 条；Free/Pro/Business 最大可缓存文件 512 MB | 静态 hash 资源长缓存，HTML 谨慎缓存，大文件放 R2。 |
 | 静态资产请求 | 免费且不限量 | 文档站、官网、博客、前端资源都先静态化。 |
+| Pages | 500 builds/month、1 concurrent build、20,000 files/site、25 MiB/file | 纯静态站和 PR 预览够用；更复杂的 Worker 能力优先看 Static Assets。 |
 | Workers 请求 | 100,000 requests/day | 小 API、评论、Webhook、表单先在这里验证。 |
 | Workers CPU | 10 ms/invocation | 轻逻辑够用；SSR、AI 前处理和批任务要谨慎。 |
+| Workers Logs | 200,000 log events/day、保留 3 天 | 免费阶段够排查近期问题；生产长期日志再看 Paid。 |
 | D1 | 5M rows read/day、100k rows written/day、5 GB storage | 评论、表单、小后台和轻量 SaaS 先用它。 |
 | KV | 100k reads/day、1k writes/day、1 GB storage | 配置、缓存、低频索引，不做强一致数据库。 |
-| R2 Standard | 10 GB-month、1M Class A、10M Class B | 图片、附件、导出文件和下载对象先放 R2。 |
+| R2 Standard | 10 GB-month、1M Class A/month、10M Class B/month；egress 免费 | 图片、附件、导出文件和下载对象先放 R2。 |
 | Queues | 10,000 operations/day | 邮件、通知、导入和后处理先异步化。 |
 | Durable Objects | 100,000 requests/day、13,000 GB-s/day | 房间、会话、限流器和 WebSocket 状态小规模起步。 |
+| WAF / Rate Limiting | 5 条 Custom Rules、1 条 Rate Limiting Rule、Free Managed Ruleset | 登录、后台、API、评论、上传先有基础防护。 |
 | Turnstile | 20 widgets/account、10 hostnames/widget | 表单、登录、评论、注册都先加基础防刷。 |
 | Zero Trust | 50 users | 后台、预览环境、内网工具先加身份边界。 |
 | Workers AI | 10,000 Neurons/day | 先跑小模型、短输出和原型验证。 |
-| AI Search | 20,000 queries/month、500 crawled pages/day | 文档多起来后再试自然语言搜索。 |
+| AI Gateway | 核心功能免费；Workers Free 持久日志 100,000 logs total | 外部模型、Workers AI、缓存、限流和调用日志统一入口。 |
+| AI Search | 100 instances/account、20,000 queries/month、500 crawled pages/day | 文档多起来后再试自然语言搜索，Workers AI 和 AI Gateway 另算。 |
+| Images | 5,000 unique transformations/month | 原图放 R2，需要裁剪、格式转换、响应式图时再接 Images。 |
+| Browser Run | 10 minutes/day browser hours、3 concurrent browsers | 截图、PDF、动态网页抓取先小规模验证。 |
+| Zaraz | 1,000,000 free Zaraz Events/month | 第三方脚本多起来后再用它做治理。 |
 
-这 12 个数字覆盖了普通项目最常见的路径：页面访问、动态 API、数据库、缓存、文件、队列、实时状态、防刷、后台访问和 AI 试验。后面的大全表再处理 DNS、WAF、日志、图片、浏览器自动化、Zaraz、R2 Data Catalog 等更细的边界。
+这张表不是“放心随便用”的意思，而是告诉你免费阶段应该把每一类负载放到哪里：页面访问留在静态层，热点文件走 R2 + cache，关系数据进 D1，配置缓存进 KV，强一致状态进 Durable Objects，耗时任务进 Queues，写入口叠 WAF 和 Turnstile。
 
 ## 免费阶段能怎么玩
 

@@ -3,7 +3,7 @@ title: Cloudflare 文档地图
 description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅读优先级和整理进度。
 ---
 
-最后核对日期：2026-06-17。
+最后核对日期：2026-06-18。
 
 本页用于承接“把 Cloudflare 官方文档系统整理一遍”的长期工作。当前已经读取：
 
@@ -202,6 +202,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | KV 精读 | 已整理读多写少模型、免费/付费边界、最终一致、cacheTtl、API 习惯、批量操作和开源参考。 |
 | 已完成复核 | KV 二次精读 | 已把 [KV](/platform/kv/) 对齐 KV Pricing / Limits、How KV works、Read / Write / List / Delete API、KV bindings、Environments、Metrics / Analytics、Event subscriptions、Data security、FAQ、Wrangler KV commands 和 GitHub 源文件，补齐二次精读结论、上线前问题、计费证据、bulk read 计费、negative lookup、本地远端边界、环境隔离和观测路径。 |
 | 已完成首版 | R2 精读 | 已整理对象存储定位、免费/付费边界、Class A/B、一致性、Workers API、公开访问、签名 URL 和开源参考。 |
+| 已完成复核 | R2 二次精读 | 已把 [R2](/platform/r2/) 对齐 R2 Pricing / Limits、How R2 works、Consistency、Workers API、S3 compatibility、Presigned URLs、Public buckets、CORS、Storage classes、Object lifecycles、Bucket locks、Event notifications、Local Uploads、Data location、Metrics / Analytics 和 GitHub 源文件，补齐二次精读结论、上线前问题、计费证据、数据位置、上传性能、S3 兼容边界、Bucket locks 和排障路径。 |
 | 已完成复核 | 实战案例二次精读 | 已把 Worker API + D1、R2 签名上传从案例骨架补成资源准备、配置、最小代码、验证、风险和官方 / GitHub 来源。 |
 | 已完成首版 | Durable Objects 精读 | 已整理单实体强一致状态、免费/付费边界、SQLite storage、WebSocket Hibernation、Alarms、迁移和开源参考。 |
 | 已完成首版 | Queues 精读 | 已整理异步任务定位、免费/付费边界、at least once、批处理、重试、死信队列、Pull Consumer 和开源参考。 |
@@ -214,6 +215,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | DDoS Protection 精读 | 已整理 unmetered DDoS、HTTP DDoS、Network-layer DDoS、Under Attack、源站保护、误伤排查、计划边界和开源参考。 |
 | 已完成首版 | Billing 精读 | 已整理账单类型、免费额度入口、Workers Paid、usage-based billing、Billable Usage dashboard、Budget alerts、threshold billing、权限、发票和开源参考。 |
 | 已完成复核 | Billing 二次精读 | 已把 [Billing](/platform/billing/) 对齐 Cloudflare Billing、How billing works、Usage-based billing、How charges accrue、Billable Usage、Budget alerts、Optimize costs、Threshold billing、Billing permissions / policy、Invoices、Cancel / Change plan、Payment failure、Additional payment method auto-retry、Stablecoin payments、Workers Pricing 和 Static Assets billing，补齐账单生命周期、请求成本路径、付款失败 / 预授权、threshold 一次触发、取消降级清单和 GitHub 源文件索引。 |
+| 已完成复核 | 免费额度总览 | 已把 [首页](/) 和 [免费与付费边界](/platform/free-paid/) 对齐 Workers Pricing / Limits、DNS records quota、Cache Rules、Default cache behavior、Pages Limits、D1 Pricing、R2 Pricing、Turnstile Plans、DDoS Protection、WAF Custom Rules、Rate Limiting Rules、Workers AI、AI Gateway、AI Search、Images、Browser Run、Zaraz、Billable Usage 和 Budget alerts，补齐首页第一屏速查、免费额度大全和来源链接校正。 |
 | 已完成首版 | Rules 精读 | 已整理 Redirects、Transform、Configuration、Origin、Snippets、Cloud Connector、Custom Errors、Page Rules 迁移、执行顺序、Trace 排查、计划边界和开源参考。 |
 | 已完成复核 | Rules 二次精读 | 已把 [Rules](/platform/rules/) 对齐 Cloudflare Rules、Ruleset Engine、Page Rules migration、Trace、Troubleshooting、Snippets vs Workers、Origin Rules 和 Cache Rules，补齐规则分层、first match vs stackable、迁移清单、raw 字段避坑、Trace / Log Explorer 边界、排查保留路径和 IaC 真源。 |
 | 已完成首版 | Fundamentals 精读 | 已整理 Profile / Account / Zone、域名接入、Proxied / DNS-only、源站保护、成员权限、API Token、Ray ID、请求头、`/cdn-cgi/`、连接限制、端口和 Under Attack。 |
