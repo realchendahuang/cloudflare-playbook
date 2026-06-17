@@ -5,14 +5,13 @@ description: 使用 Workers、Hono 和 D1 构建轻量评论 API 的可复现实
 
 最后核对日期：2026-06-17。
 
-这个案例演示一个最小评论 API：Worker 提供 HTTP 接口，D1 保存关系型数据，Hono 负责路由和 JSON 响应。它适合表单提交、评论、轻量后台配置、小型 SaaS 的基础 CRUD。
+这个案例演示一个最小评论 API：Worker 提供接口，D1 保存关系型数据，Hono 负责路由和 JSON 响应。它适合表单提交、评论、轻量后台配置和小型 SaaS 的基础数据写入。
 
 ## 目标
 
-- 用 Wrangler 创建 D1 数据库并绑定到 Worker。
-- 用 SQL migration 管理表结构。
-- 用 D1 prepared statement 和 `bind()` 避免 SQL 注入。
-- 用本地和远程命令分别验证数据库和 API。
+- 创建 D1 数据库，并让 Worker 能读取它。
+- 用迁移文件管理表结构。
+- 用预编译 SQL 和 `bind()` 避免拼接用户输入。
 
 ## 架构
 
@@ -30,7 +29,7 @@ Worker API
 D1 comments-db
 ```
 
-这个路径的关键判断是：把“业务输入校验”和“SQL 参数绑定”放在 Worker，把持久化交给 D1。不要在前端拼 SQL，也不要在 Worker 里把用户输入直接拼进 SQL 字符串。
+关键判断：Worker 负责校验输入和调用 D1，D1 负责持久化。不要在前端拼 SQL，也不要把用户输入直接拼进 SQL 字符串。
 
 ## 资源准备
 
@@ -72,7 +71,7 @@ pnpm wrangler d1 create comments-db
 }
 ```
 
-`binding` 是代码里的变量名，所以这里会在 Worker 运行时得到 `c.env.DB`。
+`DB` 会在 Worker 代码里通过 `c.env.DB` 读取。
 
 ## 数据表
 
@@ -109,7 +108,7 @@ pnpm wrangler d1 migrations apply comments-db --local
 pnpm wrangler d1 migrations apply comments-db --remote
 ```
 
-官方 migration 文档建议把 migration 文件纳入版本控制。执行 migration 时可以使用 binding name 或 database name；为了减少误操作，生产项目更推荐使用不会轻易改名的 database name。
+迁移文件应该纳入版本控制。执行迁移时优先使用不会轻易改名的数据库名，减少误操作。
 
 ## Worker 代码
 
@@ -217,8 +216,8 @@ pnpm wrangler d1 execute comments-db --local \
 
 | 项目 | 判断 |
 | --- | --- |
-| 输入校验 | 所有来自 query、path、body、header 的值都先校验长度和格式。 |
-| SQL 写法 | 读写都用 prepared statement，不拼接用户输入。 |
+| 输入校验 | 所有来自查询参数、路径、请求正文和请求头的值都先校验长度和格式。 |
+| SQL 写法 | 读写都用预编译语句，不拼接用户输入。 |
 | 索引 | 高频筛选字段要建索引；这个案例按 `slug + created_at` 建索引。 |
 | 幂等 | 评论、表单、支付回调这类写入场景要考虑重复提交。 |
 | 滥用防护 | 公开写接口建议叠加 Turnstile、Rate Limiting 或登录态。 |

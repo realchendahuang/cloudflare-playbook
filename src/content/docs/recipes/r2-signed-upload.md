@@ -5,14 +5,13 @@ description: 使用 Workers、R2 和预签名 URL 设计安全文件上传路径
 
 最后核对日期：2026-06-17。
 
-这个案例整理两种常见上传路径：小文件先用 Worker 代理上传，大文件或高并发上传再切到 R2 S3 兼容 API 的预签名 URL。两种路径都不应该把 R2 密钥放到前端。
+这个案例整理两种上传路径：小文件先走 Worker 代理上传，大文件或高并发上传再切到 R2 预签名 URL。两种路径都不能把 R2 密钥放到前端。
 
 ## 目标
 
-- 用 Wrangler 创建 R2 bucket 并绑定到 Worker。
-- 区分 Worker 代理上传和 S3 presigned URL 直传。
-- 明确 CORS、权限、文件大小、对象 key 和下载授权的边界。
-- 给出可直接验证的 Worker 代理上传最小实现。
+- 创建 R2 bucket，并让 Worker 能读取它。
+- 区分 Worker 代理上传和预签名 URL 直传。
+- 明确跨域、权限、文件大小、对象路径和下载授权边界。
 
 ## 架构
 
@@ -23,7 +22,7 @@ description: 使用 Workers、R2 和预签名 URL 设计安全文件上传路径
   │ PUT /api/files/avatar.png
   ▼
 Worker
-  ├─ 校验对象 key、content-type、content-length
+  ├─ 校验对象路径、文件类型、文件大小
   ├─ env.UPLOADS.put()
   └─ env.UPLOADS.get()
   ▼
@@ -38,14 +37,14 @@ R2 private bucket
   ▼
 Worker / 后端
   ├─ 校验身份、文件名、类型、大小
-  ├─ 生成对象 key
+  ├─ 生成对象路径
   └─ 返回短期 uploadUrl
       │
       ▼
 客户端 ── PUT uploadUrl ──> R2 S3 endpoint
 ```
 
-方案 A 简单，权限逻辑都在 Worker；缺点是 Worker 在数据路径上。方案 B 更适合大文件直传；缺点是要管理 R2 API token、签名过期时间、CORS 和对象 key 策略。
+方案 A 简单，权限逻辑都在 Worker；缺点是 Worker 在数据路径上。方案 B 更适合大文件直传；缺点是要管理 R2 访问凭证、签名过期时间、跨域配置和对象路径策略。
 
 ## 资源准备
 
@@ -78,7 +77,7 @@ pnpm wrangler r2 bucket create uploads-demo
 }
 ```
 
-`UPLOADS` 会在 Worker 中变成 `c.env.UPLOADS`。
+`UPLOADS` 会在 Worker 代码里通过 `c.env.UPLOADS` 读取。
 
 ## 方案 A：Worker 代理上传
 
@@ -177,11 +176,11 @@ curl -X PUT http://localhost:8787/api/files/avatar.png \
 curl -i http://localhost:8787/api/files/avatar.png
 ```
 
-如果要在本地开发时直接操作远程 R2，可以在 R2 binding 中配置 remote binding；默认本地开发会使用本地存储。
+如果本地开发要直接操作远程 R2，可以配置远程资源；默认本地开发会使用本地存储。
 
 ## 方案 B：Presigned URL 直传
 
-R2 的 presigned URL 属于 S3 兼容 API 模式：服务端用 R2 Access Key ID 和 Secret Access Key 生成一个临时 URL，客户端拿这个 URL 执行一次 `GET`、`PUT`、`HEAD` 或 `DELETE`。过期时间范围是 1 秒到 7 天。
+R2 的预签名 URL 属于 S3 兼容 API 模式：服务端用 R2 访问凭证生成一个临时 URL，客户端拿这个 URL 执行一次 `GET`、`PUT`、`HEAD` 或 `DELETE`。过期时间范围是 1 秒到 7 天。
 
 适合使用 presigned URL 的场景：
 
@@ -191,11 +190,11 @@ R2 的 presigned URL 属于 S3 兼容 API 模式：服务端用 R2 Access Key ID
 
 不适合的做法：
 
-- 把 R2 Secret Access Key 下发给浏览器。
+- 把 R2 密钥下发给浏览器。
 - 生成长期不过期的上传 URL。
-- 让用户自己决定最终对象 key。
+- 让用户自己决定最终对象路径。
 
-服务端生成上传 URL 时，推荐用 Cloudflare 官方文档中的 AWS SDK v3 路径：
+服务端生成上传 URL 时，推荐按 Cloudflare 官方文档使用 AWS SDK v3：
 
 ```ts
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
@@ -223,7 +222,7 @@ const uploadUrl = await getSignedUrl(
 );
 ```
 
-浏览器直传到 presigned URL 时，R2 bucket 需要配置 CORS。只允许自己的前端域名、必要的方法和必要请求头：
+浏览器直传到预签名 URL 时，R2 bucket 需要配置 CORS。只允许自己的前端域名、必要的方法和必要请求头：
 
 ```json
 [
@@ -249,17 +248,17 @@ pnpm wrangler r2 bucket cors set uploads-demo --file cors.json
 | --- | --- |
 | 公开静态图片 | R2 public bucket 或自定义域名读，但不要开放匿名写。 |
 | 用户私有附件 | bucket 保持私有，下载走 Worker 授权。 |
-| 大文件上传 | 后端生成短期 presigned PUT URL，前端直传。 |
-| 文件元数据 | R2 保存文件本体，D1 保存 owner、key、size、content-type、状态。 |
+| 大文件上传 | 后端生成短期预签名 PUT URL，前端直传。 |
+| 文件元数据 | R2 保存文件本体，D1 保存归属、对象路径、大小、类型和状态。 |
 | 管理后台 | 优先用 Cloudflare Access 保护 Worker 或后台域名。 |
 
 ## 生产检查
 
 | 项目 | 判断 |
 | --- | --- |
-| 对象 key | 服务端生成或严格校验，避免用户覆盖他人文件。 |
+| 对象路径 | 服务端生成或严格校验，避免用户覆盖他人文件。 |
 | 文件类型 | `Content-Type` 只能做第一层限制；关键业务还要做内容识别或异步扫描。 |
-| 文件大小 | 代理上传要限制 `content-length`；大文件改用 multipart 或 presigned URL。 |
+| 文件大小 | 代理上传要限制文件大小；大文件改用分片上传或预签名 URL。 |
 | CORS | 只给直传或公开读配置，不要把 `AllowedOrigins` 随手设成 `*`。 |
 | 下载授权 | 私有文件下载走 Worker，不直接暴露 bucket。 |
 | 滥用防护 | 上传接口建议叠加登录态、Turnstile、Rate Limiting 和配额。 |
