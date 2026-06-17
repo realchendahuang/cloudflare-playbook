@@ -20,9 +20,9 @@ import { Aside, Card, CardGrid } from '@astrojs/starlight/components';
 
 最后核对日期：2026-06-18。
 
-Cloudflare 的价格、额度和计划边界会变化。本站数字以官方 pricing / limits 为最终依据；首页把普通项目最该先看的免费额度直接摊开，完整口径见 [免费额度大全](/platform/free-paid/)。
+Cloudflare 的价格、额度和计划边界会变化。本站数字以官方 pricing / limits 为最终依据；首页把起步项目最该先看的免费额度直接摊开，完整口径见 [免费额度大全](/platform/free-paid/)。
 
-这个 Playbook 不从产品名开始，而是从免费额度开始。普通开发者真正关心的是四件事：
+这个 Playbook 不从产品名开始，而是从免费额度开始。读者真正关心的是四件事：
 
 - 项目能不能先 0 元跑起来。
 - 0 元能跑到什么程度。
@@ -61,11 +61,27 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方 pr
 	</Card>
 </CardGrid>
 
+## All the fun：0 元先跑起来
+
+免费额度最值得玩的地方，是它能组合成真实项目，不只是单个产品的试用期。先把下面这些组合跑通，再决定要不要付费。
+
+| 项目 | 0 元起步组合 | 先盯哪个数字 |
+| --- | --- | --- |
+| 开源文档站 | Workers Static Assets / Pages + Pagefind + Web Analytics | 构建次数、文件数、静态资产是否误进 Worker。 |
+| 教程站轻社区 | Workers Static Assets + Twikoo Cloudflare + D1 + Turnstile | D1 写入、刷量、日志留存。 |
+| 个人官网 / 博客 | DNS + CDN + Universal SSL + Static Assets | 缓存命中、图片体积、构建次数。 |
+| 小 API / Webhook | Workers Free + D1 + KV + Turnstile | 100,000 requests/day、10 ms CPU、写入口滥用。 |
+| 表单 / 反馈箱 | Workers + D1 + Turnstile + Workers Logs | D1 rows written、Workers Logs 3 天留存。 |
+| 文件上传 / 下载 | R2 Standard + 签名上传 + CDN cache | 10 GB-month、Class A、Class B。 |
+| 小团队后台 | Access + Tunnel + Zero Trust Free | 50 users、后台入口、审计需求。 |
+| AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | Neurons、queries、Gateway logs。 |
+| 实时小应用 | Durable Objects + WebSocket hibernation + Queues | DO requests、GB-s、Queues operations。 |
+
 ## 首页免费额度速查
 
-先把这些数字记住，后面的选型会轻松很多。这不是宣传表，而是普通项目最容易决定架构的额度表。
+先把这些数字记住，后面的选型会轻松很多。这不是宣传表，而是起步项目最容易决定架构的额度表。
 
-| 关键数字 | 代表什么 | 普通项目怎么用 |
+| 关键数字 | 代表什么 | 起步项目怎么用 |
 | --- | --- | --- |
 | 静态资产请求免费且不限量 | Workers Static Assets / Pages 命中静态资源时不消耗 Worker 请求。 | 文档站、官网、博客、前端 bundle 先放静态层。 |
 | 100,000 requests/day | Workers Free 每日动态请求额度，UTC 0 点重置。 | 小 API、Webhook、评论、表单先用它验证。 |
@@ -124,21 +140,6 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方 pr
 | Zaraz | 1,000,000 events/month 免费。 | Zaraz Paid 另算，不由 Workers Paid 包掉。 | 第三方脚本事件量、同意管理、脚本治理。 |
 | Realtime SFU / TURN | Cloudflare 到客户端出站前 1,000 GB/month 免费；STUN 免费且不限量。 | 超出按 realtime 产品计费，不是 Workers Paid 包掉。 | 音视频出站流量、并发会议、TURN 用量。 |
 | Budget alerts | Pay-as-you-go 账号可按美元阈值邮件提醒 usage-based spend。 | 付费前必须开，但它不是封顶。 | 以为提醒会自动暂停服务。 |
-
-## All the fun：0 元项目组合
-
-Cloudflare 免费额度最有意思的地方，是它不是单个产品的试用期，而是一套能组合起来的早期产品底座。免费额度要按项目组合读，不要按产品名背。
-
-| 项目 | Free 起步组合 | 先盯哪个数字 |
-| --- | --- | --- |
-| 开源文档站 | Workers Static Assets / Pages + Pagefind + Web Analytics | 构建次数、文件数、静态资产是否误进 Worker。 |
-| 个人官网 / 博客 | DNS + CDN + Universal SSL + Static Assets | 缓存命中、图片体积、构建次数。 |
-| 小 API / Webhook | Workers Free + D1 + KV + Turnstile | requests/day、CPU、D1 写入、KV 写入。 |
-| 评论 / 反馈系统 | Workers + D1 + Turnstile + WAF Rate Limiting | D1 写入、刷量、日志留存。 |
-| 文件上传 / 下载 | R2 Standard + 签名上传 + CDN cache | storage、Class A、Class B。 |
-| 小团队后台 | Access + Tunnel + Zero Trust Free | 50 users、Access policy、审计需求。 |
-| AI 搜索试验 | Pagefind + AI Gateway + Workers AI / AI Search | Neurons、queries、Gateway logs。 |
-| 实时小应用 | Durable Objects + WebSocket hibernation + Queues | DO requests、GB-s、Queues operations。 |
 
 ## 什么时候付 5 USD/month
 
