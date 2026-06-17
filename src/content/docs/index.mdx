@@ -35,6 +35,27 @@ Cloudflare 覆盖了计算、存储、网络、安全、AI 和可观测性等基
 3. `$5/month` 的 Workers Paid 是动态能力和工程化能力的第一道付费台阶，不是 Cloudflare Pro，也不是预算封顶。
 4. 免费额度不是消费封顶。Budget alerts 只发提醒，真正控制成本要靠静态优先、缓存、限流、队列、配额和权限。
 
+## 免费额度最重要的 12 个数字
+
+如果你只想先判断一个普通项目能不能零成本起步，先记这 12 个数字：
+
+| 额度 | 免费边界 | 普通项目怎么用 |
+| --- | --- | --- |
+| 静态资产请求 | 免费且不限量 | 文档站、官网、博客、前端资源都先静态化。 |
+| Workers 请求 | 100,000 requests/day | 小 API、评论、Webhook、表单先在这里验证。 |
+| Workers CPU | 10 ms/invocation | 轻逻辑够用；SSR、AI 前处理和批任务要谨慎。 |
+| D1 | 5M rows read/day、100k rows written/day、5 GB storage | 评论、表单、小后台和轻量 SaaS 先用它。 |
+| KV | 100k reads/day、1k writes/day、1 GB storage | 配置、缓存、低频索引，不做强一致数据库。 |
+| R2 Standard | 10 GB-month、1M Class A、10M Class B | 图片、附件、导出文件和下载对象先放 R2。 |
+| Queues | 10,000 operations/day | 邮件、通知、导入和后处理先异步化。 |
+| Durable Objects | 100,000 requests/day、13,000 GB-s/day | 房间、会话、限流器和 WebSocket 状态小规模起步。 |
+| Turnstile | 20 widgets/account、10 hostnames/widget | 表单、登录、评论、注册都先加基础防刷。 |
+| Zero Trust | 50 users | 后台、预览环境、内网工具先加身份边界。 |
+| Workers AI | 10,000 Neurons/day | 先跑小模型、短输出和原型验证。 |
+| AI Search | 20,000 queries/month、500 crawled pages/day | 文档多起来后再试自然语言搜索。 |
+
+这 12 个数字覆盖了普通项目最常见的路径：页面访问、动态 API、数据库、缓存、文件、队列、实时状态、防刷、后台访问和 AI 试验。后面的大全表再处理 DNS、WAF、日志、图片、浏览器自动化、Zaraz、R2 Data Catalog 等更细的边界。
+
 ## 免费阶段能怎么玩
 
 这份 Playbook 的默认路线很简单：先让项目站在免费额度里跑通，再为明确的瓶颈付费。能静态就静态，能缓存就缓存，能异步就异步，真正需要计算、写入、AI 或浏览器自动化的请求再进入对应产品。

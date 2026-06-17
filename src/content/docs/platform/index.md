@@ -197,7 +197,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | [Durable Objects](/platform/durable-objects/) | Free 只支持 SQLite-backed DO；100,000 requests/day、13,000 GB-s/day，SQLite storage 读 5M rows/day、写 100k rows/day、5 GB total。 | Workers Paid 每月包含 1M requests、400,000 GB-s、25B rows read、50M rows written、5 GB-month SQL stored data，超出按量。 | 单对象强一致状态、房间、限流器、协作会话、WebSocket。 | 只把“必须强一致”的状态放进去；WebSocket 用 hibernation；不要拿它当全局大数据库。 |
 | [Queues](/platform/queues/) | Free 计划 10,000 operations/day；消息保留 24 小时。 | Paid 每月包含 1,000,000 operations，超出 $0.40/million；保留期默认 4 天，可配到 14 天。 | 异步任务、削峰、后台处理、跨 Worker 消息。 | 小消息成功处理通常是 write、read、delete 3 次操作；需要幂等和 DLQ。 |
 | [Realtime](/platform/realtime/) | RealtimeKit 当前 Beta 免费；Realtime SFU / TURN 共用 1,000 GB/month 免费出站额度。 | RealtimeKit GA 后按参与者分钟和导出分钟计费；SFU / TURN 超出后 `$0.05/GB` egress。 | 音视频、WebRTC、TURN relay；文本实时仍优先 Durable Objects。 | 会议/课堂优先 RealtimeKit；自定义 WebRTC 才看 SFU；只做 NAT 穿透才用 TURN。 |
-| [扩展计算与数据管道](/platform/extended-compute-data/) | Hyperdrive Free 100,000 database queries/day；Workflows Free 与 Workers request / CPU 共享；Pipelines pricing 页列出 Free included usage；Containers 仅 Workers Paid。 | Hyperdrive Paid unlimited；Workflows 按 Workers 请求、CPU 和 storage；Pipelines 按 transforms / sinks；Containers 按 memory、vCPU、disk、egress、Workers、DO 和 logs。 | 已有外部数据库、长流程、事件数据湖、容器运行时补位。 | 新项目先用 Workers / D1 / R2 / Queues；需求长出来后再上 Hyperdrive / Workflows / Pipelines / Containers。 |
+| [扩展计算与数据管道](/platform/extended-compute-data/) | Hyperdrive Free 100,000 database queries/day；Workflows Free 与 Workers request / CPU 共享；Pipelines pricing 页列出 Free included usage；R2 Data Catalog 有 catalog operations 和 compaction included usage；Containers 仅 Workers Paid。 | Hyperdrive Paid unlimited；Workflows 按 Workers 请求、CPU 和 storage；Pipelines 按 transforms / sinks；R2 Data Catalog 超出后按 catalog operations 和 compaction 计费；Containers 按 memory、vCPU、disk、egress、Workers、DO 和 logs。 | 已有外部数据库、长流程、事件数据湖、容器运行时补位。 | 新项目先用 Workers / D1 / R2 / Queues；需求长出来后再上 Hyperdrive / Workflows / Pipelines / Containers。 |
 | Cron Triggers | 随 Workers 使用。 | 主要受 Workers 计划和调用成本影响。 | 定时任务。 | 适合定时清理、同步、刷新索引；每次任务要可重入。 |
 | [平台化与多租户](/platform/platforms-saas/) | Cloudflare for SaaS 在 Free/Pro/Business 包含 100 custom hostnames；Workers for Platforms 为 `$25/month` 起；Dynamic Workers 需要 Workers Paid。 | custom hostnames、WFP scripts、Dynamic Workers created daily、请求和 CPU 都可能计费。 | 客户自定义域名、用户代码运行、AI 生成应用、低代码/插件平台。 | 普通 SaaS 先用 tenant_id + D1/R2/KV；客户要自定义域名再用 Cloudflare for SaaS；客户代码运行再用 WFP。 |
 | Containers | 见 [扩展计算与数据管道](/platform/extended-compute-data/)。 | Workers Paid 里包含一定 memory、vCPU 和 disk 用量，超出按量。 | 跑不能轻易改成 Worker 的服务。 | 先问能不能 Worker 化；容器是补位，不是默认选项。 |
@@ -330,6 +330,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Pipelines Pricing](https://developers.cloudflare.com/pipelines/platform/pricing/)
 - [Pipelines Limits](https://developers.cloudflare.com/pipelines/platform/limits/)
 - [R2 Data Catalog](https://developers.cloudflare.com/r2/data-catalog/)
+- [R2 Data Catalog pricing](https://developers.cloudflare.com/r2/data-catalog/platform/pricing/)
 - [Containers Pricing](https://developers.cloudflare.com/containers/pricing/)
 - [Containers Limits and Instance Types](https://developers.cloudflare.com/containers/platform-details/limits/)
 - [Artifacts](https://developers.cloudflare.com/artifacts/)
