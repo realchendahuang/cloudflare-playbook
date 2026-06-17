@@ -75,6 +75,9 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/workers-rs](https://github.com/cloudflare/workers-rs) | Rust / WebAssembly 写 Workers 的生态入口。 |
 | [cloudflare/workers-oauth-provider](https://github.com/cloudflare/workers-oauth-provider) | 在 Workers 上实现 OAuth 2.1 provider 的库，适合学习 API 鉴权边界。 |
 | [cloudflare/agents](https://github.com/cloudflare/agents) | Agents SDK、Code Mode 和构建 Cloudflare agent 的实现参考。 |
+| [cloudflare/templates/d1-template](https://github.com/cloudflare/templates/tree/main/d1-template) | Worker + D1 binding + migrations 的最小官方模板。 |
+| [cloudflare/templates/d1-starter-sessions-api-template](https://github.com/cloudflare/templates/tree/main/d1-starter-sessions-api-template) | D1 Sessions API 和 Read Replication 官方模板。 |
+| [cloudflare/d1-northwind](https://github.com/cloudflare/d1-northwind) | D1 示例应用，适合学习数据导入、查询和前端组合。 |
 | [twikoojs/twikoo](https://github.com/twikoojs/twikoo) | 本站评论系统的开源来源。 |
 
 ## 写作规范

@@ -81,7 +81,7 @@ Cloudflare 的 Codex setup 页给出的重点可以收敛成四件事：
 
 - 是否查过官方 docs 或 `llms.txt`，尤其是价格、限制、配置字段。
 - 是否沿用现有 `wrangler.jsonc`、`package.json`、目录结构和部署方式。
-- 是否避免把密钥、内部需求、临时说明写进前端文案。
+- 是否避免把密钥、实现细节、临时说明写进前端文案。
 - 是否把静态资产和动态 Worker 请求分开。
 - 是否运行 `pnpm build`、必要时运行 `pnpm typecheck`。
 - 是否部署到 Cloudflare 后验证线上 URL。

@@ -28,6 +28,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | Workers | [src/content/docs/platform/workers.md](src/content/docs/platform/workers.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/workers/) |
 | Pages | [src/content/docs/platform/pages.md](src/content/docs/platform/pages.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/pages/) |
 | 数据产品 | [src/content/docs/platform/data.md](src/content/docs/platform/data.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/data/) |
+| D1 | [src/content/docs/platform/d1.md](src/content/docs/platform/d1.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/d1/) |
 | AI 产品 | [src/content/docs/platform/ai.md](src/content/docs/platform/ai.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ai/) |
 | 安全与网络 | [src/content/docs/platform/security-networking.md](src/content/docs/platform/security-networking.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/security-networking/) |
 | 免费与付费边界 | [src/content/docs/platform/free-paid.md](src/content/docs/platform/free-paid.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/free-paid/) |

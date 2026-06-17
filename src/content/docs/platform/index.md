@@ -61,7 +61,7 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 
 | 产品 | 免费边界 | 付费入口 | 作用 | 最佳实践 |
 | --- | --- | --- | --- | --- |
-| D1 | Free 计划读 5,000,000 rows/day、写 100,000 rows/day、总存储 5 GB。 | Paid 每月前 25B rows read、50M rows written 和 5 GB 包含，超出按量。 | Serverless SQL，适合评论、文章元数据、配置后台、小型 SaaS。 | 常查字段建索引；不要把高频计数和超大分析表硬塞进去。 |
+| [D1](/platform/d1/) | Free 计划读 5,000,000 rows/day、写 100,000 rows/day、总存储 5 GB。 | Paid 每月前 25B rows read、50M rows written 和 5 GB 包含，超出按量。 | Serverless SQL，适合评论、文章元数据、配置后台、小型 SaaS。 | 常查字段建索引；不要把高频计数和超大分析表硬塞进去。 |
 | KV | Free 计划读 100,000/day、写 1,000/day、删 1,000/day、列 1,000/day、存储 1 GB。 | Paid 每月包含更高读写和 1 GB 存储，超出按 key/容量计费。 | 全局 key-value，适合配置、缓存、低频更新索引。 | 读多写少才舒服；不要依赖强一致，不要把它当 SQL。 |
 | R2 | 标准存储 10 GB-month、Class A 1M/月、Class B 10M/月；无 egress bandwidth charge。 | 标准存储 $0.015/GB-month，Class A/B 按百万操作计费；低频访问存储另计。 | S3 兼容对象存储，放图片、附件、备份、导出文件。 | 大文件和媒体不要塞进 Git 或 Pages bundle；公开下载注意操作次数。 |
 | Hyperdrive | Workers Free/Paid 都包含一定使用。 | 访问外部数据库量大时看 Workers Paid/Hyperdrive 额度。 | 给外部 Postgres/MySQL 做连接池和加速。 | 已有数据库时用它；新小项目优先 D1，少维护一套外部 DB。 |
