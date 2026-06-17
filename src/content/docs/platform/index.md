@@ -67,6 +67,11 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │    ├─ Resource Tagging / Tenant / Version Management
   │    └─ Privacy Gateway / Privacy Proxy / Agent Memory
   │
+  ├─ 开发者与网络补充专项
+  │    ├─ Artifacts / Sandbox SDK / R2 SQL / Flagship
+  │    ├─ Email Service / Network / Network Flow
+  │    └─ Agent Lee / Style Guide
+  │
   └─ 观测与安全
        ├─ Web Analytics / Logs / GraphQL Analytics / Notifications
        ├─ Turnstile / WAF / Bot / API Shield
@@ -98,6 +103,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | [D1](/platform/d1/) | Free 计划读 5,000,000 rows/day、写 100,000 rows/day、总存储 5 GB。 | Paid 每月前 25B rows read、50M rows written 和 5 GB 包含，超出按量。 | Serverless SQL，适合评论、文章元数据、配置后台、小型 SaaS。 | 常查字段建索引；不要把高频计数和超大分析表硬塞进去。 |
 | [KV](/platform/kv/) | Free 计划读 100,000/day、写 1,000/day、删 1,000/day、列 1,000/day、存储 1 GB。 | Paid 每月包含 10M reads、1M writes/deletes/lists 和 1 GB 存储，超出按 key/容量计费。 | 全局 key-value，适合配置、缓存、低频更新索引。 | 读多写少才舒服；同一个 key 仍然只有 1 次/秒写入，不要依赖强一致。 |
 | [R2](/platform/r2/) | Standard storage 10 GB-month/month、Class A 1M/month、Class B 10M/month；无 egress bandwidth charge。 | Standard storage $0.015/GB-month，Class A $4.50/million，Class B $0.36/million；Infrequent Access 不包含免费额度。 | S3 兼容对象存储，放图片、附件、备份、导出文件。 | 大文件和媒体不要塞进 Git 或 Pages bundle；公开下载注意 Class B 次数。 |
+| [R2 SQL](/platform/developer-network-additions/) | Free 包含 1 GB/month data scanned。 | Paid 包含 10 GB/month data scanned，超出 `$0.0025/GB`；R2 storage / operations 和 R2 Data Catalog 费用另算。 | 查询 R2 Data Catalog 里的 Iceberg / Parquet 数据。 | 用 time filters、明确列名、`LIMIT`、compaction 和 `EXPLAIN` 控制扫描量；不要当事务数据库。 |
 | Hyperdrive | 见 [扩展计算与数据管道](/platform/extended-compute-data/)；Free 为 100,000 database queries/day。 | Workers Paid 为 unlimited。 | 给外部 Postgres/MySQL 做连接池和加速。 | 已有数据库时用它；新小项目优先 D1，少维护一套外部 DB。 |
 | Vectorize | 30M queried vector dimensions/month、5M stored vector dimensions。 | Paid 包含 50M queried vector dimensions/month、10M stored vector dimensions，超出按 dimensions 计费。 | 向量数据库，做 RAG、语义搜索、相似推荐。 | 文档站早期先 Pagefind；需要自定义召回、metadata、namespace 和 rerank 时再上。 |
 | Analytics Engine | Free 计划 100,000 data points/day、10,000 read queries/day；官方说明当前价格信息用于预估。 | Paid 每月包含更高写入和查询额度，之后按量。 | 高基数事件、指标和自定义分析。 | 用来记录产品事件、Worker 业务指标；不要替代事务数据库。 |
@@ -126,6 +132,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | [公共网络与专项服务](/platform/public-network-specialties/) | 1.1.1.1 available on all plans；Radar API free；NTP public service；Google tag gateway free。 | Web3 是 add-on / usage-based；China Network 是 Enterprise separate subscription；部分 Radar / URL Scanner 能力受 token、可见性和企业功能限制。 | 终端 DNS、互联网趋势、时间同步、Web3 gateway、中国大陆网络和广告标签治理。 | 把它们当专项能力，不要放进默认架构；只有对应场景明确时再启用。 |
 | [治理、合规与学习路径](/platform/governance-compliance-learning/) | DMARC Management、Registrar、Client-side security 基础入口 available on all plans；Learning Paths / Use cases 是官方免费资料。 | Data Localization Suite 是 Enterprise-only paid add-on；Client-side security 高级检测和 blocking 需要 Advanced；Support 入口和 SLA 跟随计划。 | 数据驻留、前端供应链、邮件域名防伪、域名注册、支持排障和官方学习路线。 | 普通项目先做好 DNS / 邮件记录 / 排障材料；合规和高级前端安全按真实风险升级。 |
 | [低频协议与平台工具](/platform/edge-protocols-utilities/) | NEL available to all plan types；Resource Tagging available on all plans 且 public beta；Randomness Beacon 是公开 drand 文档入口；Agent Memory private beta 当前暂不计费。 | Version Management Enterprise-only；Privacy Gateway Enterprise closed beta；Privacy Proxy Enterprise managed service；Tenant API 面向 Channel / Alliance partners；MoQ 是低延迟媒体协议专项能力。 | 网络错误报告、公开随机数、资源标签、partner provisioning、企业配置灰度、隐私代理、MoQ 和 Agent 持久记忆。 | 普通项目默认不用；资源变多先看 Resource Tagging，做 Agent 再看 Agent Memory，企业配置和隐私代理按合同边界评估。 |
+| [开发者与网络补充专项](/platform/developer-network-additions/) | Agent Lee 当前 Free plan beta；Network settings available on all plans；Network Flow free version 对所有账号开放；Email Routing Free/Paid 都可用；R2 SQL Free 包含 1 GB/month data scanned。 | Artifacts Workers Free 不可用、Workers Paid 起；Email Sending 任意收件人需要 Workers Paid；Sandbox SDK 生产部署需要 Workers Paid / Enterprise；R2 SQL Paid 包含 10 GB/month data scanned；True-Client-IP Header Enterprise-only。 | Agent 工作区、事务邮件、feature flags、网络设置、网络流量观测、R2 数据湖查询、代码沙箱和文档工程规范。 | 先用 Workers/D1/R2/Queues/Static Assets 跑项目；只有出现邮件、沙箱、数据湖、灰度发布或网络流量观测需求时再启用这些专项能力。 |
 | [SSL/TLS](/platform/ssl-tls/) | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 等基础能力在 Free 可用。 | Advanced Certificate Manager、Custom Certificates、Keyless SSL、Enterprise-only 模式按需求升级。 | 给站点建立完整 HTTPS 链路。 | 默认目标是 Full (strict)；源站也要有有效证书，别停在 Flexible。 |
 | [DDoS Protection](/platform/ddos/) | 官方说明所有计划都有 standard, unmetered DDoS protection，HTTP DDoS 和 Network-layer DDoS 也覆盖所有计划。 | Enterprise / Advanced DDoS 提供更多 override、Log action、Adaptive / Advanced DDoS、告警过滤和支持。 | 自动检测和缓解 L3/L4 与 L7 DDoS。 | Web 入口先保持 Proxied，隐藏源站 IP；被打时再结合 WAF、Rate Limiting、Under Attack 和日志排查。 |
 | [Rules](/platform/rules/) | Rules available on all plans；Free 有 10 条常见现代规则、15 条 Bulk Redirect Rules、10,000 条 Bulk Redirect URL。 | Pro/Business/Enterprise 提升多数现代规则到 25/50/300；Snippets 和 Custom Errors 从 paid plans 起。 | 管理跳转、重写、回源、配置、压缩、错误页和轻量边缘逻辑。 | 新项目优先现代 Rules，不再新写 Page Rules；用 Trace 验证执行顺序。 |
@@ -170,6 +177,11 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | 实时音视频 | RealtimeKit；高自定义 WebRTC 再用 Realtime SFU + TURN |
 | 后台任务 | Workers + Queues + Cron Triggers + D1/R2 |
 | 长流程和数据管道 | Workflows + R2 / D1；Pipelines + R2 Data Catalog |
+| R2 数据湖查询 | Pipelines + R2 Data Catalog + R2 SQL |
+| Agent / 代码沙箱工作区 | Sandbox SDK + Artifacts + R2 + Durable Objects |
+| 事务邮件和入站工单 | Email Service + Workers + Queues + D1 |
+| Feature flag 灰度发布 | Flagship + Workers binding + OpenFeature SDK |
+| 网络流量观测 | Network Flow + NetFlow / sFlow / IPFIX + GraphQL Analytics |
 | 管理后台 | Workers Static Assets + Access/Tunnel + D1 |
 | 多源站高可用 | [Load Balancing + Health Checks](/platform/traffic-routing/) + WAF / Cache |
 | 活动峰值 / 抢购页 | [Waiting Room](/platform/origin-surge/) + WAF / Bot / Cache |
@@ -214,6 +226,24 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [R2 Data Catalog](https://developers.cloudflare.com/r2/data-catalog/)
 - [Containers Pricing](https://developers.cloudflare.com/containers/pricing/)
 - [Containers Limits and Instance Types](https://developers.cloudflare.com/containers/platform-details/limits/)
+- [Artifacts](https://developers.cloudflare.com/artifacts/)
+- [Artifacts Pricing](https://developers.cloudflare.com/artifacts/platform/pricing/)
+- [Artifacts Limits](https://developers.cloudflare.com/artifacts/platform/limits/)
+- [R2 SQL](https://developers.cloudflare.com/r2-sql/)
+- [R2 SQL Pricing](https://developers.cloudflare.com/r2-sql/platform/pricing/)
+- [R2 SQL limitations and best practices](https://developers.cloudflare.com/r2-sql/reference/limitations-best-practices/)
+- [Sandbox SDK](https://developers.cloudflare.com/sandbox/)
+- [Sandbox SDK Pricing](https://developers.cloudflare.com/sandbox/platform/pricing/)
+- [Sandbox SDK Limits](https://developers.cloudflare.com/sandbox/platform/limits/)
+- [Email Service](https://developers.cloudflare.com/email-service/)
+- [Email Service Pricing](https://developers.cloudflare.com/email-service/platform/pricing/)
+- [Email Service Limits](https://developers.cloudflare.com/email-service/platform/limits/)
+- [Flagship](https://developers.cloudflare.com/flagship/)
+- [Flagship Limits](https://developers.cloudflare.com/flagship/reference/limits/)
+- [Agent Lee](https://developers.cloudflare.com/agent-lee/)
+- [Network settings](https://developers.cloudflare.com/network/)
+- [Network Flow free version](https://developers.cloudflare.com/network-flow/network-flow-free/)
+- [Cloudflare Style Guide](https://developers.cloudflare.com/style-guide/)
 - [Cloudflare Realtime](https://developers.cloudflare.com/realtime/)
 - [RealtimeKit Pricing](https://developers.cloudflare.com/realtime/realtimekit/pricing/)
 - [Realtime SFU Pricing](https://developers.cloudflare.com/realtime/sfu/pricing/)

@@ -106,7 +106,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Cloudflare Fundamentals](https://developers.cloudflare.com/fundamentals/llms.txt) | 126 | 必读，账号、zone、proxy、规则等基础概念。 |
 | [Log Explorer](https://developers.cloudflare.com/log-explorer/llms.txt) | 9 | Dashboard 日志查询。 |
 | [Logs](https://developers.cloudflare.com/logs/llms.txt) | 97 | Logpush、日志字段和外部日志目的地。 |
-| [Network](https://developers.cloudflare.com/network/llms.txt) | 9 | 网络设置。 |
+| [Network](https://developers.cloudflare.com/network/llms.txt) | 9 | 已完成首版专题；gRPC、IP Geolocation、IPv6、WebSockets、Pseudo IPv4、True-Client-IP、Onion Routing 和计划边界。 |
 | [Notifications](https://developers.cloudflare.com/notifications/llms.txt) | 10 | 告警通知。 |
 | [Pulumi](https://developers.cloudflare.com/pulumi/llms.txt) | 7 | Pulumi 管理 Cloudflare。 |
 | [Randomness Beacon](https://developers.cloudflare.com/randomness-beacon/llms.txt) | 9 | 已完成首版专题；drand 公共随机数、公开可验证随机性、适用场景和 GitHub 开源参考。 |
@@ -126,21 +126,21 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
-| [Agent Lee](https://developers.cloudflare.com/agent-lee/llms.txt) | 1 | Dashboard 内置 AI 助手。 |
+| [Agent Lee](https://developers.cloudflare.com/agent-lee/llms.txt) | 1 | 已完成首版专题；Free plan beta、Dashboard AI co-pilot、account-aware answers、写操作审批和网络诊断。 |
 | [Agent Memory](https://developers.cloudflare.com/agent-memory/llms.txt) | 8 | 已完成首版专题；private beta、暂不计费、30 天通知、ingest / recall limits 和 Agent 记忆边界。 |
 | [Agents](https://developers.cloudflare.com/agents/llms.txt) | 92 | 构建有状态 AI Agent、MCP、实时交互。 |
 | [AI](https://developers.cloudflare.com/ai/llms.txt) | 13 | Cloudflare AI 总入口。 |
 | [AI Gateway](https://developers.cloudflare.com/ai-gateway/llms.txt) | 83 | AI 请求观测、缓存、限流、fallback；AI 项目优先。 |
 | [AI Search](https://developers.cloudflare.com/ai-search/llms.txt) | 51 | 托管 RAG 和自然语言搜索。 |
-| [Artifacts](https://developers.cloudflare.com/artifacts/llms.txt) | 24 | 文件树、构建产物、Agent 工作区。 |
+| [Artifacts](https://developers.cloudflare.com/artifacts/llms.txt) | 24 | 已完成首版专题；Workers Paid repo artifacts、Git protocol、ArtifactFS、pricing、limits、namespaces/repos。 |
 | [Browser Run](https://developers.cloudflare.com/browser-run/llms.txt) | 46 | 截图、PDF、抓取、浏览器自动化。 |
 | [Cloudflare for Platforms](https://developers.cloudflare.com/cloudflare-for-platforms/llms.txt) | 87 | 多租户平台、Cloudflare for SaaS、Workers for Platforms、custom hostnames 和 dispatch namespace。 |
 | [Containers](https://developers.cloudflare.com/containers/llms.txt) | 28 | Workers Paid 的容器运行时补位，适合完整文件系统、自定义 runtime、并行 CPU 和现有镜像。 |
 | [D1](https://developers.cloudflare.com/d1/llms.txt) | 52 | 独立开发者必读，Serverless SQL。 |
 | [Durable Objects](https://developers.cloudflare.com/durable-objects/llms.txt) | 52 | 强一致对象、房间、WebSocket、限流器。 |
 | [Dynamic Workers](https://developers.cloudflare.com/dynamic-workers/llms.txt) | 15 | 运行时加载用户代码、AI code mode、sandbox、bindings、egress control 和按量计费。 |
-| [Email Service](https://developers.cloudflare.com/email-service/llms.txt) | 38 | 事务邮件发送和邮件路由。 |
-| [Flagship](https://developers.cloudflare.com/flagship/llms.txt) | 15 | 边缘 feature flags。 |
+| [Email Service](https://developers.cloudflare.com/email-service/llms.txt) | 38 | 已完成首版专题；Email Routing Free/Paid、Email Sending Workers Paid、3,000 outbound/month、inbound unlimited、limits。 |
+| [Flagship](https://developers.cloudflare.com/flagship/llms.txt) | 15 | 已完成首版专题；edge feature flags、Workers binding、OpenFeature SDK、local evaluation、limits。 |
 | [Hyperdrive](https://developers.cloudflare.com/hyperdrive/llms.txt) | 55 | 连接已有 Postgres/MySQL，提供连接池和查询缓存。 |
 | [Cloudflare Images](https://developers.cloudflare.com/images/llms.txt) | 56 | 图片存储、变换和分发。 |
 | [KV](https://developers.cloudflare.com/kv/llms.txt) | 29 | 读多写少的全局 key-value。 |
@@ -151,9 +151,9 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Privacy Proxy](https://developers.cloudflare.com/privacy-proxy/llms.txt) | 12 | 已完成首版专题；MASQUE forward proxy、Enterprise managed service、single-hop / double-hop 和隐私分离模型。 |
 | [Queues](https://developers.cloudflare.com/queues/llms.txt) | 38 | 异步任务和削峰。 |
 | [R2](https://developers.cloudflare.com/r2/llms.txt) | 97 | 对象存储和 S3 兼容，独立开发者必读。 |
-| [R2 SQL](https://developers.cloudflare.com/r2-sql/llms.txt) | 15 | 查询 R2 Data Catalog 数据。 |
+| [R2 SQL](https://developers.cloudflare.com/r2-sql/llms.txt) | 15 | 已完成首版专题；R2 Data Catalog SQL engine、open beta、1 GB / 10 GB data scanned、`$0.0025/GB`、read-only limitations。 |
 | [Realtime](https://developers.cloudflare.com/realtime/llms.txt) | 712 | 已完成首版专题；RealtimeKit、SFU、TURN 和 Durable Objects WebSocket 的边界、价格与落地顺序。 |
-| [Sandbox SDK](https://developers.cloudflare.com/sandbox/llms.txt) | 62 | 安全代码执行环境。 |
+| [Sandbox SDK](https://developers.cloudflare.com/sandbox/llms.txt) | 62 | 已完成首版专题；Workers + Containers secure code execution、pricing inherits Containers、subrequest limits、RPC transport、GitHub SDK。 |
 | [Stream](https://developers.cloudflare.com/stream/llms.txt) | 64 | 视频存储、编码、播放。 |
 | [Vectorize](https://developers.cloudflare.com/vectorize/llms.txt) | 21 | 向量数据库和语义检索。 |
 | [Workers](https://developers.cloudflare.com/workers/llms.txt) | 415 | 必读，Cloudflare 开发者平台核心。 |
@@ -175,7 +175,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [BYOIP](https://developers.cloudflare.com/byoip/llms.txt) | 20 | 已完成首版专题；自带 IP 段、address maps、service bindings、RPKI 和 route leak detection。 |
 | [Magic Transit](https://developers.cloudflare.com/magic-transit/llms.txt) | 44 | 已完成首版专题；企业 IP 网络 L3/L4 DDoS、防护、tunnels、traffic steering 和 Network Firewall。 |
 | [Network Error Logging](https://developers.cloudflare.com/network-error-logging/llms.txt) | 4 | 已完成首版专题；all plan types、浏览器网络失败报告、last-mile 排障、隐私和 opt-out 边界。 |
-| [Network Flow](https://developers.cloudflare.com/network-flow/llms.txt) | 21 | 网络流量分析。 |
+| [Network Flow](https://developers.cloudflare.com/network-flow/llms.txt) | 21 | 已完成首版专题；NetFlow/sFlow/IPFIX、free version all accounts、10 routers、25 rules、250 flows/sec、threshold practice。 |
 | [Network Interconnect](https://developers.cloudflare.com/network-interconnect/llms.txt) | 5 | 已完成首版专题；Direct / Partner / Cloud Interconnect、dataplane、MTU、维护和冗余。 |
 
 ## Other
@@ -186,7 +186,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Docs for agents](https://developers.cloudflare.com/docs-for-agents/llms.txt) | 1 | AI agent 如何读取 Cloudflare 文档。 |
 | [Migration Guides](https://developers.cloudflare.com/migration-guides/llms.txt) | 1 | 从其他平台迁移。 |
 | [Security dashboard](https://developers.cloudflare.com/security/llms.txt) | 10 | Security dashboard 新 UI。 |
-| [Style Guide](https://developers.cloudflare.com/style-guide/llms.txt) | 164 | 贡献 Cloudflare docs 的写作规范。 |
+| [Style Guide](https://developers.cloudflare.com/style-guide/llms.txt) | 164 | 已完成首版专题；Cloudflare docs writing/style IA、components、frontmatter、AI consumability 和 docs site architecture。 |
 | [Use cases](https://developers.cloudflare.com/use-cases/llms.txt) | 59 | 已完成首版专题；官方跨产品 solution guides，可反推真实项目组合。 |
 
 ## 整理进度
@@ -226,8 +226,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 公共网络与专项服务精读 | 已整理 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway 的免费边界、付费边界、使用场景和 GitHub 开源参考。 |
 | 已完成首版 | 治理、合规与学习路径精读 | 已整理 Data Localization Suite、Client-side security、DMARC Management、Registrar、Support、Learning Paths、Use cases 的计划边界、合规边界、排障清单和 GitHub 开源参考。 |
 | 已完成首版 | 低频协议与平台工具精读 | 已整理 Network Error Logging、Randomness Beacon、Resource Tagging、Tenant、Version Management、Privacy Gateway、Privacy Proxy、MoQ、Agent Memory 的计划边界、普通项目取舍和 GitHub 开源参考。 |
-| 进行中 | 后续低频专项精读 | Agent Lee、Artifacts、Email Service、Flagship、Network、Network Flow、R2 SQL、Sandbox SDK、Style Guide 等。 |
-| 待开始 | 后续专题 | 更多迁移案例、参考架构和真实项目拆解。 |
+| 已完成首版 | 开发者与网络补充专项精读 | 已整理 Agent Lee、Artifacts、Email Service、Flagship、Network、Network Flow、R2 SQL、Sandbox SDK、Style Guide 的免费/付费边界、Workers Paid 关系和 GitHub 开源参考。 |
+| 进行中 | 单产品复核与案例深化 | 后续继续补真实项目拆解、参考架构和单产品深水区。 |
 
 ## 整理规则
 
@@ -316,5 +316,14 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Privacy Proxy llms.txt](https://developers.cloudflare.com/privacy-proxy/llms.txt)
 - [MoQ llms.txt](https://developers.cloudflare.com/moq/llms.txt)
 - [Agent Memory llms.txt](https://developers.cloudflare.com/agent-memory/llms.txt)
+- [Agent Lee llms.txt](https://developers.cloudflare.com/agent-lee/llms.txt)
+- [Artifacts llms.txt](https://developers.cloudflare.com/artifacts/llms.txt)
+- [Email Service llms.txt](https://developers.cloudflare.com/email-service/llms.txt)
+- [Flagship llms.txt](https://developers.cloudflare.com/flagship/llms.txt)
+- [Network llms.txt](https://developers.cloudflare.com/network/llms.txt)
+- [Network Flow llms.txt](https://developers.cloudflare.com/network-flow/llms.txt)
+- [R2 SQL llms.txt](https://developers.cloudflare.com/r2-sql/llms.txt)
+- [Sandbox SDK llms.txt](https://developers.cloudflare.com/sandbox/llms.txt)
+- [Cloudflare Style Guide llms.txt](https://developers.cloudflare.com/style-guide/llms.txt)
 - [Docs for agents](https://developers.cloudflare.com/docs-for-agents/)
 - [Cloudflare Docs for Agents llms.txt](https://developers.cloudflare.com/docs-for-agents/llms.txt)

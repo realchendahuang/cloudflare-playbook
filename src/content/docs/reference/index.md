@@ -472,6 +472,40 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Agent Memory](https://developers.cloudflare.com/agent-memory/)
 - [Agent Memory pricing](https://developers.cloudflare.com/agent-memory/platform/pricing/)
 - [Agent Memory limits](https://developers.cloudflare.com/agent-memory/platform/limits/)
+- [Agent Lee](https://developers.cloudflare.com/agent-lee/)
+- [Agent Lee llms.txt](https://developers.cloudflare.com/agent-lee/llms.txt)
+- [Artifacts](https://developers.cloudflare.com/artifacts/)
+- [Artifacts llms.txt](https://developers.cloudflare.com/artifacts/llms.txt)
+- [Artifacts Pricing](https://developers.cloudflare.com/artifacts/platform/pricing/)
+- [Artifacts Limits](https://developers.cloudflare.com/artifacts/platform/limits/)
+- [How Artifacts works](https://developers.cloudflare.com/artifacts/concepts/how-artifacts-works/)
+- [Email Service](https://developers.cloudflare.com/email-service/)
+- [Email Service llms.txt](https://developers.cloudflare.com/email-service/llms.txt)
+- [Email Service Pricing](https://developers.cloudflare.com/email-service/platform/pricing/)
+- [Email Service Limits](https://developers.cloudflare.com/email-service/platform/limits/)
+- [Flagship](https://developers.cloudflare.com/flagship/)
+- [Flagship llms.txt](https://developers.cloudflare.com/flagship/llms.txt)
+- [Flagship Concepts](https://developers.cloudflare.com/flagship/concepts/)
+- [Flagship Limits](https://developers.cloudflare.com/flagship/reference/limits/)
+- [Network settings](https://developers.cloudflare.com/network/)
+- [Network llms.txt](https://developers.cloudflare.com/network/llms.txt)
+- [gRPC connections](https://developers.cloudflare.com/network/grpc-connections/)
+- [True-Client-IP Header](https://developers.cloudflare.com/network/true-client-ip-header/)
+- [Network Flow](https://developers.cloudflare.com/network-flow/)
+- [Network Flow llms.txt](https://developers.cloudflare.com/network-flow/llms.txt)
+- [Network Flow free version](https://developers.cloudflare.com/network-flow/network-flow-free/)
+- [R2 SQL](https://developers.cloudflare.com/r2-sql/)
+- [R2 SQL llms.txt](https://developers.cloudflare.com/r2-sql/llms.txt)
+- [R2 SQL Pricing](https://developers.cloudflare.com/r2-sql/platform/pricing/)
+- [R2 SQL limitations and best practices](https://developers.cloudflare.com/r2-sql/reference/limitations-best-practices/)
+- [Sandbox SDK](https://developers.cloudflare.com/sandbox/)
+- [Sandbox SDK llms.txt](https://developers.cloudflare.com/sandbox/llms.txt)
+- [Sandbox SDK Pricing](https://developers.cloudflare.com/sandbox/platform/pricing/)
+- [Sandbox SDK Limits](https://developers.cloudflare.com/sandbox/platform/limits/)
+- [Claude Managed Agents on Sandbox](https://developers.cloudflare.com/sandbox/tutorials/claude-managed-agents/)
+- [Cloudflare Style Guide](https://developers.cloudflare.com/style-guide/)
+- [Cloudflare Style Guide llms.txt](https://developers.cloudflare.com/style-guide/llms.txt)
+- [Cloudflare docs site stack](https://developers.cloudflare.com/style-guide/how-we-docs/our-site/)
 - [Cloudflare Free Plan](https://www.cloudflare.com/plans/free/)
 - [Starlight Site Search](https://starlight.astro.build/guides/site-search/)
 
@@ -583,6 +617,20 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/quiche](https://github.com/cloudflare/quiche) | Cloudflare QUIC / HTTP3 实现，适合理解 MoQ 所依赖的底层协议生态。 |
 | [cloudflare/cloudflare-docs Agent Memory source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/agent-memory) | 官方 Agent Memory 源文件，适合追踪 private beta、Workers API、HTTP API、pricing 和 limits。 |
 | [cloudflare/agents](https://github.com/cloudflare/agents) | Cloudflare Agents SDK 源码，适合判断 Agent 应用是否真的需要托管记忆。 |
+| [cloudflare/cloudflare-docs Agent Lee source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/agent-lee) | 官方 Agent Lee 文档源文件，适合追踪 Dashboard AI co-pilot、Free plan beta 和写操作审批边界。 |
+| [cloudflare/cloudflare-docs Artifacts source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/artifacts) | 官方 Artifacts 文档源文件，适合追踪 Git protocol、Workers binding、pricing、limits 和 ArtifactFS。 |
+| [cloudflare/artifact-fs](https://github.com/cloudflare/artifact-fs) | Cloudflare 官方 ArtifactFS，适合看大 repo 快速挂载、按需 hydration 和 Sandbox / Agent 工作区。 |
+| [cloudflare/cloudflare-docs Email Service source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/email-service) | 官方 Email Service 文档源文件，适合追踪 Email Routing、Email Sending、pricing、limits 和 DNS 配置。 |
+| [cloudflare/agents email guide](https://github.com/cloudflare/agents/blob/main/docs/email.md) | Agents SDK 邮件指南，适合看 `send_email` binding、入站邮件路由、回复签名和 Agent 邮件组合。 |
+| [cloudflare/agentic-inbox](https://github.com/cloudflare/agentic-inbox) | 自托管在 Cloudflare Workers 上的邮箱 + AI agent 示例，组合 Email Routing、Durable Objects、R2、Agents SDK 和 Workers AI。 |
+| [cloudflare/cloudflare-docs Flagship source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/flagship) | 官方 Flagship 文档源文件，适合追踪 feature flags、OpenFeature、Workers binding 和 limits。 |
+| [cloudflare/flagship](https://github.com/cloudflare/flagship) | Flagship 官方 SDK，OpenFeature provider，适合看 TypeScript / Python SDK 和 Workers binding 路径。 |
+| [cloudflare/cloudflare-docs Network source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/network) | 官方 Network settings 文档源文件，适合追踪 gRPC、IP geolocation、IPv6、Pseudo IPv4、True-Client-IP 和 WebSockets。 |
+| [cloudflare/cloudflare-docs Network Flow source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/network-flow) | 官方 Network Flow 文档源文件，适合追踪 free version、routers、rules、flow limits 和 GraphQL analytics。 |
+| [cloudflare/cloudflare-docs R2 SQL source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/r2-sql) | 官方 R2 SQL 文档源文件，适合追踪 pricing、limitations、best practices、SQL reference 和 Wrangler commands。 |
+| [cloudflare/cloudflare-docs Sandbox SDK source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/sandbox) | 官方 Sandbox SDK 文档源文件，适合追踪 pricing、limits、transport、Containers 关系和教程。 |
+| [cloudflare/sandbox-sdk](https://github.com/cloudflare/sandbox-sdk) | Sandbox SDK 官方源码，适合学习 Workers + Containers + Durable Objects 的安全代码执行环境。 |
+| [cloudflare/cloudflare-docs Style Guide source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/style-guide) | 官方 Style Guide 源文件，适合追踪 Cloudflare 文档工程、内容类型、frontmatter、AI consumability 和站点架构。 |
 | [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets、WAF、Access、zone 设置和资源声明变成 IaC。 |
 | [cloudflare/cf-terraforming](https://github.com/cloudflare/cf-terraforming) | 从现有 Cloudflare 配置生成 Terraform HCL 和 import 命令的官方迁移工具。 |
 | [pulumi/pulumi-cloudflare](https://github.com/pulumi/pulumi-cloudflare) | Pulumi Cloudflare provider 源码，适合追踪 Pulumi 资源覆盖。 |

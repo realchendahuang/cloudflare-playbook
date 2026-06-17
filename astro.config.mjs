@@ -52,6 +52,7 @@ export default defineConfig({
 						{ label: '公共网络与专项服务', slug: 'platform/public-network-specialties' },
 						{ label: '治理、合规与学习路径', slug: 'platform/governance-compliance-learning' },
 						{ label: '低频协议与平台工具', slug: 'platform/edge-protocols-utilities' },
+						{ label: '开发者与网络补充专项', slug: 'platform/developer-network-additions' },
 						{ label: 'WAF', slug: 'platform/waf' },
 						{ label: 'DDoS Protection', slug: 'platform/ddos' },
 						{ label: 'Rules', slug: 'platform/rules' },

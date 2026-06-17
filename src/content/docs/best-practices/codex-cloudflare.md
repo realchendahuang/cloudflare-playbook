@@ -67,6 +67,18 @@ Cloudflare 的 Codex setup 页给出的重点可以收敛成四件事：
 | 全局状态 | 不把 request-scoped state 放在全局变量，避免跨请求泄漏。 |
 | 可观测性 | 日志结构化，错误要能从 Workers Logs / Observability 定位。 |
 
+## 额度核对口径
+
+Codex 写 Cloudflare 项目时，最容易犯的错不是语法，而是把“可用”“免费”“Workers Paid 可用”“Enterprise-only”混在一起。后续每篇文章都按这个顺序核对：
+
+| 口径 | 要核对什么 |
+| --- | --- |
+| Free plan | 是否有每日、每月、每账号、每 zone、每 namespace 限制。 |
+| Workers Paid | 是否真由 `$5/month` Workers Paid 解锁，还是仍然需要 Pro、Business、Enterprise 或单独 add-on。 |
+| Usage-based | 超出 included usage 后按什么维度收费：request、CPU ms、GB-month、operation、email、data scanned、log event。 |
+| Beta / Preview | 是否处于 beta、open beta、private beta，是否当前暂不计费，是否有正式计费前通知。 |
+| 产品组合 | 一个功能是否会叠加多个产品费用，比如 Sandbox SDK 可能同时涉及 Containers、Workers、Durable Objects 和 Workers Logs。 |
+
 ## 资料优先级
 
 | 优先级 | 来源 | 用法 |
