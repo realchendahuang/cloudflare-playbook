@@ -7,10 +7,11 @@ description: Cloudflare Playbook 的推荐阅读顺序和学习目标。
 
 ## 第一轮：先建立地图
 
-1. 读 [产品地图](/platform/)，知道 Cloudflare 主要产品各自解决什么问题。
-2. 读 [Workers](/platform/workers/)、[Workers Static Assets](/platform/static-assets/) 和 [Pages](/platform/pages/)，理解计算和部署入口。
-3. 读 [数据产品](/platform/data/)，初步区分 D1、KV、R2、Durable Objects 和 Queues。
-4. 读 [免费与付费边界](/platform/free-paid/)，先知道免费额度和 $5 Workers Paid 到底覆盖什么。
+1. 读 [Fundamentals](/platform/fundamentals/)，先搞清楚 Account、Zone、Proxied、DNS-only、源站和 API Token。
+2. 读 [产品地图](/platform/)，知道 Cloudflare 主要产品各自解决什么问题。
+3. 读 [Workers](/platform/workers/)、[Workers Static Assets](/platform/static-assets/) 和 [Pages](/platform/pages/)，理解计算和部署入口。
+4. 读 [数据产品](/platform/data/)，初步区分 D1、KV、R2、Durable Objects 和 Queues。
+5. 读 [免费与付费边界](/platform/free-paid/)，先知道免费额度和 $5 Workers Paid 到底覆盖什么。
 
 ## 第二轮：按架构模式学习
 

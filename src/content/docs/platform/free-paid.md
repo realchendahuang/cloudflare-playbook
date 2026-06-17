@@ -18,6 +18,13 @@ Cloudflare 最适合普通人的地方，不是“永远不要花钱”，而是
 
 Workers Paid 是很多 Cloudflare 开发者项目的第一笔固定支出，官方价格页写的是每个账户每月最低 **$5 USD**。它不是 Cloudflare Pro，也不是 Pages Pro；它主要扩展 Workers、Pages Functions、KV、Hyperdrive、Durable Objects 等开发者平台能力。
 
+这节的口径要看清楚：
+
+- Workers Paid 是账号级订阅，included usage 按月计算。
+- Pages Functions 按 Workers 计费，额度和 Workers 放在同一套口径里。
+- Workers 平台不额外收 data transfer / throughput 费用。
+- Workers Static Assets 的静态资产请求免费且不限量，只有进入 Worker 脚本的动态请求才按 Workers 计费。
+
 | 能力 | Free | Workers Paid / Standard |
 | --- | --- | --- |
 | Worker 请求 | 100,000 requests/day。 | 10M requests/month included，超出 $0.30/million。 |

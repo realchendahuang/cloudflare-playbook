@@ -40,6 +40,7 @@ export default defineConfig({
 					label: '产品地图',
 					items: [
 						{ label: '总览', slug: 'platform' },
+						{ label: 'Fundamentals', slug: 'platform/fundamentals' },
 						{ label: 'Workers', slug: 'platform/workers' },
 						{ label: 'Workers Static Assets', slug: 'platform/static-assets' },
 						{ label: 'Pages', slug: 'platform/pages' },

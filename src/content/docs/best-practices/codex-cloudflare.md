@@ -40,6 +40,18 @@ Cloudflare 的 Codex setup 页给出的重点可以收敛成四件事：
 3. 连接 Cloudflare MCP servers，尤其是 docs、bindings、builds、observability。
 4. 部署和迁移仍然走 Wrangler，配置真源仍然放在仓库里。
 
+官方 Agent Setup Prompt 还给了更直接的操作口径：Cloudflare Skills 提供平台判断，Cloudflare Code Mode API MCP 负责调用 Cloudflare API，Cloudflare Docs MCP 负责拉当前文档，Wrangler 负责本地开发、部署、迁移和日志。Codex 如果担心拿到过时信息，应优先走 Docs MCP，或者直接读取 `developers.cloudflare.com/llms.txt` 和产品级 `llms.txt`。
+
+| 官方能力 | 普通项目怎么用 |
+| --- | --- |
+| Cloudflare Skills | 让 Codex 先知道 Workers、D1、R2、KV、WAF、DDoS、Terraform 等产品边界。 |
+| Code Mode API MCP | 管 DNS、WAF、Zero Trust、账号资源这类 Cloudflare API 操作。 |
+| Docs MCP | 查最新 limits、pricing、配置字段、兼容性日期和产品状态。 |
+| Bindings MCP | 写 Workers 时核对 D1、R2、KV、AI、Durable Objects 等 binding。 |
+| Builds MCP | 查看 Workers Builds 状态，定位构建失败。 |
+| Observability MCP | 查 Worker 日志、错误和线上运行状态。 |
+| Wrangler | `deploy`、`tail`、`d1 migrations`、`secret`、`types` 这类本地和部署动作。 |
+
 官方 Workers Best Practices 也给出了一组很适合写进项目规则的底线：
 
 | 主题 | 实践 |
@@ -96,3 +108,4 @@ Cloudflare 的 Codex setup 页给出的重点可以收敛成四件事：
 - [Cloudflare Skills](https://github.com/cloudflare/skills)
 - [Cloudflare MCP Server](https://github.com/cloudflare/mcp)
 - [Cloudflare MCP Server Collection](https://github.com/cloudflare/mcp-server-cloudflare)
+- [MCP servers for Cloudflare](https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/)

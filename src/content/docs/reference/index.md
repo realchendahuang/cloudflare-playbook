@@ -15,6 +15,18 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Cloudflare Developer Documentation llms.txt](https://developers.cloudflare.com/llms.txt)
 - [Cloudflare Developer Documentation llms-full.txt](https://developers.cloudflare.com/llms-full.txt)
 - [Cloudflare Changelog](https://developers.cloudflare.com/changelog/)
+- [Cloudflare Fundamentals](https://developers.cloudflare.com/fundamentals/)
+- [Cloudflare Fundamentals llms.txt](https://developers.cloudflare.com/fundamentals/llms.txt)
+- [How Cloudflare works](https://developers.cloudflare.com/fundamentals/concepts/how-cloudflare-works/)
+- [Accounts, zones, and user profiles](https://developers.cloudflare.com/fundamentals/concepts/accounts-and-zones/)
+- [Traffic flow through Cloudflare](https://developers.cloudflare.com/fundamentals/concepts/traffic-flow-cloudflare/)
+- [Cloudflare IP addresses](https://developers.cloudflare.com/fundamentals/concepts/cloudflare-ip-addresses/)
+- [Add a site to Cloudflare](https://developers.cloudflare.com/fundamentals/manage-domains/add-site/)
+- [Create API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
+- [Cloudflare Ray ID](https://developers.cloudflare.com/fundamentals/reference/cloudflare-ray-id/)
+- [Cloudflare HTTP headers](https://developers.cloudflare.com/fundamentals/reference/http-headers/)
+- [Connection limits](https://developers.cloudflare.com/fundamentals/reference/connection-limits/)
+- [Protect your origin server](https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/)
 - [Cloudflare Docs for Agents](https://developers.cloudflare.com/docs-for-agents/)
 - [Codex + Cloudflare](https://developers.cloudflare.com/agent-setup/codex/)
 - [Cloudflare Agent Setup Prompt](https://developers.cloudflare.com/agent-setup/prompt.md)
@@ -206,6 +218,7 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/templates](https://github.com/cloudflare/templates) | Cloudflare Workers 官方模板集合。 |
 | [cloudflare/templates/vite-react-template](https://github.com/cloudflare/templates/tree/main/vite-react-template) | Vite + React + Workers Static Assets 官方模板，适合学习 SPA + API。 |
 | [cloudflare/templates/astro-blog-starter-template](https://github.com/cloudflare/templates/tree/main/astro-blog-starter-template) | Astro 内容站官方模板，适合学习静态内容站进入 Workers 的方式。 |
+| [cloudflare/cloudflare-docs Fundamentals source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/fundamentals) | 官方 Fundamentals 文档源文件，适合追踪账号、Zone、成员权限、API Token、请求头和连接限制。 |
 | [cloudflare/cloudflare-docs Static Assets source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/static-assets) | 官方 Static Assets 文档源文件，适合追踪文档变更。 |
 | [cloudflare/cloudflare-docs Pages source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pages) | 官方 Pages 文档源文件，适合追踪 Pages、Functions、limits 和 known issues。 |
 | [cloudflare/workers-sdk pages-template-worker](https://github.com/cloudflare/workers-sdk/blob/main/packages/wrangler/templates/pages-template-worker.ts) | Pages Functions 运行包装逻辑，适合理解 `EventContext` 和 `waitUntil`。 |

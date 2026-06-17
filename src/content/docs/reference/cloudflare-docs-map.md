@@ -210,8 +210,9 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | DDoS Protection 精读 | 已整理 unmetered DDoS、HTTP DDoS、Network-layer DDoS、Under Attack、源站保护、误伤排查、计划边界和开源参考。 |
 | 已完成首版 | Billing 精读 | 已整理账单类型、免费额度入口、Workers Paid、usage-based billing、Billable Usage dashboard、Budget alerts、threshold billing、权限、发票和开源参考。 |
 | 已完成首版 | Rules 精读 | 已整理 Redirects、Transform、Configuration、Origin、Snippets、Cloud Connector、Custom Errors、Page Rules 迁移、执行顺序、Trace 排查、计划边界和开源参考。 |
-| 进行中 | P0 产品精读 | Fundamentals。 |
-| 待开始 | P1/P2/P3 产品精读 | AI、观测、安全增强、媒体、企业网络、迁移和 IaC。 |
+| 已完成首版 | Fundamentals 精读 | 已整理 Profile / Account / Zone、域名接入、Proxied / DNS-only、源站保护、成员权限、API Token、Ray ID、请求头、`/cdn-cgi/`、连接限制、端口和 Under Attack。 |
+| 进行中 | P1 产品精读 | AI、观测、安全增强、媒体、企业网络、迁移和 IaC。 |
+| 待开始 | 后续专题 | P2/P3 产品、迁移指南、参考架构、Terraform / Pulumi 和更多真实案例。 |
 
 ## 整理规则
 
@@ -224,6 +225,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 ## 事实来源
 
 - [Cloudflare Developer Documentation llms.txt](https://developers.cloudflare.com/llms.txt)
+- [Cloudflare Fundamentals llms.txt](https://developers.cloudflare.com/fundamentals/llms.txt)
 - [Cloudflare Billing llms.txt](https://developers.cloudflare.com/billing/llms.txt)
 - [Cloudflare Rules llms.txt](https://developers.cloudflare.com/rules/llms.txt)
 - [Cloudflare Ruleset Engine llms.txt](https://developers.cloudflare.com/ruleset-engine/llms.txt)
