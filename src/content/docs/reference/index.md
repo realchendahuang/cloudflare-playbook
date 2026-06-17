@@ -113,6 +113,7 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Queues pause, resume and purge](https://developers.cloudflare.com/queues/configuration/pause-purge/)
 - [Queues metrics](https://developers.cloudflare.com/queues/observability/metrics/)
 - [Queues Wrangler commands](https://developers.cloudflare.com/queues/reference/wrangler-commands/)
+- [Choose a data or storage product](https://developers.cloudflare.com/workers/platform/storage-options/)
 - [Hyperdrive](https://developers.cloudflare.com/hyperdrive/)
 - [Hyperdrive Pricing](https://developers.cloudflare.com/hyperdrive/platform/pricing/)
 - [Hyperdrive Limits](https://developers.cloudflare.com/hyperdrive/platform/limits/)
@@ -577,6 +578,11 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs SSL/TLS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ssl) | 官方 SSL/TLS 文档源文件，适合追踪 encryption modes、edge certificates、Origin CA、HSTS 和 AOP。 |
 | [cloudflare/cloudflare-docs Cache source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cache) | 官方 Cache / CDN 文档源文件，适合追踪 Cache Rules、Purge、TTL 和 Cache Reserve。 |
 | [cloudflare/cloudflare-docs Workers Cache API source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/runtime-apis/cache) | 官方 Workers Cache API 文档源文件，适合追踪 `fetch()`、`caches.default` 和 Cache API 限制。 |
+| [cloudflare/cloudflare-docs D1 source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/d1) | 官方 D1 文档源文件，适合追踪 SQL API、best practices、pricing、limits、Time Travel 和 Read Replication。 |
+| [cloudflare/cloudflare-docs KV source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/kv) | 官方 KV 文档源文件，适合追踪最终一致、API、limits、pricing、event subscriptions 和 Wrangler 命令。 |
+| [cloudflare/cloudflare-docs R2 source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/r2) | 官方 R2 文档源文件，适合追踪 buckets、objects、S3 API、Data Catalog、pricing、limits 和 migration。 |
+| [cloudflare/cloudflare-docs Durable Objects source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/durable-objects) | 官方 Durable Objects 文档源文件，适合追踪 SQLite storage、RPC、WebSocket、Alarms、migrations 和 limits。 |
+| [cloudflare/cloudflare-docs Queues source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/queues) | 官方 Queues 文档源文件，适合追踪 batching、retries、DLQ、event subscriptions、Pull consumers、pricing 和 limits。 |
 | [cloudflare/cloudflare-docs Load Balancing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/load-balancing) | 官方 Load Balancing 文档源文件，适合追踪 pools、monitors、traffic steering、private network load balancing 和 limits。 |
 | [cloudflare/cloudflare-docs Health Checks source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/health-checks) | 官方 Health Checks 文档源文件，适合追踪 availability、analytics、notifications 和 regions 行为。 |
 | [cloudflare/cloudflare-docs Spectrum source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/spectrum) | 官方 Spectrum 文档源文件，适合追踪 protocols per plan、settings by plan、limitations、Proxy Protocol 和 logs。 |

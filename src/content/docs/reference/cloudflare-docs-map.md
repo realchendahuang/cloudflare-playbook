@@ -227,6 +227,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 治理、合规与学习路径精读 | 已整理 Data Localization Suite、Client-side security、DMARC Management、Registrar、Support、Learning Paths、Use cases 的计划边界、合规边界、排障清单和 GitHub 开源参考。 |
 | 已完成首版 | 低频协议与平台工具精读 | 已整理 Network Error Logging、Randomness Beacon、Resource Tagging、Tenant、Version Management、Privacy Gateway、Privacy Proxy、MoQ、Agent Memory 的计划边界、普通项目取舍和 GitHub 开源参考。 |
 | 已完成首版 | 开发者与网络补充专项精读 | 已整理 Agent Lee、Artifacts、Email Service、Flagship、Network、Network Flow、R2 SQL、Sandbox SDK、Style Guide 的免费/付费边界、Workers Paid 关系和 GitHub 开源参考。 |
+| 已完成复核 | 2026-06-17 官方索引复核 | 重新读取 `developers.cloudflare.com/llms.txt` 和 103 个产品级 `llms.txt`；本地产品集合、官方产品集合和 6,145 页计数一致，无新增、删除或页数漂移。 |
+| 已完成复核 | 数据产品入口二次精读 | 已把 [数据产品](/platform/data/) 从选择表扩展为数据形态、一致性、访问方式、常见组合、官方资料和 GitHub 源仓库索引。 |
 | 进行中 | 单产品复核与案例深化 | 后续继续补真实项目拆解、参考架构和单产品深水区。 |
 
 ## 整理规则
