@@ -268,9 +268,12 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 数据产品入口三次精读 | 已把 [数据产品](/platform/data/) 对齐 storage options、D1、KV、R2、Durable Objects、Queues、Hyperdrive、Vectorize、Pipelines、Analytics Engine 和 cloudflare/templates，补齐选择决策树、常见组合、迁移信号、成本心智、误用清单和模板来源。 |
 | 已完成复核 | 数据产品入口文案收敛 | 已把 [数据产品](/platform/data/) 收敛为数据形态选择、判断顺序、核心差异、常见组合、迁移信号、成本心智和误用清单；删除 ASCII 决策树、访问方式技术行和内部“已精读产品”清单。 |
 | 已完成复核 | 架构模式二次精读 | 已把 [架构模式](/architecture/) 对齐 Reference Architecture、How to use、Find by solution、Use cases 和 GitHub 源目录，补齐从需求到架构的判断顺序、Use cases 映射、架构写作标准、路线图、常见误判和开源参考。 |
+| 已完成复核 | 架构模式文案收敛 | 已把 [架构模式](/architecture/) 收敛为快速分流、判断顺序、Use cases 对照、取舍原则和常见误判；删除 ASCII 需求图、架构页写作标准、内部路线图和偏维护者视角的说明。 |
 | 已完成复核 | 额度与 Codex 基线二次精读 | 已把 [免费与付费边界](/platform/free-paid/) 对齐 Workers Pricing / Limits、Static Assets billing、usage-based billing 和 `cloudflare/cloudflare-docs` 源文件；同步强化 [Codex 协作](/best-practices/codex-cloudflare/) 的官方 Codex setup、Docs for agents、Skills、MCP 和 GitHub 来源。 |
 | 已完成复核 | API 网关架构二次精读 | 已把 [API 网关](/architecture/api-gateway/) 对齐 Serverless global APIs 与 APIs and microservices，补齐请求路径、三种架构形态、拆分时机、安全/成本/观测边界和官方模板来源。 |
+| 已完成复核 | API 网关架构文案收敛 | 已把 [API 网关](/architecture/api-gateway/) 收敛为场景判断、三种形态、产品分层、拆分时机、落地顺序、安全和成本边界；删除请求路径图、TypeScript 入口代码、Wrangler 观测命令和过细实现示例。 |
 | 已完成复核 | 静态内容站与额度表二次精读 | 已把 [静态内容站](/architecture/static-site/) 对齐 Deploy frontend applications、Workers Static Assets、Pages Limits 和 Cloudflare 官方模板；同步给 [免费与付费边界](/platform/free-paid/) 增加免费额度大全和 GitHub 源仓库参考。 |
+| 已完成复核 | 静态内容站文案收敛 | 已把 [静态内容站](/architecture/static-site/) 收敛为部署入口、请求路径、产品组合、成本边界、安全边界和上线前检查；删除 ASCII 架构图、本站当前技术栈表和过细验证说明。 |
 | 已完成复核 | 首页免费额度强化 | 已把 [首页](/) 前置为免费额度入口，按静态站、小 API、D1、KV、R2、Queues、Durable Objects、AI、安全、Zero Trust 和成本提醒整理 Free 边界、免费阶段玩法矩阵和 `$5 Workers Paid` 触发信号。 |
 | 已完成复核 | 免费额度操作手册 | 已把 [免费与付费边界](/platform/free-paid/) 扩展为免费额度优先级、免费阶段玩法矩阵、Workers Paid 购买边界、完整额度速查和官方 pricing / limits 来源索引。 |
 | 已完成复核 | 免费额度首页二次强化 | 已把 [首页](/) 的免费额度入口合并为一张核心大全表，覆盖 DNS、CDN、SSL/TLS、DDoS、WAF、Turnstile、Zero Trust、Static Assets、Pages、Workers、D1、KV、R2、Queues、Durable Objects、Workers Logs、AI Search、Vectorize、Images、Browser Run、Zaraz 和 Budget alerts；同步把 [免费与付费边界](/platform/free-paid/) 调整为核心速查 + 产品级大全，减少重复导读。 |
@@ -281,6 +284,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 实战案例入口二次精读 | 已把 [实战案例](/recipes/) 对齐 Workers Tutorials / Examples / Templates、D1 Tutorials、R2 Tutorials、Use cases 和 cloudflare/templates，补齐案例选择顺序、路线图、验收标准、官方资料和 GitHub 源目录。 |
 | 已完成复核 | 本站技术栈二次精读 | 已把 [本站技术栈](/best-practices/site-stack/) 对齐 Starlight Site Search、Pagefind、Workers Static Assets、Static Assets billing、Workers pricing / limits、AI Search、Docs for agents、Twikoo / twikoo-cloudflare 和 GitHub 源仓库，补齐 Worker-first 架构、搜索路线、评论边界、免费额度影响和落地文件清单。 |
 | 已完成复核 | 实时应用架构二次精读 | 已把 [实时应用](/architecture/realtime-app/) 对齐 Add real-time features、Durable Objects WebSockets、control/data plane、lifecycle、pricing/limits 和 GitHub 示例，补齐实时类型判断、三层平面、对象切分、Hibernation、状态归位、成本边界和验证清单。 |
+| 已完成复核 | 实时应用架构文案收敛 | 已把 [实时应用](/architecture/realtime-app/) 收敛为实时类型判断、三层责任、对象切分、状态归位、成本边界、风险清单和不用此架构的场景；删除 ASCII 架构图、workers-chat-demo 细节展开、WebSocket 连接策略长表和过细验证项。 |
 | 已完成复核 | 迁移与 IaC 文案收敛 | 已把 [迁移与 IaC](/platform/iac-migration/) 收敛为 IaC 启用判断、工具边界、纳入优先级、迁移顺序、真源原则和常见误区；保留 Terraform best practices、Import Cloudflare resources、Remote R2 backend、Workers Infrastructure as Code、Pulumi、Reference Architecture how-to-use 和 Migration Guides 来源，删除目录结构图、Terraform / Wrangler / R2 backend 命令示例、Ruleset `ref` 细节、Pulumi + Wrangler 长表、CI 守门长表、参考架构映射和本站内部选择。 |
 | 已完成复核 | 平台文案收敛 | 已把 [Cloudflare 产品大图谱](/platform/) 改为产品入口和选型路线，删掉长链路图与百科式堆叠；同步压缩 [免费与付费边界](/platform/free-paid/) 的核对过程、重复导读和本站内部技术栈说明，并继续收敛 [Workers](/platform/workers/)、[Pages](/platform/pages/)、[迁移与 IaC](/platform/iac-migration/)、[安全与网络](/platform/security-networking/)、[KV](/platform/kv/)、[D1](/platform/d1/)、[Queues](/platform/queues/)、[R2](/platform/r2/)、[Durable Objects](/platform/durable-objects/) 与 [Zero Trust 与企业网络](/platform/zero-trust-networking/) 的代码、配置、价格长表和过细实现说明。 |
 | 进行中 | 单产品复核与案例深化 | 持续补充真实项目拆解、参考架构和单产品深水区。 |
