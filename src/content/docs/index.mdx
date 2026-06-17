@@ -3,7 +3,7 @@ title: Cloudflare Playbook
 description: 面向普通开发者和小团队的 Cloudflare 最佳实践知识库。
 template: splash
 hero:
-  tagline: 一个面向独立开发者和小团队的 Cloudflare 产品大图谱、免费额度速查表和最佳实践社区。
+  tagline: 先看免费额度，再选产品和架构。面向独立开发者和小团队的 Cloudflare 最佳实践知识库。
   actions:
     - text: 开始学习
       link: /start/
@@ -22,24 +22,49 @@ Cloudflare Playbook 不是官方文档的搬运，而是一份面向真实项目
 
 Cloudflare 覆盖了计算、存储、网络、安全、AI 和可观测性等基础设施能力。对独立开发者和早期团队来说，理解这些产品的边界和组合方式，可以显著降低项目启动和运维成本。这份知识库的目标，是把这些能力整理成一张能看懂、能落地、能持续更新的大图谱。
 
-## 免费额度先看这里
+## 先看免费额度
 
-多数人真正关心的不是产品名，而是一个项目能不能先免费跑起来。下面这张表是全站的入口摘要：先看 Free 边界，再判断什么时候值得开 `$5/month` 的 Workers Paid 或其他付费产品。详细版见 [免费与付费边界](/platform/free-paid/) 和 [Billing](/platform/billing/)。
+最后核对日期：2026-06-17。Cloudflare 的额度和价格变化很快，下面这张表只做入口判断；写预算、报价或上线方案时，请回到 [免费与付费边界](/platform/free-paid/) 和 [Billing](/platform/billing/) 继续核对官方 pricing / limits。
 
-| 场景 | Free 可以做到什么 | 什么时候付费 |
+多数人先关心的不是产品名，而是一个项目能不能先免费跑起来。本站把 Cloudflare 的免费额度当作主线来读：先确认静态流量、动态请求、数据库、对象存储、安全和搜索的免费边界，再判断什么时候值得开 `$5/month` 的 Workers Paid 或其他付费产品。
+
+三个结论先放前面：
+
+1. 静态站、文档站、官网和博客很适合先放在 Workers Static Assets 或 Pages，静态资产请求免费且不限量。
+2. 小 API、评论、Webhook、表单、D1、KV、R2、Queues、Durable Objects、Turnstile、Access、Workers AI 都有可用的免费起步空间。
+3. 免费额度不是消费封顶。Budget alerts 只发提醒，真正控制成本要靠静态优先、缓存、限流、队列、配额和权限。
+
+## 免费额度大全
+
+| 能力 | Free 重点额度 | 付费信号 |
 | --- | --- | --- |
-| 静态文档 / 官网 | Workers Static Assets 和 Pages 的静态资产请求免费且不限量；Pages Free 有 500 builds/month、20,000 files/site、25 MiB/file。 | 文件数、构建并发、构建次数或动态 Functions 变成瓶颈时再升；大文件放 R2。 |
-| 小 API / Webhook / 评论后端 | Workers Free 有 100,000 requests/day、10 ms CPU/invocation。 | 接近每日请求上限、CPU 超过 10 ms、需要更长任务或生产日志时，优先看 Workers Paid。 |
-| 数据库 | D1 Free 有 5M rows read/day、100k rows written/day、5 GB total storage。 | 查询量稳定增长、需要移除每日读写硬限制或更大数据库时再升。 |
-| 配置 / 缓存 | KV Free 有 100k reads/day、1k writes/day、1k deletes/day、1k lists/day、1 GB storage。 | 写入、删除、列表操作变多，或需要月度包和按量扩展时再升。 |
-| 文件对象 | R2 Standard Free 有 10 GB-month/month、1M Class A/month、10M Class B/month，egress 免费。 | 存储、上传、读取次数超过免费包，或需要冷数据 Infrequent Access 时单独估算。 |
-| 异步任务 | Queues Free 有 10,000 operations/day，消息保留 24 小时。 | 导入、通知、邮件、转码等后台任务稳定后再升到月度包。 |
-| 强一致 / 实时状态 | Durable Objects Free 可用 SQLite-backed DO，含 100,000 requests/day、13,000 GB-s/day。 | 房间、会话、限流器、WebSocket 状态成为核心路径后再付费，并用 hibernation 控制成本。 |
-| AI 调用 | Workers AI Free / Paid 都有 10,000 Neurons/day；AI Gateway 核心功能免费，Free 持久日志为 100,000 logs total。 | 超过每日 Neurons、需要 AI Gateway 更大日志或 Logpush 时再升 Workers Paid。 |
-| 搜索 | 文档站先用 Pagefind，搜索请求不打后端；Vectorize 可用于小规模向量检索试验。 | 内容量和自然语言检索价值明确后，再评估 AI Search、Vectorize 或 Workers AI。 |
-| 基础安全 | DNS、CDN、Universal SSL、标准 DDoS 防护适合默认开启；Turnstile Free 有 20 widgets、每个 10 hostnames。 | WAF 规则、Bot、长期安全日志、API Shield 或企业级策略不足时再升 zone plan 或专项产品。 |
-| 内部后台 | Zero Trust Free 适合 50 users 以内团队；Tunnel 可以把源站放到内网后面。 | 用户数、日志留存、设备姿态、Gateway 策略和企业审计要求上来后再升级。 |
-| 成本提醒 | Budget alerts 和 usage notifications 用来提前发现趋势。 | 预算提醒不是硬封顶；真正控制成本要靠静态优先、限流、队列、配额和权限。 |
+| DNS | Free / Pro / Business 不对 DNS queries 收费；新 Free zone 为 200 records/zone，旧 Free zone 为 1,000。 | 记录数、DNS SLA、企业治理和专属支持成为瓶颈时看 Enterprise。 |
+| CDN / Cache | CDN 可用于所有计划；Free 有 10 条 Cache Rules，最大可缓存文件 512 MB。 | 需要更多 Cache Rules、更短 Edge TTL、复杂 purge 或 Cache Reserve 时单独评估。 |
+| SSL/TLS | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3、Authenticated Origin Pulls 可在 Free 使用。 | 需要 Advanced Certificate Manager、Custom Certificates、Keyless SSL 时看更高计划或 add-on。 |
+| DDoS | 所有计划都有 standard, unmetered DDoS protection，HTTP DDoS 和 Network-layer DDoS 都覆盖。 | 需要高级 DDoS overrides、Log action、企业告警和网络层合同能力时升级。 |
+| WAF / Rate Limiting | WAF available on all plans；Free 有 5 条 Custom Rules、1 条 Rate Limiting Rule、Free Managed Ruleset。 | 登录、后台、API、上传、评论的规则不够用，或需要更强 Bot / API 防护时升级。 |
+| Turnstile | Free 最多 20 widgets，每个 widget 10 hostnames；挑战和验证请求不限量。 | widget、hostname、analytics lookback 或企业策略不够时看 Enterprise。 |
+| Zero Trust / Access / Tunnel | Zero Trust Free 为 $0 forever，50 user limit；Tunnel 可发布 public hostname。 | 用户数、日志留存、设备姿态、Gateway、DLP 或企业审计要求上来后升级。 |
+| Web Analytics | 免费、隐私优先；代理站点不限，非代理站点 10 个；Free 计划 Rules limit 为 0。 | 需要 Web Analytics rules、复杂归因或外部数据管道时再扩展。 |
+| 静态资产请求 | Workers Static Assets / Pages 静态资产请求免费且不限量。 | 文件数、单文件大小、构建并发或动态 Functions 成为瓶颈时再升级。 |
+| Pages | 500 builds/month、1 concurrent build、100 custom domains/project、20,000 files/site、25 MiB/file。 | 构建次数、并发构建、文件数或 Pages Functions 成本增长时升级。 |
+| Workers 动态请求 | 100,000 requests/day，10 ms CPU/invocation，UTC 0 点重置。 | 接近每日请求上限、CPU 超过 10 ms、需要更长任务或生产日志时看 Workers Paid。 |
+| Workers Paid | Free 不需要固定月费；静态资产请求仍免费。 | 每账号每月最低 `$5`，包含 10M requests/month、30M CPU ms/month 和更高平台限制。 |
+| D1 | 5M rows read/day、100k rows written/day、5 GB total storage。 | 读写量稳定增长、需要移除每日硬限制、更大数据库或生产 SLA 时升级。 |
+| KV | 100k reads/day、1k writes/day、1k deletes/day、1k lists/day、1 GB storage。 | 写入、删除、列表操作变多，或读量进入月度包和按量扩展时升级。 |
+| R2 Standard | 10 GB-month/month、1M Class A/month、10M Class B/month；egress 免费。 | 存储、上传、读取次数超过免费包；冷数据 Infrequent Access 另算。 |
+| Queues | 10,000 operations/day，消息保留 24 小时。 | 后台任务稳定、需要更长保留期、更多 operations 或 Dead Letter Queue 时升级。 |
+| Durable Objects | 可用 SQLite-backed DO；100,000 requests/day、13,000 GB-s/day。 | 房间、会话、限流器、WebSocket 状态成为核心路径后升级，并使用 hibernation。 |
+| Workers Logs | 200,000 log events/day，保留 3 天。 | 生产排障需要 7 天日志、Trace Events Logpush 或外部日志目的地时升级。 |
+| Analytics Engine | 100,000 data points/day、10,000 read queries/day。 | 高基数指标成为产品能力，或报表查询进入月度规模时升级。 |
+| Workers AI | Free / Paid 都有 10,000 Neurons/day 免费分配。 | 超过每日 Neurons 需要 Workers Paid，之后按 Neurons 计费。 |
+| AI Gateway | 核心功能免费，包含 dashboard analytics、caching、rate limiting；Free 持久日志 100,000 logs total。 | 需要 10M logs/gateway、Logpush、长期 AI 调用审计时升级。 |
+| AI Search | 新实例 open beta；Free 有 100 instances/account、100,000 files/instance、20,000 queries/month、500 crawled pages/day。 | 自然语言搜索成为核心体验、查询量增长或需要 unlimited crawling 时升级。 |
+| Vectorize | 30M queried vector dimensions/month、5M stored vector dimensions。 | 语义检索规模超过免费维度，或 RAG 成为正式产品能力时升级。 |
+| Images | Free 每月 5,000 unique transformations；超过后新 transformation 返回错误，不直接收费。 | 需要更多图片转换、Images storage 或 Images delivery 时购买 Images Paid。 |
+| Browser Run | Free 有 10 minutes/day browser hours，Browser Sessions 3 concurrent browsers。 | 截图、PDF、网页抓取等浏览器自动化稳定运行后看 Workers Paid。 |
+| Zaraz | 每个 account 每月 1,000,000 free Zaraz Events。 | 第三方脚本治理流量超过免费包，或需要持续启用 paid events 时升级。 |
+| Budget alerts | Pay-as-you-go 账号可按美元阈值发邮件提醒 usage-based spend。 | 它不是硬封顶；需要在业务侧做限流、配额、队列和权限。 |
 
 第一条成本铁律：**主流量尽量停在静态资产、CDN、R2 和缓存层，只让真正需要计算的请求进入 Worker。**
 

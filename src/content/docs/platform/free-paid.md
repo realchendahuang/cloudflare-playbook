@@ -27,6 +27,32 @@ Cloudflare 最适合普通人的地方，不是“永远不要花钱”，而是
 3. 静态资产请求、R2 egress、D1 数据访问 egress 等关键链路有很友好的边界。
 4. 最容易浪费钱的地方，是把静态访问、搜索、图片、视频、后台任务都错误地打到动态计算里。
 
+## 免费额度阅读顺序
+
+不要从产品名开始背。普通项目先按流量路径读免费额度，会更容易判断哪些东西能免费起步，哪些东西会很快进入账单。
+
+| 顺序 | 先看什么 | 判断问题 | 典型产品 |
+| --- | --- | --- | --- |
+| 1 | 静态流量 | 页面、JS、CSS、图片缩略图、下载入口能不能不进 Worker？ | Workers Static Assets、Pages、CDN、Cache Rules、R2。 |
+| 2 | 动态请求 | API、评论、Webhook、后台接口每天会有多少请求、CPU 会不会超过 10 ms？ | Workers、Pages Functions、Workers Logs。 |
+| 3 | 数据读写 | 数据是关系表、配置缓存、对象文件、队列消息，还是强一致状态？ | D1、KV、R2、Queues、Durable Objects。 |
+| 4 | 安全入口 | 表单、登录、后台、API 和上传是否有基础防护？ | WAF、Rate Limiting、Turnstile、Access、Tunnel。 |
+| 5 | 搜索与 AI | 搜索能否先构建期完成，AI 是否真的需要在线推理？ | Pagefind、AI Search、Vectorize、Workers AI、AI Gateway。 |
+| 6 | 观测与预算 | 出问题时有没有日志、指标和账单提醒？ | Workers Logs、Web Analytics、Analytics Engine、Budget alerts。 |
+
+## 能免费跑起来的项目类型
+
+| 项目类型 | 免费阶段主组合 | 够用信号 | 付费信号 |
+| --- | --- | --- | --- |
+| 文档站 / 官网 / 博客 | Workers Static Assets 或 Pages、CDN、Web Analytics、Pagefind。 | 绝大多数请求都是静态资产，搜索在浏览器本地完成。 | 构建次数、文件数、动态 Functions、图片转换或 AI 搜索成为瓶颈。 |
+| 小 API / Webhook | Workers Free、D1 或 KV、Turnstile、WAF 最小规则。 | 每日请求低于 100,000，CPU 多数在 10 ms 内，数据读写不触顶。 | 请求、CPU、日志、D1 / KV 读写或 subrequests 接近上限。 |
+| 评论 / 表单 / 留资 | Workers Free、D1 Free、Turnstile Free、Rate Limiting。 | 写入量低，读多写少，评论列表有缓存或分页。 | 写入增长、审核后台复杂、需要更长日志或更严格安全策略。 |
+| 文件上传 / 下载 | R2 Standard Free、presigned URL、CDN cache。 | 文件总量低于 10 GB-month，Class A / B operations 在免费包内。 | 热点下载导致 Class B 增长，或大文件、生命周期、冷数据策略变复杂。 |
+| 内部后台 / 预览环境 | Access、Tunnel、Zero Trust Free。 | 团队在 50 users 内，后台不裸露公网。 | 用户数、日志留存、设备姿态、Gateway、DLP 或审计要求上来。 |
+| AI / 搜索试验 | Pagefind、Workers AI 10,000 Neurons/day、AI Gateway、AI Search Free。 | 搜索请求少，AI 输出短，文档量和索引规模还小。 | 查询量、Neurons、持久日志、语义检索或 Agent 检索成为核心体验。 |
+| 实时协作雏形 | Durable Objects Free、WebSocket hibernation、R2 / D1 存档。 | 房间数和连接数低，空闲连接不持续计费。 | 房间状态成为核心链路，duration / request / storage 成本需要月度包。 |
+| 异步任务 | Queues Free、Cron Triggers、Workers。 | 每日 operations 低，消息 24 小时内处理完。 | 需要更长保留期、更多 operations、重试、Dead Letter Queue 或批处理链路。 |
+
 ## 普通项目额度地图
 
 先把额度分成三类看，会比逐个产品背数字更稳。
