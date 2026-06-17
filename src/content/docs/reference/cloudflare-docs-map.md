@@ -196,7 +196,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成 | 官方总索引 | 已读取 `developers.cloudflare.com/llms.txt` 并按 9 个官方分类归档。 |
 | 已完成 | 产品级索引 | 已读取 103 个产品级 `llms.txt`，统计出 6,145 个官方 Markdown 页面。 |
 | 已完成首版 | Workers 精读 | 已整理运行模型、Static Assets、免费/付费边界、配置习惯、代码习惯和开源参考。 |
-| 已完成复核 | Workers 二次精读 | 已把 [Workers](/platform/workers/) 对齐 Workers Pricing / Limits、How Workers works、Fetch Handler、Context API、Compatibility dates、Node.js compatibility、Service bindings、RPC lifecycle、Routes、Custom Domains、Workers Best Practices 和 Wrangler Configuration，补齐二次精读结论、上线前问题、隐藏限制、`ctx.waitUntil()` 边界、Service Bindings 拆分和 Node.js 兼容取舍。 |
+| 已完成复核 | Workers 文案收敛 | 已把 [Workers](/platform/workers/) 收敛为普通项目取舍、免费与付费边界、关键限制、架构分工、入口选择和常见误区；保留 Workers Pricing / Limits、How Workers works、Static Assets billing、Service bindings、Routes 和 Custom Domains 来源，删除运行模型图、fetch 代码、Wrangler 配置样例、`ctx.waitUntil()` 长说明、Node.js 兼容长表和后续精读列表。 |
 | 已完成首版 | D1 精读 | 已整理 Serverless SQL 定位、免费/付费边界、索引、迁移、备份、Read Replication 和开源参考。 |
 | 已完成复核 | D1 二次精读 | 已把 [D1](/platform/d1/) 收敛为适用场景、免费/付费边界、rows read/write 成本坑、设计原则、产品取舍和常见误区，保留 Pricing / Limits、Indexes、Migrations、Time Travel、Read Replication 和 GitHub 源文件索引，删除查询代码、Wrangler 命令、API 方法清单、排障长表和过细实现说明。 |
 | 已完成首版 | KV 精读 | 已整理读多写少模型、免费/付费边界、最终一致、cacheTtl、API 习惯、批量操作和开源参考。 |
@@ -262,7 +262,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 本站技术栈二次精读 | 已把 [本站技术栈](/best-practices/site-stack/) 对齐 Starlight Site Search、Pagefind、Workers Static Assets、Static Assets billing、Workers pricing / limits、AI Search、Docs for agents、Twikoo / twikoo-cloudflare 和 GitHub 源仓库，补齐 Worker-first 架构、搜索路线、评论边界、免费额度影响和落地文件清单。 |
 | 已完成复核 | 实时应用架构二次精读 | 已把 [实时应用](/architecture/realtime-app/) 对齐 Add real-time features、Durable Objects WebSockets、control/data plane、lifecycle、pricing/limits 和 GitHub 示例，补齐实时类型判断、三层平面、对象切分、Hibernation、状态归位、成本边界和验证清单。 |
 | 已完成复核 | 迁移与 IaC 二次精读 | 已把 [迁移与 IaC](/platform/iac-migration/) 对齐 Terraform best practices、Import Cloudflare resources、Remote R2 backend、Workers Infrastructure as Code、Pulumi + Wrangler、Pulumi ESC、Reference Architecture how-to-use / by-solution 和 GitHub 源文件，补齐分阶段路线、配置真源矩阵、Worker IaC binding 边界、CI / PR 守门和参考架构到本站专题映射。 |
-| 已完成复核 | 平台文案收敛 | 已把 [Cloudflare 产品大图谱](/platform/) 改为产品入口和选型路线，删掉长链路图与百科式堆叠；同步压缩 [免费与付费边界](/platform/free-paid/) 的核对过程、重复导读和本站内部技术栈说明，并继续收敛 [安全与网络](/platform/security-networking/)、[KV](/platform/kv/)、[D1](/platform/d1/)、[Queues](/platform/queues/)、[R2](/platform/r2/)、[Durable Objects](/platform/durable-objects/) 与 [Zero Trust 与企业网络](/platform/zero-trust-networking/) 的代码、配置、价格长表和过细实现说明。 |
+| 已完成复核 | 平台文案收敛 | 已把 [Cloudflare 产品大图谱](/platform/) 改为产品入口和选型路线，删掉长链路图与百科式堆叠；同步压缩 [免费与付费边界](/platform/free-paid/) 的核对过程、重复导读和本站内部技术栈说明，并继续收敛 [Workers](/platform/workers/)、[安全与网络](/platform/security-networking/)、[KV](/platform/kv/)、[D1](/platform/d1/)、[Queues](/platform/queues/)、[R2](/platform/r2/)、[Durable Objects](/platform/durable-objects/) 与 [Zero Trust 与企业网络](/platform/zero-trust-networking/) 的代码、配置、价格长表和过细实现说明。 |
 | 进行中 | 单产品复核与案例深化 | 持续补充真实项目拆解、参考架构和单产品深水区。 |
 
 ## 整理规则
