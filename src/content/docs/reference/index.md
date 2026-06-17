@@ -255,6 +255,29 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Argo Smart Routing Get started](https://developers.cloudflare.com/argo-smart-routing/get-started/)
 - [Argo Smart Routing Analytics](https://developers.cloudflare.com/argo-smart-routing/analytics/)
 - [Argo for Packets](https://developers.cloudflare.com/argo-smart-routing/argo-for-packets/)
+- [Waiting Room](https://developers.cloudflare.com/waiting-room/)
+- [Waiting Room llms.txt](https://developers.cloudflare.com/waiting-room/llms.txt)
+- [Waiting Room plans](https://developers.cloudflare.com/waiting-room/plans/)
+- [Waiting Room configuration settings](https://developers.cloudflare.com/waiting-room/reference/configuration-settings/)
+- [Waiting Room queueing methods](https://developers.cloudflare.com/waiting-room/reference/queueing-methods/)
+- [Waiting Room best practices](https://developers.cloudflare.com/waiting-room/reference/best-practices/)
+- [Waiting Room scheduled events](https://developers.cloudflare.com/waiting-room/additional-options/create-events/)
+- [Waiting Room JSON response](https://developers.cloudflare.com/waiting-room/how-to/json-response/)
+- [Smart Shield](https://developers.cloudflare.com/smart-shield/)
+- [Smart Shield llms.txt](https://developers.cloudflare.com/smart-shield/llms.txt)
+- [Smart Shield get started](https://developers.cloudflare.com/smart-shield/get-started/)
+- [Smart Shield connection reuse](https://developers.cloudflare.com/smart-shield/concepts/connection-reuse/)
+- [Smart Tiered Cache](https://developers.cloudflare.com/smart-shield/configuration/smart-tiered-cache/)
+- [Regional Tiered Cache](https://developers.cloudflare.com/smart-shield/configuration/regional-tiered-cache/)
+- [Cache Reserve in Smart Shield](https://developers.cloudflare.com/smart-shield/configuration/cache-reserve/)
+- [Dedicated CDN Egress IPs](https://developers.cloudflare.com/smart-shield/configuration/dedicated-egress-ips/)
+- [Automatic Platform Optimization](https://developers.cloudflare.com/automatic-platform-optimization/)
+- [Automatic Platform Optimization llms.txt](https://developers.cloudflare.com/automatic-platform-optimization/llms.txt)
+- [APO about](https://developers.cloudflare.com/automatic-platform-optimization/about/)
+- [Activate the Cloudflare WordPress plugin](https://developers.cloudflare.com/automatic-platform-optimization/get-started/activate-cf-wp-plugin/)
+- [Verify APO works](https://developers.cloudflare.com/automatic-platform-optimization/get-started/verify-apo-works/)
+- [APO query parameters and cached responses](https://developers.cloudflare.com/automatic-platform-optimization/reference/query-parameters/)
+- [APO product page](https://www.cloudflare.com/products/automatic-platform-optimization/)
 - [WAF Docs](https://developers.cloudflare.com/waf/)
 - [WAF concepts](https://developers.cloudflare.com/waf/concepts/)
 - [WAF custom rules](https://developers.cloudflare.com/waf/custom-rules/)
@@ -420,6 +443,9 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Health Checks source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/health-checks) | 官方 Health Checks 文档源文件，适合追踪 availability、analytics、notifications 和 regions 行为。 |
 | [cloudflare/cloudflare-docs Spectrum source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/spectrum) | 官方 Spectrum 文档源文件，适合追踪 protocols per plan、settings by plan、limitations、Proxy Protocol 和 logs。 |
 | [cloudflare/cloudflare-docs Argo Smart Routing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/argo-smart-routing) | 官方 Argo Smart Routing 文档源文件，适合追踪 Smart Shield、analytics、billing note 和 Argo for Packets。 |
+| [cloudflare/cloudflare-docs Waiting Room source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/waiting-room) | 官方 Waiting Room 文档源文件，适合追踪 plans、configuration、queueing methods、events 和 JSON response。 |
+| [cloudflare/cloudflare-docs Smart Shield source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/smart-shield) | 官方 Smart Shield 文档源文件，适合追踪 packages、connection reuse、Smart Tiered Cache、Cache Reserve 和 Dedicated CDN Egress IPs。 |
+| [cloudflare/cloudflare-docs APO source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/automatic-platform-optimization) | 官方 APO 文档源文件，适合追踪 WordPress plugin、headers、query parameters、device cache 和 troubleshooting。 |
 | [cloudflare/cloudflare-docs WAF source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/waf) | 官方 WAF 文档源文件，适合追踪 Custom Rules、Managed Rules、Rate Limiting 和 troubleshooting。 |
 | [cloudflare/cloudflare-docs Rules source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/rules) | 官方 Rules 文档源文件，适合追踪 Redirects、Transform、Origin、Snippets、Trace 和 Page Rules 迁移。 |
 | [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | 官方 Ruleset Engine 文档源文件，适合理解 phases、actions、expressions 和 API 模型。 |
