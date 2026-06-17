@@ -1,216 +1,94 @@
 ---
 title: Billing
-description: Cloudflare 账单、免费额度、Workers Paid、按量计费、预算提醒和发票的实践整理。
+description: Cloudflare 账单、免费额度、Workers Paid、按量计费和预算提醒的普通项目判断。
 ---
 
-最后核对日期：2026-06-18。Billing 相关规则变化很快，价格、免费额度和账单口径以 Cloudflare 官方 Billing / Pricing / Limits 页面为准。
+最后核对日期：2026-06-18。账单、价格、免费额度和计划边界会变化；涉及金额、included usage、发票和取消订阅时，以 Cloudflare 官方 Billing / Pricing / Limits 页面为准。
 
-## 一句话判断
+这页只解决普通项目最常见的账单判断：哪些能免费跑，`$5/month` Workers Paid 买到什么，哪些付费和 Workers Paid 没关系，什么时候要看用量。
 
-Cloudflare 账单不是“Free / Paid”一个开关，而是 domain plan、add-on 和 usage-based 产品叠在一起。普通项目最重要的判断是：**Workers Paid 不是 Cloudflare Pro，预算提醒不是消费封顶，Billable Usage 只看 usage-based overage，不看固定订阅费。**
+## 先记住
 
-如果只想做文档站、官网、博客，优先把页面放在 [Workers Static Assets](/platform/static-assets/) 或 [Pages](/platform/pages/) 上，搜索用 Pagefind，只有 API、评论、上传、AI 和后台任务进入 Worker。免费额度和 Workers Paid 的详细数值，先看 [免费额度大全](/platform/free-paid/)。
+| 判断 | 结论 |
+| --- | --- |
+| Workers Paid 是不是 Cloudflare Pro？ | 不是。Workers Paid 是账号级开发者平台订阅；Pro / Business 是单个 domain / zone 的站点计划。 |
+| 静态站一定要付费吗？ | 不一定。Workers Static Assets / Pages 的静态资产请求免费且不限量，只有动态请求才进入 Workers 计费口径。 |
+| Budget alerts 会不会自动封顶？ | 不会。它只发邮件提醒，不能暂停 Worker、R2、Images、Stream 或其他按量产品。 |
+| Billable Usage 是不是完整账单？ | 不是。它主要看 usage-based overage，不覆盖固定订阅和大部分 plan 费用。 |
+| R2 免 egress 是不是完全免费？ | 不是。R2 不收 egress bandwidth charge，但 storage、Class A、Class B 仍要看。 |
 
-## 三种账单类型
+## 四类费用
 
-| 类型 | 何时计费 | 官方例子 | 普通项目判断 |
-| --- | --- | --- | --- |
-| Domain plan | 按 domain / zone 收固定费用，通常预付；月付约每 30 天结算一次，年付按年结算。 | Free、Pro、Business、Enterprise。 | Pro 是单个域名的站点计划；Workers Paid 不是 Pro。子域名不算单独 billable domain。 |
-| Subscription / add-on | 通常按月固定费用预付。 | Load Balancing、Argo Smart Routing、Smart Shield + Argo、APO、Images Stream Bundle、Cache Reserve 等。 | 先确认 add-on 是固定费、按量费，还是两者都有；不要只看开关按钮。 |
-| Usage-based | 上一个 billing period 的实际用量后付；很多产品有 included usage，超出后按量。 | Workers、R2、Cache Reserve operations、Stream、Images、Vectorize、Analytics Engine 等。 | 这是最需要观察和告警的一层；Billable Usage dashboard 和 Budget alerts 主要看这里。 |
-
-账单日期使用 UTC。首次购买付费计划或 add-on 的日期，通常会成为该产品的 billing date。升级通常立即生效，降级和取消一般在当前 billing period 结束时生效，未使用时间不退款。
-
-## 账单页只看四件事
-
-| 入口 | 用来判断什么 | 不要误解成什么 |
+| 类型 | 常见产品 | 普通项目怎么判断 |
 | --- | --- | --- |
-| Billable Usage | usage-based 产品的每日成本和产品维度用量。 | 完整账单；它不覆盖固定 plan / subscription。 |
-| Invoices and documents | 发票、账单文件、扣款记录和 invoice emails。 | 成本预警工具。 |
-| Subscriptions | 当前 active subscriptions、renewal date 和取消入口。 | 自动停用所有相关产品的总开关。 |
-| Payment | 付款方式、账单地址、税务信息和 outstanding balance。 | 成本控制手段。 |
+| Domain plan | Free、Pro、Business、Enterprise | 影响单个域名的 WAF、Cache、Rules、证书和安全能力。 |
+| Workers Paid | Workers、Pages Functions、KV、D1、Queues、Durable Objects、Logs 等 | 每账号最低 `$5/month`，主要买动态请求、CPU、日志和开发者平台额度。 |
+| Add-on | Load Balancing、Argo、Images Paid、Stream、Log Explorer 等 | 不要看到开关就买；先确认固定费、按量费和是否真的需要。 |
+| Usage-based | Workers overage、R2 operations、Images、Stream、Vectorize、Analytics Engine 等 | 付费前先开预算提醒，再做限流、缓存和配额。 |
 
-账单日期使用 UTC。升级通常立即生效，降级和取消一般在当前 billing period 结束时生效。Cloudflare 官方文档提到订阅续费失败会进入 5 天 grace period，并最多自动重试 5 次；仍失败可能降级到 Free，付费能力会丢失。
+## Workers Paid 放在哪里
 
-## Workers Paid 的位置
+Workers Paid 值得付费的信号很具体：
 
-Workers Paid / Standard 是账户级的开发者平台订阅，官方 Workers Pricing 当前写的是每个账户每月最低 **$5 USD**。它会扩展 Workers、Pages Functions、KV、Hyperdrive、Durable Objects、Workers Logs、Builds 等开发者平台能力，但不会自动提升某个域名的 WAF、DNS、Cache Rules、SSL/TLS 或 Pro 功能。
-
-| 问题 | 判断 |
+| 信号 | 为什么 |
 | --- | --- |
-| 它是不是 Cloudflare Pro？ | 不是。Pro 是 zone / domain plan，Workers Paid 是 developer platform account subscription。 |
-| 它解决什么？ | Workers 请求、CPU、subrequests、Cron、日志、构建、部分开发者平台产品的 included usage。 |
-| 它不解决什么？ | 域名级 Pro / Business 功能、更多 WAF Managed Rules、更多 DNS / SSL / Cache 计划能力。 |
-| 它会不会产生按量费用？ | 会。Workers Paid 包含一定 monthly included usage，超过后继续按量计费。 |
-| 静态站一定要买吗？ | 不一定。静态资产请求在 Workers Static Assets / Pages 上仍然非常友好，只有请求进入 Worker 脚本才消耗 Workers 计费口径。 |
+| Worker 请求接近 100,000/day。 | Free 是日额度；Paid 变成月度 included usage，并允许继续按量扩展。 |
+| CPU 经常超过 10 ms。 | SSR、AI 前处理、批量解析和复杂代理会先撞 CPU。 |
+| Workers Logs 3 天留存不够。 | Paid 的日志额度和留存更适合生产排障。 |
+| D1、KV、Queues、Durable Objects 已经成为核心路径。 | 这些产品在 Paid 下会进入更高额度或更完整能力。 |
+| 需要更多 Cron、Worker 数量、Subrequests 或更大 bundle。 | 这是开发者平台工程化能力，不是域名计划能力。 |
 
-## 免费与 Paid 额度入口
+Workers Paid 不会提升 WAF、Bot、Cache Rules、SSL/TLS、DNS 记录数、Load Balancing 或企业网络能力。完整数字见 [免费额度大全](/platform/free-paid/)。
 
-免费额度不是统一写在 Billing 页里，而是散在各产品 pricing / limits 页面里。本站把普通项目最常见的额度整理在 [免费额度大全](/platform/free-paid/)。
+## 付费前检查
 
-| 产品 | 免费边界速记 | Paid / 付费入口速记 |
+| 要开的能力 | 先问什么 |
+| --- | --- |
+| Workers Paid | 动态请求和 CPU 是否真实撞线，还是静态资源误进 Worker？ |
+| R2 | 免费的 10 GB-month、1M Class A、10M Class B 是否够用？热点下载有没有缓存？ |
+| Images / Stream | 图片转换、图片交付、视频存储和播放分钟数是否估过？ |
+| Load Balancing / Argo | 现在的问题是可用性、路由还是源站性能？有没有更简单的缓存和回源优化？ |
+| Log Explorer / Logpush | 是真的需要长期审计，还是 Workers Logs 已经够排障？ |
+| Pro / Business | 需要的是域名计划能力，还是开发者平台能力？不要把 Pro 和 Workers Paid 混在一起买。 |
+
+## 账单怎么盯
+
+| 工具 | 看什么 | 别误会 |
 | --- | --- | --- |
-| Workers | 100,000 requests/day、10 ms CPU/invocation。 | Workers Paid 每月最低 $5，包含 10M requests/month、30M CPU milliseconds/month，超出按量。 |
-| Workers Static Assets | 静态资产请求免费且不限量；Free 单版本 20,000 files，25 MiB/file。 | Paid 单版本 100,000 files，25 MiB/file；静态资产请求仍不单独收费。 |
-| Pages | 静态资产请求免费且不限量；Free 500 builds/month、1 concurrent build、20,000 files/site。 | Pro/Business 提升构建、并发和文件数；Pages Functions 按 Workers 口径。 |
-| D1 | 5M rows read/day、100k rows written/day、5 GB total storage。 | Paid 每月 25B rows read、50M rows written、5 GB included，超出按量。 |
-| KV | 100k reads/day、1k writes/day、1k deletes/day、1k lists/day、1 GB storage。 | Paid 每月 10M reads、1M writes/deletes/lists、1 GB included，超出按量。 |
-| R2 | Standard storage 10 GB-month/month、Class A 1M/month、Class B 10M/month；无 egress bandwidth charge。 | Standard storage、Class A、Class B 超出 included usage 后按量。 |
-| Durable Objects | Free 只支持 SQLite-backed DO；100,000 requests/day、13,000 GB-s/day。 | Paid 包含 1M requests/month、400,000 GB-s/month 和 SQLite storage included usage，超出按量。 |
-| Queues | 10,000 operations/day，消息保留 24 小时。 | Paid 1M operations/month included，超出按 operation 计费。 |
-| Workers AI | Free / Paid 都有 10,000 Neurons/day 免费分配。 | 超过每日免费分配需要 Workers Paid，之后按 Neurons 计费。 |
-| Images / Stream / Browser Run | 免费边界和 included usage 与产品形态强相关。 | 上线前单独核对各产品 pricing；媒体和浏览器自动化最容易低估成本。 |
+| Billable Usage | usage-based 产品的每日成本和产品维度用量。 | 不是完整账单，不显示所有固定订阅费。 |
+| Product usage | Workers、D1、R2、KV、Queues 等产品侧用量。 | 只是辅助观察，最终以 invoice 为准。 |
+| Budget alerts | account-wide usage-based spend 的美元阈值邮件。 | 不是硬封顶，不会自动停服务。 |
+| Invoice / Subscriptions | 实际发票、续费日期、订阅和取消入口。 | 改 DNS 或迁走流量不等于取消订阅。 |
 
-这张表只放判断入口。要写进预算或报价单时，不要引用二手整理，直接回到官方 pricing / limits 页面逐项核对。
+最低做法：启用付费前开 Budget alerts；每周看一次 Billable Usage；每个账期看 invoice；异常增长先回到架构里找动态请求、CPU、R2 operations、媒体播放和 AI 调用。
 
-## Usage-based 产品怎么看
+## 降级和取消
 
-Cloudflare Billing 文档把 usage-based billing 解释为：部分服务按上一个 billing period 的实际用量收费，很多产品只对超过 included usage 的部分收费。
-
-| 产品 | 计费维度 | Billing 文档列出的 included usage |
-| --- | --- | --- |
-| Workers | Requests、CPU time。 | 10M requests、30M CPU-ms。 |
-| R2 | Storage、Class A operations、Class B operations。 | 10 GB storage、1M Class A、10M Class B。 |
-| Argo Smart Routing | Data transfer。 | 1 GB。 |
-| Load Balancing | DNS queries。 | 500k DNS queries。 |
-| Cache Reserve | Reads、writes、storage。 | Billing 文档未列 included usage。 |
-| Stream | Minutes stored、minutes viewed。 | 以 Stream pricing 为准。 |
-| Images | Transformations、storage、delivery。 | 以 Images pricing 为准。 |
-| Spectrum | Data transfer。 | No free tier。 |
-| Vectorize | Queried / stored vector dimensions。 | 以 Vectorize pricing 为准。 |
-| Analytics Engine | Data points、read queries。 | 以 Analytics Engine pricing 为准。 |
-| Zero Trust | Seats、日志或功能相关用量。 | 以 Zero Trust pricing 为准。 |
-
-Usage-based 的关键不是背价格，而是知道每个产品的“计量单位”是什么。R2 不是只看存储，还要看 Class A / Class B；Workers 不是只看请求，还要看 CPU；Stream 不是只看上传，还要看存储和播放分钟数。
-
-## 成本怎么增长
-
-| 成本信号 | 优先优化方向 |
+| 操作 | 先检查 |
 | --- | --- |
-| Worker requests 高 | 静态资产不要进 Worker；路由只让 `/api/*`、评论、Webhook、后台接口进入 Worker。 |
-| CPU 高 | 找 SSR、JSON 解析、加密、图片处理、AI 前处理和循环；给 Worker 配 CPU limit。 |
-| R2 Class B 高 | 热点下载加 CDN cache；批量读取；不要让前端轮询同一个对象。 |
-| R2 Class A 高 | 合并写入、减少小对象元数据更新，上传走 presigned URL。 |
-| Argo / Cache Reserve 高 | 先确认是否真的需要；提高 cache hit ratio 和 TTL。 |
-| Images / Stream 高 | 图片设尺寸和缓存；视频按分钟存储 / 播放估算，不把视频当普通静态文件。 |
+| 取消 Workers Paid | Worker 请求、CPU、D1、KV、Queues、Durable Objects、Workers Logs、Containers、Email Sending 是否依赖 Paid。 |
+| Pro / Business 降到 Free | WAF、Cache、Rules、证书、上传体积和其他 plan-only 配置是否超出 Free。 |
+| 停用 R2 / Images / Stream | 数据是否迁走或删除，存储、转换、播放、operations 是否停止增长。 |
+| 域名迁出 Cloudflare | DNS 迁出不取消订阅，仍要在 Billing / Subscriptions 里处理。 |
+| 取消 add-on | 先关功能，再取消订阅；不要只删配置文件。 |
 
-核心结论很朴素：**cache hit 是最便宜路径，静态资产不进 Worker 是最便宜架构**。一旦请求进入 Worker，再去读 R2、D1、KV、Images、AI 或外部 API，就要按每个产品分别看计量单位。
+## 常见误区
 
-## Billable Usage 和告警
-
-| 工具 | 能看到什么 | 不能做什么 | 适合场景 |
-| --- | --- | --- | --- |
-| Billable Usage dashboard | 账户内 usage-based overage 的每日成本和产品维度用量；数据来自生成月度发票的同一系统。 | 不显示固定 plan / subscription 费用；不支持 Enterprise contract 账户。 | 每周查看 R2、Workers、Images、Stream、Vectorize 等是否异常增长。 |
-| Product sidebar usage | 在部分产品侧边栏查看当前账期内的 billable usage，并提供创建 budget alert 的入口。 | 不是单产品硬预算；最终仍以 invoice 为准。 | 进入 Workers、D1、R2、KV、Queues、Vectorize 等产品页时快速检查。 |
-| Budget alerts | 按账户级 usage-based spend 设置美元阈值，跨过阈值后发邮件。 | 不会暂停服务、不会封顶消费、通常每个 billing period 只发一次。 | 给所有按量产品加一层提醒。 |
-| Usage notifications | 按产品和指标设置通知，通常用于 Professional plan 或更高计划。 | 信息性提醒，不能替代发票。 | 某个产品指标特别敏感时，比如 R2 operations 或 Workers CPU。 |
-| Invoice emails / PDF | 账单文件、历史发票和实际扣款记录。 | 已开出的 invoice 不能重新生成；变更通常体现在后续账期。 | 月度复盘、报销、对账和成本归因。 |
-
-Budget alerts 和 usage notifications 都只是提醒。它们不会自动停止 Worker、R2、Images、Stream 或其他产品的用量。如果需要硬限制，要在业务侧做限流、配额、队列削峰和权限控制。
-
-## Threshold billing
-
-Threshold billing 是 Cloudflare 针对 usage-based 产品的自动收款机制。自助账户使用按量产品时，如果当前 billing cycle 内所有 usage-based 产品累计费用达到 Cloudflare 设置的阈值，Cloudflare 可能生成一次 mid-cycle invoice 并扣款。
-
-普通项目需要记住三点：
-
-1. threshold 由 Cloudflare 自动设置，用户不能自行修改。
-2. mid-cycle invoice 只是提前收取已经产生的 usage-based 费用，账期末剩余用量仍会进入月末发票，不会重复计费。
-3. threshold invoice 当前官方写法是每个账号触发一次，之后回到标准账期末结算。
-4. Enterprise accounts 和 startup program participants 不受 threshold billing 影响。
-5. 它不是预算功能，也不是封顶功能；预算提醒仍要自己配置。
-
-如果 threshold invoice 支付失败，Cloudflare 会进入自动重试流程；失败邮件会提示更新付款方式或手动支付。它和普通账期付款失败一样，不能当成“系统自动暂停用量”的保险。
-
-## 支付风险
-
-| 场景 | 官方行为 | 普通项目做法 |
-| --- | --- | --- |
-| 订阅续费失败 | 进入 5 天 grace period，自动重试最多 5 次；仍失败会降级到 Free。 | 至少保留两种有效付款方式，开启 invoice email。 |
-| outstanding balance | 未付款余额会阻止购买产品、升级订阅或更新 billing profile。 | 先在 Billing 里 Pay Now；支付后预留最多 24 小时恢复。 |
-| additional payment method auto-retry | primary 付款方式失败时，会按顺序尝试额外付款方式；只适用于 subscription renewal。 | 关键账号放一张备用卡或 PayPal，不依赖单一付款方式。 |
-| usage-based preauthorization | Cloudflare 可能在账期内预授权信用卡以确认能覆盖已产生费用。 | R2、Workers、Stream 等按量服务上线前确认付款方式额度。 |
-| preauthorization failed | Cloudflare 可能暂停对应 usage-based 服务；R2 这类数据会保留一段时间，但请求可能报错。 | 监控支付邮件，避免把生产存储绑在不可用付款方式上。 |
-| stablecoin payments | Checkout 可用 USDC on Base / Polygon；支持一次性和 recurring billing。 | 它是支付方式，不是省钱工具；仍要留备用付款方式。 |
-| 权限不足 | Billing 角色能看账单和付款，但通常不能变更或取消订阅。 | 付费产品至少确认谁是 Super Admin / Admin。 |
-| $0 invoice | Free plan 也可能出现 $0 invoice。 | 不要把 $0 line item 理解成没有启用相关产品。 |
-
-更改 DNS、把流量迁走或停止使用某个服务，不等于取消 Cloudflare 订阅。要停止付费，需要在 Dashboard 里取消相应 plan、subscription 或 add-on。
-
-## 取消和降级前清单
-
-取消订阅和降级都通常在当前 billing period 结束时生效；UTC 时间和 24 小时提前量要当成真实约束看。
-
-| 操作 | 先检查什么 |
+| 误区 | 更准确的说法 |
 | --- | --- |
-| Pro / Business 降到 Free | 是否还用了 paid-only Page Rules、WAF、Cache、Custom Errors、上传体积或其他 plan-only 能力。 |
-| 取消 add-on | 先关产品功能，再到 Billing / Subscriptions 里取消订阅；有些产品需要先 disable feature。 |
-| 降级 domain plan | 只有 Super Administrator 可管理 domain plan 变更；有 unpaid invoice 时不能升级。 |
-| 取消 Workers Paid | 确认 Worker 请求、CPU、KV、D1、Queues、Durable Objects、Logs、Containers、Email Sending 等是否依赖 Paid。 |
-| 停用 R2 / Images / Stream | 先迁移或删除数据，确认存储、播放、转换、operations 不再增长。 |
-| 域名迁出 Cloudflare | DNS 迁出不取消订阅；仍要到 Subscriptions 里显式取消。 |
-| 年付改月付或付费改 Free | 不会立即降级，当前周期内仍可用高阶能力；未用时间通常不退款。 |
+| 免费额度够大，所以不用看账单。 | 免费额度不是无限额度，公开项目要知道最先撞哪条线。 |
+| Workers Paid 可以解决所有 Cloudflare 配额。 | 它只覆盖开发者平台，不覆盖 zone plan、add-on、Enterprise 和媒体产品。 |
+| 预算提醒会保护我不超支。 | 它只是提醒；真正的保护是静态优先、限流、队列、配额和权限。 |
+| 所有请求都进 Worker 方便统计。 | 静态资产应该直接命中 Assets / Pages，动态路径才进 Worker。 |
+| R2 / Images / Stream 只看流量。 | 它们还要看存储、操作、转换、播放分钟数或交付次数。 |
 
-如果降级后仍保留超过新计划限制的配置，可能出现额外收费或配置不可用。典型例子是 Page Rules / Rules / WAF / Cache 这类按计划给配额的功能：降级前先删掉超额配置，不要等账单提醒你。
+## 事实来源
 
-## 普通项目账单清单
-
-| 阶段 | 检查项 |
+| 来源 | 用途 |
 | --- | --- |
-| 开始使用 Cloudflare | 确认哪些是 domain plan，哪些是 Workers Paid，哪些是 usage-based 产品。 |
-| 开启付费产品前 | 读对应 pricing / limits；确认 included usage、超额单价、是否有 add-on 固定费。 |
-| 开启 Workers Paid 后 | 观察 Workers requests、CPU、Logs、Builds，以及 D1 / KV / Durable Objects / Queues 的 included usage。 |
-| 开启 R2 / Images / Stream 后 | 单独观察存储、操作、转换、播放分钟数；媒体产品不要只看流量。 |
-| 每个账期 | 查看 Billable Usage dashboard、预算提醒邮件和 invoice；把异常产品回到架构里排查。 |
-| 降级或取消前 | 至少提前一天处理，移除多余 add-on、Page Rules、plan-only 功能和生产依赖。 |
-
-## 常见误解
-
-| 误解 | 更准确的说法 |
-| --- | --- |
-| Workers Paid 等于 Cloudflare Pro。 | Workers Paid 是账户级开发者平台订阅，Pro 是单个 zone / domain plan。 |
-| Budget alert 会阻止继续消费。 | Budget alert 只发邮件，不暂停服务，也不封顶。 |
-| Billable Usage dashboard 就是完整账单。 | 它主要显示 usage-based overage，不包含固定 plan / subscription 费用。 |
-| Free plan 一定没有 invoice。 | Free plan 可能有 $0 invoice，用于列出活动产品维度。 |
-| R2 免 egress 就永远免费。 | R2 不收 egress bandwidth charge，但 storage、Class A、Class B 会计费。 |
-| 静态资产免费，所以所有请求都免费。 | 静态资产请求友好；进入 Worker 脚本、D1、R2、Images、Stream 后仍按对应产品口径计量。 |
-| 取消 DNS 托管就是取消订阅。 | DNS 变更不取消 Cloudflare 付费服务，必须在 Dashboard 里取消。 |
-| Threshold billing 是重复扣款。 | 它是 usage-based 产品达到阈值后的中途收款，月末只收剩余未覆盖用量。 |
-
-## GitHub 开源参考
-
-| 仓库 / 源文件 | 用途 |
-| --- | --- |
-| [cloudflare/cloudflare-docs Billing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/billing) | 官方 Billing 文档源文件，适合追踪账单、预算、付款和发票规则变更。 |
-| [usage-based-billing.mdx](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/billing/understand/usage-based-billing.mdx) | usage-based billing 的官方源文件，适合核对按量计费产品和 included usage。 |
-| [how-billing-works.mdx](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/billing/understand/how-billing-works.mdx) | 账单生命周期、invoice 结构、付款失败 grace period 和 flat-rate / usage-based 分组的官方源文件。 |
-| [how-charges-accrue.mdx](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/billing/understand/how-charges-accrue.mdx) | 单个请求如何经过 DNS、TLS、Cache、Argo、Workers、R2、Cache Reserve 并形成多个计费维度。 |
-| [billable-usage.mdx](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/billing/manage/billable-usage.mdx) | Billable Usage dashboard 的官方源文件，适合核对 dashboard 能看什么、不能看什么。 |
-| [budget-alerts.mdx](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/billing/manage/budget-alerts.mdx) | Budget alerts 的官方源文件，适合核对提醒机制和限制。 |
-| [optimize-costs.mdx](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/billing/manage/optimize-costs.mdx) | usage-based 成本优化策略源文件，适合核对 cache hit、R2 lifecycle、Smart Placement、DO WebSocket Hibernation 等建议。 |
-| [threshold-billing.mdx](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/billing/threshold-billing.mdx) | mid-cycle invoice、每账号一次触发、Enterprise / startup program 例外和失败重试的官方源文件。 |
-| [stablecoin-payments.mdx](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/billing/payment-methods/stablecoin-payments.mdx) | USDC stablecoin payment 的官方源文件，适合核对钱包、链、recurring billing 和失败处理。 |
-| [freestylefly/CodexGuide](https://github.com/freestylefly/CodexGuide) | 原始参考仓库，适合学习教程站的学习路线、资料索引和持续更新方式。 |
-
-## 官方资料
-
-- [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)
-- [How Cloudflare billing works](https://developers.cloudflare.com/billing/understand/how-billing-works/)
-- [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)
-- [How charges accrue](https://developers.cloudflare.com/billing/understand/how-charges-accrue/)
-- [Monitor billable usage](https://developers.cloudflare.com/billing/manage/billable-usage/)
-- [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/)
-- [Optimize costs](https://developers.cloudflare.com/billing/manage/optimize-costs/)
-- [Threshold billing](https://developers.cloudflare.com/billing/threshold-billing/)
-- [Billing policy](https://developers.cloudflare.com/billing/understand/billing-policy/)
-- [Billing permissions](https://developers.cloudflare.com/billing/understand/billing-permissions/)
-- [Invoices](https://developers.cloudflare.com/billing/manage/invoices/)
-- [Pay an outstanding balance](https://developers.cloudflare.com/billing/manage/pay-invoices-overdue-balances/)
-- [Change your plan](https://developers.cloudflare.com/billing/manage/change-plan/)
-- [Cancel subscriptions](https://developers.cloudflare.com/billing/manage/cancel-subscription/)
-- [Resolve a payment failure](https://developers.cloudflare.com/billing/troubleshoot/troubleshoot-failed-payments/)
-- [Additional payment method auto-retry](https://developers.cloudflare.com/billing/payment-methods/additional-payment-method-auto-retry/)
-- [Stablecoin payments](https://developers.cloudflare.com/billing/payment-methods/stablecoin-payments/)
-- [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
-- [Workers Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
-- [Cloudflare plans](https://www.cloudflare.com/plans/)
+| [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/) | 账单、发票、订阅、付款和预算提醒入口。 |
+| [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/) | 哪些产品按用量计费，以及 included usage 的判断方式。 |
+| [Monitor billable usage](https://developers.cloudflare.com/billing/manage/billable-usage/) | Billable Usage dashboard 能看什么、不能看什么。 |
+| [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/) | 预算提醒的触发方式和限制。 |
+| [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/) | Workers Paid、请求、CPU、日志和开发者平台额度。 |
+| [cloudflare/cloudflare-docs Billing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/billing) | 官方 Billing Markdown 源文件。 |

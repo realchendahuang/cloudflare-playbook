@@ -44,7 +44,7 @@ Cloudflare 的安全能力不要按产品名背。普通项目更应该按风险
 | 登录撞库 | Rate Limiting、Managed Challenge、必要时 Turnstile。 | 需要 bot score、设备策略、长期日志和更细规则。 |
 | 搜索接口被刷 | 静态索引优先，动态搜索限频，可缓存结果先缓存。 | 查询成本明显上升，再看 AI Search 或专用搜索服务。 |
 | 上传接口被打 | 登录态或短期上传凭证、文件大小/类型校验、限流。 | 大文件滥用、恶意文件、R2 成本异常、需要异步扫描。 |
-| API 被乱打 | 认证、限流、OpenAPI schema、API Shield Free schema validation。 | API 成为核心资产，再看 JWT、mTLS、BOLA、Log action。 |
+| API 被乱打 | 认证、限流、OpenAPI schema、API Shield Free schema validation。 | API 成为核心资产，再看更完整的 API Shield、客户端认证和安全日志。 |
 | 后台暴露公网 | Access + Tunnel，源站验证 Access token 或只接受隧道流量。 | 团队设备策略、Gateway、DLP、长期审计。 |
 | AI crawler 抓取过重 | AI Crawl Control、Block AI bots、robots.txt 管理。 | 需要内容授权、Pay Per Crawl 或精细 bot 策略。 |
 | 安全规则误伤 | 看 Ray ID、Security Events、`cf-mitigated`、用户反馈。 | 需要 Logpush、Log Explorer 或团队化规则审阅。 |

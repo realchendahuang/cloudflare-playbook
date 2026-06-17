@@ -119,9 +119,6 @@ Global AOP 只能证明请求来自 Cloudflare 网络；如果要证明请求来
 | 仓库 | 可以学什么 |
 | --- | --- |
 | [cloudflare/cloudflare-docs SSL/TLS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ssl) | 官方 SSL/TLS 文档源文件，适合追踪计划边界和功能变更。 |
-| [cloudflare/sslconfig](https://github.com/cloudflare/sslconfig) | Cloudflare 公开的 Internet-facing TLS 配置历史。 |
-| [cloudflare/cfssl](https://github.com/cloudflare/cfssl) | Cloudflare 的 PKI / TLS 工具箱，适合理解证书签发与验证。 |
-| [cloudflare/gokeyless](https://github.com/cloudflare/gokeyless) | Keyless SSL 的 Go 实现，适合企业合规场景理解私钥不离开自有环境。 |
 
 ## 事实来源
 

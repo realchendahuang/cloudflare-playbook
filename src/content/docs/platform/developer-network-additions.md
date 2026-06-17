@@ -27,7 +27,7 @@ description: Agent Lee、Artifacts、Email Service、Flagship、Network、Networ
 | 要发事务邮件或处理入站邮件。 | Email Service。 |
 | 要给新功能做 kill switch、灰度和定向发布。 | Flagship。 |
 | AI code executor、代码评测、临时开发环境。 | Sandbox SDK。 |
-| R2 里已经是 Parquet / Iceberg / 数据湖。 | R2 SQL。 |
+| R2 里已经是可分析的数据湖格式。 | R2 SQL。 |
 | 团队开始用 Agent 管理文件树或构建产物。 | Artifacts。 |
 | 写文档、教程、Agent-friendly docs。 | Cloudflare Style Guide。 |
 
