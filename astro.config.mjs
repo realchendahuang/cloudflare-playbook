@@ -58,6 +58,7 @@ export default defineConfig({
 						{ label: 'Queues', slug: 'platform/queues' },
 						{ label: 'AI 产品', slug: 'platform/ai' },
 						{ label: '媒体与性能', slug: 'platform/media-performance' },
+						{ label: '迁移与 IaC', slug: 'platform/iac-migration' },
 						{ label: '观测与日志', slug: 'platform/observability' },
 						{ label: '安全与网络', slug: 'platform/security-networking' },
 						{ label: '免费与付费边界', slug: 'platform/free-paid' },

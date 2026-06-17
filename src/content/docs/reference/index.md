@@ -266,6 +266,19 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Browser Run](https://developers.cloudflare.com/browser-run/)
 - [Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)
 - [Browser Run Limits](https://developers.cloudflare.com/browser-run/limits/)
+- [Cloudflare Terraform provider](https://developers.cloudflare.com/terraform/)
+- [Terraform Best practices](https://developers.cloudflare.com/terraform/advanced-topics/best-practices/)
+- [Import Cloudflare resources](https://developers.cloudflare.com/terraform/advanced-topics/import-cloudflare-resources/)
+- [Terraform Remote R2 backend](https://developers.cloudflare.com/terraform/advanced-topics/remote-backend/)
+- [Terraform Provider customization](https://developers.cloudflare.com/terraform/advanced-topics/provider-customization/)
+- [Terraform rule ID changes](https://developers.cloudflare.com/terraform/troubleshooting/rule-id-changes/)
+- [Workers Infrastructure as Code](https://developers.cloudflare.com/workers/platform/infrastructure-as-code/)
+- [Pulumi](https://developers.cloudflare.com/pulumi/)
+- [Pulumi + Wrangler](https://developers.cloudflare.com/pulumi/tutorial/dynamic-provider-and-wrangler/)
+- [Manage secrets with Pulumi ESC](https://developers.cloudflare.com/pulumi/tutorial/manage-secrets/)
+- [Reference Architectures](https://developers.cloudflare.com/reference-architecture/)
+- [Reference Architecture by solution](https://developers.cloudflare.com/reference-architecture/by-solution/)
+- [Migration Guides](https://developers.cloudflare.com/migration-guides/)
 - [Cloudflare Free Plan](https://www.cloudflare.com/plans/free/)
 - [Starlight Site Search](https://starlight.astro.build/guides/site-search/)
 
@@ -320,7 +333,13 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Speed source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/speed) | 官方 Speed 文档源文件，适合追踪 Observatory、Origin Analytics、RUM、optimization 和 test quotas。 |
 | [cloudflare/cloudflare-docs Zaraz source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/zaraz) | 官方 Zaraz 文档源文件，适合追踪 pricing、events、consent、Web API、HTTP Events API 和 Monitoring。 |
 | [cloudflare/cloudflare-docs Browser Run source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/browser-run) | 官方 Browser Run 文档源文件，适合追踪 pricing、limits、Quick Actions、Playwright、Puppeteer、CDP 和 Stagehand。 |
-| [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets 和 zone 设置变成 IaC。 |
+| [cloudflare/cloudflare-docs Terraform source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/terraform) | 官方 Terraform 文档源文件，适合追踪 best practices、import、R2 backend、provider customization 和 troubleshooting。 |
+| [cloudflare/cloudflare-docs Pulumi source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pulumi) | 官方 Pulumi 文档源文件，适合追踪 Pulumi + Wrangler、ESC secrets 和教程。 |
+| [cloudflare/cloudflare-docs Reference Architecture source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/reference-architecture) | 官方参考架构文档源文件，适合追踪 diagrams、design guides 和 implementation guides。 |
+| [cloudflare/cloudflare-docs Migration Guides source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/migration-guides) | 官方 Migration Guides 源文件，适合追踪迁移文档扩展。 |
+| [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets、WAF、Access、zone 设置和资源声明变成 IaC。 |
+| [cloudflare/cf-terraforming](https://github.com/cloudflare/cf-terraforming) | 从现有 Cloudflare 配置生成 Terraform HCL 和 import 命令的官方迁移工具。 |
+| [pulumi/pulumi-cloudflare](https://github.com/pulumi/pulumi-cloudflare) | Pulumi Cloudflare provider 源码，适合追踪 Pulumi 资源覆盖。 |
 | [cloudflare/skills Cache Reserve reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/cache-reserve) | Cloudflare 官方 Agent Skills 里的 Cache Reserve 参考，适合看常见误区和检查清单。 |
 | [cloudflare/skills WAF reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/waf) | Cloudflare 官方 Agent Skills 里的 WAF 参考，适合看配置模式、常见误区和 Rulesets API 写法。 |
 | [cloudflare/skills DDoS reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/ddos) | Cloudflare 官方 Agent Skills 里的 DDoS 参考，适合看配置模式、API、gotchas 和分层防护。 |

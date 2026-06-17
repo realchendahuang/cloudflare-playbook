@@ -215,8 +215,9 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 观测与日志精读 | 已整理 Web Analytics、Analytics、GraphQL Analytics API、Workers Logs、Logpush、Log Explorer、Notifications、Analytics Engine 的免费/付费边界、采样、留存、日志写法和开源参考。 |
 | 已完成首版 | 安全增强精读 | 已整理 Turnstile、API Shield、Bots、Access / Tunnel、Secrets Store、Security Center、AI Crawl Control 的免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 媒体与性能精读 | 已整理 Images、Stream、Speed / Observatory、Zaraz、Browser Run 的定位、免费/付费边界、落地顺序和开源参考。 |
-| 进行中 | P1 产品精读 | 企业网络、迁移和 IaC。 |
-| 待开始 | 后续专题 | P2/P3 产品、迁移指南、参考架构、Terraform / Pulumi 和更多真实案例。 |
+| 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |
+| 进行中 | P1 产品精读 | 企业网络。 |
+| 待开始 | 后续专题 | P2/P3 产品、更多迁移案例、参考架构和真实项目拆解。 |
 
 ## 整理规则
 
@@ -258,6 +259,10 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Cloudflare Speed llms.txt](https://developers.cloudflare.com/speed/llms.txt)
 - [Cloudflare Zaraz llms.txt](https://developers.cloudflare.com/zaraz/llms.txt)
 - [Cloudflare Browser Run llms.txt](https://developers.cloudflare.com/browser-run/llms.txt)
+- [Cloudflare Terraform llms.txt](https://developers.cloudflare.com/terraform/llms.txt)
+- [Cloudflare Pulumi llms.txt](https://developers.cloudflare.com/pulumi/llms.txt)
+- [Cloudflare Reference Architecture llms.txt](https://developers.cloudflare.com/reference-architecture/llms.txt)
+- [Cloudflare Migration Guides llms.txt](https://developers.cloudflare.com/migration-guides/llms.txt)
 - [Cloudflare Workers llms.txt](https://developers.cloudflare.com/workers/llms.txt)
 - [Docs for agents](https://developers.cloudflare.com/docs-for-agents/)
 - [Cloudflare Docs for Agents llms.txt](https://developers.cloudflare.com/docs-for-agents/llms.txt)

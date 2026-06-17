@@ -44,6 +44,11 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │    ├─ Zaraz / Browser Run
   │    └─ R2 / Cache / Web Analytics
   │
+  ├─ 治理与迁移
+  │    ├─ Terraform / Pulumi / Wrangler
+  │    ├─ cf-terraforming / R2 backend
+  │    └─ Reference Architecture / Migration Guides
+  │
   └─ 观测与安全
        ├─ Web Analytics / Logs / GraphQL Analytics / Notifications
        └─ Turnstile / WAF / Bot / API Shield
@@ -122,6 +127,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | Stream | ingress 和 encoding 免费；存储与播放按视频分钟计费。 | 存储 $5/1,000 minutes stored，播放 $1/1,000 minutes delivered；Media Transformations 5,000 free operations/month 后 $0.50/1,000。 | 视频托管、编码、播放、直播和分析。 | 不要用 Pages/R2 裸扛完整视频产品；视频业务用 Stream 或专门服务。 |
 | Browser Run | Workers Free 有 10 minutes/day browser hours、Browser Sessions 3 concurrent browsers。 | Workers Paid 有 10 hours/month included，超出 $0.09/hour；并发浏览器 included 10 averaged monthly，超出 $2/browser。 | 云端无头浏览器。 | 能用普通 fetch 就别开浏览器；浏览器时间贵，任务要短，并且必须关闭 session。 |
 | Zaraz | 每个 Cloudflare account 每月 1,000,000 free Zaraz Events；所有功能和工具可用于所有账号。 | 每额外 1,000,000 Zaraz Events 为 $5/month。 | 把分析、广告、营销和聊天脚本迁到边缘管理。 | 前端脚本变多、需要 consent 或 selective loading 时再引入；先减少脚本数量。 |
+| [迁移与 IaC](/platform/iac-migration/) | Terraform、Pulumi、Wrangler、cf-terraforming 和 Reference Architecture 本身是工具和资料入口；Cloudflare 费用来自被管理的具体产品。 | Terraform Cloud、Pulumi Cloud、R2 remote state、企业账号隔离等会带来各自成本。 | 把 DNS、Rules、WAF、Access、存储资源和迁移过程纳入可 review 的配置。 | 同一个资源只能有一个真源；Worker 开发和 D1 migrations 仍优先用 Wrangler。 |
 | Wrangler | 免费 CLI。 | 无。 | 管理 Workers、D1、R2、KV、部署。 | `wrangler.jsonc` 作为配置真源，生产变更走 Git。 |
 
 ## 独立开发者推荐组合
@@ -174,6 +180,14 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Zaraz Pricing](https://developers.cloudflare.com/zaraz/pricing-info/)
 - [Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)
 - [Browser Run Limits](https://developers.cloudflare.com/browser-run/limits/)
+- [Cloudflare Terraform provider](https://developers.cloudflare.com/terraform/)
+- [Terraform Best practices](https://developers.cloudflare.com/terraform/advanced-topics/best-practices/)
+- [Import Cloudflare resources](https://developers.cloudflare.com/terraform/advanced-topics/import-cloudflare-resources/)
+- [Terraform Remote R2 backend](https://developers.cloudflare.com/terraform/advanced-topics/remote-backend/)
+- [Workers Infrastructure as Code](https://developers.cloudflare.com/workers/platform/infrastructure-as-code/)
+- [Pulumi](https://developers.cloudflare.com/pulumi/)
+- [Reference Architectures](https://developers.cloudflare.com/reference-architecture/)
+- [Migration Guides](https://developers.cloudflare.com/migration-guides/)
 - [Web Analytics Docs](https://developers.cloudflare.com/web-analytics/)
 - [Web Analytics Limits](https://developers.cloudflare.com/web-analytics/limits/)
 - [Cloudflare Analytics](https://developers.cloudflare.com/analytics/)
