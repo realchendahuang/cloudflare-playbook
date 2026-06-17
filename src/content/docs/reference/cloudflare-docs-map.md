@@ -5,15 +5,7 @@ description: 基于 Cloudflare 官方 llms.txt 的产品域导航、阅读优先
 
 最后核对日期：2026-06-18。
 
-Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这张地图只做一件事：把官方文档压成普通项目能用的阅读顺序。
-
-本站已按 Cloudflare 官方 `llms.txt` 核对过：
-
-| 范围 | 数量 |
-| --- | ---: |
-| 官方产品 / 文档集合 | 103 |
-| 官方 Markdown 页面 | 6,145 |
-| 官方分类 | 9 |
+Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这张地图只做一件事：把官方 `llms.txt` 压成普通项目能用的阅读顺序。
 
 ## 怎么用这张地图
 
@@ -43,18 +35,17 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 
 ## 官方分类
 
-| 官方分类 | 产品 / 文档集合数 | 索引页数 | 普通项目读法 |
-| --- | ---: | ---: | --- |
-| Application performance | 15 | 580 | 先读 Cache、SSL/TLS、Web Analytics；Load Balancing、Argo、Waiting Room 有明确流量压力再看。 |
-| Application security | 12 | 540 | 先读 WAF、DDoS、Turnstile；API Shield、Bots、Security Center 按风险升级。 |
-| Cloudflare One | 5 | 851 | 先读 Access 和 Tunnel；Gateway、DLP、WAN、Network Firewall 更偏团队和企业网络。 |
-| Consumer services | 3 | 72 | 1.1.1.1、Radar、WARP 多是辅助理解，不是普通网站默认栈。 |
-| Core platform | 21 | 948 | 先读 Fundamentals、Billing、Rules、Analytics、Notifications。 |
-| Developer platform | 35 | 2,496 | Workers、Static Assets、Pages、D1、KV、R2、Queues、Durable Objects 是主线。 |
-| Docs collections | 1 | 322 | Learning Paths 适合补官方学习路线。 |
-| Network security | 5 | 94 | Magic Transit、BYOIP、Network Interconnect 多为企业网络工程。 |
-| Other | 6 | 242 | Use cases、Migration Guides、Style Guide 适合反推项目组合和写作方式。 |
-| 合计 | 103 | 6,145 | 先按项目场景读，不按产品名逐个背。 |
+| 官方分类 | 普通项目读法 |
+| --- | --- |
+| Application performance | 先读 Cache、SSL/TLS、Web Analytics；Load Balancing、Argo、Waiting Room 有明确流量压力再看。 |
+| Application security | 先读 WAF、DDoS、Turnstile；API Shield、Bots、Security Center 按风险升级。 |
+| Cloudflare One | 先读 Access 和 Tunnel；Gateway、DLP、WAN、Network Firewall 更偏团队和企业网络。 |
+| Consumer services | 1.1.1.1、Radar、WARP 多是辅助理解，不是普通网站默认栈。 |
+| Core platform | 先读 Fundamentals、Billing、Rules、Analytics、Notifications。 |
+| Developer platform | Workers、Static Assets、Pages、D1、KV、R2、Queues、Durable Objects 是主线。 |
+| Docs collections | Learning Paths 适合补官方学习路线。 |
+| Network security | Magic Transit、BYOIP、Network Interconnect 多为企业网络工程。 |
+| Other | Use cases、Migration Guides、Style Guide 适合反推项目组合和写作方式。 |
 
 ## 产品域入口
 
