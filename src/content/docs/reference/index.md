@@ -49,6 +49,17 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Durable Objects Pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)
 - [Queues Docs](https://developers.cloudflare.com/queues/)
 - [Queues Pricing](https://developers.cloudflare.com/queues/platform/pricing/)
+- [Queues Limits](https://developers.cloudflare.com/queues/platform/limits/)
+- [How Queues works](https://developers.cloudflare.com/queues/reference/how-queues-works/)
+- [Queues JavaScript APIs](https://developers.cloudflare.com/queues/configuration/javascript-apis/)
+- [Queues Batching, Retries and Delays](https://developers.cloudflare.com/queues/configuration/batching-retries/)
+- [Dead Letter Queues](https://developers.cloudflare.com/queues/configuration/dead-letter-queues/)
+- [Queues Consumer concurrency](https://developers.cloudflare.com/queues/configuration/consumer-concurrency/)
+- [Queues Pull consumers](https://developers.cloudflare.com/queues/configuration/pull-consumers/)
+- [Queues Delivery guarantees](https://developers.cloudflare.com/queues/reference/delivery-guarantees/)
+- [Queues pause, resume and purge](https://developers.cloudflare.com/queues/configuration/pause-purge/)
+- [Queues metrics](https://developers.cloudflare.com/queues/observability/metrics/)
+- [Queues Wrangler commands](https://developers.cloudflare.com/queues/reference/wrangler-commands/)
 - [Workers AI Docs](https://developers.cloudflare.com/workers-ai/)
 - [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 - [AI Gateway Docs](https://developers.cloudflare.com/ai-gateway/)
@@ -94,6 +105,9 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [microfeed/microfeed](https://github.com/microfeed/microfeed) | 自托管在 Cloudflare 的轻量 CMS，适合看 D1、R2、Zero Trust 的内容产品组合。 |
 | [openRin/Rin](https://github.com/openRin/Rin) | 基于 Workers、D1、R2 的边缘博客，适合看内容站架构。 |
 | [MarSeventh/CloudFlare-ImgBed](https://github.com/MarSeventh/CloudFlare-ImgBed) | Cloudflare R2 图床和文件托管方案。 |
+| [cloudflare/workers-sdk Queues template](https://github.com/cloudflare/workers-sdk/tree/main/packages/create-cloudflare/templates/queues/ts) | 官方 Queues C3 模板，适合看 producer、consumer 和 `wrangler.jsonc` 最小组合。 |
+| [cloudflare/queues-web-crawler](https://github.com/cloudflare/queues-web-crawler) | Cloudflare 官方 Queues + Browser Rendering + KV crawler 示例。 |
+| [Rheosoph/serverless-cloudflare-search](https://github.com/Rheosoph/serverless-cloudflare-search) | Worker + Queues + R2 + Cache 做小规模 serverless search 的开源参考。 |
 | [cloudflare/d1-northwind](https://github.com/cloudflare/d1-northwind) | D1 示例应用，适合学习数据导入、查询和前端组合。 |
 | [cloudflare/workerskv.gui](https://github.com/cloudflare/workerskv.gui) | KV namespace 数据浏览器示例。 |
 | [cloudflare/kv-worker-migrate](https://github.com/cloudflare/kv-worker-migrate) | 历史 KV namespace 迁移工具，适合了解迁移成本和一致性注意事项。 |
