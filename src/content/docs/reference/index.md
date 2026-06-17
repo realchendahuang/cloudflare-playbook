@@ -724,6 +724,8 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/ai-search-snippet](https://github.com/cloudflare/ai-search-snippet) | AI Search 前端 snippet 组件，适合后续把托管搜索嵌入文档站。 |
 | [cloudflare/templates/d1-template](https://github.com/cloudflare/templates/tree/main/d1-template) | Worker + D1 binding + migrations 的最小官方模板。 |
 | [cloudflare/templates/d1-starter-sessions-api-template](https://github.com/cloudflare/templates/tree/main/d1-starter-sessions-api-template) | D1 Sessions API 和 Read Replication 官方模板。 |
+| [cloudflare/templates/chanfana-openapi-template](https://github.com/cloudflare/templates/tree/main/chanfana-openapi-template) | Worker + Hono + OpenAPI 3.1 自动生成和请求校验模板，适合学习 schema-first API 网关。 |
+| [cloudflare/templates/react-router-hono-fullstack-template](https://github.com/cloudflare/templates/tree/main/react-router-hono-fullstack-template) | Workers Static Assets + Hono `/api/*` full-stack 模板，适合学习前端静态资产和 API 同仓部署。 |
 | [cloudflare/templates/to-do-list-kv-template](https://github.com/cloudflare/templates/tree/main/to-do-list-kv-template) | Workers Static Assets + Remix + KV 的官方模板。 |
 | [cloudflare/r2-explorer-template-9](https://github.com/cloudflare/r2-explorer-template-9) | Cloudflare 组织下的 R2 Explorer 模板仓库，适合看 R2、Access 和 Workers 的组合。 |
 | [G4brym/R2-Explorer](https://github.com/G4brym/R2-Explorer) | R2 文件管理界面，适合看多 bucket、上传、权限和 metadata 管理。 |
