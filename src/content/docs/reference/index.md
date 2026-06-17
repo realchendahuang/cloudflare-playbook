@@ -123,7 +123,22 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Agents Limits](https://developers.cloudflare.com/agents/platform/limits/)
 - [What are agents?](https://developers.cloudflare.com/agents/concepts/what-are-agents/)
 - [Web Analytics Docs](https://developers.cloudflare.com/web-analytics/)
+- [Web Analytics About](https://developers.cloudflare.com/web-analytics/about/)
+- [Web Analytics Limits](https://developers.cloudflare.com/web-analytics/limits/)
+- [Cloudflare Analytics](https://developers.cloudflare.com/analytics/)
+- [Understanding sampling in Cloudflare Analytics](https://developers.cloudflare.com/analytics/sampling/)
+- [GraphQL Analytics API](https://developers.cloudflare.com/analytics/graphql-api/)
+- [GraphQL Analytics API Limits](https://developers.cloudflare.com/analytics/graphql-api/limits/)
 - [Analytics Engine Pricing](https://developers.cloudflare.com/analytics/analytics-engine/pricing/)
+- [Analytics Engine Limits](https://developers.cloudflare.com/analytics/analytics-engine/limits/)
+- [Cloudflare Logs](https://developers.cloudflare.com/logs/)
+- [Logpush](https://developers.cloudflare.com/logs/logpush/)
+- [Workers Logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/)
+- [Workers Real-time logs](https://developers.cloudflare.com/workers/observability/logs/real-time-logs/)
+- [Workers Logpush](https://developers.cloudflare.com/workers/observability/logs/logpush/)
+- [Log Explorer](https://developers.cloudflare.com/log-explorer/)
+- [Log Explorer Pricing](https://developers.cloudflare.com/log-explorer/pricing/)
+- [Notifications](https://developers.cloudflare.com/notifications/)
 - [DNS Docs](https://developers.cloudflare.com/dns/)
 - [DNS FAQ](https://developers.cloudflare.com/dns/faq/)
 - [DNS features and plans](https://developers.cloudflare.com/dns/reference/all-features/)
@@ -238,6 +253,12 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | 官方 Ruleset Engine 文档源文件，适合理解 phases、actions、expressions 和 API 模型。 |
 | [cloudflare/cloudflare-docs DDoS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ddos-protection) | 官方 DDoS Protection 文档源文件，适合追踪 managed rulesets、best practices、analytics、alerts 和 changelog。 |
 | [cloudflare/cloudflare-docs Billing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/billing) | 官方 Billing 文档源文件，适合追踪账单、预算、付款、发票和 usage-based billing。 |
+| [cloudflare/cloudflare-docs Analytics source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/analytics) | 官方 Analytics 文档源文件，适合追踪 sampling、GraphQL Analytics API 和 Workers Analytics Engine。 |
+| [cloudflare/cloudflare-docs Workers observability source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/observability) | 官方 Workers Observability 文档源文件，适合追踪 Workers Logs、Real-time logs、Tail Workers、Logpush 和 traces。 |
+| [cloudflare/cloudflare-docs Logs source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/logs) | 官方 Logs 文档源文件，适合追踪 Logpush、Instant Logs、Logpull、字段和目的地配置。 |
+| [cloudflare/cloudflare-docs Log Explorer source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/log-explorer) | 官方 Log Explorer 文档源文件，适合追踪 Log Search、SQL queries、API、pricing 和 datasets。 |
+| [cloudflare/cloudflare-docs Web Analytics source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/web-analytics) | 官方 Web Analytics 文档源文件，适合追踪 RUM、rules、limits、filters 和 metrics。 |
+| [cloudflare/cloudflare-docs Notifications source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/notifications) | 官方 Notifications 文档源文件，适合追踪 webhooks、PagerDuty、traffic alerts 和 webhook payload schema。 |
 | [cloudflare/cloudflare-docs AI Gateway source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ai-gateway) | 官方 AI Gateway 文档源文件，适合追踪 pricing、limits、provider、fallback 和 observability。 |
 | [cloudflare/cloudflare-docs Workers AI source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers-ai) | 官方 Workers AI 文档源文件，适合追踪模型、pricing、limits、binding、batch 和 function calling。 |
 | [cloudflare/cloudflare-docs AI Search source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ai-search) | 官方 AI Search 文档源文件，适合追踪托管 RAG、search modes、limits/pricing、MCP 和 UI snippets。 |
@@ -248,6 +269,8 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/skills WAF reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/waf) | Cloudflare 官方 Agent Skills 里的 WAF 参考，适合看配置模式、常见误区和 Rulesets API 写法。 |
 | [cloudflare/skills DDoS reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/ddos) | Cloudflare 官方 Agent Skills 里的 DDoS 参考，适合看配置模式、API、gotchas 和分层防护。 |
 | [cloudflare/cloudflare-go](https://github.com/cloudflare/cloudflare-go) | Cloudflare 官方 Go SDK，适合自动化 purge、rulesets 和 cache 配置。 |
+| [cloudflare/cloudflare-prometheus-exporter](https://github.com/cloudflare/cloudflare-prometheus-exporter) | Cloudflare 指标导出到 Prometheus 的官方开源参考，适合看 Workers + Durable Objects 的指标累积方式。 |
+| [cloudflare/workers-honeycomb-logger](https://github.com/cloudflare/workers-honeycomb-logger) | Workers 请求事件和 traces 发送到 Honeycomb 的开源库，适合学习外部可观测平台接入。 |
 | [cloudflare/sslconfig](https://github.com/cloudflare/sslconfig) | Cloudflare 公开的 Internet-facing SSL cipher 配置历史，适合理解边缘 TLS 配置变迁。 |
 | [cloudflare/cfssl](https://github.com/cloudflare/cfssl) | Cloudflare 的 PKI/TLS 工具箱，适合学习证书签发、验证和 bundle。 |
 | [cloudflare/certmgr](https://github.com/cloudflare/certmgr) | 基于 CFSSL 的证书管理工具，适合看证书自动续期和服务 reload 模式。 |

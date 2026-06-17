@@ -40,7 +40,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │    └─ Agents SDK
   │
   └─ 观测与安全
-       ├─ Web Analytics / Logs / GraphQL Analytics
+       ├─ Web Analytics / Logs / GraphQL Analytics / Notifications
        └─ Turnstile / WAF / Bot / API Shield
 ```
 
@@ -107,6 +107,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | 产品 | 免费边界 | 付费入口 | 作用 | 最佳实践 |
 | --- | --- | --- | --- | --- |
 | [Billing](/platform/billing/) | Billable Usage dashboard、Budget alerts、invoice 和 billing policy 可用于理解账单。 | usage-based overage、subscription 和 add-on 都要按产品核对。 | 把免费额度、固定订阅、按量费用和发票串起来。 | 开启付费产品前先看 pricing / limits；开启后看 Billable Usage 和 budget alerts。 |
+| [观测与日志](/platform/observability/) | Web Analytics、Dashboard Analytics、Workers Real-time logs、Workers Logs 和 Notifications 覆盖小项目早期观测。 | Analytics Engine、Workers Logpush、Log Explorer、Enterprise Logpush 和外部 SIEM 是更明确的付费入口。 | 把站点体验、Worker 错误、Cloudflare 边缘日志、业务指标和告警串起来。 | 先用 Web Analytics + Workers Logs + Budget alerts；需要长期取证再上 Log Explorer / Logpush。 |
 | Web Analytics | 官方标注 available on all plans；Pages 文档称它是免费、隐私优先分析。 | 更复杂产品分析用 Analytics Engine 或第三方。 | 站点访问和性能统计。 | 文档站和官网先开它，不急着上复杂埋点。 |
 | Workers Logs / Tail | 随 Workers 提供开发和排障能力。 | 更长留存、Logpush、企业日志再付费。 | 查看 Worker 日志和错误。 | 生产只记录必要上下文，别把 token/隐私数据写日志。 |
 | GraphQL Analytics API | Cloudflare 多产品指标查询。 | 大规模分析、企业报表时评估。 | 查询 DNS、HTTP、Workers 等指标。 | 先用 Dashboard；需要自动报表再接 API。 |
@@ -157,6 +158,16 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Vectorize Limits](https://developers.cloudflare.com/vectorize/platform/limits/)
 - [Agents](https://developers.cloudflare.com/agents/)
 - [Agents Limits](https://developers.cloudflare.com/agents/platform/limits/)
+- [Web Analytics Docs](https://developers.cloudflare.com/web-analytics/)
+- [Web Analytics Limits](https://developers.cloudflare.com/web-analytics/limits/)
+- [Cloudflare Analytics](https://developers.cloudflare.com/analytics/)
+- [GraphQL Analytics API](https://developers.cloudflare.com/analytics/graphql-api/)
+- [Analytics Engine Pricing](https://developers.cloudflare.com/analytics/analytics-engine/pricing/)
+- [Cloudflare Logs](https://developers.cloudflare.com/logs/)
+- [Logpush](https://developers.cloudflare.com/logs/logpush/)
+- [Workers Logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/)
+- [Log Explorer](https://developers.cloudflare.com/log-explorer/)
+- [Notifications](https://developers.cloudflare.com/notifications/)
 - [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)
 - [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)
 - [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/)
