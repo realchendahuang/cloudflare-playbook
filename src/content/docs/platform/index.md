@@ -27,7 +27,8 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │    ├─ Workers
   │    ├─ Durable Objects
   │    ├─ Queues
-  │    └─ Workflows / Containers
+  │    ├─ Workflows / Containers
+  │    └─ Realtime / WebSocket
   │
   ├─ 数据存储
   │    ├─ D1 / KV / R2
@@ -67,6 +68,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | Pages Functions | 请求计入 Workers 额度；Free 与 Workers 共享 100,000 requests/day。 | 随 Workers Paid / Standard 扩容。 | 给 Pages 项目加轻量 API。 | 适合已有 Pages 项目渐进加 API；加 Functions 后要用 `_routes.json` 排除静态资产。 |
 | [Durable Objects](/platform/durable-objects/) | Free 只支持 SQLite-backed DO；100,000 requests/day、13,000 GB-s/day，SQLite storage 读 5M rows/day、写 100k rows/day、5 GB total。 | Workers Paid 每月包含 1M requests、400,000 GB-s、25B rows read、50M rows written、5 GB-month SQL stored data，超出按量。 | 单对象强一致状态、房间、限流器、协作会话、WebSocket。 | 只把“必须强一致”的状态放进去；WebSocket 用 hibernation；不要拿它当全局大数据库。 |
 | [Queues](/platform/queues/) | Free 计划 10,000 operations/day；消息保留 24 小时。 | Paid 每月包含 1,000,000 operations，超出 $0.40/million；保留期默认 4 天，可配到 14 天。 | 异步任务、削峰、后台处理、跨 Worker 消息。 | 小消息成功处理通常是 write、read、delete 3 次操作；需要幂等和 DLQ。 |
+| [Realtime](/platform/realtime/) | RealtimeKit 当前 Beta 免费；Realtime SFU / TURN 共用 1,000 GB/month 免费出站额度。 | RealtimeKit GA 后按参与者分钟和导出分钟计费；SFU / TURN 超出后 `$0.05/GB` egress。 | 音视频、WebRTC、TURN relay；文本实时仍优先 Durable Objects。 | 会议/课堂优先 RealtimeKit；自定义 WebRTC 才看 SFU；只做 NAT 穿透才用 TURN。 |
 | [扩展计算与数据管道](/platform/extended-compute-data/) | Hyperdrive Free 100,000 database queries/day；Workflows Free 与 Workers request / CPU 共享；Pipelines pricing 页列出 Free included usage；Containers 仅 Workers Paid。 | Hyperdrive Paid unlimited；Workflows 按 Workers 请求、CPU 和 storage；Pipelines 按 transforms / sinks；Containers 按 memory、vCPU、disk、egress、Workers、DO 和 logs。 | 已有外部数据库、长流程、事件数据湖、容器运行时补位。 | 新项目先用 Workers / D1 / R2 / Queues；需求长出来后再上 Hyperdrive / Workflows / Pipelines / Containers。 |
 | Cron Triggers | 随 Workers 使用。 | 主要受 Workers 计划和调用成本影响。 | 定时任务。 | 适合定时清理、同步、刷新索引；每次任务要可重入。 |
 | Workers for Platforms | 面向多租户代码运行，通常不是个人项目第一步。 | 生产多租户平台再评估付费。 | 让用户上传/运行自己的 Worker。 | 只有做开发者平台、插件平台、低代码平台时再看。 |
@@ -140,6 +142,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | 文件上传和下载 | Workers + R2 + Signed URL + D1 metadata |
 | AI 问答知识库 | Workers + AI Search 或 Vectorize + R2/D1 + AI Gateway |
 | 实时协作 | Workers + Durable Objects + D1/R2 持久化 |
+| 实时音视频 | RealtimeKit；高自定义 WebRTC 再用 Realtime SFU + TURN |
 | 后台任务 | Workers + Queues + Cron Triggers + D1/R2 |
 | 长流程和数据管道 | Workflows + R2 / D1；Pipelines + R2 Data Catalog |
 | 管理后台 | Workers Static Assets + Access/Tunnel + D1 |
@@ -172,6 +175,12 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [R2 Data Catalog](https://developers.cloudflare.com/r2/data-catalog/)
 - [Containers Pricing](https://developers.cloudflare.com/containers/pricing/)
 - [Containers Limits and Instance Types](https://developers.cloudflare.com/containers/platform-details/limits/)
+- [Cloudflare Realtime](https://developers.cloudflare.com/realtime/)
+- [RealtimeKit Pricing](https://developers.cloudflare.com/realtime/realtimekit/pricing/)
+- [Realtime SFU Pricing](https://developers.cloudflare.com/realtime/sfu/pricing/)
+- [Realtime SFU Limits](https://developers.cloudflare.com/realtime/sfu/limits/)
+- [TURN Service](https://developers.cloudflare.com/realtime/turn/)
+- [TURN FAQ](https://developers.cloudflare.com/realtime/turn/faq/)
 - [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 - [Workers AI Limits](https://developers.cloudflare.com/workers-ai/platform/limits/)
 - [AI Gateway Pricing](https://developers.cloudflare.com/ai-gateway/reference/pricing/)

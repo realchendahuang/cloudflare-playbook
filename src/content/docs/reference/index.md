@@ -122,6 +122,18 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Containers](https://developers.cloudflare.com/containers/)
 - [Containers Pricing](https://developers.cloudflare.com/containers/pricing/)
 - [Containers Limits and Instance Types](https://developers.cloudflare.com/containers/platform-details/limits/)
+- [Cloudflare Realtime](https://developers.cloudflare.com/realtime/)
+- [Realtime llms.txt](https://developers.cloudflare.com/realtime/llms.txt)
+- [RealtimeKit](https://developers.cloudflare.com/realtime/realtimekit/)
+- [RealtimeKit Pricing](https://developers.cloudflare.com/realtime/realtimekit/pricing/)
+- [RealtimeKit Concepts](https://developers.cloudflare.com/realtime/realtimekit/concepts/)
+- [RealtimeKit SDK selection](https://developers.cloudflare.com/realtime/realtimekit/sdk-selection/)
+- [RealtimeKit Webhooks](https://developers.cloudflare.com/realtime/realtimekit/webhooks/)
+- [Realtime SFU](https://developers.cloudflare.com/realtime/sfu/)
+- [Realtime SFU Pricing](https://developers.cloudflare.com/realtime/sfu/pricing/)
+- [Realtime SFU Limits](https://developers.cloudflare.com/realtime/sfu/limits/)
+- [TURN Service](https://developers.cloudflare.com/realtime/turn/)
+- [TURN FAQ](https://developers.cloudflare.com/realtime/turn/faq/)
 - [Workers AI Docs](https://developers.cloudflare.com/workers-ai/)
 - [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 - [AI Gateway Docs](https://developers.cloudflare.com/ai-gateway/)
@@ -368,6 +380,10 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Pipelines source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pipelines) | 官方 Pipelines 文档源文件，适合追踪 streams、sinks、SQL transforms、pricing 和 limits。 |
 | [cloudflare/cloudflare-docs Containers source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/containers) | 官方 Containers 文档源文件，适合追踪 instance types、pricing、limits、routing 和 Worker 连接方式。 |
 | [cloudflare/cloudflare-docs R2 Data Catalog source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/r2/data-catalog) | 官方 R2 Data Catalog 文档源文件，适合追踪 Iceberg REST catalog、public beta 和查询引擎配置。 |
+| [cloudflare/cloudflare-docs Realtime source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/realtime) | 官方 Realtime 文档源文件，适合追踪 RealtimeKit、SFU、TURN、pricing、limits 和 Webhooks。 |
+| [cloudflare/realtimekit-web-examples](https://github.com/cloudflare/realtimekit-web-examples) | Cloudflare 官方 RealtimeKit Web examples，适合看 React、Angular、HTML / Web Components 集成。 |
+| [cloudflare/realtime-examples](https://github.com/cloudflare/realtime-examples) | Cloudflare 官方 Realtime SFU / TURN 示例集合，适合看 echo、simulcast、DataChannels、WHIP/WHEP 和 AI 组合。 |
+| [cloudflare/meet](https://github.com/cloudflare/meet) | Cloudflare Meet，原 Orange Meets，基于 Realtime SFU 的完整 demo 应用。 |
 | [cloudflare/cloudflare-docs Terraform source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/terraform) | 官方 Terraform 文档源文件，适合追踪 best practices、import、R2 backend、provider customization 和 troubleshooting。 |
 | [cloudflare/cloudflare-docs Pulumi source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pulumi) | 官方 Pulumi 文档源文件，适合追踪 Pulumi + Wrangler、ESC secrets 和教程。 |
 | [cloudflare/cloudflare-docs Reference Architecture source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/reference-architecture) | 官方参考架构文档源文件，适合追踪 diagrams、design guides 和 implementation guides。 |

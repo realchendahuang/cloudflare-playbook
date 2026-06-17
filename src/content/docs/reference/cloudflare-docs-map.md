@@ -152,7 +152,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Queues](https://developers.cloudflare.com/queues/llms.txt) | 38 | 异步任务和削峰。 |
 | [R2](https://developers.cloudflare.com/r2/llms.txt) | 97 | 对象存储和 S3 兼容，独立开发者必读。 |
 | [R2 SQL](https://developers.cloudflare.com/r2-sql/llms.txt) | 15 | 查询 R2 Data Catalog 数据。 |
-| [Realtime](https://developers.cloudflare.com/realtime/llms.txt) | 712 | RealtimeKit、SFU、TURN，实时音视频方向。 |
+| [Realtime](https://developers.cloudflare.com/realtime/llms.txt) | 712 | 已完成首版专题；RealtimeKit、SFU、TURN 和 Durable Objects WebSocket 的边界、价格与落地顺序。 |
 | [Sandbox SDK](https://developers.cloudflare.com/sandbox/llms.txt) | 62 | 安全代码执行环境。 |
 | [Stream](https://developers.cloudflare.com/stream/llms.txt) | 64 | 视频存储、编码、播放。 |
 | [Vectorize](https://developers.cloudflare.com/vectorize/llms.txt) | 21 | 向量数据库和语义检索。 |
@@ -218,7 +218,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |
 | 已完成首版 | 企业网络精读 | 已整理 Cloudflare One、Access、Gateway、Tunnel、Cloudflare One Client、Zero Trust Free / Pay-as-you-go / Contract、Cloudflare WAN 和 Network Firewall 的边界。 |
 | 已完成首版 | 扩展计算与数据管道精读 | 已整理 Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog 的定位、免费/付费边界、limits、计费维度和开源参考。 |
-| 进行中 | 后续 P2/P3 精读 | Realtime、Magic Transit、BYOIP、Network Interconnect、Workers VPC、Cloudflare for Platforms 等。 |
+| 已完成首版 | Realtime 精读 | 已整理 RealtimeKit、Realtime SFU、TURN、Durable Objects WebSocket 的边界、Beta / GA 价格模型、SFU / TURN 免费额度、limits 和开源参考。 |
+| 进行中 | 后续 P2/P3 精读 | Magic Transit、BYOIP、Network Interconnect、Workers VPC、Cloudflare for Platforms 等。 |
 | 待开始 | 后续专题 | 更多迁移案例、参考架构和真实项目拆解。 |
 
 ## 整理规则
@@ -269,6 +270,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Cloudflare Workflows llms.txt](https://developers.cloudflare.com/workflows/llms.txt)
 - [Cloudflare Pipelines llms.txt](https://developers.cloudflare.com/pipelines/llms.txt)
 - [Cloudflare Containers llms.txt](https://developers.cloudflare.com/containers/llms.txt)
+- [Cloudflare Realtime llms.txt](https://developers.cloudflare.com/realtime/llms.txt)
 - [Cloudflare Terraform llms.txt](https://developers.cloudflare.com/terraform/llms.txt)
 - [Cloudflare Pulumi llms.txt](https://developers.cloudflare.com/pulumi/llms.txt)
 - [Cloudflare Reference Architecture llms.txt](https://developers.cloudflare.com/reference-architecture/llms.txt)

@@ -56,6 +56,7 @@ export default defineConfig({
 						{ label: 'R2', slug: 'platform/r2' },
 						{ label: 'Durable Objects', slug: 'platform/durable-objects' },
 						{ label: 'Queues', slug: 'platform/queues' },
+						{ label: 'Realtime', slug: 'platform/realtime' },
 						{ label: '扩展计算与数据管道', slug: 'platform/extended-compute-data' },
 						{ label: 'AI 产品', slug: 'platform/ai' },
 						{ label: '媒体与性能', slug: 'platform/media-performance' },
