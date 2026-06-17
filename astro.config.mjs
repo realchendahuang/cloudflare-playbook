@@ -41,6 +41,7 @@ export default defineConfig({
 					items: [
 						{ label: '总览', slug: 'platform' },
 						{ label: 'Workers', slug: 'platform/workers' },
+						{ label: 'Workers Static Assets', slug: 'platform/static-assets' },
 						{ label: 'Pages', slug: 'platform/pages' },
 						{ label: '数据产品', slug: 'platform/data' },
 						{ label: 'D1', slug: 'platform/d1' },

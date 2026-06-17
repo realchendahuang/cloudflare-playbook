@@ -26,6 +26,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | 学习路线 | [src/content/docs/start/index.md](src/content/docs/start/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/start/) |
 | Cloudflare 产品大图谱 | [src/content/docs/platform/index.md](src/content/docs/platform/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/) |
 | Workers | [src/content/docs/platform/workers.md](src/content/docs/platform/workers.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/workers/) |
+| Workers Static Assets | [src/content/docs/platform/static-assets.md](src/content/docs/platform/static-assets.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/static-assets/) |
 | Pages | [src/content/docs/platform/pages.md](src/content/docs/platform/pages.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/pages/) |
 | 数据产品 | [src/content/docs/platform/data.md](src/content/docs/platform/data.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/data/) |
 | D1 | [src/content/docs/platform/d1.md](src/content/docs/platform/d1.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/d1/) |

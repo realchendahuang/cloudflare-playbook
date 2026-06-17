@@ -201,7 +201,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | R2 精读 | 已整理对象存储定位、免费/付费边界、Class A/B、一致性、Workers API、公开访问、签名 URL 和开源参考。 |
 | 已完成首版 | Durable Objects 精读 | 已整理单实体强一致状态、免费/付费边界、SQLite storage、WebSocket Hibernation、Alarms、迁移和开源参考。 |
 | 已完成首版 | Queues 精读 | 已整理异步任务定位、免费/付费边界、at least once、批处理、重试、死信队列、Pull Consumer 和开源参考。 |
-| 进行中 | P0 产品精读 | Static Assets、Pages、DNS、SSL/TLS、Cache、WAF、DDoS、Billing。 |
+| 已完成首版 | Workers Static Assets 精读 | 已整理静态资产免费边界、文件限制、路由模型、ASSETS binding、`_headers` / `_redirects`、Pages 取舍和开源参考。 |
+| 进行中 | P0 产品精读 | Pages、DNS、SSL/TLS、Cache、WAF、DDoS、Billing。 |
 | 待开始 | P1/P2/P3 产品精读 | AI、观测、安全增强、媒体、企业网络、迁移和 IaC。 |
 
 ## 整理规则

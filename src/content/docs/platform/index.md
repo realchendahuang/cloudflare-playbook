@@ -47,7 +47,7 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 | 产品 | 免费边界 | 付费入口 | 作用 | 最佳实践 |
 | --- | --- | --- | --- | --- |
 | Workers | Free 计划 100,000 次请求/天，每次 10 ms CPU。 | Workers Paid/Standard 每月最低 $5，包含更高请求和 CPU 额度，超出按量计费。 | 写边缘 API、Webhook、代理、鉴权、轻量后端。 | 静态资产不要都打进 Worker；只让 `/api/*` 触发 Worker。CPU 留给业务逻辑，等待外部 I/O 不要做无意义轮询。 |
-| Workers Static Assets | 静态资产请求免费且不限量，资产存储无额外费用。 | 只有请求进入 Worker 脚本时才按 Workers 计费。 | 把静态站和 Worker 项目放在同一套部署配置里。 | 文档站和前端应用优先用它；需要动态能力时再让 Worker 处理特定路径。 |
+| [Workers Static Assets](/platform/static-assets/) | 静态资产请求免费且不限量，资产存储无额外费用；Free/Paid 单文件都是 25 MiB，文件数分别为 20,000 / 100,000。 | 只有请求进入 Worker 脚本时才按 Workers 计费。 | 把静态站和 Worker 项目放在同一套部署配置里。 | 文档站和前端应用优先用它；只让 `/api/*` 等动态路径触发 Worker。 |
 | Pages | Free 计划包含静态请求和带宽，官方 Pages 页面列出 500 builds/月、100 custom domains/project。 | Pro/Business 增加并发构建、构建次数和项目能力。 | Git 驱动的静态站和前端部署。 | 纯静态站很好用；一旦 API、D1、R2、AI 组合变多，优先迁到 Workers Static Assets。 |
 | Pages Functions | 计入 Workers/Pages Functions 额度。 | 随 Workers Paid 扩容。 | 给 Pages 项目加轻量 API。 | 适合已有 Pages 项目渐进加 API；新项目如果天然 full-stack，直接 Workers。 |
 | [Durable Objects](/platform/durable-objects/) | Free 只支持 SQLite-backed DO；100,000 requests/day、13,000 GB-s/day，SQLite storage 读 5M rows/day、写 100k rows/day、5 GB total。 | Workers Paid 每月包含 1M requests、400,000 GB-s、25B rows read、50M rows written、5 GB-month SQL stored data，超出按量。 | 单对象强一致状态、房间、限流器、协作会话、WebSocket。 | 只把“必须强一致”的状态放进去；WebSocket 用 hibernation；不要拿它当全局大数据库。 |
@@ -113,7 +113,7 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 
 | 场景 | 推荐组合 |
 | --- | --- |
-| 文档站 / 公开知识库 | Astro/Starlight + Workers Static Assets + Pagefind + Web Analytics |
+| 文档站 / 公开知识库 | Astro/Starlight + [Workers Static Assets](/platform/static-assets/) + Pagefind + Web Analytics |
 | 有评论的文档社区 | Workers Static Assets + Twikoo Cloudflare + 后续 Turnstile |
 | 小型 SaaS | Workers + D1 + KV + R2 + AI Gateway |
 | 文件上传和下载 | Workers + R2 + Signed URL + D1 metadata |

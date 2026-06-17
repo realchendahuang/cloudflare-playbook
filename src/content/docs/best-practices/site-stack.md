@@ -30,7 +30,7 @@ Cloudflare D1
 | 普通关键词搜索 | Starlight 默认 Pagefind | Starlight 默认内置 Pagefind，全静态、低带宽，不占 Worker API 请求。 |
 | 主题 | Starlight Theme Next + Cloudflare 主题变量 | 复用成熟 Starlight 主题，整体更接近工程产品文档；只通过主题变量收敛品牌色。 |
 | 评论功能 | Twikoo + twikoo-cloudflare | 前端评论组件成熟，后端托管在 Cloudflare Workers，数据进入 D1。 |
-| 统一部署 | Workers Static Assets | 静态页面可以在 Worker 项目里统一部署，配置集中在 `wrangler.jsonc`。 |
+| 统一部署 | [Workers Static Assets](/platform/static-assets/) | 静态页面可以在 Worker 项目里统一部署，配置集中在 `wrangler.jsonc`。 |
 | 后续自然语言搜索 | Cloudflare AI Search | 等内容量变大后再加，适合知识库搜索、混合检索和 Agent 使用。 |
 
 ## 为什么不是 VuePress

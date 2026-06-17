@@ -17,7 +17,7 @@ Workers 是 Cloudflare 开发者平台的核心计算层。它适合写边缘 AP
 
 | 场景 | 是否优先用 Workers | 判断 |
 | --- | --- | --- |
-| 文档站、官网、博客 | 是，但优先走 Static Assets | 静态页面交给资产服务，只有评论、搜索 API、表单、Webhook 进入 Worker。 |
+| 文档站、官网、博客 | 是，但优先走 [Static Assets](/platform/static-assets/) | 静态页面交给资产服务，只有评论、搜索 API、表单、Webhook 进入 Worker。 |
 | 小型 API / Webhook | 是 | `fetch(request, env, ctx)` 模型足够轻，绑定 D1/R2/KV/Queues 很顺。 |
 | API 网关和边缘代理 | 是 | 适合做鉴权、header 改写、缓存、限流、请求转发。 |
 | 长时间 CPU 计算 | 谨慎 | Paid 单次 CPU 可到 5 分钟，但成本和限制要单独估算。 |
@@ -84,7 +84,7 @@ Workers Free 和 Workers Paid / Standard 的差异，先看最常影响架构的
 
 ## Static Assets
 
-Workers Static Assets 是现在更适合 full-stack 项目的静态托管方式。它把 Worker 代码和静态资源作为一次部署发到 Cloudflare 网络里。
+[Workers Static Assets](/platform/static-assets/) 是现在更适合 full-stack 项目的静态托管方式。它把 Worker 代码和静态资源作为一次部署发到 Cloudflare 网络里。
 
 默认路由行为很关键：
 
@@ -159,14 +159,14 @@ Worker 代码要按“短、清楚、可观察、可流式”的方式写。
 
 | 目标 | 组合 |
 | --- | --- |
-| 低成本文档站 | Workers Static Assets + Pagefind + Web Analytics |
-| 有 API 的前端应用 | Workers Static Assets + `/api/*` Worker + D1/KV |
+| 低成本文档站 | [Workers Static Assets](/platform/static-assets/) + Pagefind + Web Analytics |
+| 有 API 的前端应用 | [Workers Static Assets](/platform/static-assets/) + `/api/*` Worker + D1/KV |
 | 评论、表单、留言 | Worker + D1 + Turnstile + Rate Limiting |
 | 文件上传 | Worker + R2 + D1 metadata + signed URL |
 | Webhook 网关 | Worker + Queues + D1/R2 |
 | 实时房间 | Worker + Durable Objects + WebSocket hibernation |
 | AI API 代理 | Worker + AI Gateway + KV/D1 缓存 |
-| 管理后台 | Workers Static Assets + Cloudflare Access + D1 |
+| 管理后台 | [Workers Static Assets](/platform/static-assets/) + Cloudflare Access + D1 |
 
 ## 不要这样用
 

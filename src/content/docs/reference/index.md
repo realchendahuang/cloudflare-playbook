@@ -22,6 +22,14 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/workers-best-practices/)
 - [Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
 - [Workers Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
+- [Workers Static Assets Configuration and Bindings](https://developers.cloudflare.com/workers/static-assets/binding/)
+- [Workers Static Assets Routing](https://developers.cloudflare.com/workers/static-assets/routing/)
+- [Workers Static Assets SPA routing](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/)
+- [Workers Static Assets SSG and custom 404](https://developers.cloudflare.com/workers/static-assets/routing/static-site-generation/)
+- [Workers Static Assets HTML handling](https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/)
+- [Workers Static Assets Headers](https://developers.cloudflare.com/workers/static-assets/headers/)
+- [Workers Static Assets Redirects](https://developers.cloudflare.com/workers/static-assets/redirects/)
+- [Migrate from Pages to Workers](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)
 - [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
 - [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
 - [Workers Builds Limits & Pricing](https://developers.cloudflare.com/workers/ci-cd/builds/limits-and-pricing/)
@@ -102,6 +110,9 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk) | Wrangler、Miniflare、Workers SDK 源码和 issue 入口。 |
 | [cloudflare/workerd](https://github.com/cloudflare/workerd) | Workers JavaScript/Wasm runtime 的开源实现，适合理解运行时和 compatibility date。 |
 | [cloudflare/templates](https://github.com/cloudflare/templates) | Cloudflare Workers 官方模板集合。 |
+| [cloudflare/templates/vite-react-template](https://github.com/cloudflare/templates/tree/main/vite-react-template) | Vite + React + Workers Static Assets 官方模板，适合学习 SPA + API。 |
+| [cloudflare/templates/astro-blog-starter-template](https://github.com/cloudflare/templates/tree/main/astro-blog-starter-template) | Astro 内容站官方模板，适合学习静态内容站进入 Workers 的方式。 |
+| [cloudflare/cloudflare-docs Static Assets source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/static-assets) | 官方 Static Assets 文档源文件，适合追踪文档变更。 |
 | [cloudflare/workers-rs](https://github.com/cloudflare/workers-rs) | Rust / WebAssembly 写 Workers 的生态入口。 |
 | [cloudflare/workers-oauth-provider](https://github.com/cloudflare/workers-oauth-provider) | 在 Workers 上实现 OAuth 2.1 provider 的库，适合学习 API 鉴权边界。 |
 | [cloudflare/agents](https://github.com/cloudflare/agents) | Agents SDK、Code Mode 和构建 Cloudflare agent 的实现参考。 |

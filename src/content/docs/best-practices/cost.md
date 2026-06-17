@@ -93,7 +93,7 @@ Workers Paid 的每月 $5 值得付的典型信号：
 
 | 能力 | 当前选择 | 成本含义 |
 | --- | --- | --- |
-| 文档页面 | Astro + Starlight + Workers Static Assets | 静态资产请求免费且不限量。 |
+| 文档页面 | Astro + Starlight + [Workers Static Assets](/platform/static-assets/) | 静态资产请求免费且不限量。 |
 | 搜索 | Pagefind | 构建期生成索引，搜索不打后端。 |
 | 评论 | Twikoo + Workers + D1 | 只有评论相关请求进入 Worker 和 D1。 |
 | 主题 | Starlight Theme Next | 复用成熟主题，减少自维护 UI 成本。 |
@@ -103,6 +103,7 @@ Workers Paid 的每月 $5 值得付的典型信号：
 
 - [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
 - [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
+- [Workers Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
 - [D1 Pricing](https://developers.cloudflare.com/d1/platform/pricing/)
 - [R2 Pricing](https://developers.cloudflare.com/r2/pricing/)
 - [Queues Pricing](https://developers.cloudflare.com/queues/platform/pricing/)

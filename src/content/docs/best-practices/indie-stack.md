@@ -24,7 +24,7 @@ AI 调用: AI Gateway
 
 | 项目 | 推荐组合 | 暂时不要上 |
 | --- | --- | --- |
-| 文档站 / 博客 | Starlight 或 Astro + Workers Static Assets + Pagefind + Web Analytics | D1、AI Search、Queues，除非有评论或问答。 |
+| 文档站 / 博客 | Starlight 或 Astro + [Workers Static Assets](/platform/static-assets/) + Pagefind + Web Analytics | D1、AI Search、Queues，除非有评论或问答。 |
 | 文档社区 | Workers Static Assets + Twikoo Cloudflare + 后续 Turnstile | 一开始就维护自定义评论组件和复杂管理端。 |
 | 小型 SaaS | Workers + D1 + KV + R2 + AI Gateway | 微服务、Kubernetes、自建 Postgres 集群。 |
 | AI 工具 | Workers + AI Gateway + D1 记录 + R2 文件 + 后续 Workers AI/Vectorize | 一开始就做多 Agent 框架。 |
@@ -100,7 +100,7 @@ Cloudflare Playbook 当前选择：
 | --- | --- | --- |
 | 文档 | Astro + Starlight | Markdown 友好，开源协作成本低。 |
 | 搜索 | Pagefind | 免费、静态、低复杂度。 |
-| 部署 | Workers Static Assets | 静态站和 API 在同一个 Worker 项目。 |
+| 部署 | [Workers Static Assets](/platform/static-assets/) | 静态站和 API 在同一个 Worker 项目。 |
 | 评论 | Twikoo + twikoo-cloudflare | 复用成熟评论组件，并把服务托管在 Cloudflare。 |
 | 主题 | Starlight Theme Next + Cloudflare 主题变量 | 复用成熟文档主题，只通过主题变量收敛品牌色。 |
 | 未来增强 | AI Search / Turnstile | 内容和流量真的上来后再加。 |
@@ -109,5 +109,6 @@ Cloudflare Playbook 当前选择：
 
 - [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
 - [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
+- [Workers Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
 - [Cloudflare Workers Templates](https://github.com/cloudflare/templates)
 - [Cloudflare Skills](https://github.com/cloudflare/skills)
