@@ -25,6 +25,31 @@ Workers 是 Cloudflare 开发者平台的核心计算层。它适合写边缘 AP
 | 强一致房间状态 | Workers + Durable Objects | Worker 负责入口，房间状态放 Durable Objects。 |
 | 传统后台常驻进程 | 不优先 | 需要常驻进程、系统调用或复杂本地依赖时，再看 Containers 或外部服务。 |
 
+## 二次精读结论
+
+Workers 不是一台“小服务器”，而是一层请求级运行时。把它用好，关键不是把所有逻辑都塞进去，而是把入口、状态、文件、异步任务和内部服务拆到正确位置。
+
+| 维度 | 结论 | 普通项目怎么落地 |
+| --- | --- | --- |
+| 成本 | 静态资产请求免费且不限量；动态 Worker 才看请求、CPU、日志和绑定产品用量。 | 文档、官网、前端资源先走 Static Assets；`/api/*` 才进 Worker。 |
+| 状态 | isolate 可能复用，也可能被回收；全局变量不能保存用户态业务数据。 | 用户、评论、订单进 D1；强一致房间进 Durable Objects；缓存和配置进 KV。 |
+| 生命周期 | HTTP 请求没有固定 wall time 上限，但客户端断开或响应结束后任务可能被取消。 | 响应依赖的工作必须 `await`；响应后短任务才用 `ctx.waitUntil()`。 |
+| 后台任务 | `waitUntil()` 最多适合 30 秒内的收尾工作，不是任务队列。 | 邮件、通知、导入、批处理进 Queues 或 Workflows。 |
+| 拆服务 | Service Bindings 可以 Worker-to-Worker 内部调用，不走公网 URL。 | 认证、AI 代理、评论 API、后台 API 可以拆成内部 Worker。 |
+| 兼容性 | `compatibility_date` 决定运行时行为；`nodejs_compat` 只解决部分 Node.js API。 | 新项目用当前日期；升级日期前跑测试；重型 Node 包先验证。 |
+
+## 上线前问题
+
+| 问题 | 为什么要问 | 推荐答案 |
+| --- | --- | --- |
+| 哪些路径必须进入 Worker？ | 免费额度最容易被全站动态化消耗掉。 | 只让 `/api/*`、`/auth/*`、`/admin/*` 等动态路径进入 Worker。 |
+| 单次请求 CPU 大概多少？ | Workers Paid 同时看请求和 CPU，不只看 QPS。 | SSR、Markdown 转换、JSON 大解析、AI 前处理要单独估算。 |
+| 会不会一次打开超过 6 个等待响应头的出站连接？ | 每次 invocation 同时等待响应头的连接上限是 6。 | 批量抓取和多上游聚合要分批、缓存或进队列。 |
+| 是否有大文件或大 body？ | Worker 内存是 128 MB，缓冲大 body 会出问题。 | 文件进 R2，Worker 尽量流式处理。 |
+| 失败时应该 fail open 还是 fail closed？ | Free 请求超过 100,000/day 后 route 会按配置处理。 | 鉴权、后台、付费内容 fail closed；非关键增强逻辑可评估 fail open。 |
+| 内部 Worker 怎么互调？ | same-zone route 之间直接 `fetch()` 有限制，公网 URL 也暴露边界。 | 优先 Service Bindings；需要公网入口再用 Custom Domain。 |
+| 日志里会不会出现 token、cookie、正文隐私？ | Workers Logs / Logpush 会进入观测链路。 | 只记录 request id、Ray ID、状态、耗时、匿名化用户标识。 |
+
 ## 运行模型
 
 Workers 使用 V8 isolate 运行用户代码。它更像“分布在 Cloudflare 网络里的请求处理函数”，不是一台你长期持有的服务器。
@@ -57,9 +82,11 @@ export default {
 实践上要注意：
 
 - 不要依赖可变全局状态保存业务数据。isolate 可能复用，也可能被回收，任意两个用户请求也不保证落在同一个 isolate。
+- 顶层代码会影响启动时间。Workers 的 startup time 限制是 1 秒，大依赖和重初始化要移到构建期或请求内惰性执行。
 - 等待外部网络、D1、KV、R2 等 I/O 的时间不算 CPU，但解析大 JSON、加密、大量循环、SSR 渲染会消耗 CPU。
 - 大响应和大请求尽量流式处理，不要把完整 body 读进内存。
 - 需要返回响应后继续做短任务时用 `ctx.waitUntil()`，但它不是无限后台任务队列。
+- `env` 是绑定入口，同一环境下可能被多个请求复用；它适合访问绑定，不适合挂请求级临时状态。
 
 ## 免费与付费边界
 
@@ -81,6 +108,23 @@ Workers Free 和 Workers Paid / Standard 的差异，先看最常影响架构的
 | Static Asset 单文件 | 25 MiB。 | 25 MiB。 | 文档构建产物没问题；大附件不要塞进站点 bundle。 |
 
 另外，HTTP request body 上限取决于 Cloudflare zone 计划，不取决于 Workers 计划：Free/Pro 为 100 MB，Business 为 200 MB，Enterprise 默认 500 MB。Worker 响应体没有平台强制大小上限，但 CDN 缓存仍有计划限制。
+
+## 容易被低估的限制
+
+这些限制不会每天碰到，但一旦碰到，通常就是线上事故或账单问题。
+
+| 限制 | 当前边界 | 实践判断 |
+| --- | --- | --- |
+| Daily requests | Free 100,000 requests/day，UTC 0 点重置。 | 超出后返回 Error 1027，route 可配置 fail open / fail closed。 |
+| Wall time | HTTP 请求没有硬性 wall time 上限；Cron、Queue Consumer、DO Alarm 为 15 分钟。 | 长连接和流式响应可以跑很久，但客户端断开后未保护任务可能取消。 |
+| `waitUntil()` | 响应后或客户端断开后最多延长 30 秒。 | 适合日志、缓存写入、短 webhook；不适合导入、转码、批量抓取。 |
+| Memory | 每个 isolate 128 MB。 | 不要把上传文件、R2 对象、上游大响应完整读入内存。 |
+| Startup time | 1 秒。 | 大 schema、模型、初始化代码不要放顶层。部署时可用 `wrangler check startup` 排查。 |
+| Subrequests | Free 50/request；Paid 默认 10,000/request，可按配置提高。 | R2、KV、D1、Cache API、fetch 都会进入这个心智模型。 |
+| 同时等待响应头的连接 | 6/request。 | 多上游聚合要限并发；失败响应不用 body 时及时 cancel。 |
+| 环境变量 | Free 64/Worker，Paid 128/Worker，单个 5 KB。 | 配置要收敛；密钥放 secrets，不放 `vars`。 |
+| 日志大小 | 单次请求日志数据 256 KB。 | 日志不是数据库；大对象、正文、token 不要写进去。 |
+| WebSocket 请求计费 | 建立连接的 Upgrade 算一次请求；消息本身不按请求数计。 | 实时状态放 Durable Objects，并使用 WebSocket Hibernation 控制 duration。 |
 
 ## Static Assets
 
@@ -142,6 +186,53 @@ Cloudflare 官方文档已经把 `wrangler.jsonc` 作为新项目推荐配置格
 - staging / production 分环境部署时，绑定不会自动继承，要在每个环境里显式声明。
 - Custom Domain 表示 Worker 是 origin；Route 表示 Worker 在已有 origin 前面运行，Route 需要对应 hostname 有橙云代理 DNS 记录。
 
+## Route、Custom Domain 和 Service Bindings
+
+Workers 有三种常见入口，选错会让链路变绕：
+
+| 入口 | 适合场景 | 注意 |
+| --- | --- | --- |
+| Route | Worker 放在已有源站前面，做鉴权、日志、缓存、改写、代理。 | 需要 zone 内 DNS 记录为 Proxied；同 zone route 之间不能随便互相 `fetch()`。 |
+| Custom Domain | Worker 本身就是 origin，所有路径都交给这个 Worker。 | Cloudflare 会自动创建 DNS 记录和证书；同 zone Custom Domain 可以被另一个 Worker `fetch()`。 |
+| Service Bindings | 账号内 Worker-to-Worker 内部调用。 | 不走公网 URL，支持 RPC / HTTP；Standard 计费下不会额外增加请求费用。 |
+
+普通项目可以这样拆：
+
+| 模块 | 推荐入口 |
+| --- | --- |
+| 前端页面和静态资源 | Workers Static Assets |
+| 公开 API | Custom Domain 或 Static Assets 同 Worker 的 `/api/*` |
+| 认证、评论、AI 代理等内部服务 | Service Bindings |
+| 已有源站前的安全层 | Route |
+
+Service Bindings 的生命周期要记住两点：调用方要 `await` 被调用 Worker 的结果，否则被调用方可能提前终止；RPC 返回远程对象时，要按官方生命周期规则释放 stub，复杂对象优先用 `using` 或显式 dispose。
+
+## `ctx.waitUntil()` 怎么用
+
+`ctx.waitUntil()` 只适合“不影响当前响应正确性”的短任务。
+
+| 用法 | 判断 |
+| --- | --- |
+| 写 analytics、短日志、缓存预热、非关键 webhook | 适合，用 `ctx.waitUntil()`。 |
+| 写数据库后再告诉用户成功 | 不适合，必须 `await` 数据库写入。 |
+| 发送邮件、批量导入、网页抓取、转码、重试任务 | 不适合，进 Queues / Workflows。 |
+| 流式响应还在持续输出 | 不需要靠 `waitUntil()` 保活，响应流本身保持 invocation 活跃。 |
+
+不要把 `ctx.waitUntil` 解构出来调用，官方最佳实践里专门提醒这会丢失绑定并导致 `Illegal invocation`。保持 `ctx.waitUntil(promise)` 的写法。
+
+## 兼容性日期和 Node.js 兼容
+
+Workers 文档里的运行时行为通常按当前 compatibility date 描述。新项目应该使用当前日期，老项目升级前要看 compatibility flags 并跑测试。
+
+| 配置 | 作用 | 实践判断 |
+| --- | --- | --- |
+| `compatibility_date` | 选择 Workers runtime 的行为版本。 | 新项目设当前日期；老项目按变更批次升级。 |
+| `compatibility_flags` | 提前或显式启用特定运行时行为。 | 只启用项目确实需要的 flag。 |
+| `nodejs_compat` | 启用 Workers 支持的 Node.js API 和 Wrangler polyfill。 | 需要 compatibility date `2024-09-23` 或更新；不是完整 Node.js 服务器。 |
+| `nodejs_als` | 只启用 AsyncLocalStorage。 | 只需要请求上下文追踪时，比完整 `nodejs_compat` 更克制。 |
+
+Node.js 兼容适合解决 `node:crypto`、`node:buffer`、`node:stream` 等常见依赖问题，但 child process、cluster、REPL、部分 UDP / VM 等并不适合 serverless runtime。凡是依赖本地文件系统长期可写、子进程、系统包或常驻 TCP 服务的库，都要先验证，再决定是不是应该去 Containers 或外部服务。
+
 ## 代码习惯
 
 Worker 代码要按“短、清楚、可观察、可流式”的方式写。
@@ -154,6 +245,8 @@ Worker 代码要按“短、清楚、可观察、可流式”的方式写。
 | 日志只记录必要上下文，不记录 token、cookie、隐私数据。 | Workers Logs / Logpush 会进入观测系统，敏感信息泄漏代价高。 |
 | 能用 Service Bindings 就不要用公网 URL 调另一个 Worker。 | Worker-to-Worker 调用更清晰，也少暴露内部入口。 |
 | 需要强一致状态时把状态放 Durable Objects。 | 普通 Worker 全局变量不是可靠状态存储。 |
+| Promise 必须 `await`、`return` 或交给 `ctx.waitUntil()`。 | Floating promise 可能在 isolate 结束时被取消，还可能吞掉错误。 |
+| Cloudflare 服务优先用 binding，不从 Worker 里打 REST API。 | R2、KV、D1、Queues、Workflows binding 不需要额外鉴权和公网网络跳转。 |
 
 ## 常见架构组合
 
@@ -207,6 +300,12 @@ Workers 只是入口。要把 Cloudflare 开发者平台真正用起来，下一
 - [Context API](https://developers.cloudflare.com/workers/runtime-apis/context/)
 - [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
 - [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
+- [Compatibility dates](https://developers.cloudflare.com/workers/configuration/compatibility-dates/)
+- [Node.js compatibility](https://developers.cloudflare.com/workers/runtime-apis/nodejs/)
+- [Service bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/service-bindings/)
+- [RPC Lifecycle](https://developers.cloudflare.com/workers/runtime-apis/rpc/lifecycle/)
+- [Routes](https://developers.cloudflare.com/workers/configuration/routing/routes/)
+- [Custom Domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/)
 - [Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
 - [Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
 - [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/workers-best-practices/)
