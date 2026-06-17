@@ -3,7 +3,7 @@ title: Realtime
 description: Cloudflare RealtimeKit、Realtime SFU、TURN 和 Durable Objects WebSocket 的边界、价格与最佳实践。
 ---
 
-最后核对日期：2026-06-17。
+最后核对日期：2026-06-18。
 
 Cloudflare Realtime 不是一个单独产品，而是一组实时通信能力：RealtimeKit、Realtime SFU 和 TURN。普通项目还会同时遇到另一类“实时”：聊天、协作、房间状态和 WebSocket，这部分通常应该优先看 [Durable Objects](/platform/durable-objects/)。
 
@@ -15,17 +15,6 @@ Cloudflare Realtime 不是一个单独产品，而是一组实时通信能力：
 | 自己掌控 WebRTC 拓扑、track、presence、媒体路由 | Realtime SFU | 底层 SFU，适合懂 WebRTC 的团队。 |
 | 已有 WebRTC 应用，只需要 NAT / 防火墙穿透 | TURN | 只做 relay，不负责房间、用户、媒体编排。 |
 | 聊天、协作文档、游戏房间、在线状态 | Durable Objects WebSocket | 不需要音视频媒体路由时，不要为了“实时”上 SFU。 |
-
-```text
-实时能力
-  ├─ 文本 / 状态 / 协作
-  │    └─ Workers + Durable Objects + WebSocket Hibernation
-  │
-  └─ 音频 / 视频 / WebRTC
-       ├─ RealtimeKit：快速加会议和语音视频 UI
-       ├─ Realtime SFU：自定义 WebRTC 媒体路由
-       └─ TURN：NAT / 防火墙 relay
-```
 
 如果目标只是“页面里有实时评论、通知、聊天、在线人数”，不要先看 RealtimeKit。先用 Durable Objects；它解决的是状态一致性和连接管理，不承担音视频带宽。
 
@@ -49,16 +38,6 @@ Cloudflare Realtime 不是一个单独产品，而是一组实时通信能力：
 
 ## RealtimeKit：快速做音视频产品
 
-RealtimeKit 的抽象是 App、Meeting、Session、Participant 和 Preset：
-
-| 概念 | 判断 |
-| --- | --- |
-| App | 一个隔离命名空间，建议 staging 和 production 分开。 |
-| Meeting | 可复用虚拟房间；同一时间只有一个 active session。 |
-| Session | 真实正在进行的一次会议，最后一个参与者离开后结束。 |
-| Participant | 由后端 API 创建，返回给前端 SDK 使用的 `authToken`。不要复用 participant token。 |
-| Preset | 角色、权限、UI、会议类型的复用配置。 |
-
 普通项目如果要做视频会议，优先选 UI Kit，而不是从 Core SDK 或 SFU 开始。官方 SDK selection 页给出的判断也很直接：UI Kit 出货更快，Core SDK 给你更多控制但维护更多代码。
 
 推荐路线：
@@ -70,58 +49,15 @@ RealtimeKit 的抽象是 App、Meeting、Session、Participant 和 Preset：
 
 ## Realtime SFU：自己负责媒体拓扑
 
-Realtime SFU 是底层能力。它没有“房间”概念，只知道 sessions、tracks、pub/sub、SDP 和媒体转发。Cloudflare 官方 introduction 明确提醒：如果你要会议房间，就需要自己保存参与者和 track IDs。
+Realtime SFU 是底层能力。它适合已经懂 WebRTC、并且需要自己掌控媒体拓扑的团队。普通开发者不要把 SFU 当成“更便宜的 RealtimeKit”：它给的是控制权，同时把 presence、权限、重连、房间状态、录制和管理后台都交还给你。
 
-这意味着一个完整应用通常会是：
-
-```text
-浏览器 / 移动端
-  │
-  ▼
-业务后端 Worker
-  ├─ 鉴权
-  ├─ 房间和成员
-  ├─ track ID 分发
-  └─ 调用 Realtime SFU API 交换 SDP
-       │
-       ▼
-Cloudflare Realtime SFU
-  └─ 转发 audio / video / data tracks
-```
-
-普通开发者不要把 SFU 当成“更便宜的 RealtimeKit”。它给的是控制权，同时把 presence、权限、重连、房间状态、录制、管理后台都交还给你。
-
-关键限制：
-
-| 项目 | 限制 |
-| --- | --- |
-| API calls per Session | 每个 session 最多 50 calls/second。 |
-| Tracks per API call | 单次 API call 最多添加 64 tracks。 |
-| Tracks per Session | 官方未给硬上限，实际受客户端和 Cloudflare 之间的带宽约束。 |
-| Track inactivity timeout | 30 秒没有媒体包后会 timeout 并被回收。 |
-| DataChannel ack timeout | `waitForAck` 开启时，subscriber 需要在 15 秒内发出第一次确认消息。 |
-| PeerConnection 要求 | 相关操作要求 PeerConnection state 为 `connected`，最多等待 5 秒。 |
-
-支持的视频编码包括 H264、H265、VP8、VP9、AV1；音频编码包括 Opus、G.711 A-law 和 G.711 µ-law。
+用 SFU 前先确认三件事：团队是否真的需要自定义媒体路由，是否能维护房间和参与者状态，是否能按带宽和出站流量估算成本。否则优先 RealtimeKit。
 
 ## TURN：只解决连接穿透
 
-TURN 适合已有 WebRTC 应用。它的价值是让受 NAT、防火墙、企业网络限制的客户端仍能连接。
+TURN 适合已有 WebRTC 应用。它的价值是让受 NAT、防火墙、企业网络限制的客户端仍能连接。它不负责房间、权限、录制、会议 UI 或媒体 fan-out。
 
-| 协议 | 地址 | 主端口 | 备用端口 |
-| --- | --- | --- | --- |
-| STUN over UDP | `stun.cloudflare.com` | `3478/udp` | `53/udp` |
-| TURN over UDP | `turn.cloudflare.com` | `3478/udp` | `53/udp` |
-| TURN over TCP | `turn.cloudflare.com` | `3478/tcp` | `80/tcp` |
-| TURN over TLS | `turn.cloudflare.com` | `5349/tcp` | `443/tcp` |
-
-注意事项：
-
-- 备用端口 `53` 不应单独依赖，很多 ISP 和浏览器会拦。
-- TURN 客户端会通过 anycast 连接到更近的 Cloudflare location。
-- Cloudflare China Network 当前不服务 Realtime / TURN 流量。
-- TURN credential 最长可以设置到未来 48 小时；更长连接要定期更新凭据。
-- 使用 WebRTC 时，TURN relay 的媒体内容由 WebRTC / DTLS 加密，TURN 只中继加密包。
+普通项目只需要记住：STUN 免费且不限量，TURN 和 SFU 共用 1,000 GB/month 免费出站额度，超出后按 egress 计费。具体协议、端口和 credential 细节上线前再读官方 TURN 文档。
 
 ## 普通项目的落地顺序
 
@@ -132,8 +68,6 @@ TURN 适合已有 WebRTC 应用。它的价值是让受 NAT、防火墙、企业
 | 有自己的 WebRTC 专家和特殊拓扑 | Realtime SFU + 自己的房间 / presence / track 协议。 |
 | 已有 WebRTC，只缺稳定 NAT 穿透 | TURN，必要时和 SFU 组合。 |
 | 会议后处理 | RealtimeKit Webhooks + Queues / Workflows + R2 / D1。 |
-
-对于本站这种文档知识库，当前不需要 Realtime 产品。评论、搜索和内容浏览都不是音视频实时场景；如果未来要做“在线共读房间”或“实时 workshop”，才进入 RealtimeKit / SFU 的判断链。
 
 ## 常见误区
 

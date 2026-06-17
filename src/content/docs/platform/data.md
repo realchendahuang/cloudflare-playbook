@@ -3,28 +3,13 @@ title: 数据产品
 description: D1、KV、R2、Durable Objects、Queues、Hyperdrive、Vectorize、Pipelines 和 Analytics Engine 的选择方式。
 ---
 
-最后核对日期：2026-06-17。
+最后核对日期：2026-06-18。
 
 Cloudflare 的数据产品不要只按“数据库”理解，应该按数据形态、访问模式、一致性、成本维度和生命周期选择。大多数项目最后会组合多个产品：D1 存关系数据，R2 存文件本体，KV 存读多写少配置，Durable Objects 管单对象强一致状态，Queues 把慢任务拆到后台。
 
 ## 一句话判断
 
-先问数据是什么，再选产品：
-
-```text
-数据进入 Cloudflare
-  ├─ 是文件、图片、导出物、备份、日志原始对象 -> R2
-  ├─ 是用户、订单、评论、配置后台、业务表 -> D1
-  ├─ 是读多写少配置、会话、缓存、公开索引 -> KV
-  ├─ 是一个房间、一个用户、一个租户的强一致状态 -> Durable Objects
-  ├─ 是邮件、通知、导入、审核、爬取、AI 批处理 -> Queues
-  ├─ 已有 Postgres / MySQL，不想迁移 -> Hyperdrive
-  ├─ 是 embedding、语义搜索、RAG 检索 -> Vectorize / AI Search
-  ├─ 是点击流、遥测、日志流、数据湖输入 -> Pipelines + R2
-  └─ 是高基数指标、用量计费、客户级 telemetry -> Analytics Engine
-```
-
-不要先问“哪个数据库最强”。先问“这份数据要怎么读、怎么写、要不要事务、是不是文件、是不是异步、能不能接受旧值”。
+不要先问“哪个数据库最强”。先问“这份数据是什么、怎么读、怎么写、要不要事务、是不是文件、是不是异步、能不能接受旧值”。
 
 ## 选择表
 
@@ -44,16 +29,16 @@ Cloudflare 的数据产品不要只按“数据库”理解，应该按数据形
 
 ## 判断顺序
 
-按这个顺序选，通常不会离谱：
-
-1. 这是文件本体吗？是就放 R2，metadata 再放 D1。
-2. 需要 SQL 查询、排序、筛选、关联、迁移和备份吗？是就看 D1。
-3. 读远多于写，且可以接受最终一致吗？是就看 KV。
-4. 需要同一个实体的全局顺序、强一致写入或 WebSocket 状态吗？是就看 Durable Objects。
-5. 这件事可以晚点做、失败重试、批量处理吗？是就看 Queues。
-6. 已经有外部 Postgres / MySQL，不想迁移数据吗？是就看 Hyperdrive。
-7. 数据是 embedding 或自然语言搜索索引吗？少量内容先 Pagefind，确定需要语义检索后再看 AI Search / Vectorize。
-8. 数据是持续涌入的事件流或指标吗？进入 Pipelines、R2 或 Analytics Engine，而不是塞进 D1。
+| 判断问题 | 先看产品 |
+| --- | --- |
+| 这是文件本体吗？ | R2，metadata 再放 D1。 |
+| 需要 SQL 查询、排序、筛选、关联、迁移和备份吗？ | D1。 |
+| 读远多于写，且可以接受最终一致吗？ | KV。 |
+| 需要同一个实体的全局顺序、强一致写入或 WebSocket 状态吗？ | Durable Objects。 |
+| 这件事可以晚点做、失败重试、批量处理吗？ | Queues。 |
+| 已经有外部 Postgres / MySQL，不想迁移数据吗？ | Hyperdrive。 |
+| 数据是 embedding 或自然语言搜索索引吗？ | 少量内容先 Pagefind；确定需要语义检索后再看 AI Search / Vectorize。 |
+| 数据是持续涌入的事件流或指标吗？ | Pipelines、R2 或 Analytics Engine，不要塞进 D1。 |
 
 ## 核心差异
 
@@ -61,7 +46,6 @@ Cloudflare 的数据产品不要只按“数据库”理解，应该按数据形
 | --- | --- | --- | --- | --- | --- |
 | 数据形态 | 表、行、SQL 查询。 | key-value、配置、索引、会话。 | 文件、对象、备份、数据集。 | 某个对象自己的状态和 SQLite。 | 消息、任务、事件。 |
 | 一致性心智 | 关系型数据库，适合读多写少应用数据。 | 最终一致，适合高读低写。 | 对象级强一致，适合文件和公开资产。 | 单对象强一致，适合全局协调。 | at-least-once，业务要能幂等。 |
-| 访问方式 | Worker binding、REST API、Wrangler。 | Worker binding、REST API、Wrangler。 | Worker binding、S3 API、REST API、Wrangler。 | Worker 通过 stub / RPC / fetch 调用。 | Producer / Consumer binding、Pull consumer、REST API。 |
 | 成本维度 | rows read、rows written、storage。 | read/write/delete/list、storage。 | storage、Class A、Class B、IA retrieval。 | requests、GB-s、storage、WebSocket 模型。 | operations、retention、重试和 DLQ。 |
 | 常见组合 | Worker API + D1 + R2 附件。 | Worker + KV 缓存配置或热点读。 | R2 + Worker 签名上传 + Queues 后处理。 | Durable Objects + WebSocket / Alarms。 | Queues + D1 去重 + R2 存档。 |
 
@@ -120,17 +104,6 @@ Cloudflare 的数据产品不要只按“数据库”理解，应该按数据形
 | Queues 当同步 RPC | Queues 做异步和重试；必须同步返回的流程留在 Worker。 |
 | Vectorize 代替内容结构化 | 先把标题、标签、产品、更新时间和来源写清楚，再做语义搜索。 |
 | Analytics Engine 存业务事实 | 业务最终状态进 D1；Analytics Engine 记录事件和指标。 |
-
-## 已精读产品
-
-- [D1](/platform/d1/)：Serverless SQL、rows read/write 计费、索引、迁移、Time Travel 和 Read Replication。
-- [KV](/platform/kv/)：读多写少、最终一致、cacheTtl、同 key 写入限制、批量操作和开源参考。
-- [R2](/platform/r2/)：对象存储、免费额度、Class A/B 操作、一致性、公开访问、签名 URL 和开源参考。
-- [Durable Objects](/platform/durable-objects/)：单实体强一致状态、免费/付费边界、SQLite storage、WebSocket Hibernation、Alarms、迁移和开源参考。
-- [Queues](/platform/queues/)：异步任务、操作计费、at least once、批处理、重试、死信队列、Pull Consumer 和开源参考。
-- [扩展计算与数据管道](/platform/extended-compute-data/)：Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog。
-- [AI 产品](/platform/ai/)：AI Gateway、Workers AI、AI Search、Vectorize 和 Agents SDK。
-- [观测与日志](/platform/observability/)：Analytics Engine、Workers Logs、Logpush、Log Explorer 和 Web Analytics。
 
 ## GitHub 开源参考
 
