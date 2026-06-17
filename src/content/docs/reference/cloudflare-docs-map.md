@@ -158,7 +158,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Vectorize](https://developers.cloudflare.com/vectorize/llms.txt) | 21 | 向量数据库和语义检索。 |
 | [Workers](https://developers.cloudflare.com/workers/llms.txt) | 415 | 必读，Cloudflare 开发者平台核心。 |
 | [Workers AI](https://developers.cloudflare.com/workers-ai/llms.txt) | 59 | 模型推理、embedding、价格和模型列表。 |
-| [Workers VPC](https://developers.cloudflare.com/workers-vpc/llms.txt) | 17 | Worker 连接私有网络。 |
+| [Workers VPC](https://developers.cloudflare.com/workers-vpc/llms.txt) | 17 | 已完成首版专题；Worker 访问私有 API、数据库和服务，Open Beta 免费但仍按 Workers 请求/CPU。 |
 | [Workflows](https://developers.cloudflare.com/workflows/llms.txt) | 33 | durable multi-step、sleep、retry、waitForEvent 和长生命周期状态编排。 |
 | [Zaraz](https://developers.cloudflare.com/zaraz/llms.txt) | 47 | 第三方脚本和标签治理。 |
 
@@ -172,11 +172,11 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
-| [BYOIP](https://developers.cloudflare.com/byoip/llms.txt) | 20 | 自带 IP 段，企业网络场景。 |
-| [Magic Transit](https://developers.cloudflare.com/magic-transit/llms.txt) | 44 | L3/L4 网络防护。 |
+| [BYOIP](https://developers.cloudflare.com/byoip/llms.txt) | 20 | 已完成首版专题；自带 IP 段、address maps、service bindings、RPKI 和 route leak detection。 |
+| [Magic Transit](https://developers.cloudflare.com/magic-transit/llms.txt) | 44 | 已完成首版专题；企业 IP 网络 L3/L4 DDoS、防护、tunnels、traffic steering 和 Network Firewall。 |
 | [Network Error Logging](https://developers.cloudflare.com/network-error-logging/llms.txt) | 4 | 网络错误报告。 |
 | [Network Flow](https://developers.cloudflare.com/network-flow/llms.txt) | 21 | 网络流量分析。 |
-| [Network Interconnect](https://developers.cloudflare.com/network-interconnect/llms.txt) | 5 | 私有互联。 |
+| [Network Interconnect](https://developers.cloudflare.com/network-interconnect/llms.txt) | 5 | 已完成首版专题；Direct / Partner / Cloud Interconnect、dataplane、MTU、维护和冗余。 |
 
 ## Other
 
@@ -220,7 +220,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 扩展计算与数据管道精读 | 已整理 Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog 的定位、免费/付费边界、limits、计费维度和开源参考。 |
 | 已完成首版 | Realtime 精读 | 已整理 RealtimeKit、Realtime SFU、TURN、Durable Objects WebSocket 的边界、Beta / GA 价格模型、SFU / TURN 免费额度、limits 和开源参考。 |
 | 已完成首版 | 平台化与多租户精读 | 已整理 Cloudflare for SaaS、Workers for Platforms、Dynamic Workers、custom hostnames、dispatch namespace、worker isolation、outbound worker、免费/付费边界和 GitHub 开源参考。 |
-| 进行中 | 后续 P2/P3 精读 | Magic Transit、BYOIP、Network Interconnect、Workers VPC 等。 |
+| 已完成首版 | 自有网络与专线精读 | 已整理 Magic Transit、BYOIP、Network Interconnect、Workers VPC、Network Firewall 标准/高级功能、Enterprise-only 边界、Workers VPC Open Beta 免费边界和 GitHub 开源参考。 |
+| 进行中 | 后续 P2/P3 精读 | Spectrum、Load Balancing、Argo Smart Routing、Web3、China Network、Time Services 等。 |
 | 待开始 | 后续专题 | 更多迁移案例、参考架构和真实项目拆解。 |
 
 ## 整理规则
@@ -261,7 +262,9 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Cloudflare WAN llms.txt](https://developers.cloudflare.com/cloudflare-wan/llms.txt)
 - [Cloudflare Network Firewall llms.txt](https://developers.cloudflare.com/cloudflare-network-firewall/llms.txt)
 - [Magic Transit llms.txt](https://developers.cloudflare.com/magic-transit/llms.txt)
+- [BYOIP llms.txt](https://developers.cloudflare.com/byoip/llms.txt)
 - [Network Interconnect llms.txt](https://developers.cloudflare.com/network-interconnect/llms.txt)
+- [Workers VPC llms.txt](https://developers.cloudflare.com/workers-vpc/llms.txt)
 - [Cloudflare Images llms.txt](https://developers.cloudflare.com/images/llms.txt)
 - [Cloudflare Stream llms.txt](https://developers.cloudflare.com/stream/llms.txt)
 - [Cloudflare Speed llms.txt](https://developers.cloudflare.com/speed/llms.txt)

@@ -305,7 +305,32 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Cloudflare Network Firewall](https://developers.cloudflare.com/cloudflare-network-firewall/)
 - [Cloudflare Network Firewall Plans](https://developers.cloudflare.com/cloudflare-network-firewall/plans/)
 - [Magic Transit](https://developers.cloudflare.com/magic-transit/)
+- [Magic Transit llms.txt](https://developers.cloudflare.com/magic-transit/llms.txt)
+- [Magic Transit About](https://developers.cloudflare.com/magic-transit/about/)
+- [Magic Transit Get started](https://developers.cloudflare.com/magic-transit/get-started/)
+- [Magic Transit DDoS protection](https://developers.cloudflare.com/magic-transit/ddos/)
+- [Magic Transit Network health](https://developers.cloudflare.com/magic-transit/network-health/)
+- [Magic Transit Traffic steering](https://developers.cloudflare.com/magic-transit/reference/traffic-steering/)
+- [Magic Transit Egress traffic](https://developers.cloudflare.com/magic-transit/reference/egress/)
+- [BYOIP](https://developers.cloudflare.com/byoip/)
+- [BYOIP llms.txt](https://developers.cloudflare.com/byoip/llms.txt)
+- [BYOIP Get started](https://developers.cloudflare.com/byoip/get-started/)
+- [BYOIP Address maps](https://developers.cloudflare.com/byoip/address-maps/)
+- [BYOIP Service bindings](https://developers.cloudflare.com/byoip/service-bindings/)
+- [BYOIP Dynamic advertisement](https://developers.cloudflare.com/byoip/concepts/dynamic-advertisement/)
+- [BYOIP Route filtering and RPKI](https://developers.cloudflare.com/byoip/concepts/route-filtering-rpki/)
+- [BYOIP Route Leak Detection](https://developers.cloudflare.com/byoip/route-leak-detection/)
 - [Network Interconnect](https://developers.cloudflare.com/network-interconnect/)
+- [Network Interconnect llms.txt](https://developers.cloudflare.com/network-interconnect/llms.txt)
+- [Network Interconnect Get started](https://developers.cloudflare.com/network-interconnect/get-started/)
+- [Network Interconnect Operational guidance](https://developers.cloudflare.com/network-interconnect/operational-guidance/)
+- [Workers VPC](https://developers.cloudflare.com/workers-vpc/)
+- [Workers VPC llms.txt](https://developers.cloudflare.com/workers-vpc/llms.txt)
+- [Workers VPC Pricing](https://developers.cloudflare.com/workers-vpc/reference/pricing/)
+- [Workers VPC Limits](https://developers.cloudflare.com/workers-vpc/reference/limits/)
+- [Workers VPC Services](https://developers.cloudflare.com/workers-vpc/configuration/vpc-services/)
+- [Workers VPC Networks](https://developers.cloudflare.com/workers-vpc/configuration/vpc-networks/)
+- [Workers VPC Tunnel configuration](https://developers.cloudflare.com/workers-vpc/configuration/tunnel/)
 - [Secrets Store](https://developers.cloudflare.com/secrets-store/)
 - [Secrets Store access control](https://developers.cloudflare.com/secrets-store/access-control/)
 - [Secrets Store Workers integration](https://developers.cloudflare.com/secrets-store/integrations/workers/)
@@ -382,7 +407,9 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Cloudflare WAN source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-wan) | 官方 Cloudflare WAN 文档源文件，适合追踪 Enterprise WAN、on-ramps、Zero Trust integration 和 virtual networks。 |
 | [cloudflare/cloudflare-docs Network Firewall source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-network-firewall) | 官方 Network Firewall 文档源文件，适合追踪 firewall-as-a-service、IDS、packet captures、IP lists 和 plans。 |
 | [cloudflare/cloudflare-docs Magic Transit source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/magic-transit) | 官方 Magic Transit 文档源文件，适合追踪 L3/L4 DDoS、BYOIP 和企业网络入口。 |
+| [cloudflare/cloudflare-docs BYOIP source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/byoip) | 官方 BYOIP 文档源文件，适合追踪 prefix validation、service bindings、address maps、RPKI 和 route leak detection。 |
 | [cloudflare/cloudflare-docs Network Interconnect source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/network-interconnect) | 官方 Network Interconnect 文档源文件，适合追踪私有互联、CNI 和企业网络接入。 |
+| [cloudflare/cloudflare-docs Workers VPC source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers-vpc) | 官方 Workers VPC 文档源文件，适合追踪 VPC Services、VPC Networks、pricing、limits 和 Workers binding。 |
 | [cloudflare/cloudflare-docs AI Crawl Control source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ai-crawl-control) | 官方 AI Crawl Control 文档源文件，适合追踪 AI crawler 识别、控制和 Pay Per Crawl。 |
 | [cloudflare/cloudflare-docs Billing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/billing) | 官方 Billing 文档源文件，适合追踪账单、预算、付款、发票和 usage-based billing。 |
 | [cloudflare/cloudflare-docs Analytics source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/analytics) | 官方 Analytics 文档源文件，适合追踪 sampling、GraphQL Analytics API 和 Workers Analytics Engine。 |

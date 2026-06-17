@@ -58,7 +58,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   └─ 观测与安全
        ├─ Web Analytics / Logs / GraphQL Analytics / Notifications
        ├─ Turnstile / WAF / Bot / API Shield
-       └─ Zero Trust / Access / Tunnel / Gateway / Cloudflare WAN
+       └─ Zero Trust / Access / Tunnel / Gateway / Cloudflare WAN / Magic Transit
 ```
 
 先从免费能力起步，等产品真的被用户使用，再为明确的瓶颈付费。不要为了“架构漂亮”提前买复杂度。
@@ -118,6 +118,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | Bots | Free 有 Bot Fight Mode、Block AI bots、AI Labyrinth 和 robots.txt 相关能力。 | Pro/Business 为 Super Bot Fight Mode；Enterprise Bot Management 才有 bot score、JA3/JA4 和路径级控制。 | 识别和处理自动化流量。 | 先用 Turnstile、WAF、限流；明确 bot 成本后再买更高级能力。 |
 | API Shield | Free 可用 Endpoint Management 和 Schema validation：100 endpoints、5 schemas、200 kB schema size。 | 完整 API Shield 需要 Enterprise 订阅。 | mTLS、schema validation、JWT、API 安全。 | 公开 API 先定义 schema、认证和限流，再加 Shield 能力。 |
 | [Zero Trust 与企业网络](/platform/zero-trust-networking/) | Zero Trust Free 为 $0 forever，50 user limit，标准日志最长 24 小时；Tunnel 发布 public hostname 不需要 paid Access plan。 | Pay-as-you-go 为 $7/user/month paid annually；Contract 是自定义价格，面向完整 SSE / SASE、长日志、支持和网络服务。 | Access、Gateway、Tunnel、Cloudflare One Client、Cloudflare WAN 和 Network Firewall 的组合。 | 普通项目先用 Tunnel + Access 保护后台；Cloudflare WAN / Network Firewall 属于企业网络，不是个人项目默认项。 |
+| [自有网络与专线](/platform/private-networking/) | Workers VPC 在 Open Beta 期间对 Free / Paid Workers plans 免费；Magic Transit、BYOIP、Network Interconnect 都是 Enterprise-only。 | Workers VPC 仍按标准 Workers 请求和 CPU 计费；Magic Transit / BYOIP / CNI 走企业合同和网络工程预算。 | 自有 IP 段保护、BYOIP、私有专线、Worker 访问私有 API / 数据库。 | 普通站点先用 Proxied DNS + WAF + DDoS；Worker 访问内网才看 Workers VPC；自有 IP 和专线属于企业阶段。 |
 | Security Center / Security Insights | 默认自动扫描所有账户和 zone；Free 每 7 天，Pro/Business 每 3 天，Enterprise 每天。 | Brand Protection、Threat Intelligence、Security Reports、手动扫描资格按当前计划看。 | 发现 DNS、SSL/TLS、WAF、Access 等配置风险。 | 把它当安全巡检入口，先处理 Critical / High findings。 |
 
 ## 媒体、观测与开发工具
@@ -154,6 +155,8 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | 长流程和数据管道 | Workflows + R2 / D1；Pipelines + R2 Data Catalog |
 | 管理后台 | Workers Static Assets + Access/Tunnel + D1 |
 | 小团队内网和运维入口 | Tunnel + Access + Cloudflare One Client + Gateway |
+| Worker 访问私有后端 | Workers VPC + Cloudflare Tunnel / Mesh + Hyperdrive |
+| 企业自有 IP 和专线 | Magic Transit + BYOIP + Network Interconnect + Network Firewall |
 
 ## 官方资料
 
@@ -252,4 +255,10 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Private networks with Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/private-net/)
 - [Cloudflare WAN](https://developers.cloudflare.com/cloudflare-wan/)
 - [Cloudflare Network Firewall plans](https://developers.cloudflare.com/cloudflare-network-firewall/plans/)
+- [Magic Transit](https://developers.cloudflare.com/magic-transit/)
+- [BYOIP](https://developers.cloudflare.com/byoip/)
+- [Network Interconnect](https://developers.cloudflare.com/network-interconnect/)
+- [Workers VPC](https://developers.cloudflare.com/workers-vpc/)
+- [Workers VPC Pricing](https://developers.cloudflare.com/workers-vpc/reference/pricing/)
+- [Workers VPC Limits](https://developers.cloudflare.com/workers-vpc/reference/limits/)
 - [Secrets Store](https://developers.cloudflare.com/secrets-store/)
