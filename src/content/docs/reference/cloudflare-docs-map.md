@@ -250,6 +250,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 自有网络与专线精读 | 已整理 Magic Transit、BYOIP、Network Interconnect、Workers VPC、Network Firewall 标准/高级功能、Enterprise-only 边界、Workers VPC Open Beta 免费边界和 GitHub 开源参考。 |
 | 已完成复核 | 自有网络与专线文案收敛 | 已把 [自有网络与专线](/platform/private-networking/) 收敛为普通项目取舍、免费与计划边界、产品选择、成本风险、Workers VPC 位置、升级信号和常见误区；保留 Magic Transit、BYOIP、Network Interconnect、Workers VPC、Network Firewall 的官方来源，删除 ASCII 网络图、本站当前选择、BGP / GRE / IPsec / MSS、BYOIP service binding、CNI dataplane、Tunnel 版本与防火墙端口等过细网络工程说明。 |
 | 已完成首版 | 流量调度与四层入口精读 | 已整理 Load Balancing、Health Checks、Spectrum、Argo Smart Routing、usage-based billing、limits、plans、private network load balancing 和 GitHub 开源参考。 |
+| 已完成复核 | 流量调度与四层入口文案收敛 | 已把 [流量调度与四层入口](/platform/traffic-routing/) 收敛为普通项目取舍、六个启用前问题、免费与付费边界、推荐启用顺序、Load Balancing / Health Checks / Spectrum / Argo Smart Routing 的升级信号和常见误区；保留官方 Load Balancing、Health Checks、Spectrum、Argo Smart Routing、usage-based billing 和 GitHub 源文件来源，删除 ASCII 流程图、组件配置拆解、Traffic steering 长表、本站当前选择、Terraform / SDK 参考和过细实现限制说明。 |
 | 已完成首版 | 源站保护与流量洪峰精读 | 已整理 Waiting Room、Smart Shield、Automatic Platform Optimization、plans、advanced features、APO pricing、Smart Shield packages 和 GitHub 开源参考。 |
 | 已完成首版 | 公共网络与专项服务精读 | 已整理 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway 的免费边界、付费边界、使用场景和 GitHub 开源参考。 |
 | 已完成首版 | 治理、合规与学习路径精读 | 已整理 Data Localization Suite、Client-side security、DMARC Management、Registrar、Support、Learning Paths、Use cases 的计划边界、合规边界、排障清单和 GitHub 开源参考。 |
