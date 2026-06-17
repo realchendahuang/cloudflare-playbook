@@ -49,6 +49,7 @@ export default defineConfig({
 						{ label: 'Cache / CDN', slug: 'platform/cache' },
 						{ label: '流量调度与四层入口', slug: 'platform/traffic-routing' },
 						{ label: '源站保护与流量洪峰', slug: 'platform/origin-surge' },
+						{ label: '公共网络与专项服务', slug: 'platform/public-network-specialties' },
 						{ label: 'WAF', slug: 'platform/waf' },
 						{ label: 'DDoS Protection', slug: 'platform/ddos' },
 						{ label: 'Rules', slug: 'platform/rules' },

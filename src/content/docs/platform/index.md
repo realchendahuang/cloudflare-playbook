@@ -52,6 +52,10 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │    ├─ Zaraz / Browser Run
   │    └─ R2 / Cache / Web Analytics
   │
+  ├─ 公共网络与专项服务
+  │    ├─ 1.1.1.1 / Radar / Time Services
+  │    └─ Web3 / China Network / Google tag gateway
+  │
   ├─ 治理与迁移
   │    ├─ Terraform / Pulumi / Wrangler
   │    ├─ cf-terraforming / R2 backend
@@ -113,6 +117,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | [Cache / CDN](/platform/cache/) | Cache / CDN、Cache Rules、Purge、Tiered Cache 基础能力在 Free 可用。 | Cache Rules 数量、Edge TTL 最小值、Cache Reserve、企业拓扑和高级 cache key 随计划或 add-on 提升。 | 缓存静态内容，减少源站压力。 | 静态 hash 资源长缓存；HTML 短缓存；用户态默认 bypass；用版本化 URL 少 purge。 |
 | [流量调度与四层入口](/platform/traffic-routing/) | Health Checks Free 不可用，Pro 10、Business 50、Enterprise 1,000；Load Balancing first 500K DNS queries included；Argo first 1 GB included；Spectrum no free tier。 | Load Balancing、Spectrum、Argo 都是 paid add-on 或 usage-based；Spectrum 自定义 TCP/UDP 通常是 Enterprise paid add-on。 | 多源站故障切换、源站健康监控、TCP/UDP 代理、回源路径优化。 | 单源站先不用；多源站上 Load Balancing；非 HTTP 用 Spectrum；缓存做好后再看 Argo。 |
 | [源站保护与流量洪峰](/platform/origin-surge/) | Waiting Room Free/Pro 不可用，Business 有 1 个 basic room；Smart Shield 可 opt-in；APO Free 站点 `$5/month`、Pro/Business/Enterprise included。 | Waiting Room Advanced、Smart Shield + Argo、Smart Shield Advanced、APO Free 站点付费。 | 合法用户峰值排队、回源请求和连接保护、WordPress 动态 HTML 缓存。 | 活动峰值看 Waiting Room；源站连接/回源压力看 Smart Shield；WordPress 才看 APO。 |
+| [公共网络与专项服务](/platform/public-network-specialties/) | 1.1.1.1 available on all plans；Radar API free；NTP public service；Google tag gateway free。 | Web3 是 add-on / usage-based；China Network 是 Enterprise separate subscription；部分 Radar / URL Scanner 能力受 token、可见性和企业功能限制。 | 终端 DNS、互联网趋势、时间同步、Web3 gateway、中国大陆网络和广告标签治理。 | 把它们当专项能力，不要放进默认架构；只有对应场景明确时再启用。 |
 | [SSL/TLS](/platform/ssl-tls/) | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 等基础能力在 Free 可用。 | Advanced Certificate Manager、Custom Certificates、Keyless SSL、Enterprise-only 模式按需求升级。 | 给站点建立完整 HTTPS 链路。 | 默认目标是 Full (strict)；源站也要有有效证书，别停在 Flexible。 |
 | [DDoS Protection](/platform/ddos/) | 官方说明所有计划都有 standard, unmetered DDoS protection，HTTP DDoS 和 Network-layer DDoS 也覆盖所有计划。 | Enterprise / Advanced DDoS 提供更多 override、Log action、Adaptive / Advanced DDoS、告警过滤和支持。 | 自动检测和缓解 L3/L4 与 L7 DDoS。 | Web 入口先保持 Proxied，隐藏源站 IP；被打时再结合 WAF、Rate Limiting、Under Attack 和日志排查。 |
 | [Rules](/platform/rules/) | Rules available on all plans；Free 有 10 条常见现代规则、15 条 Bulk Redirect Rules、10,000 条 Bulk Redirect URL。 | Pro/Business/Enterprise 提升多数现代规则到 25/50/300；Snippets 和 Custom Errors 从 paid plans 起。 | 管理跳转、重写、回源、配置、压缩、错误页和轻量边缘逻辑。 | 新项目优先现代 Rules，不再新写 Page Rules；用 Trace 验证执行顺序。 |
@@ -164,6 +169,9 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | 小团队内网和运维入口 | Tunnel + Access + Cloudflare One Client + Gateway |
 | Worker 访问私有后端 | Workers VPC + Cloudflare Tunnel / Mesh + Hyperdrive |
 | 企业自有 IP 和专线 | Magic Transit + BYOIP + Network Interconnect + Network Firewall |
+| 互联网趋势研究 | Radar + Radar API + URL Scanner |
+| 中国大陆访问优化 | China Network + ICP + Enterprise account team |
+| 广告测量第一方标签 | Google tag gateway + Google Tag Manager triggers |
 
 ## 官方资料
 

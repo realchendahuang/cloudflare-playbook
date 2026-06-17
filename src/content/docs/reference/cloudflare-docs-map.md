@@ -48,9 +48,9 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Argo Smart Routing](https://developers.cloudflare.com/argo-smart-routing/llms.txt) | 4 | 已完成首版专题；Paid add-on，Smart Shield，回源路径优化和 Argo for Packets。 |
 | [Automatic Platform Optimization](https://developers.cloudflare.com/automatic-platform-optimization/llms.txt) | 14 | 已完成首版专题；WordPress 动态 HTML 边缘缓存、插件、价格和验证头。 |
 | [Cache / CDN](https://developers.cloudflare.com/cache/llms.txt) | 77 | 必读，静态资源、HTML 缓存、Cache Rules 都在这里。 |
-| [China Network](https://developers.cloudflare.com/china-network/llms.txt) | 9 | 面向中国大陆访问优化，通常是企业需求。 |
+| [China Network](https://developers.cloudflare.com/china-network/llms.txt) | 9 | 已完成首版专题；Enterprise separate subscription、ICP、IPv6、JD Cloud 和可用产品边界。 |
 | [DNS](https://developers.cloudflare.com/dns/llms.txt) | 129 | 必读，域名接入、记录、代理状态、DNSSEC 都在这里。 |
-| [Google tag gateway for advertisers](https://developers.cloudflare.com/google-tag-gateway/llms.txt) | 1 | 广告和标签数据治理场景。 |
+| [Google tag gateway for advertisers](https://developers.cloudflare.com/google-tag-gateway/llms.txt) | 1 | 已完成首版专题；免费第一方 Google tag gateway、zone-level 配置和子域名限制。 |
 | [Health Checks](https://developers.cloudflare.com/health-checks/llms.txt) | 6 | 已完成首版专题；Standalone Health Checks，Pro 起可用，和 LB monitors 区分。 |
 | [Load Balancing](https://developers.cloudflare.com/load-balancing/llms.txt) | 59 | 已完成首版专题；paid add-on，多源站、health monitors、traffic steering、PNLB。 |
 | [Smart Shield](https://developers.cloudflare.com/smart-shield/llms.txt) | 19 | 已完成首版专题；Smart Tiered Cache、Connection Reuse、Argo、Cache Reserve 和 Dedicated CDN Egress IPs。 |
@@ -59,7 +59,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [SSL/TLS](https://developers.cloudflare.com/ssl/llms.txt) | 131 | 必读，HTTPS、证书、源站加密和 TLS 策略。 |
 | [Waiting Room](https://developers.cloudflare.com/waiting-room/llms.txt) | 27 | 已完成首版专题；Business 起可用，合法峰值排队、events、queueing methods 和 JSON response。 |
 | [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/llms.txt) | 16 | 文档站、官网、博客优先使用。 |
-| [Web3](https://developers.cloudflare.com/web3/llms.txt) | 29 | Web3 gateway 场景，普通项目低优先级。 |
+| [Web3](https://developers.cloudflare.com/web3/llms.txt) | 29 | 已完成首版专题；IPFS / Ethereum paid add-on、included usage、limits 和 gateway 访问控制。 |
 
 ## Application Security
 
@@ -92,8 +92,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
-| [1.1.1.1 (DNS Resolver)](https://developers.cloudflare.com/1.1.1.1/llms.txt) | 37 | 终端 DNS 解析器，偏用户侧。 |
-| [Radar](https://developers.cloudflare.com/radar/llms.txt) | 23 | 互联网趋势和威胁数据查询。 |
+| [1.1.1.1 (DNS Resolver)](https://developers.cloudflare.com/1.1.1.1/llms.txt) | 37 | 已完成首版专题；public resolver、Families、DoH / DoT / ODoH、IP 地址和隐私边界。 |
+| [Radar](https://developers.cloudflare.com/radar/llms.txt) | 23 | 已完成首版专题；Radar dashboard/API、免费 API、URL Scanner、趋势和威胁数据。 |
 | [WARP Client](https://developers.cloudflare.com/warp-client/llms.txt) | 12 | 终端客户端和 Zero Trust 入口。 |
 
 ## Core Platform
@@ -118,7 +118,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Support](https://developers.cloudflare.com/support/llms.txt) | 112 | 支持、故障和排错。 |
 | [Tenant](https://developers.cloudflare.com/tenant/llms.txt) | 9 | 多租户账号管理。 |
 | [Terraform](https://developers.cloudflare.com/terraform/llms.txt) | 29 | 团队化和 IaC 优先看。 |
-| [Time Services](https://developers.cloudflare.com/time-services/llms.txt) | 9 | NTP/NTS/Roughtime。 |
+| [Time Services](https://developers.cloudflare.com/time-services/llms.txt) | 9 | 已完成首版专题；NTP、NTS、Roughtime 和系统时间同步边界。 |
 | [Cloudflare Tunnel](https://developers.cloudflare.com/tunnel/llms.txt) | 31 | 内网服务暴露和后台保护常用。 |
 | [Version Management](https://developers.cloudflare.com/version-management/llms.txt) | 11 | 配置版本、灰度和回滚。 |
 
@@ -223,7 +223,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 自有网络与专线精读 | 已整理 Magic Transit、BYOIP、Network Interconnect、Workers VPC、Network Firewall 标准/高级功能、Enterprise-only 边界、Workers VPC Open Beta 免费边界和 GitHub 开源参考。 |
 | 已完成首版 | 流量调度与四层入口精读 | 已整理 Load Balancing、Health Checks、Spectrum、Argo Smart Routing、usage-based billing、limits、plans、private network load balancing 和 GitHub 开源参考。 |
 | 已完成首版 | 源站保护与流量洪峰精读 | 已整理 Waiting Room、Smart Shield、Automatic Platform Optimization、plans、advanced features、APO pricing、Smart Shield packages 和 GitHub 开源参考。 |
-| 进行中 | 后续 P2/P3 精读 | Web3、China Network、Time Services、Google tag gateway for advertisers、1.1.1.1、Radar 等。 |
+| 已完成首版 | 公共网络与专项服务精读 | 已整理 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway 的免费边界、付费边界、使用场景和 GitHub 开源参考。 |
+| 进行中 | 后续 P2/P3 精读 | Data Localization Suite、Client-side security、DMARC Management、Registrar、Support、Learning Paths、Use cases 等。 |
 | 待开始 | 后续专题 | 更多迁移案例、参考架构和真实项目拆解。 |
 
 ## 整理规则
@@ -258,6 +259,12 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Cloudflare Waiting Room llms.txt](https://developers.cloudflare.com/waiting-room/llms.txt)
 - [Cloudflare Smart Shield llms.txt](https://developers.cloudflare.com/smart-shield/llms.txt)
 - [Cloudflare Automatic Platform Optimization llms.txt](https://developers.cloudflare.com/automatic-platform-optimization/llms.txt)
+- [1.1.1.1 llms.txt](https://developers.cloudflare.com/1.1.1.1/llms.txt)
+- [Cloudflare Radar llms.txt](https://developers.cloudflare.com/radar/llms.txt)
+- [Cloudflare Time Services llms.txt](https://developers.cloudflare.com/time-services/llms.txt)
+- [Cloudflare Web3 llms.txt](https://developers.cloudflare.com/web3/llms.txt)
+- [Cloudflare China Network llms.txt](https://developers.cloudflare.com/china-network/llms.txt)
+- [Google tag gateway llms.txt](https://developers.cloudflare.com/google-tag-gateway/llms.txt)
 - [Cloudflare Turnstile llms.txt](https://developers.cloudflare.com/turnstile/llms.txt)
 - [Cloudflare API Shield llms.txt](https://developers.cloudflare.com/api-shield/llms.txt)
 - [Cloudflare Bots llms.txt](https://developers.cloudflare.com/bots/llms.txt)
