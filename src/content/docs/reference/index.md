@@ -35,6 +35,17 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Workers Builds Limits & Pricing](https://developers.cloudflare.com/workers/ci-cd/builds/limits-and-pricing/)
 - [Pages Docs](https://developers.cloudflare.com/pages/)
 - [Pages Limits](https://developers.cloudflare.com/pages/platform/limits/)
+- [Pages Functions](https://developers.cloudflare.com/pages/functions/)
+- [Pages Functions Pricing](https://developers.cloudflare.com/pages/functions/pricing/)
+- [Pages Functions Routing](https://developers.cloudflare.com/pages/functions/routing/)
+- [Pages Advanced Mode](https://developers.cloudflare.com/pages/functions/advanced-mode/)
+- [Pages Git Integration](https://developers.cloudflare.com/pages/configuration/git-integration/)
+- [Pages Preview Deployments](https://developers.cloudflare.com/pages/configuration/preview-deployments/)
+- [Pages Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/)
+- [Serving Pages](https://developers.cloudflare.com/pages/configuration/serving-pages/)
+- [Pages Redirects](https://developers.cloudflare.com/pages/configuration/redirects/)
+- [Pages Custom Domains](https://developers.cloudflare.com/pages/configuration/custom-domains/)
+- [Pages Known Issues](https://developers.cloudflare.com/pages/platform/known-issues/)
 - [D1 Docs](https://developers.cloudflare.com/d1/)
 - [D1 Pricing](https://developers.cloudflare.com/d1/platform/pricing/)
 - [D1 Limits](https://developers.cloudflare.com/d1/platform/limits/)
@@ -113,6 +124,8 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/templates/vite-react-template](https://github.com/cloudflare/templates/tree/main/vite-react-template) | Vite + React + Workers Static Assets 官方模板，适合学习 SPA + API。 |
 | [cloudflare/templates/astro-blog-starter-template](https://github.com/cloudflare/templates/tree/main/astro-blog-starter-template) | Astro 内容站官方模板，适合学习静态内容站进入 Workers 的方式。 |
 | [cloudflare/cloudflare-docs Static Assets source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/static-assets) | 官方 Static Assets 文档源文件，适合追踪文档变更。 |
+| [cloudflare/cloudflare-docs Pages source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pages) | 官方 Pages 文档源文件，适合追踪 Pages、Functions、limits 和 known issues。 |
+| [cloudflare/workers-sdk pages-template-worker](https://github.com/cloudflare/workers-sdk/blob/main/packages/wrangler/templates/pages-template-worker.ts) | Pages Functions 运行包装逻辑，适合理解 `EventContext` 和 `waitUntil`。 |
 | [cloudflare/workers-rs](https://github.com/cloudflare/workers-rs) | Rust / WebAssembly 写 Workers 的生态入口。 |
 | [cloudflare/workers-oauth-provider](https://github.com/cloudflare/workers-oauth-provider) | 在 Workers 上实现 OAuth 2.1 provider 的库，适合学习 API 鉴权边界。 |
 | [cloudflare/agents](https://github.com/cloudflare/agents) | Agents SDK、Code Mode 和构建 Cloudflare agent 的实现参考。 |

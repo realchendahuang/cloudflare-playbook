@@ -9,7 +9,7 @@ description: 常见 Cloudflare 架构组合的入口。
 
 | 模式 | 适合项目 | 核心产品 |
 | --- | --- | --- |
-| [静态内容站](/architecture/static-site/) | 文档站、官网、博客、作品集 | Pages、CDN、Web Analytics |
+| [静态内容站](/architecture/static-site/) | 文档站、官网、博客、作品集 | Pages、Workers Static Assets、CDN、Web Analytics |
 | [API 网关](/architecture/api-gateway/) | 代理、鉴权、Webhook、轻量后端 | Workers、KV、D1、Queues |
 | [实时应用](/architecture/realtime-app/) | 协作、房间、状态同步、限流 | Durable Objects、Workers |
 
