@@ -228,7 +228,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 观测与日志精读 | 已整理 Web Analytics、Dashboard Analytics、GraphQL Analytics API、ABR sampling、Workers Logs、Workers Trace Events Logpush、常规 Logpush、Log Explorer、Notifications、Analytics Engine 的免费/付费边界、事实口径、采样、留存、日志写法和开源参考。 |
 | 已完成复核 | 观测与日志二次精读 | 已把 [观测与日志](/platform/observability/) 对齐 Workers Logs、Real-time logs、Workers Logpush、Logpush、Logs Engine、Log Explorer、Web Analytics、GraphQL Analytics API、Analytics Engine 和 Notifications，补齐观测分层、上线前最小配置、Worker 日志基线、长期日志出口、敏感字段边界和本站落地顺序。 |
 | 已完成首版 | 安全增强精读 | 已整理 Turnstile、Cloudflare Challenges、API Shield、Bots、Access / Tunnel、Secrets Store、Security Center、AI Crawl Control、Key Transparency、Firewall Rules deprecated 的免费/付费边界、落地顺序和开源参考。 |
-| 已完成复核 | 安全增强二次精读 | 已把 [安全与网络](/platform/security-networking/) 对齐 Turnstile Plans / Siteverify、Cloudflare Challenges、Challenge Passage、API Shield Plans、Bot Fight Mode / Bot Management、Access / Tunnel、Secrets Store、Security Insights、Security dashboard、AI Crawl Control 和 GitHub 源文件，补齐免费层优先清单、滥用场景决策、请求入口分层、表单/评论/上传保护路线和升级信号。 |
+| 已完成复核 | 安全增强二次精读 | 已把 [安全与网络](/platform/security-networking/) 收敛为普通项目安全基线、免费层边界、风险入口、升级信号、产品取舍和常见误区，保留 WAF / DDoS / Turnstile / API Shield / Bots / Security Insights / Access / Tunnel / Secrets Store 的官方来源，删除请求链路图、Turnstile token 细节、API Shield 长计划表、Key Transparency 长说明、Security dashboard 面板拆解、本站内部选择和过细配置说明。 |
 | 已完成首版 | 媒体与性能精读 | 已整理 Images、Stream、Speed / Observatory、Zaraz、Browser Run 的定位、免费/付费边界、落地顺序和开源参考。 |
 | 已完成复核 | 媒体与性能二次精读 | 已把 [媒体与性能](/platform/media-performance/) 对齐 Images Pricing / Limits / Workers transformation / Direct Creator Upload、Stream Pricing / FAQ、Speed / Observatory、Zaraz Pricing / Consent Management、Browser Run Pricing / Limits / Reuse sessions / `/crawl` 和 GitHub 源文件，补齐免费额度玩法、媒体资产路径、成本边界、浏览器任务异步路线和升级信号。 |
 | 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |
@@ -262,7 +262,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 本站技术栈二次精读 | 已把 [本站技术栈](/best-practices/site-stack/) 对齐 Starlight Site Search、Pagefind、Workers Static Assets、Static Assets billing、Workers pricing / limits、AI Search、Docs for agents、Twikoo / twikoo-cloudflare 和 GitHub 源仓库，补齐 Worker-first 架构、搜索路线、评论边界、免费额度影响和落地文件清单。 |
 | 已完成复核 | 实时应用架构二次精读 | 已把 [实时应用](/architecture/realtime-app/) 对齐 Add real-time features、Durable Objects WebSockets、control/data plane、lifecycle、pricing/limits 和 GitHub 示例，补齐实时类型判断、三层平面、对象切分、Hibernation、状态归位、成本边界和验证清单。 |
 | 已完成复核 | 迁移与 IaC 二次精读 | 已把 [迁移与 IaC](/platform/iac-migration/) 对齐 Terraform best practices、Import Cloudflare resources、Remote R2 backend、Workers Infrastructure as Code、Pulumi + Wrangler、Pulumi ESC、Reference Architecture how-to-use / by-solution 和 GitHub 源文件，补齐分阶段路线、配置真源矩阵、Worker IaC binding 边界、CI / PR 守门和参考架构到本站专题映射。 |
-| 已完成复核 | 平台文案收敛 | 已把 [Cloudflare 产品大图谱](/platform/) 改为产品入口和选型路线，删掉长链路图与百科式堆叠；同步压缩 [免费与付费边界](/platform/free-paid/) 的核对过程、重复导读和本站内部技术栈说明，并继续收敛 [KV](/platform/kv/)、[D1](/platform/d1/)、[Queues](/platform/queues/)、[R2](/platform/r2/) 与 [Durable Objects](/platform/durable-objects/) 的代码、配置和过细实现说明。 |
+| 已完成复核 | 平台文案收敛 | 已把 [Cloudflare 产品大图谱](/platform/) 改为产品入口和选型路线，删掉长链路图与百科式堆叠；同步压缩 [免费与付费边界](/platform/free-paid/) 的核对过程、重复导读和本站内部技术栈说明，并继续收敛 [安全与网络](/platform/security-networking/)、[KV](/platform/kv/)、[D1](/platform/d1/)、[Queues](/platform/queues/)、[R2](/platform/r2/) 与 [Durable Objects](/platform/durable-objects/) 的代码、配置和过细实现说明。 |
 | 进行中 | 单产品复核与案例深化 | 持续补充真实项目拆解、参考架构和单产品深水区。 |
 
 ## 整理规则
