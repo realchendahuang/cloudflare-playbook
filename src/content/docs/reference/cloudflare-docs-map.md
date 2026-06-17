@@ -230,6 +230,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 开发者与网络补充专项精读 | 已整理 Agent Lee、Artifacts、Email Service、Flagship、Network、Network Flow、R2 SQL、Sandbox SDK、Style Guide 的免费/付费边界、Workers Paid 关系和 GitHub 开源参考。 |
 | 已完成复核 | 2026-06-17 官方索引复核 | 重新读取 `developers.cloudflare.com/llms.txt` 和 103 个产品级 `llms.txt`；本地产品集合、官方产品集合和 6,145 页计数一致，无新增、删除或页数漂移。 |
 | 已完成复核 | 数据产品入口二次精读 | 已把 [数据产品](/platform/data/) 从选择表扩展为数据形态、一致性、访问方式、常见组合、官方资料和 GitHub 源仓库索引。 |
+| 已完成复核 | 数据产品入口三次精读 | 已把 [数据产品](/platform/data/) 对齐 storage options、D1、KV、R2、Durable Objects、Queues、Hyperdrive、Vectorize、Pipelines、Analytics Engine 和 cloudflare/templates，补齐选择决策树、常见组合、迁移信号、成本心智、误用清单和模板来源。 |
 | 已完成复核 | 架构模式二次精读 | 已把 [架构模式](/architecture/) 对齐 Reference Architecture、How to use、Find by solution、Use cases 和 GitHub 源目录，补齐从需求到架构的判断顺序、Use cases 映射、架构写作标准、路线图、常见误判和开源参考。 |
 | 已完成复核 | 额度与 Codex 基线二次精读 | 已把 [免费与付费边界](/platform/free-paid/) 对齐 Workers Pricing / Limits、Static Assets billing、usage-based billing 和 `cloudflare/cloudflare-docs` 源文件；同步强化 [Codex 协作](/best-practices/codex-cloudflare/) 的官方 Codex setup、Docs for agents、Skills、MCP 和 GitHub 来源。 |
 | 已完成复核 | API 网关架构二次精读 | 已把 [API 网关](/architecture/api-gateway/) 对齐 Serverless global APIs 与 APIs and microservices，补齐请求路径、三种架构形态、拆分时机、安全/成本/观测边界和官方模板来源。 |
