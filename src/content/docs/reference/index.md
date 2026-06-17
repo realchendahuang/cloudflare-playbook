@@ -32,6 +32,14 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [D1 Limits](https://developers.cloudflare.com/d1/platform/limits/)
 - [R2 Docs](https://developers.cloudflare.com/r2/)
 - [R2 Pricing](https://developers.cloudflare.com/r2/pricing/)
+- [R2 Limits](https://developers.cloudflare.com/r2/platform/limits/)
+- [How R2 works](https://developers.cloudflare.com/r2/how-r2-works/)
+- [R2 consistency model](https://developers.cloudflare.com/r2/reference/consistency/)
+- [Use R2 from Workers](https://developers.cloudflare.com/r2/api/workers/workers-api-usage/)
+- [R2 Workers API reference](https://developers.cloudflare.com/r2/api/workers/workers-api-reference/)
+- [R2 public buckets](https://developers.cloudflare.com/r2/buckets/public-buckets/)
+- [R2 presigned URLs](https://developers.cloudflare.com/r2/api/s3/presigned-urls/)
+- [R2 Wrangler commands](https://developers.cloudflare.com/r2/reference/wrangler-commands/)
 - [KV Docs](https://developers.cloudflare.com/kv/)
 - [KV Pricing](https://developers.cloudflare.com/kv/platform/pricing/)
 - [KV Limits](https://developers.cloudflare.com/kv/platform/limits/)
@@ -81,6 +89,11 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/templates/d1-template](https://github.com/cloudflare/templates/tree/main/d1-template) | Worker + D1 binding + migrations 的最小官方模板。 |
 | [cloudflare/templates/d1-starter-sessions-api-template](https://github.com/cloudflare/templates/tree/main/d1-starter-sessions-api-template) | D1 Sessions API 和 Read Replication 官方模板。 |
 | [cloudflare/templates/to-do-list-kv-template](https://github.com/cloudflare/templates/tree/main/to-do-list-kv-template) | Workers Static Assets + Remix + KV 的官方模板。 |
+| [cloudflare/r2-explorer-template-9](https://github.com/cloudflare/r2-explorer-template-9) | Cloudflare 组织下的 R2 Explorer 模板仓库，适合看 R2、Access 和 Workers 的组合。 |
+| [G4brym/R2-Explorer](https://github.com/G4brym/R2-Explorer) | R2 文件管理界面，适合看多 bucket、上传、权限和 metadata 管理。 |
+| [microfeed/microfeed](https://github.com/microfeed/microfeed) | 自托管在 Cloudflare 的轻量 CMS，适合看 D1、R2、Zero Trust 的内容产品组合。 |
+| [openRin/Rin](https://github.com/openRin/Rin) | 基于 Workers、D1、R2 的边缘博客，适合看内容站架构。 |
+| [MarSeventh/CloudFlare-ImgBed](https://github.com/MarSeventh/CloudFlare-ImgBed) | Cloudflare R2 图床和文件托管方案。 |
 | [cloudflare/d1-northwind](https://github.com/cloudflare/d1-northwind) | D1 示例应用，适合学习数据导入、查询和前端组合。 |
 | [cloudflare/workerskv.gui](https://github.com/cloudflare/workerskv.gui) | KV namespace 数据浏览器示例。 |
 | [cloudflare/kv-worker-migrate](https://github.com/cloudflare/kv-worker-migrate) | 历史 KV namespace 迁移工具，适合了解迁移成本和一致性注意事项。 |
