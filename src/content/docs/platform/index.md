@@ -65,7 +65,7 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 | KV | Free 计划读 100,000/day、写 1,000/day、删 1,000/day、列 1,000/day、存储 1 GB。 | Paid 每月包含更高读写和 1 GB 存储，超出按 key/容量计费。 | 全局 key-value，适合配置、缓存、低频更新索引。 | 读多写少才舒服；不要依赖强一致，不要把它当 SQL。 |
 | R2 | 标准存储 10 GB-month、Class A 1M/月、Class B 10M/月；无 egress bandwidth charge。 | 标准存储 $0.015/GB-month，Class A/B 按百万操作计费；低频访问存储另计。 | S3 兼容对象存储，放图片、附件、备份、导出文件。 | 大文件和媒体不要塞进 Git 或 Pages bundle；公开下载注意操作次数。 |
 | Hyperdrive | Workers Free/Paid 都包含一定使用。 | 访问外部数据库量大时看 Workers Paid/Hyperdrive 额度。 | 给外部 Postgres/MySQL 做连接池和加速。 | 已有数据库时用它；新小项目优先 D1，少维护一套外部 DB。 |
-| Vectorize | Free 计划可创建少量索引；官方限制页显示 Free 100 indexes、Paid 50,000 indexes。 | 按 queried/stored vector dimensions 计费。 | 向量数据库，做 RAG、语义搜索、相似推荐。 | 文档站早期先 Pagefind；需要语义检索时再上 Vectorize 或 AI Search。 |
+| Vectorize | Pricing 页列出 Free 的 queried/stored vector dimensions 额度，但可用性变化较快。 | Paid 包含更高 queried/stored vector dimensions，超出按量。 | 向量数据库，做 RAG、语义搜索、相似推荐。 | 文档站早期先 Pagefind；需要语义检索时再上 Vectorize 或 AI Search，上线前再核对 dashboard 和官方 limits。 |
 | Analytics Engine | Free 计划 100,000 data points/day、10,000 read queries/day；官方说明当前价格信息用于预估。 | Paid 每月包含更高写入和查询额度，之后按量。 | 高基数事件、指标和自定义分析。 | 用来记录产品事件、Worker 业务指标；不要替代事务数据库。 |
 | Secrets Store | 适合集中管理密钥，具体可用性看官方当前状态。 | 生产多项目、多环境密钥管理时评估。 | 管理 API key、数据库密码、第三方 token。 | 本地 `.env` 只用于开发；生产密钥放 Cloudflare secret/binding。 |
 
@@ -103,9 +103,9 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 | Web Analytics | 官方标注 available on all plans；Pages 文档称它是免费、隐私优先分析。 | 更复杂产品分析用 Analytics Engine 或第三方。 | 站点访问和性能统计。 | 文档站和官网先开它，不急着上复杂埋点。 |
 | Workers Logs / Tail | 随 Workers 提供开发和排障能力。 | 更长留存、Logpush、企业日志再付费。 | 查看 Worker 日志和错误。 | 生产只记录必要上下文，别把 token/隐私数据写日志。 |
 | GraphQL Analytics API | Cloudflare 多产品指标查询。 | 大规模分析、企业报表时评估。 | 查询 DNS、HTTP、Workers 等指标。 | 先用 Dashboard；需要自动报表再接 API。 |
-| Images | Free 计划包含外部图片 transformations；Paid 解锁 Images 存储等能力。 | 官方 Images pricing 按 transformation、stored images、delivered images 等计费。 | 图片优化、变换、存储和分发。 | 图片原文件优先 R2；需要动态裁剪和格式转换再接 Images。 |
-| Stream | 视频存储、转码、播放，官方 Plans 页列出付费入口和部分计划赠送分钟。 | 视频产品或课程站再评估。 | 视频托管和播放。 | 不要用 Pages/R2 裸扛完整视频产品；视频业务用 Stream 或专门服务。 |
-| Browser Run | 付费按 browser time；官方介绍有 generous free tier。 | 自动化浏览器、截图、抓取、PDF 生成规模化时付费。 | 云端无头浏览器。 | 能用普通 fetch 就别开浏览器；浏览器时间贵，任务要短。 |
+| Images | Free 计划包含 5,000 unique transformations/month。 | Paid 前 5,000 transformations included，超出按 transformation、stored images、delivered images 计费。 | 图片优化、变换、存储和分发。 | 图片原文件优先 R2；需要动态裁剪和格式转换再接 Images。 |
+| Stream | ingress 和 encoding 免费；存储与播放按视频分钟计费。 | 存储 $5/1,000 minutes stored，播放 $1/1,000 minutes delivered。 | 视频托管和播放。 | 不要用 Pages/R2 裸扛完整视频产品；视频业务用 Stream 或专门服务。 |
+| Browser Run | Workers Free 有 10 minutes/day browser hours。 | Workers Paid 有 10 hours/month included，超出按 browser hours 和并发浏览器计费。 | 云端无头浏览器。 | 能用普通 fetch 就别开浏览器；浏览器时间贵，任务要短。 |
 | Zaraz | 第三方脚本管理。 | 高级需求看计划。 | 把分析、广告、营销脚本迁到边缘管理。 | 前端性能敏感站点再引入；先减少脚本数量。 |
 | Wrangler | 免费 CLI。 | 无。 | 管理 Workers、D1、R2、KV、部署。 | `wrangler.jsonc` 作为配置真源，生产变更走 Git。 |
 

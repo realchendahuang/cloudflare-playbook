@@ -85,8 +85,10 @@ Cloudflare Pages 很适合纯静态站。这个项目更希望把 Cloudflare Wor
 ## 资料来源
 
 - [Starlight Site Search](https://starlight.astro.build/guides/site-search/)
+- [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/workers-best-practices/)
 - [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
 - [Cloudflare AI Search](https://developers.cloudflare.com/ai-search/)
+- [Cloudflare Workers Templates](https://github.com/cloudflare/templates)
 - [Starlight Theme Next](https://starlight-theme-next.trueberryless.org/)
 - [Twikoo](https://twikoo.js.org/)
 - [twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare)

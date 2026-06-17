@@ -38,6 +38,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | 最佳实践总览 | [src/content/docs/best-practices/index.md](src/content/docs/best-practices/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/) |
 | 本站技术栈 | [src/content/docs/best-practices/site-stack.md](src/content/docs/best-practices/site-stack.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/site-stack/) |
 | 独立开发者推荐栈 | [src/content/docs/best-practices/indie-stack.md](src/content/docs/best-practices/indie-stack.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/indie-stack/) |
+| Codex 协作 | [src/content/docs/best-practices/codex-cloudflare.md](src/content/docs/best-practices/codex-cloudflare.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/codex-cloudflare/) |
 | 安全边界 | [src/content/docs/best-practices/security.md](src/content/docs/best-practices/security.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/security/) |
 | 成本控制 | [src/content/docs/best-practices/cost.md](src/content/docs/best-practices/cost.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/cost/) |
 | 实战案例总览 | [src/content/docs/recipes/index.md](src/content/docs/recipes/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/recipes/) |

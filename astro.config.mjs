@@ -63,6 +63,7 @@ export default defineConfig({
 						{ label: '总览', slug: 'best-practices' },
 						{ label: '本站技术栈', slug: 'best-practices/site-stack' },
 						{ label: '独立开发者推荐栈', slug: 'best-practices/indie-stack' },
+						{ label: 'Codex 协作', slug: 'best-practices/codex-cloudflare' },
 						{ label: '安全边界', slug: 'best-practices/security' },
 						{ label: '成本控制', slug: 'best-practices/cost' },
 					],

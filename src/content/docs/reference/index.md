@@ -9,17 +9,25 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 
 - [Cloudflare Developer Docs](https://developers.cloudflare.com/)
 - [Cloudflare Changelog](https://developers.cloudflare.com/changelog/)
+- [Cloudflare Docs for Agents](https://developers.cloudflare.com/docs-for-agents/)
+- [Codex + Cloudflare](https://developers.cloudflare.com/agent-setup/codex/)
+- [Cloudflare Agent Setup Prompt](https://developers.cloudflare.com/agent-setup/prompt.md)
 - [Workers Docs](https://developers.cloudflare.com/workers/)
+- [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/workers-best-practices/)
 - [Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
 - [Workers Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
 - [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
+- [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
+- [Workers Builds Limits & Pricing](https://developers.cloudflare.com/workers/ci-cd/builds/limits-and-pricing/)
 - [Pages Docs](https://developers.cloudflare.com/pages/)
 - [Pages Limits](https://developers.cloudflare.com/pages/platform/limits/)
 - [D1 Docs](https://developers.cloudflare.com/d1/)
 - [D1 Pricing](https://developers.cloudflare.com/d1/platform/pricing/)
+- [D1 Limits](https://developers.cloudflare.com/d1/platform/limits/)
 - [R2 Docs](https://developers.cloudflare.com/r2/)
 - [R2 Pricing](https://developers.cloudflare.com/r2/pricing/)
 - [KV Docs](https://developers.cloudflare.com/kv/)
+- [KV Pricing](https://developers.cloudflare.com/kv/platform/pricing/)
 - [Durable Objects Docs](https://developers.cloudflare.com/durable-objects/)
 - [Durable Objects Pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)
 - [Queues Docs](https://developers.cloudflare.com/queues/)
@@ -36,11 +44,29 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [DNS FAQ](https://developers.cloudflare.com/dns/faq/)
 - [Cache Plans](https://developers.cloudflare.com/cache/plans/)
 - [WAF Docs](https://developers.cloudflare.com/waf/)
+- [WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/)
 - [DDoS Protection Docs](https://developers.cloudflare.com/ddos-protection/)
+- [DDoS Protection About](https://developers.cloudflare.com/ddos-protection/about/)
 - [Turnstile Plans](https://developers.cloudflare.com/turnstile/plans/)
 - [Turnstile Server-side Validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
+- [Images Pricing](https://developers.cloudflare.com/images/pricing/)
+- [Stream Pricing](https://developers.cloudflare.com/stream/pricing/)
+- [Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)
 - [Cloudflare Free Plan](https://www.cloudflare.com/plans/free/)
 - [Starlight Site Search](https://starlight.astro.build/guides/site-search/)
+
+## GitHub 开源参考
+
+| 仓库 | 用途 |
+| --- | --- |
+| [freestylefly/CodexGuide](https://github.com/freestylefly/CodexGuide) | 原始参考仓库，学习 Codex 教程站的内容分层、学习路线和资料索引方式。 |
+| [cloudflare/skills](https://github.com/cloudflare/skills) | Cloudflare 官方 Agent Skills，适合给 Codex / Claude Code / Cursor / OpenCode 注入平台实践。 |
+| [cloudflare/mcp](https://github.com/cloudflare/mcp) | Cloudflare Code Mode MCP Server，用少量工具覆盖 Cloudflare API。 |
+| [cloudflare/mcp-server-cloudflare](https://github.com/cloudflare/mcp-server-cloudflare) | Cloudflare domain-specific MCP servers，覆盖 docs、bindings、builds、observability、AI Gateway 等。 |
+| [cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk) | Wrangler、Miniflare、Workers SDK 源码和 issue 入口。 |
+| [cloudflare/templates](https://github.com/cloudflare/templates) | Cloudflare Workers 官方模板集合。 |
+| [cloudflare/agents](https://github.com/cloudflare/agents) | Agents SDK、Code Mode 和构建 Cloudflare agent 的实现参考。 |
+| [twikoojs/twikoo](https://github.com/twikoojs/twikoo) | 本站评论系统的开源来源。 |
 
 ## 写作规范
 
