@@ -3,7 +3,7 @@ title: Cloudflare Playbook
 description: 以 Cloudflare 免费额度和 5 USD/month Workers Paid 为第一入口，再选择产品和架构的实践知识库。
 template: splash
 hero:
-  tagline: 面向独立开发者、小团队和开源项目。先看 0 元能跑什么、哪里会撞额度、5 USD/month Workers Paid 到底有没有用，再谈产品选型。
+  tagline: 面向独立开发者、小团队和开源项目。首页先把 Cloudflare 免费额度讲透：0 元能跑什么、哪里会撞墙、5 USD/month Workers Paid 到底买到什么。
   actions:
     - text: 免费额度大全
       link: /platform/free-paid/
@@ -14,15 +14,25 @@ hero:
       variant: minimal
 ---
 
-## 先看额度，再谈架构
+## 免费额度就是第一入口
 
 最后核对日期：2026-06-18。Cloudflare 的价格、额度和计划边界会变化，本站数字以官方 pricing / limits 为最终依据。
 
-这个 Playbook 把免费额度放在首页最前面。普通开发者真正关心的不是产品名，而是：**项目能不能先 0 元跑起来，跑到哪里该付费，付的那 5 美元到底买到什么。**
+这个 Playbook 把免费额度放在首页最前面。普通开发者真正关心的不是产品名，而是：**项目能不能先 0 元跑起来，0 元能跑到什么程度，跑到哪里才该付费，付的那 5 美元到底买到什么。**
+
+先给结论：
+
+| 结论 | 直接行动 |
+| --- | --- |
+| 文档、官网、博客和前端主流量应该免费。 | 用 Workers Static Assets / Pages，让静态资产直接命中边缘，不进入 Worker 脚本。 |
+| 小 API、评论、表单、Webhook 可以先免费验证。 | 用 Workers Free + D1 + Turnstile，把写入口限流和验证做好。 |
+| 文件和图片不要塞进仓库或数据库。 | 用 R2，看 storage、Class A、Class B，记住 egress 免费不等于 R2 全免费。 |
+| AI 和自然语言搜索要后置。 | 先用 Pagefind；确实有人问复杂问题，再接 AI Gateway、Workers AI、AI Search 或 Vectorize。 |
+| 5 USD/month Workers Paid 不是万能套餐。 | 它主要放大 Workers、CPU、日志、D1、KV、Queues、Durable Objects 等开发者平台能力。 |
 
 ### 免费额度先记这些数字
 
-先把这些数字记住，后面的选型会轻松很多。
+先把这些数字记住，后面的选型会轻松很多。这不是宣传表，而是普通项目最容易决定架构的额度表。
 
 | 关键数字 | 代表什么 | 普通项目怎么用 |
 | --- | --- | --- |
@@ -43,6 +53,21 @@ hero:
 | 200k log events/day | Workers Logs Free 每日日志额度，保留 3 天。 | 早期排障够用；生产长期排障再看 Workers Paid 和 Logpush。 |
 | 10,000 Neurons/day | Workers AI Free 每日免费分配。 | AI 搜索和摘要先做小模型、短输出、缓存和限流。 |
 | 20,000 queries/month | AI Search 新实例 Free 查询额度，open beta 内免费。 | 文档搜索先 Pagefind；自然语言搜索确定有价值后再上 AI Search。 |
+
+## All the fun：0 元先做出来
+
+Cloudflare 免费额度最有意思的地方，是它不是单个产品的试用期，而是一套能组合起来的早期产品底座。
+
+| 你想做什么 | 0 元可用组合 | 先盯紧 |
+| --- | --- | --- |
+| 开源文档站 | Static Assets / Pages + Pagefind + Web Analytics | 构建次数、文件数、静态请求是否误进 Worker。 |
+| 教程站轻社区 | Static Assets + Twikoo Cloudflare + D1 + Turnstile | 评论写入、D1 rows written、刷量。 |
+| 小 API / Webhook | Workers Free + D1 / KV + WAF Rate Limiting | requests/day、CPU、写入次数。 |
+| 表单 / 反馈箱 | Workers + D1 + Turnstile + Workers Logs | 写入滥用、日志留存、后台处理。 |
+| 文件下载站 | R2 + 签名 URL + CDN cache | storage、Class A、Class B。 |
+| 小团队后台 | Access + Tunnel + D1 | 50 users、Access policy、审计需求。 |
+| AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | Neurons、queries、Gateway logs、缓存命中。 |
+| 实时小应用 | Durable Objects + WebSocket hibernation + Queues | DO requests、GB-s、Queues operations。 |
 
 ## 0 元项目怎么组
 

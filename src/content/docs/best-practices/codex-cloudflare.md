@@ -18,7 +18,7 @@ Cloudflare 官方已经把 Codex、Cloudflare Skills、MCP、Wrangler 和 agent-
 | Cloudflare Code Mode MCP | 通过 Cloudflare API 管理账号资源。 | 替代代码审查、架构判断和权限治理。 |
 | Domain-specific MCP servers | 针对绑定、构建、观测、日志等产品域给出实时信息。 | 跨产品做完整架构设计。 |
 | Wrangler | 本地开发、类型、迁移、部署和日志闭环。 | 替代仓库里的配置真源。 |
-| 官方 GitHub 仓库 | 查看文档源文件、模板、SDK、MCP 和 Skills 的真实结构。 | 替代项目自己的约束和读者需求。 |
+| 官方 GitHub 仓库 | 需要追踪文档修改历史、模板或 SDK 结构时再查看。 | 替代项目自己的约束和读者需求。 |
 
 ## 推荐顺序
 
@@ -26,7 +26,7 @@ Cloudflare 官方已经把 Codex、Cloudflare Skills、MCP、Wrangler 和 agent-
 | --- | --- |
 | 1. 先读项目 | 看目录、现有文章、`package.json`、`wrangler.jsonc` 和部署方式。 |
 | 2. 再查官方 | 价格、额度、limits、beta 状态、配置字段和权限名回到 Cloudflare Markdown 文档。 |
-| 3. 再看开源 | 用 `cloudflare/cloudflare-docs`、`cloudflare/templates`、`cloudflare/skills`、`cloudflare/mcp` 核对结构和来源。 |
+| 3. 再看开源 | 必要时查看官方仓库，核对文档历史、模板结构和工具边界。 |
 | 4. 再做修改 | 只改当前问题需要的文章、配置或代码。 |
 | 5. 最后验证 | 构建、类型检查、部署和线上页面都要形成闭环。 |
 
@@ -52,7 +52,7 @@ Cloudflare 官方已经把 Codex、Cloudflare Skills、MCP、Wrangler 和 agent-
 | 先讲免费边界 | 能 0 元验证就先 0 元验证，5 USD/month Workers Paid 只在真实瓶颈出现后再讲。 |
 | 少放实现细节 | 概念页不放命令、配置示例和 API 字段表；实战案例页才保留必要代码。 |
 | 只写读者需要看到的内容 | 前端文案面向读者，不写维护者的临时计划、约束和过程。 |
-| 来源要清楚 | 文章末尾保留官方文档、官方 GitHub 源文件和关键开源仓库。 |
+| 来源要清楚 | 文章末尾保留官方文档、Pricing / Limits 和关键事实来源。 |
 
 ## 写 Worker 代码的底线
 
@@ -61,7 +61,7 @@ Cloudflare 官方已经把 Codex、Cloudflare Skills、MCP、Wrangler 和 agent-
 | 兼容性日期 | 新项目使用当前日期；旧项目升级前单独验证。 |
 | Node 兼容 | 依赖 Node 内置模块或现代 npm 包时显式开启。 |
 | 类型 | 绑定类型从 Wrangler 配置生成，不手写一份容易漂移的 `Env`。 |
-| 密钥 | 生产密钥放 Cloudflare secrets 或 Secrets Store，不进入源码、文档和日志。 |
+| 密钥 | 生产密钥放 Cloudflare secrets 或 Secrets Store，不进入仓库、文档和日志。 |
 | 静态资产 | 文档、官网、SPA 默认走 Workers Static Assets 或 Pages，避免让静态请求进入 Worker 脚本。 |
 | 大响应 | 代理、大文件和下载优先流式处理，不把整个 body 读进内存。 |
 | 全局状态 | 全局只放可复用、无用户私密信息的对象。 |
@@ -71,27 +71,12 @@ Cloudflare 官方已经把 Codex、Cloudflare Skills、MCP、Wrangler 和 agent-
 
 | 检查项 | 要确认什么 |
 | --- | --- |
-| 官方来源 | 是否查过 Cloudflare Markdown、`llms.txt`、Pricing / Limits 或官方 GitHub 源文件。 |
+| 官方来源 | 是否查过 Cloudflare Markdown、`llms.txt`、Pricing / Limits 或线上官方文档。 |
 | 变更范围 | 是否只改了当前任务需要的页面、配置或代码。 |
 | 免费额度 | 是否说明 Free、Workers Paid、usage-based 和 Enterprise 的边界。 |
 | 静态与动态 | 静态资产和 Worker 动态请求是否分清。 |
 | 安全 | 是否避免泄露密钥、token、cookie、内部路径和临时说明。 |
 | 验证 | 是否完成构建、类型检查、部署和线上核对。 |
-
-## GitHub 开源参考
-
-| 仓库 | 值得参考的点 |
-| --- | --- |
-| [freestylefly/CodexGuide](https://github.com/freestylefly/CodexGuide) | 原始参考仓库，适合学习学习路线、入口地图、实践方法、实战案例和资料索引的内容分层。 |
-| [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs) | Cloudflare 官方文档源仓库，适合核对页面源文件、目录结构和历史修改。 |
-| [cloudflare/cloudflare-docs Codex setup source](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/agent-setup/codex.mdx) | Cloudflare 官方 Codex setup 源文件。 |
-| [cloudflare/cloudflare-docs Docs for agents source](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/docs-for-agents/index.mdx) | Docs for agents 源文件，适合核对 Markdown、`llms.txt`、`llms-full.txt` 和 OpenAPI 入口。 |
-| [cloudflare/skills](https://github.com/cloudflare/skills) | Cloudflare 官方 Agent Skills。 |
-| [cloudflare/mcp](https://github.com/cloudflare/mcp) | Cloudflare Code Mode MCP Server。 |
-| [cloudflare/mcp-server-cloudflare](https://github.com/cloudflare/mcp-server-cloudflare) | Cloudflare domain-specific MCP servers。 |
-| [cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk) | Wrangler、Miniflare、Workers SDK 的源头。 |
-| [cloudflare/templates](https://github.com/cloudflare/templates) | 官方 Workers 模板集合。 |
-| [cloudflare/api-schemas](https://github.com/cloudflare/api-schemas) | Cloudflare API OpenAPI specification。 |
 
 ## 事实来源
 
