@@ -47,16 +47,16 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | --- | ---: | --- |
 | [Argo Smart Routing](https://developers.cloudflare.com/argo-smart-routing/llms.txt) | 4 | 已完成首版专题；Paid add-on，Smart Shield，回源路径优化和 Argo for Packets。 |
 | [Automatic Platform Optimization](https://developers.cloudflare.com/automatic-platform-optimization/llms.txt) | 14 | 已完成首版专题；WordPress 动态 HTML 边缘缓存、插件、价格和验证头。 |
-| [Cache / CDN](https://developers.cloudflare.com/cache/llms.txt) | 77 | 必读，静态资源、HTML 缓存、Cache Rules 都在这里。 |
+| [Cache / CDN](https://developers.cloudflare.com/cache/llms.txt) | 77 | 已完成首版专题；默认缓存行为、Cache Rules、Edge / Browser TTL、Purge by URL、Tiered Cache、Cache Reserve 和 Workers Cache API。 |
 | [China Network](https://developers.cloudflare.com/china-network/llms.txt) | 9 | 已完成首版专题；Enterprise separate subscription、ICP、IPv6、JD Cloud 和可用产品边界。 |
-| [DNS](https://developers.cloudflare.com/dns/llms.txt) | 129 | 必读，域名接入、记录、代理状态、DNSSEC 都在这里。 |
+| [DNS](https://developers.cloudflare.com/dns/llms.txt) | 129 | 已完成首版专题；DNS query 免费边界、records/zone、Proxied / DNS-only、TTL、DNSSEC、CNAME flattening、Wildcard 和迁移清单。 |
 | [Google tag gateway for advertisers](https://developers.cloudflare.com/google-tag-gateway/llms.txt) | 1 | 已完成首版专题；免费第一方 Google tag gateway、zone-level 配置和子域名限制。 |
 | [Health Checks](https://developers.cloudflare.com/health-checks/llms.txt) | 6 | 已完成首版专题；Standalone Health Checks，Pro 起可用，和 LB monitors 区分。 |
 | [Load Balancing](https://developers.cloudflare.com/load-balancing/llms.txt) | 59 | 已完成首版专题；paid add-on，多源站、health monitors、traffic steering、PNLB。 |
 | [Smart Shield](https://developers.cloudflare.com/smart-shield/llms.txt) | 19 | 已完成首版专题；Smart Tiered Cache、Connection Reuse、Argo、Cache Reserve 和 Dedicated CDN Egress IPs。 |
 | [Spectrum](https://developers.cloudflare.com/spectrum/llms.txt) | 17 | 已完成首版专题；paid plans，TCP/UDP 非 HTTP 代理，协议/计划/限制。 |
 | [Speed](https://developers.cloudflare.com/speed/llms.txt) | 42 | 性能优化入口，图片、协议、浏览器体验相关。 |
-| [SSL/TLS](https://developers.cloudflare.com/ssl/llms.txt) | 131 | 必读，HTTPS、证书、源站加密和 TLS 策略。 |
+| [SSL/TLS](https://developers.cloudflare.com/ssl/llms.txt) | 131 | 已完成首版专题；Universal SSL、Origin CA、Full (strict)、Automatic SSL/TLS、HTTPS 重定向、HSTS、TLS 1.3 和 AOP。 |
 | [Waiting Room](https://developers.cloudflare.com/waiting-room/llms.txt) | 27 | 已完成首版专题；Business 起可用，合法峰值排队、events、queueing methods 和 JSON response。 |
 | [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/llms.txt) | 16 | 已完成首版专题；available on all plans、proxied sites no limit、non-proxied 10 sites、rules limits 和 RUM 边界。 |
 | [Web3](https://developers.cloudflare.com/web3/llms.txt) | 29 | 已完成首版专题；IPFS / Ethereum paid add-on、included usage、limits 和 gateway 访问控制。 |

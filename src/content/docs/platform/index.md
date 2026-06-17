@@ -80,6 +80,40 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 
 先从免费能力起步，等产品真的被用户使用，再为明确的瓶颈付费。不要为了“架构漂亮”提前买复杂度。
 
+## 上线入口链路
+
+普通项目最先要跑通的不是 Workers、D1 或 AI，而是入口链路。入口链路顺了，后面的安全、缓存、观测和成本控制才有抓手。
+
+```text
+域名上线
+  ├─ DNS
+  │    ├─ Web / API 入口：A、AAAA、CNAME 开 Proxied
+  │    └─ 邮件 / 验证 / 非 HTTP：MX、TXT、验证 CNAME 保持 DNS-only
+  │
+  ├─ SSL/TLS
+  │    ├─ 等 Universal SSL 覆盖目标 hostname
+  │    ├─ 源站安装公开 CA 或 Cloudflare Origin CA 证书
+  │    └─ 加密模式目标设为 Full (strict)
+  │
+  └─ Cache
+       ├─ 静态 hash 资源长缓存
+       ├─ HTML 短缓存或 revalidate
+       ├─ 登录态、后台、用户数据 bypass
+       └─ 更新优先版本化 URL，其次 purge by URL
+```
+
+| 顺序 | 检查项 | 判断 |
+| --- | --- | --- |
+| 1 | DNS 记录是否分清 Proxied 和 DNS-only。 | Web / API 才进 Cloudflare 代理；邮件、验证和非 HTTP 服务不要误代理。 |
+| 2 | 源站 IP 是否还暴露在公开记录里。 | Proxied 记录返回 Cloudflare Anycast IP；旧 A 记录、旧 provider、文档和日志里都要清理源站泄漏。 |
+| 3 | Edge 证书是否 Active。 | Universal SSL 会自动签发和续期；Full setup 通常覆盖根域和一级子域。 |
+| 4 | 源站证书是否能被严格验证。 | Full (strict) 需要源站证书有效；只经 Cloudflare 访问的源站可用 Origin CA。 |
+| 5 | HTTP 到 HTTPS 是否只有一套跳转逻辑。 | 先跑通 Full (strict)，再开 Always Use HTTPS；避免 Flexible 和源站跳转形成循环。 |
+| 6 | 缓存是否避开用户态内容。 | HTML、API、用户数据和带 cookie / Authorization 的响应要谨慎；不要全站 Cache Everything。 |
+| 7 | 发布是否有失效策略。 | hash 文件名优先；内容更新用 purge by URL，少用 purge everything。 |
+
+这条链路的免费能力已经足够支撑大多数开源站、文档站、官网和小型 SaaS：DNS 查询 Free/Pro/Business 不收费，Universal SSL 和 Origin CA 可用，Cache / CDN 和基础 Cache Rules 可用。真正需要付费的通常不是“能不能上线”，而是更高规则数量、更细缓存控制、企业日志、专线、高级证书或多源站高可用。
+
 ## 计算与部署
 
 | 产品 | 免费边界 | 付费入口 | 作用 | 最佳实践 |
