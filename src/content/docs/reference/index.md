@@ -47,6 +47,14 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Wrangler KV commands](https://developers.cloudflare.com/kv/reference/kv-commands/)
 - [Durable Objects Docs](https://developers.cloudflare.com/durable-objects/)
 - [Durable Objects Pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)
+- [Durable Objects Limits](https://developers.cloudflare.com/durable-objects/platform/limits/)
+- [Durable Objects Getting started](https://developers.cloudflare.com/durable-objects/get-started/)
+- [Durable Objects Lifecycle](https://developers.cloudflare.com/durable-objects/concepts/durable-object-lifecycle/)
+- [Durable Object State](https://developers.cloudflare.com/durable-objects/api/state/)
+- [SQLite-backed Durable Object Storage](https://developers.cloudflare.com/durable-objects/api/sqlite-storage-api/)
+- [Durable Objects WebSockets](https://developers.cloudflare.com/durable-objects/best-practices/websockets/)
+- [Durable Objects Alarms](https://developers.cloudflare.com/durable-objects/api/alarms/)
+- [Durable Objects migrations](https://developers.cloudflare.com/durable-objects/reference/durable-objects-migrations/)
 - [Queues Docs](https://developers.cloudflare.com/queues/)
 - [Queues Pricing](https://developers.cloudflare.com/queues/platform/pricing/)
 - [Queues Limits](https://developers.cloudflare.com/queues/platform/limits/)
@@ -105,6 +113,12 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [microfeed/microfeed](https://github.com/microfeed/microfeed) | 自托管在 Cloudflare 的轻量 CMS，适合看 D1、R2、Zero Trust 的内容产品组合。 |
 | [openRin/Rin](https://github.com/openRin/Rin) | 基于 Workers、D1、R2 的边缘博客，适合看内容站架构。 |
 | [MarSeventh/CloudFlare-ImgBed](https://github.com/MarSeventh/CloudFlare-ImgBed) | Cloudflare R2 图床和文件托管方案。 |
+| [cloudflare/workers-sdk C3 Durable Object template](https://github.com/cloudflare/workers-sdk/tree/main/packages/create-cloudflare/templates/hello-world-durable-object/ts) | 官方 Durable Objects C3 模板，适合看 SQLite migration、binding 和 RPC 最小结构。 |
+| [cloudflare/workers-chat-demo](https://github.com/cloudflare/workers-chat-demo) | Cloudflare 官方 Edge Chat Demo，一个房间一个 Durable Object，适合看 WebSocket、历史消息、限流器和 hibernation。 |
+| [cloudflare/actors](https://github.com/cloudflare/actors) | Cloudflare 官方 Actors 框架，适合看基于 Durable Objects 的实例管理、RPC、SQL migration 和 alarms。 |
+| [lambrospetrou/durable-utils](https://github.com/lambrospetrou/durable-utils) | Durable Objects 工具集，适合看 SQLite schema migrations 和固定分片工具。 |
+| [outerbase/starbasedb](https://github.com/outerbase/starbasedb) | 基于 Durable Objects 的 edge SQLite HTTP database，适合看 Worker 网关和 DO SQLite 架构。 |
+| [acoyfellow/UserDO](https://github.com/acoyfellow/UserDO) | per-user Durable Object 模式，适合看用户级 SQLite 状态和实时更新。 |
 | [cloudflare/workers-sdk Queues template](https://github.com/cloudflare/workers-sdk/tree/main/packages/create-cloudflare/templates/queues/ts) | 官方 Queues C3 模板，适合看 producer、consumer 和 `wrangler.jsonc` 最小组合。 |
 | [cloudflare/queues-web-crawler](https://github.com/cloudflare/queues-web-crawler) | Cloudflare 官方 Queues + Browser Rendering + KV crawler 示例。 |
 | [Rheosoph/serverless-cloudflare-search](https://github.com/Rheosoph/serverless-cloudflare-search) | Worker + Queues + R2 + Cache 做小规模 serverless search 的开源参考。 |

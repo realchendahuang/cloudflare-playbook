@@ -3,7 +3,7 @@ title: 实时应用
 description: 用 Durable Objects 承载房间、协作和强一致状态的架构模式。
 ---
 
-实时应用通常需要“某个房间、某个用户、某个资源”拥有强一致状态。Durable Objects 很适合承载这种单对象协调逻辑。
+实时应用通常需要“某个房间、某个用户、某个资源”拥有强一致状态。[Durable Objects](/platform/durable-objects/) 很适合承载这种单对象协调逻辑。
 
 ## 架构
 
@@ -33,3 +33,4 @@ Durable Object
 
 - 不要把所有用户塞到同一个 Durable Object。
 - 需要设计对象划分方式，例如按房间、租户或资源 ID 分片。
+- WebSocket 长连接优先使用 Hibernation API，避免空闲连接持续产生 duration 成本。

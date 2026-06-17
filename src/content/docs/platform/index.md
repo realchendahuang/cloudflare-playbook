@@ -50,7 +50,7 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 | Workers Static Assets | 静态资产请求免费且不限量，资产存储无额外费用。 | 只有请求进入 Worker 脚本时才按 Workers 计费。 | 把静态站和 Worker 项目放在同一套部署配置里。 | 文档站和前端应用优先用它；需要动态能力时再让 Worker 处理特定路径。 |
 | Pages | Free 计划包含静态请求和带宽，官方 Pages 页面列出 500 builds/月、100 custom domains/project。 | Pro/Business 增加并发构建、构建次数和项目能力。 | Git 驱动的静态站和前端部署。 | 纯静态站很好用；一旦 API、D1、R2、AI 组合变多，优先迁到 Workers Static Assets。 |
 | Pages Functions | 计入 Workers/Pages Functions 额度。 | 随 Workers Paid 扩容。 | 给 Pages 项目加轻量 API。 | 适合已有 Pages 项目渐进加 API；新项目如果天然 full-stack，直接 Workers。 |
-| Durable Objects | Free/Paid 都可用；Free 计划只支持 SQLite-backed Durable Objects。 | Paid 支持更多用量和 key-value storage backend。 | 单对象强一致状态、房间、限流器、协作会话。 | 只把“必须强一致”的状态放进去，不要拿它当全局大数据库。 |
+| [Durable Objects](/platform/durable-objects/) | Free 只支持 SQLite-backed DO；100,000 requests/day、13,000 GB-s/day，SQLite storage 读 5M rows/day、写 100k rows/day、5 GB total。 | Workers Paid 每月包含 1M requests、400,000 GB-s、25B rows read、50M rows written、5 GB-month SQL stored data，超出按量。 | 单对象强一致状态、房间、限流器、协作会话、WebSocket。 | 只把“必须强一致”的状态放进去；WebSocket 用 hibernation；不要拿它当全局大数据库。 |
 | [Queues](/platform/queues/) | Free 计划 10,000 operations/day；消息保留 24 小时。 | Paid 每月包含 1,000,000 operations，超出 $0.40/million；保留期默认 4 天，可配到 14 天。 | 异步任务、削峰、后台处理、跨 Worker 消息。 | 小消息成功处理通常是 write、read、delete 3 次操作；需要幂等和 DLQ。 |
 | Workflows | 适合长流程编排，具体额度随官方页面变动。 | 超出免费/包含额度后按平台规则计费。 | 多步骤、可重试、可观察的业务流程。 | 支付后开通、批量导入、AI 处理流水线适合；简单请求别上。 |
 | Cron Triggers | 随 Workers 使用。 | 主要受 Workers 计划和调用成本影响。 | 定时任务。 | 适合定时清理、同步、刷新索引；每次任务要可重入。 |
