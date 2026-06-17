@@ -235,6 +235,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | API 网关架构二次精读 | 已把 [API 网关](/architecture/api-gateway/) 对齐 Serverless global APIs 与 APIs and microservices，补齐请求路径、三种架构形态、拆分时机、安全/成本/观测边界和官方模板来源。 |
 | 已完成复核 | 静态内容站与额度表二次精读 | 已把 [静态内容站](/architecture/static-site/) 对齐 Deploy frontend applications、Workers Static Assets、Pages Limits 和 Cloudflare 官方模板；同步给 [免费与付费边界](/platform/free-paid/) 增加核心额度一屏表和 GitHub 源仓库参考。 |
 | 已完成复核 | 学习路线二次精读 | 已把 [学习路线](/start/) 对齐 Learning Paths、Use cases、Docs for agents、全站 `llms.txt` 和 cloudflare/cloudflare-docs 源目录，补齐官方资料读取方式、六轮阅读顺序、Use cases 到本站专题映射和学习检查表。 |
+| 已完成复核 | 最佳实践入口二次精读 | 已把 [最佳实践](/best-practices/) 对齐 Workers Best Practices、Solution guides、Static Assets billing、WAF Rate Limiting、D1 indexes、R2 CORS 和 GitHub 源目录，补齐按阶段、按风险域、Workers 项目底线和交付检查。 |
 | 进行中 | 单产品复核与案例深化 | 持续补充真实项目拆解、参考架构和单产品深水区。 |
 
 ## 整理规则
