@@ -84,7 +84,7 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 
 | 产品 | 免费边界 | 付费入口 | 作用 | 最佳实践 |
 | --- | --- | --- | --- | --- |
-| DNS | Free/Pro/Business 不对 DNS query 收费；新建 Free zone 的 DNS record 数量有官方上限。 | Enterprise 以 DNS query 等作为报价输入。 | 域名解析和流量入口。 | 个人和小团队所有域名都先接 Cloudflare DNS；记录命名保持清晰。 |
+| [DNS](/platform/dns/) | Free/Pro/Business 不对 DNS query 收费且不限制查询；新 Free zone 为 200 records/zone，旧 Free zone 为 1,000，Pro/Business 为 3,500。 | Enterprise 以 DNS query 等作为报价输入，records/zone 可申请提高。 | 域名解析、代理状态和流量入口。 | Web 入口用 Proxied，邮件和验证记录 DNS-only；迁移前导出旧 zone 并处理 DNSSEC。 |
 | CDN Cache | Free 计划可用 CDN/cache，部分高级缓存能力按计划开放。 | Pro/Business/Enterprise 解锁更高限制和高级能力。 | 缓存静态内容，减少源站压力。 | 静态资源用长缓存；HTML 谨慎缓存；用 Cache Rules 替代到处写代码。 |
 | SSL/TLS | Free 计划提供基础 HTTPS。 | 高级证书、更多控制和企业需求再升级。 | 给站点加 HTTPS。 | 默认全站 HTTPS；源站也保持 TLS，别只在边缘加密。 |
 | DDoS Protection | DDoS Protection 官方标注 available on all plans。 | 企业场景需要更细策略、支持和 SLA 时升级。 | 自动检测和缓解 DDoS。 | 普通项目先接入即可；被打时再组合 WAF、Rate Limiting、规则和日志排查。 |

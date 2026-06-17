@@ -96,7 +96,18 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [AI Search Docs](https://developers.cloudflare.com/ai-search/)
 - [Web Analytics Docs](https://developers.cloudflare.com/web-analytics/)
 - [Analytics Engine Pricing](https://developers.cloudflare.com/analytics/analytics-engine/pricing/)
+- [DNS Docs](https://developers.cloudflare.com/dns/)
 - [DNS FAQ](https://developers.cloudflare.com/dns/faq/)
+- [DNS features and plans](https://developers.cloudflare.com/dns/reference/all-features/)
+- [DNS setups](https://developers.cloudflare.com/dns/zone-setups/)
+- [Full DNS setup](https://developers.cloudflare.com/dns/zone-setups/full-setup/setup/)
+- [Manage DNS records](https://developers.cloudflare.com/dns/manage-dns-records/how-to/create-dns-records/)
+- [DNS proxy status](https://developers.cloudflare.com/dns/proxy-status/)
+- [DNS proxy status use cases](https://developers.cloudflare.com/dns/proxy-status/use-cases/)
+- [DNS proxying limitations](https://developers.cloudflare.com/dns/proxy-status/limitations/)
+- [DNS TTL](https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/)
+- [DNSSEC](https://developers.cloudflare.com/dns/dnssec/)
+- [CNAME flattening](https://developers.cloudflare.com/dns/cname-flattening/)
 - [Cache Plans](https://developers.cloudflare.com/cache/plans/)
 - [WAF Docs](https://developers.cloudflare.com/waf/)
 - [WAF Managed Rules](https://developers.cloudflare.com/waf/managed-rules/)
@@ -126,6 +137,9 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Static Assets source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/static-assets) | 官方 Static Assets 文档源文件，适合追踪文档变更。 |
 | [cloudflare/cloudflare-docs Pages source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pages) | 官方 Pages 文档源文件，适合追踪 Pages、Functions、limits 和 known issues。 |
 | [cloudflare/workers-sdk pages-template-worker](https://github.com/cloudflare/workers-sdk/blob/main/packages/wrangler/templates/pages-template-worker.ts) | Pages Functions 运行包装逻辑，适合理解 `EventContext` 和 `waitUntil`。 |
+| [cloudflare/cloudflare-docs DNS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/dns) | 官方 DNS 文档源文件，适合追踪 DNS limits、proxy status、DNSSEC 和 troubleshooting。 |
+| [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets 和 zone 设置变成 IaC。 |
+| [favonia/cloudflare-ddns](https://github.com/favonia/cloudflare-ddns) | Cloudflare DDNS updater，适合看动态 IP 更新和 API token 权限。 |
 | [cloudflare/workers-rs](https://github.com/cloudflare/workers-rs) | Rust / WebAssembly 写 Workers 的生态入口。 |
 | [cloudflare/workers-oauth-provider](https://github.com/cloudflare/workers-oauth-provider) | 在 Workers 上实现 OAuth 2.1 provider 的库，适合学习 API 鉴权边界。 |
 | [cloudflare/agents](https://github.com/cloudflare/agents) | Agents SDK、Code Mode 和构建 Cloudflare agent 的实现参考。 |

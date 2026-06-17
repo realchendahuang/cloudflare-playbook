@@ -17,7 +17,7 @@ Cloudflare 最容易被低估的免费能力，不是某个单点产品，而是
 
 ## DNS
 
-Cloudflare DNS 对 Free、Pro、Business 用户不收 DNS query 费用，但 DNS 记录数量有计划上限。普通项目的最佳实践是：
+Cloudflare DNS 对 Free、Pro、Business 用户不收 DNS query 费用，也不限制 DNS queries；记录数量、代理状态、DNSSEC 和迁移顺序要看 [DNS 精读](/platform/dns/)。普通项目的最佳实践是：
 
 - 域名统一放 Cloudflare 管理。
 - 生产、预览、实验环境用清楚的子域名。
