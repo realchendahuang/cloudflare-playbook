@@ -42,15 +42,17 @@ Cloudflare 的 Codex setup 页给出的重点可以收敛成四件事：
 
 官方 Agent Setup Prompt 还给了更直接的操作口径：Cloudflare Skills 提供平台判断，Cloudflare Code Mode API MCP 负责调用 Cloudflare API，Cloudflare Docs MCP 负责拉当前文档，Wrangler 负责本地开发、部署、迁移和日志。Codex 如果担心拿到过时信息，应优先走 Docs MCP，或者直接读取 `developers.cloudflare.com/llms.txt` 和产品级 `llms.txt`。
 
+官方站对 Agent 读取文档还有一个很实用的约定：任意 Cloudflare docs 页面都可以追加 `/index.md` 读取干净的 Markdown；每个顶级产品也有自己的 `llms.txt`，适合先拿索引再深入。涉及价格、免费额度、limits、beta 状态、配置字段、权限名和 API shape 时，不要让 Codex 靠训练记忆回答，必须回到这些官方入口核对。
+
 | 官方能力 | 普通项目怎么用 |
 | --- | --- |
 | Cloudflare Skills | 让 Codex 先知道 Workers、D1、R2、KV、WAF、DDoS、Terraform 等产品边界。 |
-| Code Mode API MCP | 管 DNS、WAF、Zero Trust、账号资源这类 Cloudflare API 操作。 |
+| Code Mode API MCP | 管 DNS、WAF、Zero Trust、账号资源这类 Cloudflare API 操作；官方描述它用较小上下文覆盖大量 Cloudflare API。 |
 | Docs MCP | 查最新 limits、pricing、配置字段、兼容性日期和产品状态。 |
 | Bindings MCP | 写 Workers 时核对 D1、R2、KV、AI、Durable Objects 等 binding。 |
 | Builds MCP | 查看 Workers Builds 状态，定位构建失败。 |
 | Observability MCP | 查 Worker 日志、错误和线上运行状态。 |
-| Wrangler | `deploy`、`tail`、`d1 migrations`、`secret`、`types` 这类本地和部署动作。 |
+| Wrangler | `deploy`、`tail`、`d1 migrations`、`secret`、`types` 这类本地和部署动作；统一 `cf` CLI 还在技术预览时，生产交付仍以 Wrangler 为稳定闭环。 |
 
 官方 Workers Best Practices 也给出了一组很适合写进项目规则的底线：
 
@@ -92,6 +94,7 @@ Cloudflare 的 Codex setup 页给出的重点可以收敛成四件事：
 每次让 Codex 修改 Cloudflare 项目，至少检查：
 
 - 是否查过官方 docs 或 `llms.txt`，尤其是价格、限制、配置字段。
+- 是否优先读取 Markdown 版官方文档，也就是 `index.md` 或产品级 `llms.txt`。
 - 是否沿用现有 `wrangler.jsonc`、`package.json`、目录结构和部署方式。
 - 是否避免把密钥、实现细节、临时说明写进前端文案。
 - 是否把静态资产和动态 Worker 请求分开。

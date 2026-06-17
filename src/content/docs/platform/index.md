@@ -71,7 +71,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | Hyperdrive | Workers Free/Paid 都包含一定使用。 | 访问外部数据库量大时看 Workers Paid/Hyperdrive 额度。 | 给外部 Postgres/MySQL 做连接池和加速。 | 已有数据库时用它；新小项目优先 D1，少维护一套外部 DB。 |
 | Vectorize | 30M queried vector dimensions/month、5M stored vector dimensions。 | Paid 包含 50M queried vector dimensions/month、10M stored vector dimensions，超出按 dimensions 计费。 | 向量数据库，做 RAG、语义搜索、相似推荐。 | 文档站早期先 Pagefind；需要自定义召回、metadata、namespace 和 rerank 时再上。 |
 | Analytics Engine | Free 计划 100,000 data points/day、10,000 read queries/day；官方说明当前价格信息用于预估。 | Paid 每月包含更高写入和查询额度，之后按量。 | 高基数事件、指标和自定义分析。 | 用来记录产品事件、Worker 业务指标；不要替代事务数据库。 |
-| Secrets Store | 适合集中管理密钥，具体可用性看官方当前状态。 | 生产多项目、多环境密钥管理时评估。 | 管理 API key、数据库密码、第三方 token。 | 本地 `.env` 只用于开发；生产密钥放 Cloudflare secret/binding。 |
+| Secrets Store | Open beta，账号级密钥中心，兼容 Workers 和 AI Gateway。 | 多 Worker、多环境、多团队共享密钥时评估。 | 管理 API key、数据库密码、第三方 token。 | 单 Worker 先用 `wrangler secret`；多项目共享再用 Secrets Store + binding。 |
 
 ## AI 与搜索
 
@@ -95,12 +95,13 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | [DDoS Protection](/platform/ddos/) | 官方说明所有计划都有 standard, unmetered DDoS protection，HTTP DDoS 和 Network-layer DDoS 也覆盖所有计划。 | Enterprise / Advanced DDoS 提供更多 override、Log action、Adaptive / Advanced DDoS、告警过滤和支持。 | 自动检测和缓解 L3/L4 与 L7 DDoS。 | Web 入口先保持 Proxied，隐藏源站 IP；被打时再结合 WAF、Rate Limiting、Under Attack 和日志排查。 |
 | [Rules](/platform/rules/) | Rules available on all plans；Free 有 10 条常见现代规则、15 条 Bulk Redirect Rules、10,000 条 Bulk Redirect URL。 | Pro/Business/Enterprise 提升多数现代规则到 25/50/300；Snippets 和 Custom Errors 从 paid plans 起。 | 管理跳转、重写、回源、配置、压缩、错误页和轻量边缘逻辑。 | 新项目优先现代 Rules，不再新写 Page Rules；用 Trace 验证执行顺序。 |
 | [WAF](/platform/waf/) | WAF 可用于所有计划；Free 有 5 条 Custom Rules、1 条 Rate Limiting Rule、Free Managed Ruleset 和 sampled Security Events。 | Pro/Business/Enterprise 提升规则数量、Managed Rules、Attack Score、Security Events 和高级检测能力。 | 拦常见攻击、写自定义规则、限速高风险入口。 | 登录、API、后台、评论和上传先加最小规则；先看 Security Events，再逐步收紧。 |
-| Turnstile | Free 计划适合个人站、博客、中小业务、开发测试和大多数生产应用。 | Enterprise 面向核心业务和更高要求。 | 免费 CAPTCHA 替代，降低表单滥用。 | 只放前端组件不够，必须服务端验证 token；适合接入表单、登录和高频提交入口。 |
+| Turnstile | Free 最多 20 个 widgets，每个 widget 10 个 hostnames；挑战和验证请求不限量。 | Enterprise 提升 hostname、analytics、Ephemeral IDs、Offlabel 和组织支持。 | 免费 CAPTCHA 替代，降低表单滥用。 | 只放前端组件不够，必须服务端验证 token；适合表单、登录和高频提交入口。 |
 | Rate Limiting | WAF Rate Limiting 在 Free 有 1 条规则。 | Pro 2 条、Business 5 条、Enterprise 100 条，更多高级特征随计划提升。 | 防刷、防撞库、防 API 滥用。 | 对登录、评论、验证码、搜索 API 先做最小限流；注意 NAT 用户误伤。 |
-| Bot Management | 高级 Bot 能力通常面向付费/企业。 | 业务受爬虫、撞库、黄牛影响时升级。 | 识别和处理自动化流量。 | 先用 Turnstile、WAF、限流；明确 bot 成本后再买更高级能力。 |
-| API Shield | 多为 API 保护能力集合。 | 生产 API、有客户数据、有移动端时评估。 | mTLS、schema validation、API 安全。 | 公开 API 先定义 schema 和认证边界，再加 Shield 能力。 |
-| Tunnel | 基础 Tunnel 可用于把内网服务安全暴露。 | Zero Trust 团队场景按 Access/Gateway 计划评估。 | 不开公网端口暴露内网服务。 | 个人后台、内网面板优先 Tunnel + Access，不要裸奔公网。 |
+| Bots | Free 有 Bot Fight Mode、Block AI bots、AI Labyrinth 和 robots.txt 相关能力。 | Pro/Business 为 Super Bot Fight Mode；Enterprise Bot Management 才有 bot score、JA3/JA4 和路径级控制。 | 识别和处理自动化流量。 | 先用 Turnstile、WAF、限流；明确 bot 成本后再买更高级能力。 |
+| API Shield | Free 可用 Endpoint Management 和 Schema validation：100 endpoints、5 schemas、200 kB schema size。 | 完整 API Shield 需要 Enterprise 订阅。 | mTLS、schema validation、JWT、API 安全。 | 公开 API 先定义 schema、认证和限流，再加 Shield 能力。 |
+| Tunnel / Access | Tunnel 发布 public hostname 不需要 paid Access plan；Access policies 需要 Access seats。 | 团队身份、Gateway、设备 posture、DLP、长期日志按 Zero Trust 计划评估。 | 不开公网端口暴露内网服务。 | 个人后台、内网面板优先 Tunnel + Access；没有 Access policy 的 Tunnel published application 仍然公开。 |
 | Zero Trust | Free 计划适合小规模团队入门，具体 seat/功能看官方。 | 团队、日志、策略、SLA 要求提升后付费。 | Access、Gateway、设备和身份安全。 | 管理后台优先用 Access 保护，比自己写登录更稳。 |
+| Security Center / Security Insights | 默认自动扫描所有账户和 zone；Free 每 7 天，Pro/Business 每 3 天，Enterprise 每天。 | Brand Protection、Threat Intelligence、Security Reports、手动扫描资格按当前计划看。 | 发现 DNS、SSL/TLS、WAF、Access 等配置风险。 | 把它当安全巡检入口，先处理 Critical / High findings。 |
 
 ## 媒体、观测与开发工具
 
@@ -178,3 +179,10 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Cloudflare Rules](https://developers.cloudflare.com/rules/)
 - [Ruleset Engine](https://developers.cloudflare.com/ruleset-engine/)
 - [Turnstile Plans](https://developers.cloudflare.com/turnstile/plans/)
+- [Turnstile Server-side Validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
+- [API Shield Plans](https://developers.cloudflare.com/api-shield/plans/)
+- [Bot solutions Free plan](https://developers.cloudflare.com/bots/plans/free/)
+- [Security Insights how it works](https://developers.cloudflare.com/security/security-insights/how-it-works/)
+- [Cloudflare One account limits](https://developers.cloudflare.com/cloudflare-one/account-limits/)
+- [Published applications with Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/routing-to-tunnel/)
+- [Secrets Store](https://developers.cloudflare.com/secrets-store/)

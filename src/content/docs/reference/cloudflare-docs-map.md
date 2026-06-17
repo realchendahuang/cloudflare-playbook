@@ -213,7 +213,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | Fundamentals 精读 | 已整理 Profile / Account / Zone、域名接入、Proxied / DNS-only、源站保护、成员权限、API Token、Ray ID、请求头、`/cdn-cgi/`、连接限制、端口和 Under Attack。 |
 | 已完成首版 | AI 产品精读 | 已整理 AI Gateway、Workers AI、AI Search、Vectorize、Agents SDK 的定位、免费/付费边界、搜索路线、常见误区和开源参考。 |
 | 已完成首版 | 观测与日志精读 | 已整理 Web Analytics、Analytics、GraphQL Analytics API、Workers Logs、Logpush、Log Explorer、Notifications、Analytics Engine 的免费/付费边界、采样、留存、日志写法和开源参考。 |
-| 进行中 | P1 产品精读 | 安全增强、媒体、企业网络、迁移和 IaC。 |
+| 已完成首版 | 安全增强精读 | 已整理 Turnstile、API Shield、Bots、Access / Tunnel、Secrets Store、Security Center、AI Crawl Control 的免费/付费边界、落地顺序和开源参考。 |
+| 进行中 | P1 产品精读 | 媒体、企业网络、迁移和 IaC。 |
 | 待开始 | 后续专题 | P2/P3 产品、迁移指南、参考架构、Terraform / Pulumi 和更多真实案例。 |
 
 ## 整理规则
@@ -241,6 +242,16 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Cloudflare Log Explorer llms.txt](https://developers.cloudflare.com/log-explorer/llms.txt)
 - [Cloudflare Web Analytics llms.txt](https://developers.cloudflare.com/web-analytics/llms.txt)
 - [Cloudflare Notifications llms.txt](https://developers.cloudflare.com/notifications/llms.txt)
+- [Cloudflare Turnstile llms.txt](https://developers.cloudflare.com/turnstile/llms.txt)
+- [Cloudflare API Shield llms.txt](https://developers.cloudflare.com/api-shield/llms.txt)
+- [Cloudflare Bots llms.txt](https://developers.cloudflare.com/bots/llms.txt)
+- [Cloudflare Challenges llms.txt](https://developers.cloudflare.com/cloudflare-challenges/llms.txt)
+- [Cloudflare AI Crawl Control llms.txt](https://developers.cloudflare.com/ai-crawl-control/llms.txt)
+- [Cloudflare Secrets Store llms.txt](https://developers.cloudflare.com/secrets-store/llms.txt)
+- [Cloudflare Security Center llms.txt](https://developers.cloudflare.com/security-center/llms.txt)
+- [Cloudflare Security dashboard llms.txt](https://developers.cloudflare.com/security/llms.txt)
+- [Cloudflare One llms.txt](https://developers.cloudflare.com/cloudflare-one/llms.txt)
+- [Cloudflare Tunnel llms.txt](https://developers.cloudflare.com/tunnel/llms.txt)
 - [Cloudflare Workers llms.txt](https://developers.cloudflare.com/workers/llms.txt)
 - [Docs for agents](https://developers.cloudflare.com/docs-for-agents/)
 - [Cloudflare Docs for Agents llms.txt](https://developers.cloudflare.com/docs-for-agents/llms.txt)

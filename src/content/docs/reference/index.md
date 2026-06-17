@@ -221,6 +221,33 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Protect your origin server](https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/)
 - [Turnstile Plans](https://developers.cloudflare.com/turnstile/plans/)
 - [Turnstile Server-side Validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
+- [Turnstile Analytics](https://developers.cloudflare.com/turnstile/turnstile-analytics/)
+- [API Shield Docs](https://developers.cloudflare.com/api-shield/)
+- [API Shield Plans](https://developers.cloudflare.com/api-shield/plans/)
+- [API Shield Endpoint Management](https://developers.cloudflare.com/api-shield/management-and-monitoring/)
+- [API Shield Schema Validation](https://developers.cloudflare.com/api-shield/security/schema-validation/)
+- [API Shield JWT Validation](https://developers.cloudflare.com/api-shield/security/jwt-validation/)
+- [API Shield mTLS](https://developers.cloudflare.com/api-shield/security/mtls/)
+- [Bot solutions Docs](https://developers.cloudflare.com/bots/)
+- [Bot solutions Free plan](https://developers.cloudflare.com/bots/plans/free/)
+- [Bot solutions Pro plan](https://developers.cloudflare.com/bots/plans/pro/)
+- [Bot solutions Business and Enterprise plans](https://developers.cloudflare.com/bots/plans/biz-and-ent/)
+- [Bot Management for Enterprise](https://developers.cloudflare.com/bots/plans/bm-subscription/)
+- [Block AI bots](https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/)
+- [AI Labyrinth](https://developers.cloudflare.com/bots/additional-configurations/ai-labyrinth/)
+- [AI Crawl Control](https://developers.cloudflare.com/ai-crawl-control/)
+- [Cloudflare Challenges](https://developers.cloudflare.com/cloudflare-challenges/)
+- [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/)
+- [Cloudflare One account limits](https://developers.cloudflare.com/cloudflare-one/account-limits/)
+- [Cloudflare Tunnel](https://developers.cloudflare.com/tunnel/)
+- [Published applications with Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/routing-to-tunnel/)
+- [Publish a self-hosted application to the Internet](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/)
+- [Secrets Store](https://developers.cloudflare.com/secrets-store/)
+- [Secrets Store access control](https://developers.cloudflare.com/secrets-store/access-control/)
+- [Secrets Store Workers integration](https://developers.cloudflare.com/secrets-store/integrations/workers/)
+- [Security Center](https://developers.cloudflare.com/security-center/)
+- [Security dashboard](https://developers.cloudflare.com/security/)
+- [Security Insights how it works](https://developers.cloudflare.com/security/security-insights/how-it-works/)
 - [Images Pricing](https://developers.cloudflare.com/images/pricing/)
 - [Stream Pricing](https://developers.cloudflare.com/stream/pricing/)
 - [Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)
@@ -252,6 +279,15 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Rules source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/rules) | 官方 Rules 文档源文件，适合追踪 Redirects、Transform、Origin、Snippets、Trace 和 Page Rules 迁移。 |
 | [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | 官方 Ruleset Engine 文档源文件，适合理解 phases、actions、expressions 和 API 模型。 |
 | [cloudflare/cloudflare-docs DDoS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ddos-protection) | 官方 DDoS Protection 文档源文件，适合追踪 managed rulesets、best practices、analytics、alerts 和 changelog。 |
+| [cloudflare/cloudflare-docs Turnstile source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/turnstile) | 官方 Turnstile 文档源文件，适合追踪 plans、server validation、analytics 和 troubleshooting。 |
+| [cloudflare/cloudflare-docs API Shield source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/api-shield) | 官方 API Shield 文档源文件，适合追踪 schema validation、mTLS、JWT、BOLA、API Discovery 和 plans。 |
+| [cloudflare/cloudflare-docs Bots source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/bots) | 官方 bot solutions 文档源文件，适合追踪 Bot Fight Mode、Super Bot Fight Mode、Bot Management 和 AI bots。 |
+| [cloudflare/cloudflare-docs Security Center source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/security-center) | 官方 Security Center 文档源文件，适合追踪 Security Insights、Brand Protection、Threat Intelligence 和 reports。 |
+| [cloudflare/cloudflare-docs Security dashboard source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/security) | 官方 Security dashboard 文档源文件，适合追踪 Security Insights 扫描逻辑和频率。 |
+| [cloudflare/cloudflare-docs Secrets Store source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/secrets-store) | 官方 Secrets Store 文档源文件，适合追踪 open beta、access control、Workers integration 和 API。 |
+| [cloudflare/cloudflare-docs Cloudflare One source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-one) | 官方 Cloudflare One 文档源文件，适合追踪 Access、Tunnel、Gateway、Zero Trust 和 account limits。 |
+| [cloudflare/cloudflare-docs Tunnel source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/tunnel) | 官方 Tunnel 文档源文件，适合追踪 `cloudflared`、routing、monitoring 和配置方式。 |
+| [cloudflare/cloudflare-docs AI Crawl Control source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ai-crawl-control) | 官方 AI Crawl Control 文档源文件，适合追踪 AI crawler 识别、控制和 Pay Per Crawl。 |
 | [cloudflare/cloudflare-docs Billing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/billing) | 官方 Billing 文档源文件，适合追踪账单、预算、付款、发票和 usage-based billing。 |
 | [cloudflare/cloudflare-docs Analytics source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/analytics) | 官方 Analytics 文档源文件，适合追踪 sampling、GraphQL Analytics API 和 Workers Analytics Engine。 |
 | [cloudflare/cloudflare-docs Workers observability source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/observability) | 官方 Workers Observability 文档源文件，适合追踪 Workers Logs、Real-time logs、Tail Workers、Logpush 和 traces。 |
@@ -271,6 +307,7 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-go](https://github.com/cloudflare/cloudflare-go) | Cloudflare 官方 Go SDK，适合自动化 purge、rulesets 和 cache 配置。 |
 | [cloudflare/cloudflare-prometheus-exporter](https://github.com/cloudflare/cloudflare-prometheus-exporter) | Cloudflare 指标导出到 Prometheus 的官方开源参考，适合看 Workers + Durable Objects 的指标累积方式。 |
 | [cloudflare/workers-honeycomb-logger](https://github.com/cloudflare/workers-honeycomb-logger) | Workers 请求事件和 traces 发送到 Honeycomb 的开源库，适合学习外部可观测平台接入。 |
+| [cloudflare/cloudflared](https://github.com/cloudflare/cloudflared) | Cloudflare Tunnel daemon 源码，适合理解 Tunnel 客户端、配置和发布应用的真实实现。 |
 | [cloudflare/sslconfig](https://github.com/cloudflare/sslconfig) | Cloudflare 公开的 Internet-facing SSL cipher 配置历史，适合理解边缘 TLS 配置变迁。 |
 | [cloudflare/cfssl](https://github.com/cloudflare/cfssl) | Cloudflare 的 PKI/TLS 工具箱，适合学习证书签发、验证和 bundle。 |
 | [cloudflare/certmgr](https://github.com/cloudflare/certmgr) | 基于 CFSSL 的证书管理工具，适合看证书自动续期和服务 reload 模式。 |
