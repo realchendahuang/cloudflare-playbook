@@ -1,193 +1,141 @@
 ---
 title: SSL/TLS
-description: Cloudflare SSL/TLS 的加密模式、边缘证书、源站证书、HTTPS 重定向、HSTS、mTLS、常见错误和最佳实践。
+description: Cloudflare SSL/TLS 的普通项目配置顺序、免费边界、证书选择、Full (strict)、HTTPS 重定向、HSTS 与源站保护。
 ---
 
-最后核对日期：2026-06-17。SSL/TLS 涉及浏览器兼容、证书签发、计划权限和源站配置，具体开关以上线时的 Cloudflare Dashboard 和官方文档为准。
+最后核对日期：2026-06-18。SSL/TLS 的计划权限、证书签发和浏览器兼容会变化，上线前以 Cloudflare SSL/TLS 官方页面为准。
 
-## 一句话判断
+SSL/TLS 要解决的是两段连接：访客到 Cloudflare，Cloudflare 到源站。普通项目不要把它做复杂，先追求一件事：**边缘证书交给 Cloudflare，源站连接用 Full (strict)，重定向和 HSTS 等稳定后再开。**
 
-Cloudflare SSL/TLS 的核心不是“点一下 HTTPS”，而是把一条请求拆成两段都加密：
+## 先记住
 
-```text
-浏览器
-  │  边缘证书：Universal SSL / Advanced / Custom
-  ▼
-Cloudflare Edge
-  │  源站证书：公开 CA / Cloudflare Origin CA
-  ▼
-源站服务器 / Worker / Pages / 其他 SaaS
-```
+| 问题 | 判断 |
+| --- | --- |
+| 只是文档站、官网、博客、前端应用？ | Universal SSL 通常够用，公开 Web 记录保持 Proxied。 |
+| 有自己的 VPS / NGINX / Caddy 源站？ | 源站装公开 CA 或 Cloudflare Origin CA 证书，然后使用 Full (strict)。 |
+| 用 Workers / Pages 自定义域名？ | 多数证书由 Cloudflare 管理，不要自己加一层证书运维。 |
+| 还在用 Flexible？ | 只适合短期迁移。长期会留下明文回源和重定向循环风险。 |
+| 想开 HSTS preload / includeSubDomains？ | 等所有子域、回滚路径和证书续期都稳定后再评估。 |
+| 想上传自己的证书或控制 CA / 有效期 / 多级子域？ | 先看 Advanced Certificate Manager、Total TLS、Custom Certificates 的计划边界。 |
 
-普通项目默认应该追求：**边缘 HTTPS 自动托管，源站连接使用 Full (strict)，再逐步开启 HTTPS 重定向、TLS 1.3、最低 TLS 版本和 HSTS。**
+## 免费与计划边界
 
-## 免费与付费边界
+| 能力 | Free | Pro / Business | Enterprise | 普通项目判断 |
+| --- | ---: | ---: | ---: | --- |
+| Universal SSL | 支持 | 支持 | 支持 | 免费自动签发和续期，普通站点默认够用。 |
+| Origin CA | 支持 | 支持 | 支持 | 源站只经 Cloudflare 访问时很省心；不要用于浏览器直连源站。 |
+| Full / Full (strict) | 支持 | 支持 | 支持 | 新项目直接以 Full (strict) 为目标。 |
+| Strict (SSL-Only Origin Pull) | 不支持 | 不支持 | 支持 | Enterprise-only；普通项目先不用。 |
+| Always Use HTTPS | 支持 | 支持 | 支持 | Full (strict) 正常后再开。 |
+| Automatic HTTPS Rewrites | 支持 | 支持 | 支持 | 只能辅助 mixed content，不能代替内容治理。 |
+| HSTS | 支持 | 支持 | 支持 | 免费可用，但风险来自错误配置，不是费用。 |
+| TLS 1.3 / Minimum TLS Version | 支持 | 支持 | 支持 | 全站最低 TLS 版本免费可配；per-hostname 控制看 Advanced Certificate Manager。 |
+| Authenticated Origin Pulls | 支持 | 支持 | 支持 | 有真实源站且担心直连绕过 Cloudflare 时再上。 |
+| Advanced Certificates | 付费 add-on | 付费 add-on | 付费 add-on | 需要自定义主机名列表、有效期、CA 时再买。 |
+| Custom Certificates | 不支持 | Business 支持 | 支持 | 需要上传自有证书、EV 或遗留客户端兼容时再看。 |
+| Keyless SSL | 不支持 | 不支持 | Enterprise paid add-on | 私钥不能离开自有环境的合规场景。 |
 
-| 能力 | Free 可用性 | 什么时候再付费 |
+Free 计划的 Universal SSL 面向现代客户端；普通 Web 用户通常没问题。面向老旧设备、嵌入式设备或传统企业客户端时，要单独测试兼容性。
+
+## 默认顺序
+
+| 顺序 | 做什么 | 不要急着做什么 |
 | --- | --- | --- |
-| Universal SSL | 可用。Full setup 默认覆盖根域和一级子域名；partial/CNAME setup 下每个 proxied 子域名会获得证书。 | 需要更深层通配符、更细 CA/有效期/主机名控制时，看 Advanced Certificate Manager 或 Total TLS。 |
-| SSL/TLS encryption mode | 可用。 | Strict (SSL-Only Origin Pull) 是 Enterprise-only；普通项目用 Full (strict) 即可。 |
-| Origin CA certificates | 可用。 | 只有源站需要被浏览器直连时，才改用公开可信 CA。 |
-| Always Use HTTPS | 可用。 | 不需要为这个单独升级，但要先确认源站 HTTPS 正常。 |
-| Automatic HTTPS Rewrites | 可用。 | 适合辅助处理 mixed content，不替代内容治理。 |
-| HSTS | 可用。 | 不需要为这个单独升级；开启前要确认所有子域都能稳定 HTTPS。 |
-| TLS 1.3 / Minimum TLS Version | 可用。 | per-hostname 设置和自定义 cipher suites 这类细粒度控制通常需要 Advanced Certificate Manager。 |
-| Authenticated Origin Pulls | 可用。 | 对源站暴露风险更敏感时启用；需要改源站 NGINX/Caddy/Apache 配置。 |
-| Custom Certificates | Free/Pro 不可用，Business/Enterprise 可用。 | 需要自带证书、EV/特定 CA、证书钉扎连续性或遗留客户端兼容时再考虑。 |
-| Keyless SSL | Enterprise paid add-on。 | 私钥不能离开自有环境的企业合规场景。 |
+| 1 | DNS 记录先确认 Proxied。 | 还没走 Cloudflare 代理就讨论 WAF、HSTS、AOP。 |
+| 2 | 等 Universal SSL 变为可用。 | 为普通站点过早买自定义证书。 |
+| 3 | 源站准备公开 CA 或 Cloudflare Origin CA 证书。 | 让 Cloudflare 到源站继续明文 HTTP。 |
+| 4 | SSL/TLS mode 设为 Full (strict)。 | 长期停在 Flexible 或 Full。 |
+| 5 | 开 Always Use HTTPS。 | 同时在源站和 Cloudflare 写多套跳转。 |
+| 6 | 开 TLS 1.3，按用户群体设置最低 TLS 版本。 | 为了“更安全”直接踢掉还在使用的真实客户端。 |
+| 7 | 最后评估 HSTS。 | 一上来就 preload、includeSubDomains、长 max-age。 |
 
-Free 计划的 Universal SSL 主要面向支持 SNI 和 ECDSA 的现代客户端；Cloudflare 文档说明 paid zones 对 Universal certificates 还支持 RSA，兼容性更宽。面向普通 Web 用户，这通常不是问题；面向老旧设备、嵌入式设备或传统企业客户端时，要单独测试。
+## 加密模式怎么选
 
-## 加密模式
+| 模式 | 判断 |
+| --- | --- |
+| Off | 公开生产站点不要用。 |
+| Flexible | 访客到 Cloudflare 是 HTTPS，Cloudflare 到源站是 HTTP。只适合迁移期，不适合长期。 |
+| Full | 到源站也走 HTTPS，但不严格校验证书。可作过渡，不是最终状态。 |
+| Full (strict) | 到源站走 HTTPS，并校验证书有效、未过期、主机名匹配。普通项目默认目标。 |
+| Strict (SSL-Only Origin Pull) | Enterprise-only，强制回源始终 HTTPS。普通项目先不用。 |
 
-| 模式 | 浏览器到 Cloudflare | Cloudflare 到源站 | 实践判断 |
-| --- | --- | --- | --- |
-| Off | HTTP | HTTP | 不适合公开生产站点。 |
-| Flexible | HTTPS | HTTP | 只保护用户到边缘这一段；容易和源站 HTTPS 跳转形成重定向循环。 |
-| Full | HTTPS | HTTPS | 会加密到源站，但不严格校验证书有效性；临时过渡可以，长期不推荐。 |
-| Full (strict) | HTTPS | HTTPS + 校验证书 | 普通项目的默认目标。源站证书可以来自公开 CA，也可以来自 Cloudflare Origin CA。 |
-| Strict (SSL-Only Origin Pull) | HTTP/HTTPS 都强制到源站 HTTPS | HTTPS + 校验证书 | Enterprise-only，普通项目先不用。 |
+Full (strict) 的源站证书可以来自公开可信 CA，也可以来自 Cloudflare Origin CA。证书必须未过期，并且要覆盖被请求的主机名。
 
-Cloudflare 官方在 encryption modes 文档里建议尽量使用 Full 或 Full (strict)。本站的判断更直接：**新项目直接按 Full (strict) 设计，只有迁移期才短暂使用 Full。**
-
-## 推荐配置顺序
-
-| 顺序 | 操作 | 验证方式 |
-| --- | --- | --- |
-| 1 | DNS 记录先确认是 Proxied。 | `dig example.com` 看到 Cloudflare 代理 IP，Dashboard 显示橙云。 |
-| 2 | 等 Universal SSL 证书 Active。 | Edge Certificates 页面显示证书覆盖目标主机名。 |
-| 3 | 源站安装公开 CA 证书或 Cloudflare Origin CA 证书。 | 直连源站 443 能完成 TLS 握手。 |
-| 4 | SSL/TLS mode 切到 Full (strict)。 | 浏览器访问 HTTPS 正常，Cloudflare 没有 525 / 526。 |
-| 5 | 开启 Always Use HTTPS。 | `http://` 自动跳到 `https://`。 |
-| 6 | 开启 TLS 1.3，Minimum TLS Version 设为 TLS 1.2 或更高。 | 用 SSL Labs、`curl` 或监控确认主要客户端正常。 |
-| 7 | 最后再评估 HSTS。 | 所有子域和回滚路径确认后，再逐步提高 max-age。 |
-
-不要一开始就把 HSTS preload、includeSubDomains、长 max-age 全开。HSTS 是浏览器侧承诺，配置错了比普通跳转更难回滚。
-
-## Edge 证书
-
-Edge 证书服务浏览器到 Cloudflare 这一段。
-
-Universal SSL 的价值在于省心：Cloudflare 自动签发、续期和部署证书。Full setup 下，它覆盖根域和一级子域名，例如 `example.com` 和 `www.example.com`；如果要覆盖 `api.staging.example.com` 这种更深层级，通常要 Advanced Certificate Manager、Total TLS，或显式配置对应证书。
-
-普通项目常见选择：
+## 证书怎么选
 
 | 场景 | 建议 |
 | --- | --- |
-| 文档站、博客、官网 | Universal SSL 足够。 |
-| 多级子域较多 | 先整理域名结构，再评估 Total TLS / Advanced certificates。 |
-| 需要固定 CA、有效期或验证方式 | Advanced Certificate Manager。 |
-| 需要上传自有证书 | Business/Enterprise 的 Custom Certificates。 |
-| 遗留客户端很多 | 测试 SNI、ECDSA/RSA 和最低 TLS 版本。 |
+| 根域名和一级子域名 | Universal SSL。Full setup 下覆盖根域和一级子域名。 |
+| 更深层级子域名很多 | 先整理域名结构；确实需要再看 Total TLS 或 Advanced Certificates。 |
+| 源站只允许 Cloudflare 代理访问 | Cloudflare Origin CA。 |
+| 源站需要被浏览器直连 | 用公开可信 CA，例如 Let's Encrypt。 |
+| 第三方 SaaS 源站 | 按对方文档要求配置，不要假设 Origin CA 可用。 |
+| 需要上传自有证书 | Business / Enterprise 的 Custom Certificates。 |
+| 私钥不能离开自有环境 | Enterprise Keyless SSL。 |
 
-## Origin 证书
+Origin CA 有两个坑要记住：浏览器不信任它，所以不能用于直连源站；Cloudflare 当前不会发送 Origin CA 到期提醒，所以要放进自己的证书台账。
 
-Origin 证书服务 Cloudflare 到源站这一段。
+## HTTPS 与 HSTS
 
-Cloudflare Origin CA 证书适合只被 Cloudflare 代理访问的源站。它能让 Full (strict) 校验证书，但它不是浏览器公开信任的证书：如果你暂停 Cloudflare、把记录改成 DNS-only，或让用户直接访问源站域名，浏览器会看到不受信任证书错误。
+Always Use HTTPS 是把访客的 HTTP 请求跳到 HTTPS。Cloudflare 官方建议不要在源站重复做同类跳转，否则容易产生 redirect loop。
 
-源站证书选择：
+HSTS 是浏览器侧承诺：浏览器记住这个域名必须用 HTTPS。它很强，也很难回滚。开启前先确认：
 
-| 源站类型 | 建议 |
+| 检查项 | 为什么 |
 | --- | --- |
-| 自己的 VPS / NGINX / Caddy | Cloudflare Origin CA 或 Let's Encrypt 都可以；只走 Cloudflare 时 Origin CA 很省心。 |
-| 需要源站被浏览器直连 | 用公开可信 CA，例如 Let's Encrypt。 |
-| 第三方 SaaS 源站 | 按 SaaS 文档要求配置证书和 CNAME；不要假设能用 Origin CA。 |
-| Workers / Pages 自定义域名 | 通常由 Cloudflare 管理边缘证书，不需要自己维护源站证书。 |
+| 所有公开子域都能稳定 HTTPS | `includeSubDomains` 会把子域一起锁住。 |
+| 不会暂停 Cloudflare 或把记录改回 DNS-only | HSTS 仍会让浏览器强制 HTTPS。 |
+| 证书续期、CAA、DCV 都稳定 | 证书失效时用户不能轻易绕过。 |
+| HTTP 资源已经治理 | Always Use HTTPS 不会自动修好 mixed content。 |
 
-Origin CA 支持最多 200 个 SAN，通配符只覆盖一层。官方还说明目前不会为 Origin CA 证书发送到期提醒，所以长期证书也要进入自己的证书台账。
+普通项目可以先开 Always Use HTTPS，再观察一段时间。HSTS 先用短 max-age 验证，不要一开始就 preload。
 
-## HTTPS 重定向与 HSTS
+## 源站保护
 
-Always Use HTTPS 会把访问者的 `http://` 请求重定向到 `https://`。它很有用，但要和源站重定向保持一致。
+Authenticated Origin Pulls 是 Cloudflare 到源站的 mTLS。它可以让源站只接受经过 Cloudflare 的请求，避免源站 IP 暴露后被绕过。
 
-常见顺序：
-
-1. 先确认 Full (strict) 正常。
-2. 再开启 Always Use HTTPS。
-3. 再处理页面里的 HTTP 资源；必要时开启 Automatic HTTPS Rewrites。
-4. 最后评估 HSTS。
-
-容易出事的组合：
-
-| 配置 | 结果 |
+| 场景 | 判断 |
 | --- | --- |
-| Flexible + 源站把 HTTP 跳 HTTPS | Cloudflare 到源站仍走 HTTP，源站继续跳 HTTPS，形成循环。 |
-| Full (strict) + 源站把 HTTPS 跳 HTTP | 边缘和源站互相拉扯，形成循环。 |
-| HSTS + SSL/TLS mode 设为 Off | 浏览器强制 HTTPS，但 Cloudflare 又不提供 HTTPS 入口。 |
+| 纯 Workers / Pages / Static Assets | 通常不需要。 |
+| 有 VPS 源站，且承载登录、支付、后台或写接口 | 值得评估。 |
+| 只是普通静态网站源站 | 先限制源站只允许 Cloudflare IP，再看是否需要 AOP。 |
+| SSL/TLS mode 还是 Off 或 Flexible | 不适用，先把模式改到 Full / Full (strict)。 |
 
-## Authenticated Origin Pulls
+Global AOP 只能证明请求来自 Cloudflare 网络；如果要证明请求来自自己的账号，使用 zone-level 或 per-hostname AOP，并准备自己的证书和源站配置能力。
 
-Authenticated Origin Pulls 是源站到 Cloudflare 之间的 mTLS 防线：Cloudflare 访问源站时出示客户端证书，源站只接受能通过证书校验的请求。
+## 不要这样用
 
-它适合这类场景：
-
-| 场景 | 是否值得上 |
+| 做法 | 问题 |
 | --- | --- |
-| 源站 IP 有暴露风险 | 值得。 |
-| 登录、支付、后台 API 直接跑在源站 | 值得。 |
-| 纯 Workers Static Assets / Pages 静态站 | 通常不需要。 |
-| 源站配置能力很弱 | 先用防火墙只允许 Cloudflare IP，再评估 mTLS。 |
-
-注意：Authenticated Origin Pulls 不适用于 Off 或 Flexible 模式；它叠加在 Full / Full (strict) 之上。
-
-## 常见错误
-
-| 错误 | 常见原因 | 处理 |
-| --- | --- | --- |
-| `ERR_TOO_MANY_REDIRECTS` | Flexible 和源站 HTTPS 跳转冲突，或 HSTS / redirect rules 冲突。 | 改为 Full (strict)，删除冲突的源站跳转或规则。 |
-| 525 SSL handshake failed | Cloudflare 和源站 TLS 握手失败。 | 查源站 443、SNI、证书链、TLS 版本和防火墙。 |
-| 526 invalid SSL certificate | Full (strict) 下源站证书无效、过期、域名不匹配或链不完整。 | 换有效证书，或安装 Cloudflare Origin CA。 |
-| 证书 Pending Validation | DNS/DCV 不满足，CAA 限制，或 partial setup 需要手工验证。 | 检查 DNS、CAA、DCV token 和证书状态。 |
-| Mixed content | HTTPS 页面引用 HTTP 图片、脚本或 iframe。 | 改内容源，必要时开启 Automatic HTTPS Rewrites。 |
-
-## 验证命令
-
-```bash
-# 确认 HTTP 是否跳转到 HTTPS。
-curl -I http://example.com
-
-# 确认 HTTPS 响应和边缘证书是否正常。
-curl -I https://example.com
-
-# 检查源站 TLS 握手；origin.example.com 换成真实源站地址。
-openssl s_client -connect origin.example.com:443 -servername example.com
-```
-
-```bash
-# 使用 Cloudflare API 设置 zone 级 SSL/TLS 模式，value 常见取值为 strict/full/flexible/off。
-curl --request PATCH "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/settings/ssl" \
-  --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
-  --header "Content-Type: application/json" \
-  --data '{"value":"strict"}'
-```
+| 长期用 Flexible | 回源不加密，且最容易和源站 HTTPS 跳转打架。 |
+| 证书刚可用就开 HSTS preload | 一旦子域或证书链出问题，浏览器侧很难快速回滚。 |
+| 把 Origin CA 当公开证书 | 用户直连源站会看到不受信任证书。 |
+| 为普通站点先买 Custom Certificate | 大多数站点 Universal SSL 已经够用。 |
+| 在源站和 Cloudflare 都写 HTTPS 跳转 | 容易产生循环，排查成本高。 |
+| 只看边缘证书，不看源站证书 | Full (strict) 的关键是源站证书也必须有效。 |
 
 ## GitHub 开源参考
 
 | 仓库 | 可以学什么 |
 | --- | --- |
-| [cloudflare/cloudflare-docs SSL/TLS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ssl) | 官方 SSL/TLS 文档源文件，适合追踪 encryption modes、certificates、HSTS、mTLS 的文档变更。 |
-| [cloudflare/sslconfig](https://github.com/cloudflare/sslconfig) | Cloudflare 公开的 Internet-facing SSL cipher 配置历史。 |
-| [cloudflare/cfssl](https://github.com/cloudflare/cfssl) | Cloudflare 的 PKI/TLS 工具箱，适合理解证书签发、验证和 bundle。 |
-| [cloudflare/certmgr](https://github.com/cloudflare/certmgr) | 基于 CFSSL 的证书管理工具，适合看证书自动续期和服务 reload 思路。 |
-| [cloudflare/gokeyless](https://github.com/cloudflare/gokeyless) | Keyless SSL 的 Go 实现，适合企业场景理解私钥不出自有环境的模型。 |
-| [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | 把 zone settings、certificate packs、rulesets 等配置纳入 IaC。 |
-| [freestylefly/CodexGuide](https://github.com/freestylefly/CodexGuide) | 本站早期学习的原始参考仓库之一，适合对照教程站的信息架构。 |
+| [cloudflare/cloudflare-docs SSL/TLS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ssl) | 官方 SSL/TLS 文档源文件，适合追踪计划边界和功能变更。 |
+| [cloudflare/sslconfig](https://github.com/cloudflare/sslconfig) | Cloudflare 公开的 Internet-facing TLS 配置历史。 |
+| [cloudflare/cfssl](https://github.com/cloudflare/cfssl) | Cloudflare 的 PKI / TLS 工具箱，适合理解证书签发与验证。 |
+| [cloudflare/gokeyless](https://github.com/cloudflare/gokeyless) | Keyless SSL 的 Go 实现，适合企业合规场景理解私钥不离开自有环境。 |
 
-## 官方资料
+## 事实来源
 
 - [SSL/TLS Overview](https://developers.cloudflare.com/ssl/)
-- [SSL/TLS concepts](https://developers.cloudflare.com/ssl/concepts/)
+- [Get started](https://developers.cloudflare.com/ssl/get-started/)
 - [Encryption modes](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/)
 - [Full (strict)](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/)
+- [Strict (SSL-Only Origin Pull)](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/ssl-only-origin-pull/)
 - [Universal SSL](https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/)
 - [Origin CA](https://developers.cloudflare.com/ssl/origin-configuration/origin-ca/)
 - [Authenticated Origin Pulls](https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull/)
 - [Always Use HTTPS](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/always-use-https/)
 - [Automatic HTTPS Rewrites](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/automatic-https-rewrites/)
 - [HSTS](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/http-strict-transport-security/)
-- [TLS 1.3](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/tls-13/)
 - [Minimum TLS Version](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/minimum-tls/)
 - [SSL/TLS features and plans](https://developers.cloudflare.com/ssl/reference/all-features/)
 - [Browser compatibility](https://developers.cloudflare.com/ssl/reference/browser-compatibility/)
-- [ERR_TOO_MANY_REDIRECTS](https://developers.cloudflare.com/ssl/troubleshooting/too-many-redirects/)
