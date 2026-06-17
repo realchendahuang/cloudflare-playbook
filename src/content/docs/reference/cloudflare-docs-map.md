@@ -58,7 +58,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Speed](https://developers.cloudflare.com/speed/llms.txt) | 42 | 性能优化入口，图片、协议、浏览器体验相关。 |
 | [SSL/TLS](https://developers.cloudflare.com/ssl/llms.txt) | 131 | 必读，HTTPS、证书、源站加密和 TLS 策略。 |
 | [Waiting Room](https://developers.cloudflare.com/waiting-room/llms.txt) | 27 | 已完成首版专题；Business 起可用，合法峰值排队、events、queueing methods 和 JSON response。 |
-| [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/llms.txt) | 16 | 文档站、官网、博客优先使用。 |
+| [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/llms.txt) | 16 | 已完成首版专题；available on all plans、proxied sites no limit、non-proxied 10 sites、rules limits 和 RUM 边界。 |
 | [Web3](https://developers.cloudflare.com/web3/llms.txt) | 29 | 已完成首版专题；IPFS / Ethereum paid add-on、included usage、limits 和 gateway 访问控制。 |
 
 ## Application Security
@@ -101,13 +101,13 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
 | [AI Crawl Control](https://developers.cloudflare.com/ai-crawl-control/llms.txt) | 28 | 已完成首版专题；available on all plans、AI crawler analytics、robots.txt compliance、crawler allow/block、Pay Per Crawl private beta。 |
-| [Analytics](https://developers.cloudflare.com/analytics/llms.txt) | 93 | Cloudflare 总体分析能力。 |
+| [Analytics](https://developers.cloudflare.com/analytics/llms.txt) | 93 | 已完成首版专题；Dashboard Analytics、GraphQL Analytics API、ABR sampling、Analytics Engine、integration 和账单口径边界。 |
 | [Billing](https://developers.cloudflare.com/billing/llms.txt) | 33 | 必读，账单、预算、用量和订阅。 |
 | [Cloudflare Fundamentals](https://developers.cloudflare.com/fundamentals/llms.txt) | 126 | 必读，账号、zone、proxy、规则等基础概念。 |
-| [Log Explorer](https://developers.cloudflare.com/log-explorer/llms.txt) | 9 | Dashboard 日志查询。 |
-| [Logs](https://developers.cloudflare.com/logs/llms.txt) | 97 | Logpush、日志字段和外部日志目的地。 |
+| [Log Explorer](https://developers.cloudflare.com/log-explorer/llms.txt) | 9 | 已完成首版专题；paid add-on、无免费版、按 ingest / stored GB 计费、查询不额外收费、datasets / SQL / API。 |
+| [Logs](https://developers.cloudflare.com/logs/llms.txt) | 97 | 已完成首版专题；Logpush、datasets、destinations、4 jobs/zone、no backfill、Workers Trace Events Logpush 例外。 |
 | [Network](https://developers.cloudflare.com/network/llms.txt) | 9 | 已完成首版专题；gRPC、IP Geolocation、IPv6、WebSockets、Pseudo IPv4、True-Client-IP、Onion Routing 和计划边界。 |
-| [Notifications](https://developers.cloudflare.com/notifications/llms.txt) | 10 | 告警通知。 |
+| [Notifications](https://developers.cloudflare.com/notifications/llms.txt) | 10 | 已完成首版专题；available on all plans、Free email、Pro+ webhooks、Business+ PagerDuty、traffic alerts 和 notification history。 |
 | [Pulumi](https://developers.cloudflare.com/pulumi/llms.txt) | 7 | Pulumi 管理 Cloudflare。 |
 | [Randomness Beacon](https://developers.cloudflare.com/randomness-beacon/llms.txt) | 9 | 已完成首版专题；drand 公共随机数、公开可验证随机性、适用场景和 GitHub 开源参考。 |
 | [Reference Architecture](https://developers.cloudflare.com/reference-architecture/llms.txt) | 71 | 架构图和企业级集成参考。 |
@@ -212,7 +212,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | Rules 精读 | 已整理 Redirects、Transform、Configuration、Origin、Snippets、Cloud Connector、Custom Errors、Page Rules 迁移、执行顺序、Trace 排查、计划边界和开源参考。 |
 | 已完成首版 | Fundamentals 精读 | 已整理 Profile / Account / Zone、域名接入、Proxied / DNS-only、源站保护、成员权限、API Token、Ray ID、请求头、`/cdn-cgi/`、连接限制、端口和 Under Attack。 |
 | 已完成首版 | AI 产品精读 | 已整理 AI Gateway、Workers AI、AI Search、Vectorize、Agents SDK 的定位、免费/付费边界、搜索路线、常见误区和开源参考。 |
-| 已完成首版 | 观测与日志精读 | 已整理 Web Analytics、Analytics、GraphQL Analytics API、Workers Logs、Logpush、Log Explorer、Notifications、Analytics Engine 的免费/付费边界、采样、留存、日志写法和开源参考。 |
+| 已完成首版 | 观测与日志精读 | 已整理 Web Analytics、Dashboard Analytics、GraphQL Analytics API、ABR sampling、Workers Logs、Workers Trace Events Logpush、常规 Logpush、Log Explorer、Notifications、Analytics Engine 的免费/付费边界、事实口径、采样、留存、日志写法和开源参考。 |
 | 已完成首版 | 安全增强精读 | 已整理 Turnstile、Cloudflare Challenges、API Shield、Bots、Access / Tunnel、Secrets Store、Security Center、AI Crawl Control、Key Transparency、Firewall Rules deprecated 的免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 媒体与性能精读 | 已整理 Images、Stream、Speed / Observatory、Zaraz、Browser Run 的定位、免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |

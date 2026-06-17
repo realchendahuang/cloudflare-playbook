@@ -72,6 +72,34 @@ description: Cloudflare Web Analytics、Analytics、Workers Logs、Logpush、Log
 | 有安全取证要求 | Log Explorer 或 Logpush 到 R2 / SIEM。 | 只靠 3 到 7 天 Worker 日志留存。 |
 | 有外部可观测平台 | Logpush / Tail Workers / OpenTelemetry 导出。 | 同时接多个日志目的地但没有采样策略。 |
 
+## 排障路径与事实源
+
+Cloudflare 的观测产品有不同事实口径。小项目最容易犯的错误，是把趋势图、日志、账单和业务事实混在一起。更稳妥的判断顺序如下：
+
+| 要回答的问题 | 优先事实源 | 不要依赖什么 |
+| --- | --- | --- |
+| 用户是不是访问变慢了？ | Web Analytics、Dashboard Analytics、Speed / Observatory。 | 单条 Worker 日志；它只能解释某个请求，不代表整体体验。 |
+| 某个请求为什么失败？ | Ray ID、Workers Logs、Security Events、源站日志。 | Dashboard 趋势图；采样后的趋势不能替代单请求证据。 |
+| Worker 是否抛错？ | Workers Logs、Real-time logs、部署版本和异常栈。 | 只看前端报错；边缘异常可能没有完整传回浏览器。 |
+| 是不是被 WAF、Bot 或 Rate Limiting 拦了？ | Security Events、Log Explorer / Logpush 里的安全数据集。 | 应用层日志；被边缘拦截的请求可能根本没有到 Worker 或源站。 |
+| 某个功能是否被真实使用？ | Analytics Engine、D1 业务表或产品自己的事件表。 | Web Analytics；页面访问不能等同于业务事件。 |
+| 账单会不会超？ | Billing、Billable Usage、Budget alerts、产品 pricing。 | GraphQL Analytics API；它是分析口径，不是账单口径。 |
+| 需要长期取证吗？ | Log Explorer 或 Logpush 到 R2 / SIEM。 | Workers Logs 默认留存；Free 只有 3 天，Paid 也只有 7 天。 |
+
+所以普通项目可以先定一条很朴素的链路：**趋势看 Analytics，单请求看 Ray ID 和 Logs，安全拦截看 Security Events，业务指标写 Analytics Engine 或 D1，账单只看 Billing。**
+
+## 数据出口选择
+
+| 出口 | 适合什么 | 关键边界 |
+| --- | --- | --- |
+| Workers Logs | Worker 生产排障、结构化错误、短期查询。 | Free 200,000 log events/day、3 天留存；Paid 20M log events/month、7 天留存。 |
+| Workers Real-time logs | 部署后验证、临时排障、`wrangler tail`。 | 是在线调试工具，不是长期存储。 |
+| Workers Trace Events Logpush | Workers Paid 项目把请求日志推到 R2、SIEM 或外部日志平台。 | Free 不可用；只推送到达目的地的 request logs，要配过滤和采样。 |
+| 常规 Logpush | Enterprise 把多产品日志推到外部目的地。 | Free / Pro / Business 不可用；每个 zone 最多 4 个 jobs；不能回填历史。 |
+| Log Explorer | 不想维护外部日志系统，但需要 Cloudflare 内部存储、SQL 查询和取证。 | 没有免费版或试用；按 ingest 和 stored GB 计费，查询不额外计费。 |
+| Analytics Engine | Worker 写高基数业务事件，用 SQL 查询。 | 数据点和读查询计费；数据留存 3 个月，不是事务数据库。 |
+| GraphQL Analytics API | 自动报表、巡检、跨产品聚合查询。 | 默认 5 分钟 300 个 GraphQL queries；结果可能受采样和节点限制影响。 |
+
 ## 日志怎么写
 
 Workers Logs 官方建议使用结构化 JSON，因为字段会被提取并用于过滤。普通项目可以先把日志压成这几个字段：
