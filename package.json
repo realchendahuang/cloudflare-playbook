@@ -1,0 +1,35 @@
+{
+  "name": "cloudflare-playbook",
+  "version": "0.1.0",
+  "private": true,
+  "description": "面向普通开发者和小团队的 Cloudflare 最佳实践知识库。",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@10.28.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"typecheck": "tsc --noEmit --skipLibCheck --types @cloudflare/workers-types --lib ES2022,WebWorker src/worker.ts",
+		"worker:dev": "wrangler dev",
+		"deploy": "wrangler deploy"
+	},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/realchendahuang/cloudflare-playbook.git"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.40.0",
+    "astro": "^6.4.7",
+    "sharp": "^0.34.5"
+  },
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20260617.0",
+		"typescript": "^5.9.3",
+		"wrangler": "^4.56.0"
+	}
+}

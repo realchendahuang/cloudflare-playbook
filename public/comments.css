@@ -1,0 +1,136 @@
+.cfp-comments {
+	margin-top: 4rem;
+	padding-top: 2rem;
+	border-top: 1px solid var(--sl-color-gray-5);
+}
+
+.cfp-comments__header {
+	margin-bottom: 1rem;
+}
+
+.cfp-comments__header h2 {
+	margin: 0;
+	font-size: 1.5rem;
+}
+
+.cfp-comments__header p {
+	margin: 0.35rem 0 0;
+	color: var(--sl-color-gray-2);
+}
+
+.cfp-comments__form {
+	display: grid;
+	gap: 0.85rem;
+	padding: 1rem;
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 8px;
+	background: var(--sl-color-bg-nav);
+}
+
+.cfp-comments__form label {
+	display: grid;
+	gap: 0.35rem;
+	font-weight: 600;
+}
+
+.cfp-comments__form span {
+	font-size: 0.9rem;
+	color: var(--sl-color-gray-2);
+}
+
+.cfp-comments__form input,
+.cfp-comments__form textarea {
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 6px;
+	padding: 0.65rem 0.75rem;
+	background: var(--sl-color-black);
+	color: var(--sl-color-white);
+	font: inherit;
+}
+
+.cfp-comments__form textarea {
+	resize: vertical;
+	min-height: 7rem;
+}
+
+.cfp-comments__form input:focus,
+.cfp-comments__form textarea:focus {
+	outline: 2px solid var(--sl-color-accent);
+	outline-offset: 2px;
+}
+
+.cfp-comments__trap {
+	position: absolute;
+	left: -10000px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.cfp-comments__actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.cfp-comments__status {
+	margin: 0;
+	color: var(--sl-color-gray-2);
+	font-size: 0.9rem;
+}
+
+.cfp-comments__actions button {
+	border: 0;
+	border-radius: 6px;
+	padding: 0.65rem 0.95rem;
+	background: var(--sl-color-accent);
+	color: var(--sl-color-black);
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.cfp-comments__actions button:disabled {
+	cursor: wait;
+	opacity: 0.65;
+}
+
+.cfp-comments__list {
+	display: grid;
+	gap: 0.8rem;
+	margin-top: 1rem;
+}
+
+.cfp-comments__empty,
+.cfp-comments__item {
+	margin: 0;
+	padding: 0.9rem 1rem;
+	border: 1px solid var(--sl-color-gray-6);
+	border-radius: 8px;
+	background: var(--sl-color-bg);
+}
+
+.cfp-comments__meta {
+	margin: 0 0 0.35rem;
+	color: var(--sl-color-gray-2);
+	font-size: 0.85rem;
+}
+
+.cfp-comments__body {
+	margin: 0;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+
+@media (max-width: 36rem) {
+	.cfp-comments__actions {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.cfp-comments__actions button {
+		width: 100%;
+	}
+}
