@@ -86,7 +86,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/llms.txt) | 689 | 已完成首版专题；Access、Gateway、Tunnel、Cloudflare One Client、Zero Trust Free / Paid 边界和后台保护顺序。 |
 | [Cloudflare WAN](https://developers.cloudflare.com/cloudflare-wan/llms.txt) | 100 | 已完成首版专题；Enterprise-only、站点网络、on-ramps、Network Firewall 关系和普通项目取舍。 |
 | [Data Localization Suite](https://developers.cloudflare.com/data-localization/llms.txt) | 25 | 已完成首版专题；Enterprise-only paid add-on、Geo Key Manager、CMB、Regional Services 和 compatibility。 |
-| [Multi-Cloud Networking](https://developers.cloudflare.com/multi-cloud-networking/llms.txt) | 6 | 多云网络自动化。 |
+| [Multi-Cloud Networking](https://developers.cloudflare.com/multi-cloud-networking/llms.txt) | 6 | 已完成首版专题；Cloudflare One closed beta / Enterprise-only、多云资源发现、AWS / Azure / GCP on-ramp、Cloudflare WAN、resource catalog 和 Terraform 变更审阅。 |
 
 ## Consumer Services
 
@@ -102,8 +102,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | --- | ---: | --- |
 | [AI Crawl Control](https://developers.cloudflare.com/ai-crawl-control/llms.txt) | 28 | 已完成首版专题；available on all plans、AI crawler analytics、robots.txt compliance、crawler allow/block、Pay Per Crawl private beta。 |
 | [Analytics](https://developers.cloudflare.com/analytics/llms.txt) | 93 | 已完成首版专题；Dashboard Analytics、GraphQL Analytics API、ABR sampling、Analytics Engine、integration 和账单口径边界。 |
-| [Billing](https://developers.cloudflare.com/billing/llms.txt) | 33 | 必读，账单、预算、用量和订阅。 |
-| [Cloudflare Fundamentals](https://developers.cloudflare.com/fundamentals/llms.txt) | 126 | 必读，账号、zone、proxy、规则等基础概念。 |
+| [Billing](https://developers.cloudflare.com/billing/llms.txt) | 33 | 已完成首版专题；账单类型、Workers Paid、usage-based billing、Billable Usage、Budget alerts、threshold billing、权限和发票。 |
+| [Cloudflare Fundamentals](https://developers.cloudflare.com/fundamentals/llms.txt) | 126 | 已完成首版专题；Profile / Account / Zone、Full DNS setup、Proxied / DNS-only、源站保护、API Token、Ray ID、请求头和连接限制。 |
 | [Log Explorer](https://developers.cloudflare.com/log-explorer/llms.txt) | 9 | 已完成首版专题；paid add-on、无免费版、按 ingest / stored GB 计费、查询不额外收费、datasets / SQL / API。 |
 | [Logs](https://developers.cloudflare.com/logs/llms.txt) | 97 | 已完成首版专题；Logpush、datasets、destinations、4 jobs/zone、no backfill、Workers Trace Events Logpush 例外。 |
 | [Network](https://developers.cloudflare.com/network/llms.txt) | 9 | 已完成首版专题；gRPC、IP Geolocation、IPv6、WebSockets、Pseudo IPv4、True-Client-IP、Onion Routing 和计划边界。 |
@@ -182,10 +182,10 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
-| [Agent setup](https://developers.cloudflare.com/agent-setup/llms.txt) | 7 | Codex、Claude Code、Cursor 等接入 Cloudflare。 |
-| [Docs for agents](https://developers.cloudflare.com/docs-for-agents/llms.txt) | 1 | AI agent 如何读取 Cloudflare 文档。 |
-| [Migration Guides](https://developers.cloudflare.com/migration-guides/llms.txt) | 1 | 从其他平台迁移。 |
-| [Security dashboard](https://developers.cloudflare.com/security/llms.txt) | 10 | Security dashboard 新 UI。 |
+| [Agent setup](https://developers.cloudflare.com/agent-setup/llms.txt) | 7 | 已完成首版专题；Codex、Claude Code、Cursor、GitHub Copilot、OpenCode、Windsurf 接入 Cloudflare Skills / MCP / Wrangler 的流程。 |
+| [Docs for agents](https://developers.cloudflare.com/docs-for-agents/llms.txt) | 1 | 已完成首版专题；agent-friendly docs、Markdown / index.md、产品级 llms.txt、Cloudflare Docs MCP 和资料核对顺序。 |
+| [Migration Guides](https://developers.cloudflare.com/migration-guides/llms.txt) | 1 | 已完成首版专题；迁移总入口、Pages to Workers、DNS / Rules / 存储 / Worker / 安全策略迁移顺序。 |
+| [Security dashboard](https://developers.cloudflare.com/security/llms.txt) | 10 | 已完成首版专题；新 Security dashboard、Overview、Analytics、Web assets、Security rules、Settings、Security Insights 和 scan frequency。 |
 | [Style Guide](https://developers.cloudflare.com/style-guide/llms.txt) | 164 | 已完成首版专题；Cloudflare docs writing/style IA、components、frontmatter、AI consumability 和 docs site architecture。 |
 | [Use cases](https://developers.cloudflare.com/use-cases/llms.txt) | 59 | 已完成首版专题；官方跨产品 solution guides，可反推真实项目组合。 |
 
@@ -240,6 +240,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 ## 事实来源
 
 - [Cloudflare Developer Documentation llms.txt](https://developers.cloudflare.com/llms.txt)
+- [Cloudflare Multi-Cloud Networking llms.txt](https://developers.cloudflare.com/multi-cloud-networking/llms.txt)
 - [Cloudflare Fundamentals llms.txt](https://developers.cloudflare.com/fundamentals/llms.txt)
 - [Cloudflare Billing llms.txt](https://developers.cloudflare.com/billing/llms.txt)
 - [Cloudflare Rules llms.txt](https://developers.cloudflare.com/rules/llms.txt)

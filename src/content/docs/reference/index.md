@@ -383,6 +383,13 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Private networks with Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/private-net/)
 - [Publish a self-hosted application to the Internet](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/)
 - [Cloudflare WAN](https://developers.cloudflare.com/cloudflare-wan/)
+- [Multi-Cloud Networking](https://developers.cloudflare.com/multi-cloud-networking/)
+- [Multi-Cloud Networking llms.txt](https://developers.cloudflare.com/multi-cloud-networking/llms.txt)
+- [Multi-Cloud Networking get started](https://developers.cloudflare.com/multi-cloud-networking/get-started/)
+- [Multi-Cloud Networking cloud on-ramps](https://developers.cloudflare.com/multi-cloud-networking/cloud-on-ramps/)
+- [Multi-Cloud Networking manage resources](https://developers.cloudflare.com/multi-cloud-networking/manage-resources/)
+- [Multi-Cloud Networking reference](https://developers.cloudflare.com/multi-cloud-networking/reference/)
+- [Multi-Cloud Networking changelog](https://developers.cloudflare.com/multi-cloud-networking/changelog/)
 - [Cloudflare Network Firewall](https://developers.cloudflare.com/cloudflare-network-firewall/)
 - [Cloudflare Network Firewall Plans](https://developers.cloudflare.com/cloudflare-network-firewall/plans/)
 - [Magic Transit](https://developers.cloudflare.com/magic-transit/)
@@ -417,7 +424,13 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Secrets Store Workers integration](https://developers.cloudflare.com/secrets-store/integrations/workers/)
 - [Security Center](https://developers.cloudflare.com/security-center/)
 - [Security dashboard](https://developers.cloudflare.com/security/)
+- [Security overview](https://developers.cloudflare.com/security/overview/)
+- [Security Analytics](https://developers.cloudflare.com/security/analytics/)
+- [Security rules](https://developers.cloudflare.com/security/rules/)
+- [Security settings](https://developers.cloudflare.com/security/settings/)
+- [Web assets](https://developers.cloudflare.com/security/web-assets/)
 - [Security Insights how it works](https://developers.cloudflare.com/security/security-insights/how-it-works/)
+- [Review Security Insights](https://developers.cloudflare.com/security/security-insights/review-insights/)
 - [Cloudflare Images](https://developers.cloudflare.com/images/)
 - [Images Pricing](https://developers.cloudflare.com/images/pricing/)
 - [Images Limits and formats](https://developers.cloudflare.com/images/get-started/limits/)
@@ -587,6 +600,7 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Cloudflare One source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-one) | 官方 Cloudflare One 文档源文件，适合追踪 Access、Tunnel、Gateway、Zero Trust 和 account limits。 |
 | [cloudflare/cloudflare-docs Tunnel source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/tunnel) | 官方 Tunnel 文档源文件，适合追踪 `cloudflared`、routing、monitoring 和配置方式。 |
 | [cloudflare/cloudflare-docs Cloudflare WAN source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-wan) | 官方 Cloudflare WAN 文档源文件，适合追踪 Enterprise WAN、on-ramps、Zero Trust integration 和 virtual networks。 |
+| [cloudflare/cloudflare-docs Multi-Cloud Networking source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/multi-cloud-networking) | 官方 Multi-Cloud Networking 文档源文件，适合追踪 closed beta、云资源发现、cloud on-ramp 和云厂商侧变更。 |
 | [cloudflare/cloudflare-docs Network Firewall source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-network-firewall) | 官方 Network Firewall 文档源文件，适合追踪 firewall-as-a-service、IDS、packet captures、IP lists 和 plans。 |
 | [cloudflare/cloudflare-docs Magic Transit source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/magic-transit) | 官方 Magic Transit 文档源文件，适合追踪 L3/L4 DDoS、BYOIP 和企业网络入口。 |
 | [cloudflare/cloudflare-docs BYOIP source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/byoip) | 官方 BYOIP 文档源文件，适合追踪 prefix validation、service bindings、address maps、RPKI 和 route leak detection。 |

@@ -256,6 +256,31 @@ Security Center 和 Security Insights 的价值，是把“我觉得安全”变
 3. 把处理结果写进仓库文档或 issue。
 4. 如果 findings 反复出现，说明配置真源还没有收敛。
 
+## Security dashboard
+
+新版 Security dashboard 更像一个应用安全工作台：先看 Overview 里的 action items 和 Security Insights，再进入 Analytics 分析真实请求，最后回到 Rules 和 Settings 收敛规则。
+
+```text
+Security dashboard
+  ├─ Overview: 风险概览、action items、Security Insights
+  ├─ Analytics: Traffic / Events，按真实请求调整规则
+  ├─ Web assets: Web 资产和 API endpoint 发现
+  ├─ Rules: Custom Rules、Rate Limiting、API 规则、Managed Rules exceptions
+  └─ Settings: WAF、DDoS、Bot、Under Attack、security.txt 等开关
+```
+
+普通项目可以按这个顺序看：
+
+| 面板 | 看什么 | 决策 |
+| --- | --- | --- |
+| Overview | Critical / High action items、Security Insights。 | 先处理配置风险，不急着写新规则。 |
+| Analytics Traffic | 所有进入域名的 HTTP 请求，包括没有被安全产品处理的请求。 | 找登录、评论、上传、搜索等高风险路径的正常基线。 |
+| Analytics Events | 被 Cloudflare 安全产品 action 或 flag 的请求。 | 调整 WAF、Rate Limiting、Managed Rules 和 Challenge 策略。 |
+| Web assets | Web assets、API endpoints、labels 和性能数据。 | 资产规模上来后再做系统化管理；Discovery 是 Enterprise 能力。 |
+| Rules / Settings | 规则入口和按威胁类别整理的安全设置。 | 只把已经验证过的判断落成规则，避免全站误伤。 |
+
+Security Analytics 默认使用 `requestSource = 'eyeball'` 过滤最终用户请求，Workers subrequests 不会显示在里面。Free 计划可以在 sampled logs 里按日期看汇总事件；付费计划会有更多图表和 dashboard。这个边界很重要：它适合做 Web 入口安全复盘，不适合替代 Workers Logs、Logpush 或应用自己的业务日志。
+
 ## 本站当前选择
 
 | 模块 | 当前做法 | 后续触发条件 |
@@ -265,7 +290,7 @@ Security Center 和 Security Insights 的价值，是把“我觉得安全”变
 | 评论 | Twikoo Cloudflare + D1。 | 出现提交滥用后给评论 API 加 Turnstile 和 Rate Limiting。 |
 | 后台 | 评论服务管理能力跟随 Twikoo。 | 自建管理后台前先设计 Access / Tunnel。 |
 | 密钥 | Worker secret / D1 binding。 | 多 Worker 共享第三方 key 时再评估 Secrets Store。 |
-| 安全巡检 | 手动按文档核对。 | 后续补 Security Insights 巡检清单。 |
+| 安全巡检 | 以 Security dashboard / Security Insights 做配置巡检。 | 出现真实攻击、滥用或误伤后，再补 Security Analytics 复盘和规则变更记录。 |
 
 这里的原则是：本站是开源知识库，静态阅读路径尽量轻；只有写入、管理、密钥和真实 API 才进入安全增强产品。
 
@@ -330,6 +355,13 @@ Security Center 和 Security Insights 的价值，是把“我觉得安全”变
 - [Secrets Store Workers integration](https://developers.cloudflare.com/secrets-store/integrations/workers/)
 - [Security Center](https://developers.cloudflare.com/security-center/)
 - [Security Insights how it works](https://developers.cloudflare.com/security/security-insights/how-it-works/)
+- [Security dashboard](https://developers.cloudflare.com/security/)
+- [Security overview](https://developers.cloudflare.com/security/overview/)
+- [Security Analytics](https://developers.cloudflare.com/security/analytics/)
+- [Security rules](https://developers.cloudflare.com/security/rules/)
+- [Security settings](https://developers.cloudflare.com/security/settings/)
+- [Web assets](https://developers.cloudflare.com/security/web-assets/)
+- [Review Security Insights](https://developers.cloudflare.com/security/security-insights/review-insights/)
 - [Key Transparency Auditor](https://developers.cloudflare.com/key-transparency/)
 - [Firewall Rules deprecated](https://developers.cloudflare.com/firewall/)
 - [WAF custom rules](https://developers.cloudflare.com/waf/custom-rules/)
