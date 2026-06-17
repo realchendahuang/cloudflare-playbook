@@ -18,7 +18,7 @@ description: 文本实时、音视频实时和 WebRTC 穿透怎么选。
 
 如果只是评论实时刷新、在线人数、通知或聊天室，先看 [Durable Objects](/platform/durable-objects/)。只有语音、视频、会议和媒体转发明确存在时，再看 RealtimeKit / SFU / TURN。
 
-## 普通项目路线
+## 起步路线
 
 | 阶段 | 推荐 |
 | --- | --- |
@@ -32,7 +32,7 @@ description: 文本实时、音视频实时和 WebRTC 穿透怎么选。
 
 | 能力 | 先盯住 |
 | --- | --- |
-| Durable Objects WebSocket | 请求数、duration、是否启用 hibernation。 |
+| Durable Objects WebSocket | 请求数、运行时长、是否启用连接休眠。 |
 | RealtimeKit | 参与者时长、录制、转录和导出。 |
 | Realtime SFU / TURN | Cloudflare 到客户端的出站流量。 |
 | 会议后处理 | Webhook 次数、队列任务、R2 存储和日志。 |

@@ -1,11 +1,11 @@
 ---
 title: Workers
-description: Cloudflare Workers 的普通项目取舍、架构分工和升级判断。
+description: Cloudflare Workers 的取舍、架构分工和升级判断。
 ---
 
 最后核对日期：2026-06-18。
 
-Workers 是 Cloudflare 的请求级计算层，不是一台长期运行的小服务器。普通项目先记三句话：静态内容不要进 Worker；动态接口才用 Worker；状态、文件和后台任务交给对应产品。
+Workers 是 Cloudflare 的请求级计算层，不是一台长期运行的小服务器。先记三句话：静态内容不要进 Worker；动态接口才用 Worker；状态、文件和后台任务交给对应产品。
 
 ## 先判断
 
@@ -16,7 +16,7 @@ Workers 是 Cloudflare 的请求级计算层，不是一台长期运行的小服
 | 鉴权、代理、API 网关 | 适合。 | Workers + WAF / Rate Limiting |
 | 文件上传下载 | Worker 只做权限和签名。 | Workers + R2 |
 | 房间、会话、协作状态 | Worker 只做入口。 | Workers + Durable Objects |
-| 邮件、导入、重试、后处理 | 不要靠请求硬撑。 | Workers + Queues / Workflows |
+| 邮件、导入、重试、后处理 | 放到后台异步处理。 | Workers + Queues / Workflows |
 | SSR、复杂搜索、AI 前处理 | 谨慎。 | 先估 CPU，再决定 Paid |
 
 ## 什么时候升级
@@ -29,7 +29,7 @@ Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产
 | CPU 经常不够。 | 解析大 payload、SSR、加密、AI 前处理和批量数据处理都要单独看 CPU。 |
 | 日志留存不够排障。 | 生产问题需要更长留存、Trace Events 或外部日志目的地。 |
 | D1、KV、Queues、Durable Objects 成为核心路径。 | 这些产品的免费层也会一起决定是否进入 Workers Paid。 |
-| 需要更多 Cron、Worker 数量、Subrequests 或更大 bundle。 | 这是工程化能力升级，不是单纯流量问题。 |
+| 需要更多定时任务、Worker 数量、外部调用或更大包体。 | 这是工程化能力升级，不是单纯流量问题。 |
 
 完整数字见 [免费额度大全](/platform/free-paid/)。
 
@@ -55,9 +55,9 @@ Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产
 | 上传文件先读完整内容。 | Worker 做入口控制，文件流向 R2。 |
 | 把评论、搜索、AI、后台任务塞进一个 Worker。 | 先按路径、数据和成本拆清楚。 |
 | 密钥写进仓库或普通变量。 | 非敏感配置用 vars，密钥用 secrets。 |
-| 日志记录 token、cookie、请求正文。 | 只记 request id、Ray ID、状态、耗时和匿名化标识。 |
+| 日志记录密钥、登录凭证和请求正文。 | 只记请求编号、Ray ID、状态、耗时和匿名化标识。 |
 
-## 普通项目路线
+## 起步路线
 
 1. 前端和文档先用 Static Assets / Pages。
 2. 只有动态路径进入 Worker。
@@ -73,4 +73,4 @@ Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产
 - [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
 - [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
 - [Workers Static Assets billing and limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
-- [Service bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/service-bindings/)
+- [Service Bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/service-bindings/)

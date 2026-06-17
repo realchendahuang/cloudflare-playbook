@@ -1,18 +1,18 @@
 ---
 title: Rules
-description: Cloudflare Rules 的普通项目取舍、Page Rules 迁移和常见误区。
+description: Cloudflare Rules 的取舍、Page Rules 迁移和常见误区。
 ---
 
 最后核对日期：2026-06-18。
 
-Rules 解决的是“请求到 Cloudflare 之后怎么处理”：跳转、改路径、改 header、改回源、改缓存或做少量边缘设置。它不是应用后端，也不是 Workers Paid 的一部分。
+Rules 解决的是“请求到 Cloudflare 之后怎么处理”：跳转、改路径、改请求头、改回源、改缓存或做少量边缘设置。它不是应用后端，也不是 Workers Paid 的一部分。
 
 ## 先用 Rules 的场景
 
 | 需求 | 优先看 |
 | --- | --- |
 | 旧 URL、旧域名、`www` / apex 统一跳转。 | Single Redirects / Bulk Redirects。 |
-| 改路径、query、请求头或响应头。 | Transform Rules。 |
+| 改路径、查询参数、请求头或响应头。 | Transform Rules。 |
 | 按路径调整 Cloudflare 设置。 | Configuration Rules。 |
 | 某些路径要走不同端口或后端。 | Origin Rules。 |
 | 明确控制哪些内容缓存。 | Cache Rules。 |
@@ -49,7 +49,7 @@ Snippets 是轻量 JavaScript，Workers 是完整开发者平台。
 
 | 需求 | 判断 |
 | --- | --- |
-| 简单改 header、轻量跳转、维护页。 | Pro+ 可以看 Snippets。 |
+| 简单改请求头、轻量跳转、维护页。 | Pro+ 可以看 Snippets。 |
 | 需要 D1、KV、R2、Durable Objects、Queues。 | 直接看 Workers。 |
 | 需要测试、CI、版本发布、复杂业务。 | 直接看 Workers。 |
 | 还在 Free zone。 | Snippets 不可用，Workers Free 可以跑小 API。 |

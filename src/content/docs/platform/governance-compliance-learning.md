@@ -5,7 +5,7 @@ description: Data Localization、Client-side security、DMARC、Registrar、Supp
 
 最后核对日期：2026-06-18。
 
-这一页只保留运营判断。普通项目不是一开始就需要合规套件、企业支持和复杂脚本安全产品，但域名、邮件和第三方脚本要尽早管住。
+这一页只保留运营判断。早期项目不是一开始就需要合规套件、企业支持和复杂脚本安全产品，但域名、邮件和第三方脚本要尽早管住。
 
 ## 先做这几件事
 
@@ -18,7 +18,7 @@ description: Data Localization、Client-side security、DMARC、Registrar、Supp
 
 ## 什么时候再看
 
-| 能力 | 触发信号 | 普通项目判断 |
+| 能力 | 触发信号 | 实践判断 |
 | --- | --- | --- |
 | Data Localization Suite | 客户、合同或监管明确要求数据区域。 | 企业合同能力；没有合规要求先跳过。 |
 | Client-side security | 页面有广告、分析、支付、客服等第三方脚本。 | Free / Pro 先做监控；高级检测和 blocking 另看计划。 |

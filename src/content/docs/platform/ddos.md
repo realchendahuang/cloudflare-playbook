@@ -5,7 +5,7 @@ description: Cloudflare DDoS Protection 的免费边界、源站保护、Under A
 
 最后核对日期：2026-06-18。
 
-Cloudflare DDoS Protection 是入口层的自动防护。普通项目不需要先研究规则细节，先确认公开 Web 流量真的经过 Cloudflare，源站不能被直连，静态资源能被缓存。
+Cloudflare DDoS Protection 是入口层的自动防护。不需要先研究规则细节，先确认公开 Web 流量真的经过 Cloudflare，源站不能被直连，静态资源能被缓存。
 
 ## 一句话判断
 

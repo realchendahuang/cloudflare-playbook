@@ -1,11 +1,11 @@
 ---
 title: Zero Trust 与企业网络
-description: Cloudflare One、Access、Tunnel、Gateway 和企业网络能力的普通项目取舍。
+description: Cloudflare One、Access、Tunnel、Gateway 和企业网络能力的取舍。
 ---
 
 最后核对日期：2026-06-18。
 
-Zero Trust 不等于必须买一整套企业安全平台。普通项目先看三件事：Access 管谁能进后台，Tunnel 管源站怎么接入 Cloudflare，Gateway 管团队设备的出站访问。专线、企业防火墙和长期日志不是个人站点、小 SaaS 或单个后台的第一步。
+Zero Trust 不等于必须买一整套企业安全平台。先看三件事：Access 管谁能进后台，Tunnel 管源站怎么接入 Cloudflare，Gateway 管团队设备的出站访问。专线、企业防火墙和长期日志不是个人站点、小 SaaS 或单个后台的第一步。
 
 ## 先判断
 
@@ -24,7 +24,7 @@ Zero Trust 不等于必须买一整套企业安全平台。普通项目先看三
 | ---: | --- | --- |
 | 1 | 给后台、预览环境、内部工具加 Access。 | 直接降低真实入口风险。 |
 | 2 | 用 Tunnel 发布后台，关闭源站入站端口。 | 减少暴露面，不先改应用架构。 |
-| 3 | 机器访问使用 service token。 | 比共享人工账号更清楚，也更好撤销。 |
+| 3 | 机器访问使用服务凭证。 | 比共享人工账号更清楚，也更好撤销。 |
 | 4 | 小团队从 Gateway DNS filtering 起步。 | 不必一开始就做全量客户端和 HTTPS 解密。 |
 | 5 | 需要私网访问时再部署 Client。 | Client 是组织级动作，不是单站点必需品。 |
 | 6 | 超出人数、日志或审计需求后再升级计划。 | 付费应该跟真实组织需求绑定。 |
@@ -46,7 +46,7 @@ Zero Trust Free 适合 50 users 内的小团队 PoC；Tunnel 发布 public hostn
 
 | 产品 | 管什么 | 什么时候上 |
 | --- | --- | --- |
-| Access | 用户、设备、服务 token 是否能进应用。 | 后台、预览、内部工具需要保护时。 |
+| Access | 用户、设备、服务凭证是否能进应用。 | 后台、预览、内部工具需要保护时。 |
 | Tunnel | 源站如何通过出站连接接入 Cloudflare。 | 不想暴露源站公网入口时。 |
 | Gateway | DNS、Network、HTTP 出站策略。 | 要管理设备或网络出站访问时。 |
 | Cloudflare One Client | 把设备和身份带进策略。 | 替代 VPN、设备姿态或出站过滤时。 |

@@ -1,22 +1,22 @@
 ---
 title: 后置协议与工具
-description: 普通项目可以先跳过的协议、治理和平台工具。
+description: 可以先跳过的协议、治理和平台工具。
 ---
 
 最后核对日期：2026-06-18。
 
-这一页只解决一个问题：哪些能力普通项目可以先跳过。这里的内容大多不是文档站、小 API、小 SaaS 或内部后台的主线能力。
+这一页只解决一个问题：哪些能力可以先跳过。这里的内容大多不是文档站、小 API、小 SaaS 或内部后台的主线能力。
 
 ## 先跳过
 
 | 能力 | 为什么先跳过 |
 | --- | --- |
 | 浏览器侧网络失败上报 | 只能补充 last mile 诊断，不替代 Workers Logs、Web Analytics 或业务日志。 |
-| 公开可验证随机数 | 不能拿来生成密钥、token 或 session secret。 |
-| 代管客户 Cloudflare 账号 | 面向 partner 场景，不是普通 SaaS 多租户方案。 |
+| 公开可验证随机数 | 不能拿来生成密钥、访问凭证或会话密钥。 |
+| 代管客户 Cloudflare 账号 | 面向 partner 场景，不是早期 SaaS 多租户方案。 |
 | 企业配置版本管理 | 适合企业 zone 灰度，不适合早期项目。 |
 | 隐私代理基础设施 | 不是 Access、Tunnel、WAF 的替代品。 |
-| 新媒体协议实验 | 普通视频先看 Stream，实时音视频先看 Realtime。 |
+| 新媒体协议实验 | 视频先看 Stream，实时音视频先看 Realtime。 |
 | Agent 长期记忆 | 没有明确 Agent 记忆需求时，先用 D1 / R2 / Vectorize。 |
 
 ## 可以现在看
@@ -27,7 +27,7 @@ description: 普通项目可以先跳过的协议、治理和平台工具。
 | 用户反馈“打不开”，但服务端没有请求记录。 | Network Error Logging | 只用于补充诊断 last mile 问题。 |
 | 做公开抽签或协议随机数，需要可验证随机源。 | Randomness Beacon | 只用于公开可验证流程，不用于私密凭证。 |
 
-## 普通项目顺序
+## 起步顺序
 
 1. 先把 Workers Static Assets、Workers、D1、KV、R2、Queues、Durable Objects、WAF、Turnstile 和日志用好。
 2. 资源真的多了，再加 Resource Tagging。
@@ -40,8 +40,8 @@ description: 普通项目可以先跳过的协议、治理和平台工具。
 | --- | --- |
 | NEL 能替代日志和监控。 | 它只补浏览器侧网络失败。 |
 | Randomness Beacon 可以生成密钥。 | 公共随机数不能当私密随机源。 |
-| Tenant API 等于 SaaS 多租户。 | 普通 SaaS 先在应用数据、客户域名和权限层实现多租户。 |
-| MoQ 是视频托管默认方案。 | 普通视频和实时场景先看 Stream、RealtimeKit、Realtime SFU / TURN。 |
+| Tenant API 等于 SaaS 多租户。 | 早期 SaaS 先在应用数据、客户域名和权限层实现多租户。 |
+| MoQ 是视频托管默认方案。 | 视频和实时场景先看 Stream、RealtimeKit、Realtime SFU / TURN。 |
 | Agent Memory 应该保存所有聊天原文。 | 长期记忆只放可复用的事实、偏好、约定和任务。 |
 
 ## 事实来源

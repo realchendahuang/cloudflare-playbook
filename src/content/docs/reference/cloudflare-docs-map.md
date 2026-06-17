@@ -1,11 +1,11 @@
 ---
 title: Cloudflare 文档地图
-description: 基于 Cloudflare 官方 llms.txt 的普通项目阅读顺序和来源入口。
+description: 基于 Cloudflare 官方 llms.txt 的阅读顺序和来源入口。
 ---
 
 最后核对日期：2026-06-18。
 
-Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这张地图只做一件事：把官方 `llms.txt` 压成普通项目能用的阅读顺序。
+Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这张地图只做一件事：把官方 `llms.txt` 压成更容易行动的阅读顺序。
 
 ## 怎么用这张地图
 
@@ -16,7 +16,7 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 要把文档站、官网或博客放上去 | [静态内容站](/architecture/static-site/) |
 | 要做小 API、Webhook、评论或表单 | [API 网关](/architecture/api-gateway/) |
 | 要选 D1、KV、R2、Queues、Durable Objects | [数据产品](/platform/data/) |
-| 要做搜索、AI 摘要或 Agent | [AI 产品](/platform/ai/) |
+| 要做搜索、AI 摘要或自动化工具 | [AI 产品](/platform/ai/) |
 | 要保护后台、预览环境或内网工具 | [Zero Trust 与企业网络](/platform/zero-trust-networking/) |
 | 要控制成本 | [成本控制](/best-practices/cost/) |
 
@@ -35,12 +35,12 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 
 ## 官方分类
 
-| 官方分类 | 普通项目读法 |
+| 官方分类 | 本站读法 |
 | --- | --- |
 | Application performance | 先读 Cache、SSL/TLS、Web Analytics；Load Balancing、Argo、Waiting Room 有明确流量压力再看。 |
 | Application security | 先读 WAF、DDoS、Turnstile；API Shield、Bots、Security Center 按风险升级。 |
 | Cloudflare One | 先读 Access 和 Tunnel；Gateway、DLP、WAN、Network Firewall 更偏团队和企业网络。 |
-| Consumer services | 1.1.1.1、Radar、WARP 多是辅助理解，不是普通网站默认栈。 |
+| Consumer services | 1.1.1.1、Radar、WARP 多是辅助理解，不是网站默认栈。 |
 | Core platform | 先读 Fundamentals、Billing、Rules、Analytics、Notifications。 |
 | Developer platform | Workers、Static Assets、Pages、D1、KV、R2、Queues、Durable Objects 是主线。 |
 | Docs collections | Learning Paths 适合补官方学习路线。 |
@@ -49,7 +49,7 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 
 ## 产品域入口
 
-| 产品域 | 官方入口 | 本站入口 | 普通项目先判断 |
+| 产品域 | 官方入口 | 本站入口 | 先判断 |
 | --- | --- | --- | --- |
 | 基础接入 | [Fundamentals](https://developers.cloudflare.com/fundamentals/llms.txt)、[DNS](https://developers.cloudflare.com/dns/llms.txt)、[SSL/TLS](https://developers.cloudflare.com/ssl/llms.txt) | [基础概念](/platform/fundamentals/)、[DNS](/platform/dns/)、[SSL/TLS](/platform/ssl-tls/) | 域名是否接入、哪些记录代理、源站是否只接受 Cloudflare。 |
 | 账单与额度 | [Billing](https://developers.cloudflare.com/billing/llms.txt)、[Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/) | [账单与预算](/platform/billing/)、[免费额度大全](/platform/free-paid/) | 免费层能不能验证，是否真的需要 5 USD/month Workers Paid。 |
@@ -59,10 +59,10 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | AI 与搜索 | [AI Gateway](https://developers.cloudflare.com/ai-gateway/llms.txt)、[Workers AI](https://developers.cloudflare.com/workers-ai/llms.txt)、[AI Search](https://developers.cloudflare.com/ai-search/llms.txt)、[Vectorize](https://developers.cloudflare.com/vectorize/llms.txt) | [AI 产品](/platform/ai/) | 文档站先 Pagefind；自然语言搜索有真实需求后再接托管 AI。 |
 | 安全 | [WAF](https://developers.cloudflare.com/waf/llms.txt)、[DDoS](https://developers.cloudflare.com/ddos-protection/llms.txt)、[Turnstile](https://developers.cloudflare.com/turnstile/llms.txt)、[API Shield](https://developers.cloudflare.com/api-shield/llms.txt) | [安全与网络](/platform/security-networking/)、[WAF](/platform/waf/)、[DDoS](/platform/ddos/) | 登录、评论、上传、Webhook 先加最小防护和限流。 |
 | 内网与团队访问 | [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/llms.txt)、[Tunnel](https://developers.cloudflare.com/tunnel/llms.txt) | [Zero Trust 与企业网络](/platform/zero-trust-networking/) | 后台、预览环境、内网工具不要裸露公网。 |
-| 媒体与实时 | [Images](https://developers.cloudflare.com/images/llms.txt)、[Stream](https://developers.cloudflare.com/stream/llms.txt)、[Realtime](https://developers.cloudflare.com/realtime/llms.txt) | [媒体与性能](/platform/media-performance/)、[Realtime](/platform/realtime/) | 大文件、图片、视频和音视频实时不要塞进普通静态站。 |
+| 媒体与实时 | [Images](https://developers.cloudflare.com/images/llms.txt)、[Stream](https://developers.cloudflare.com/stream/llms.txt)、[Realtime](https://developers.cloudflare.com/realtime/llms.txt) | [媒体与性能](/platform/media-performance/)、[Realtime](/platform/realtime/) | 大文件、图片、视频和音视频实时不要塞进静态站。 |
 | 后置能力 | [Reference Architecture](https://developers.cloudflare.com/reference-architecture/llms.txt)、[Migration Guides](https://developers.cloudflare.com/migration-guides/llms.txt)、[Use cases](https://developers.cloudflare.com/use-cases/llms.txt) | [架构模式](/architecture/)、[迁移与 IaC](/platform/iac-migration/) | 先确认项目规模，再引入企业网络、专线、Bot 高级能力或 IaC。 |
 
-## 普通项目阅读路线
+## 阅读路线
 
 | 阶段 | 先读 | 读完要能回答 |
 | --- | --- | --- |
@@ -78,7 +78,7 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 原则 | 说明 |
 | --- | --- |
 | 先场景，后产品 | 读者要先知道自己要解决什么问题，再看产品。 |
-| 先免费边界，后高级能力 | 普通项目优先确认 Free 和 5 USD/month Workers Paid 能做什么。 |
+| 先免费边界，后高级能力 | 优先确认 Free 和 5 USD/month Workers Paid 能做什么。 |
 | 先判断，后配置 | 这份 Playbook 解释取舍；具体 API、命令和字段回到官方文档。 |
 | 官方事实与本站判断分开 | 数字、限制和计划边界以 Cloudflare 官方页面为准。 |
 | 少放实现细节 | 只有实战案例页保留代码和命令，概念页尽量只保留判断框架。 |
