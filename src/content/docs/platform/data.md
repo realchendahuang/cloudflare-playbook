@@ -91,7 +91,7 @@ Cloudflare 的数据产品不要只按“数据库”理解，应该按数据形
 | Analytics Engine | data points、read queries、查询范围和高基数字段设计。 |
 | Pipelines | 摄取量、transform、sink 写入、R2 后续存储和查询成本。 |
 
-完整数字见 [免费与付费边界](/platform/free-paid/)。本页只保留选择逻辑；价格、limits 和 included usage 以官方 pricing / limits 为准。
+完整数字见 [免费额度大全](/platform/free-paid/)。本页只保留选择逻辑；价格、limits 和 included usage 以官方 pricing / limits 为准。
 
 ## 不要这么用
 

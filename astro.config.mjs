@@ -34,7 +34,10 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: '开始',
-					items: [{ label: '学习路线', slug: 'start' }],
+					items: [
+						{ label: '免费额度大全', slug: 'platform/free-paid' },
+						{ label: '学习路线', slug: 'start' },
+					],
 				},
 				{
 					label: '产品地图',
@@ -72,7 +75,7 @@ export default defineConfig({
 						{ label: '安全与网络', slug: 'platform/security-networking' },
 						{ label: 'Zero Trust 与企业网络', slug: 'platform/zero-trust-networking' },
 						{ label: '自有网络与专线', slug: 'platform/private-networking' },
-						{ label: '免费与付费边界', slug: 'platform/free-paid' },
+						{ label: '免费额度大全', slug: 'platform/free-paid' },
 						{ label: 'Billing', slug: 'platform/billing' },
 					],
 				},
