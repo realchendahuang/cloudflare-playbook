@@ -582,6 +582,8 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/templates](https://github.com/cloudflare/templates) | Cloudflare Workers 官方模板集合。 |
 | [cloudflare/templates/vite-react-template](https://github.com/cloudflare/templates/tree/main/vite-react-template) | Vite + React + Workers Static Assets 官方模板，适合学习 SPA + API。 |
 | [cloudflare/templates/astro-blog-starter-template](https://github.com/cloudflare/templates/tree/main/astro-blog-starter-template) | Astro 内容站官方模板，适合学习静态内容站进入 Workers 的方式。 |
+| [cloudflare/templates/react-router-hono-fullstack-template](https://github.com/cloudflare/templates/tree/main/react-router-hono-fullstack-template) | React Router + Hono + Workers Static Assets 官方模板，适合学习前后端同仓部署和组件库接入。 |
+| [twikoojs/twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare) | Twikoo 评论服务的 Cloudflare Workers + D1 部署实现，适合学习评论系统托管边界。 |
 | [cloudflare/cloudflare-docs Fundamentals source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/fundamentals) | 官方 Fundamentals 文档源文件，适合追踪账号、Zone、成员权限、API Token、请求头和连接限制。 |
 | [cloudflare/cloudflare-docs Static Assets source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/static-assets) | 官方 Static Assets 文档源文件，适合追踪文档变更。 |
 | [cloudflare/cloudflare-docs Pages source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/pages) | 官方 Pages 文档源文件，适合追踪 Pages、Functions、limits 和 known issues。 |
@@ -725,7 +727,6 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/templates/d1-template](https://github.com/cloudflare/templates/tree/main/d1-template) | Worker + D1 binding + migrations 的最小官方模板。 |
 | [cloudflare/templates/d1-starter-sessions-api-template](https://github.com/cloudflare/templates/tree/main/d1-starter-sessions-api-template) | D1 Sessions API 和 Read Replication 官方模板。 |
 | [cloudflare/templates/chanfana-openapi-template](https://github.com/cloudflare/templates/tree/main/chanfana-openapi-template) | Worker + Hono + OpenAPI 3.1 自动生成和请求校验模板，适合学习 schema-first API 网关。 |
-| [cloudflare/templates/react-router-hono-fullstack-template](https://github.com/cloudflare/templates/tree/main/react-router-hono-fullstack-template) | Workers Static Assets + Hono `/api/*` full-stack 模板，适合学习前端静态资产和 API 同仓部署。 |
 | [cloudflare/templates/to-do-list-kv-template](https://github.com/cloudflare/templates/tree/main/to-do-list-kv-template) | Workers Static Assets + Remix + KV 的官方模板。 |
 | [cloudflare/r2-explorer-template-9](https://github.com/cloudflare/r2-explorer-template-9) | Cloudflare 组织下的 R2 Explorer 模板仓库，适合看 R2、Access 和 Workers 的组合。 |
 | [G4brym/R2-Explorer](https://github.com/G4brym/R2-Explorer) | R2 文件管理界面，适合看多 bucket、上传、权限和 metadata 管理。 |
