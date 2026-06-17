@@ -100,6 +100,7 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 
 | 产品 | 免费边界 | 付费入口 | 作用 | 最佳实践 |
 | --- | --- | --- | --- | --- |
+| [Billing](/platform/billing/) | Billable Usage dashboard、Budget alerts、invoice 和 billing policy 可用于理解账单。 | usage-based overage、subscription 和 add-on 都要按产品核对。 | 把免费额度、固定订阅、按量费用和发票串起来。 | 开启付费产品前先看 pricing / limits；开启后看 Billable Usage 和 budget alerts。 |
 | Web Analytics | 官方标注 available on all plans；Pages 文档称它是免费、隐私优先分析。 | 更复杂产品分析用 Analytics Engine 或第三方。 | 站点访问和性能统计。 | 文档站和官网先开它，不急着上复杂埋点。 |
 | Workers Logs / Tail | 随 Workers 提供开发和排障能力。 | 更长留存、Logpush、企业日志再付费。 | 查看 Worker 日志和错误。 | 生产只记录必要上下文，别把 token/隐私数据写日志。 |
 | GraphQL Analytics API | Cloudflare 多产品指标查询。 | 大规模分析、企业报表时评估。 | 查询 DNS、HTTP、Workers 等指标。 | 先用 Dashboard；需要自动报表再接 API。 |
@@ -138,6 +139,9 @@ Cloudflare 把 DNS、CDN、DDoS、Workers、D1、R2、AI Gateway、Turnstile 等
 - [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 - [AI Gateway Pricing](https://developers.cloudflare.com/ai-gateway/reference/pricing/)
 - [AI Search](https://developers.cloudflare.com/ai-search/)
+- [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)
+- [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)
+- [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/)
 - [DNS FAQ](https://developers.cloudflare.com/dns/faq/)
 - [WAF Docs](https://developers.cloudflare.com/waf/)
 - [DDoS Protection Docs](https://developers.cloudflare.com/ddos-protection/)

@@ -42,6 +42,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | AI 产品 | [src/content/docs/platform/ai.md](src/content/docs/platform/ai.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ai/) |
 | 安全与网络 | [src/content/docs/platform/security-networking.md](src/content/docs/platform/security-networking.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/security-networking/) |
 | 免费与付费边界 | [src/content/docs/platform/free-paid.md](src/content/docs/platform/free-paid.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/free-paid/) |
+| Billing | [src/content/docs/platform/billing.md](src/content/docs/platform/billing.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/billing/) |
 | 架构模式总览 | [src/content/docs/architecture/index.md](src/content/docs/architecture/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/) |
 | 静态内容站 | [src/content/docs/architecture/static-site.md](src/content/docs/architecture/static-site.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/static-site/) |
 | API 网关 | [src/content/docs/architecture/api-gateway.md](src/content/docs/architecture/api-gateway.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/api-gateway/) |

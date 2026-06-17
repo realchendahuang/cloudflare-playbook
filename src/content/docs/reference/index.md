@@ -18,6 +18,15 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Cloudflare Docs for Agents](https://developers.cloudflare.com/docs-for-agents/)
 - [Codex + Cloudflare](https://developers.cloudflare.com/agent-setup/codex/)
 - [Cloudflare Agent Setup Prompt](https://developers.cloudflare.com/agent-setup/prompt.md)
+- [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)
+- [How Cloudflare billing works](https://developers.cloudflare.com/billing/understand/how-billing-works/)
+- [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)
+- [Monitor billable usage](https://developers.cloudflare.com/billing/manage/billable-usage/)
+- [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/)
+- [Threshold billing](https://developers.cloudflare.com/billing/threshold-billing/)
+- [Billing policy](https://developers.cloudflare.com/billing/understand/billing-policy/)
+- [Billing permissions](https://developers.cloudflare.com/billing/understand/billing-permissions/)
+- [Invoices](https://developers.cloudflare.com/billing/manage/invoices/)
 - [Workers Docs](https://developers.cloudflare.com/workers/)
 - [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/workers-best-practices/)
 - [Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
@@ -192,6 +201,7 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs WAF source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/waf) | 官方 WAF 文档源文件，适合追踪 Custom Rules、Managed Rules、Rate Limiting 和 troubleshooting。 |
 | [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | 官方 Ruleset Engine 文档源文件，适合理解 phases、actions、expressions 和 API 模型。 |
 | [cloudflare/cloudflare-docs DDoS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ddos-protection) | 官方 DDoS Protection 文档源文件，适合追踪 managed rulesets、best practices、analytics、alerts 和 changelog。 |
+| [cloudflare/cloudflare-docs Billing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/billing) | 官方 Billing 文档源文件，适合追踪账单、预算、付款、发票和 usage-based billing。 |
 | [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | Cloudflare Terraform Provider，适合把 DNS、rulesets 和 zone 设置变成 IaC。 |
 | [cloudflare/skills Cache Reserve reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/cache-reserve) | Cloudflare 官方 Agent Skills 里的 Cache Reserve 参考，适合看常见误区和检查清单。 |
 | [cloudflare/skills WAF reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/waf) | Cloudflare 官方 Agent Skills 里的 WAF 参考，适合看配置模式、常见误区和 Rulesets API 写法。 |

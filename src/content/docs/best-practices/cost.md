@@ -7,6 +7,8 @@ description: Cloudflare 项目中常见成本来源和控制方式。
 
 成本控制的核心不是把项目省到不能用，而是知道什么行为触发计费，并在架构、配置和代码里留下边界。
 
+Cloudflare 的成本要分成固定订阅和按量计费两条线看。具体账单口径、Budget alerts、Billable Usage dashboard 和 invoice 规则见 [Billing](/platform/billing/)。
+
 ## 先分清账单类型
 
 | 成本类型 | 常见产品 | 判断问题 |
@@ -18,6 +20,8 @@ description: Cloudflare 项目中常见成本来源和控制方式。
 | 日志 | Workers Logs、Logpush、AI Gateway logs | 日志是否记录了必要上下文，是否需要长期保留？ |
 | AI | Workers AI、AI Gateway、Vectorize、AI Search | 模型、上下文、输出长度和缓存命中率是否可观察？ |
 | 安全 | WAF、Bot、Access、API Shield、Turnstile | 付费是在买更高配额、更细规则，还是买人工可维护性？ |
+| 固定订阅 | Domain plan、Workers Paid、add-on | 这是按月固定费用，还是会叠加 usage-based overage？ |
+| 账单观察 | Billable Usage dashboard、Budget alerts、Invoices | 当前看到的是按量超额，还是完整发票？预算提醒有没有设置？ |
 
 ## 最小成本路线
 
@@ -86,6 +90,7 @@ Workers Paid 的每月 $5 值得付的典型信号：
 | Workers AI | Neurons/day、模型单价、输入输出长度。 |
 | Browser Run | browser hours、并发浏览器、单任务耗时。 |
 | Logs | 日志量、保留期、是否能定位错误。 |
+| Billing | Billable Usage dashboard、Budget alerts、invoice line items、fixed subscription。 |
 
 ## 本站当前做法
 
@@ -104,6 +109,12 @@ Workers Paid 的每月 $5 值得付的典型信号：
 - [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
 - [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
 - [Workers Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
+- [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)
+- [How Cloudflare billing works](https://developers.cloudflare.com/billing/understand/how-billing-works/)
+- [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)
+- [Monitor billable usage](https://developers.cloudflare.com/billing/manage/billable-usage/)
+- [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/)
+- [Threshold billing](https://developers.cloudflare.com/billing/threshold-billing/)
 - [D1 Pricing](https://developers.cloudflare.com/d1/platform/pricing/)
 - [R2 Pricing](https://developers.cloudflare.com/r2/pricing/)
 - [Queues Pricing](https://developers.cloudflare.com/queues/platform/pricing/)

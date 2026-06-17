@@ -57,6 +57,7 @@ export default defineConfig({
 						{ label: 'AI 产品', slug: 'platform/ai' },
 						{ label: '安全与网络', slug: 'platform/security-networking' },
 						{ label: '免费与付费边界', slug: 'platform/free-paid' },
+						{ label: 'Billing', slug: 'platform/billing' },
 					],
 				},
 				{
