@@ -1,35 +1,35 @@
 ---
-title: 开发者与网络补充专项
-description: Agent Lee、Artifacts、Email Service、Flagship、Network、Network Flow、R2 SQL、Sandbox SDK 和 Style Guide 的取舍。
+title: 后置开发者能力
+description: 普通项目后期才需要评估的开发者、邮件、实验和网络能力。
 ---
 
 最后核对日期：2026-06-18。
 
-这一页收纳“有用，但不是默认栈”的 Cloudflare 能力。普通项目先不要从这里开始，先把首页和 [免费额度大全](/platform/free-paid/) 里的主线能力跑通。
+这一页收纳“有用，但不是默认栈”的能力。普通项目先不要从这里开始，先把首页和 [免费额度大全](/platform/free-paid/) 里的主线能力跑通。
 
 ## 先别急着用
 
-| 产品 | 先别急的原因 |
+| 你想做的事 | 先别急的原因 |
 | --- | --- |
-| Agent Lee | Dashboard 助手，不是生产变更流程。 |
-| Artifacts | 更偏 Agent / Sandbox / CI 工作区，不是普通对象存储。 |
-| Email Service | 事务邮件可以评估，营销邮件要考虑退订、投诉、声誉和合规。 |
-| Flagship | 功能灰度有价值，但简单项目先用配置和发布流程。 |
-| Network settings | 多数是 zone 级兼容性开关，不是独立架构。 |
-| Network Flow | 面向路由器和企业网络流量，普通站点先看 Web Analytics 和日志。 |
-| R2 SQL | 查询 R2 数据湖，不是 D1 替代品。 |
-| Sandbox SDK | 只有要执行不可信代码时才值得承担容器和安全复杂度。 |
+| 让 AI 或助手改生产配置。 | 助手只能辅助判断，生产变更仍要有 review 和真源。 |
+| 保存 Agent 工作区、构建产物或临时文件树。 | 普通文件、图片和附件先用 R2。 |
+| 发邮件。 | 事务邮件可以评估；营销邮件还要处理退订、投诉、声誉和合规。 |
+| 做功能灰度。 | 简单项目先用配置、发布流程和回滚策略。 |
+| 调整网络兼容性开关。 | 多数不是独立架构能力，改错会影响线上行为。 |
+| 看路由器和企业网络流量。 | 普通站点先看 Web Analytics、Workers Logs 和 Security Events。 |
+| 查询 R2 里的数据湖。 | R2 SQL 不是 D1 替代品，先确认数据确实已经适合分析。 |
+| 执行不可信代码。 | 这会引入容器、安全和成本边界，没有明确需求不要上。 |
 
 ## 什么时候值得看
 
 | 需求 | 可以看 |
 | --- | --- |
 | 要发事务邮件或处理入站邮件。 | Email Service。 |
-| 要给新功能做 kill switch、灰度和定向发布。 | Flagship。 |
-| AI code executor、代码评测、临时开发环境。 | Sandbox SDK。 |
+| 要给新功能做关闭开关、灰度和定向发布。 | Flagship。 |
+| 要做代码评测、临时代码环境或 AI code executor。 | Sandbox SDK。 |
 | R2 里已经是可分析的数据湖格式。 | R2 SQL。 |
 | 团队开始用 Agent 管理文件树或构建产物。 | Artifacts。 |
-| 写文档、教程、Agent-friendly docs。 | Cloudflare Style Guide。 |
+| 要写文档、教程或 Agent-friendly docs。 | Cloudflare Style Guide。 |
 
 ## 付费判断
 

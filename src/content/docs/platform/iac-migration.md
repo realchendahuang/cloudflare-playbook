@@ -28,15 +28,15 @@ IaC 不是把所有 Cloudflare 配置都写成 Terraform。普通项目先问一
 | 生成/导入工具 | 把已有配置变成迁移草稿。 | 不 review 就直接进生产。 |
 | Remote state | 团队共享 IaC 状态。 | 公开存放或把密钥写进仓库。 |
 
-## 纳入 IaC 的优先级
+## 先纳入哪些配置
 
-| 优先级 | 资源 | 原因 |
+| 顺序 | 资源 | 原因 |
 | --- | --- | --- |
-| P0 | DNS records、SSL/TLS、Redirects | 入口层改错影响最大。 |
-| P0 | WAF、Rate Limiting、Access | 安全策略需要 review 和回滚。 |
-| P1 | Cache Rules、Origin Rules、Transform Rules | 会影响缓存、回源、URL 和成本。 |
-| P1 | R2、KV、D1、Queues 等资源声明 | 资源归属要清楚；数据内容不要进 state。 |
-| P2 | Worker deployment | 只有团队需要统一发布模型时再上。 |
+| 先纳入 | DNS records、SSL/TLS、Redirects | 入口层改错影响最大。 |
+| 先纳入 | WAF、Rate Limiting、Access | 安全策略需要 review 和回滚。 |
+| 再纳入 | Cache Rules、Origin Rules、Transform Rules | 会影响缓存、回源、URL 和成本。 |
+| 再纳入 | R2、KV、D1、Queues 等资源声明 | 资源归属要清楚；数据内容不要进 state。 |
+| 最后看 | Worker deployment | 只有团队需要统一发布模型时再上。 |
 
 ## 迁移顺序
 

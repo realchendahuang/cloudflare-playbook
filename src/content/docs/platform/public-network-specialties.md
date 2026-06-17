@@ -1,11 +1,11 @@
 ---
-title: 公共网络与专项服务
-description: 1.1.1.1、Radar、Time Services、Web3、China Network 和 Google tag gateway 的普通项目取舍。
+title: 公共网络能力
+description: 普通项目后置评估的公共网络、趋势、时间、Web3、区域交付和广告测量能力。
 ---
 
 最后核对日期：2026-06-18。
 
-这些能力不是 Cloudflare 项目的默认主干。它们更像专项工具：终端 DNS、互联网趋势、时间同步、中国大陆交付、Web3 网关和广告测量。
+这些能力不是 Cloudflare 项目的默认主干。它们更像后置工具：终端 DNS、互联网趋势、时间同步、区域交付、Web3 网关和广告测量。
 
 ## 先判断是不是你的问题
 
@@ -23,7 +23,7 @@ description: 1.1.1.1、Radar、Time Services、Web3、China Network 和 Google t
 1. 网站主线先做好 DNS、SSL/TLS、Cache、WAF、DDoS、Workers 和数据产品。
 2. 需要趋势材料时，用 Radar。
 3. 需要广告测量时，再看 Google tag gateway。
-4. Web3、China Network 这种专项能力，等真实业务出现后再核对价格、合规和限制。
+4. Web3、China Network 这种后置能力，等真实业务出现后再核对价格、合规和限制。
 
 ## 常见误区
 

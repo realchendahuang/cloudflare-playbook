@@ -35,7 +35,7 @@ description: Waiting Room、Smart Shield 和 APO 的普通项目取舍。
 | Waiting Room | 管合法用户排队，不管恶意攻击。只放会被打满的 hot path。 |
 | Smart Shield | 减少回源请求和源站连接，前提是缓存策略已经整理过。 |
 | Argo Smart Routing | 优化回源路径，不解决应用逻辑、数据库慢查询和缓存缺失。 |
-| APO | WordPress 专项，依赖 WordPress 插件和 WordPress 缓存语义。 |
+| APO | WordPress 专用，依赖 WordPress 插件和 WordPress 缓存语义。 |
 | Dedicated CDN Egress IPs | 企业源站防火墙治理问题，普通项目先隐藏源站 IP。 |
 
 ## 常见误区

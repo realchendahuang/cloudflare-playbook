@@ -1,6 +1,6 @@
 ---
 title: Cloudflare 文档地图
-description: 基于 Cloudflare 官方 llms.txt 的产品域导航、阅读优先级和来源入口。
+description: 基于 Cloudflare 官方 llms.txt 的普通项目阅读顺序和来源入口。
 ---
 
 最后核对日期：2026-06-18。
@@ -20,18 +20,18 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 要保护后台、预览环境或内网工具 | [Zero Trust 与企业网络](/platform/zero-trust-networking/) |
 | 要控制成本 | [成本控制](/best-practices/cost/) |
 
-## 阅读优先级
+## 阅读顺序
 
-| 优先级 | 产品域 | 为什么先读 |
+| 顺序 | 先读什么 | 为什么 |
 | --- | --- | --- |
-| P0 | Fundamentals、Billing、DNS、SSL/TLS、Cache、WAF、DDoS、Rules | 所有项目都会碰到入口、域名、安全、缓存和账单。 |
-| P0 | Workers、Static Assets、Pages、D1、KV、R2、Queues、Durable Objects | 独立开发者最常用的开发者平台主线。 |
-| P1 | AI Gateway、Workers AI、AI Search、Vectorize、Agents、Browser Run | AI 应用、搜索和自动化能力主线。 |
-| P1 | Analytics、Web Analytics、Logs、Log Explorer、GraphQL、Notifications | 观测、日志和问题定位。 |
-| P1 | Turnstile、API Shield、Bots、Security Center、Secrets Store、Access / Tunnel | 表单、API、后台和密钥安全。 |
-| P2 | Images、Stream、Realtime、Hyperdrive、Workflows、Pipelines、Containers | 有明确业务形态后再深入。 |
-| P2 | Terraform、Pulumi、Reference Architecture、Migration Guides、Learning Paths | 团队化、迁移和基础设施即代码。 |
-| P3 | Web3、China Network、Magic Transit、BYOIP、Cloudflare WAN、Network Interconnect | 更偏企业、网络或特定场景。 |
+| 先读 | Fundamentals、Billing、DNS、SSL/TLS、Cache、WAF、DDoS、Rules | 所有项目都会碰到入口、域名、安全、缓存和账单。 |
+| 先读 | Workers、Static Assets、Pages、D1、KV、R2、Queues、Durable Objects | 这是独立开发者最常用的开发者平台主线。 |
+| 按需读 | AI Gateway、Workers AI、AI Search、Vectorize、Agents、Browser Run | 搜索、AI 应用和自动化需求明确后再读。 |
+| 按需读 | Analytics、Web Analytics、Logs、Notifications | 排障、访问趋势和账单提醒会很快用到。 |
+| 按需读 | Turnstile、API Shield、Bots、Security Center、Secrets Store、Access / Tunnel | 有公开写入口、后台、API 或密钥治理时再深入。 |
+| 后置 | Images、Stream、Realtime、Hyperdrive、Workflows、Pipelines、Containers | 有明确业务形态后再深入。 |
+| 后置 | Terraform、Pulumi、Reference Architecture、Migration Guides、Learning Paths | 团队化、迁移和基础设施管理需求出现后再读。 |
+| 最后读 | Web3、China Network、Magic Transit、BYOIP、Cloudflare WAN、Network Interconnect | 更偏企业网络、合规或特定业务场景。 |
 
 ## 官方分类
 
@@ -60,7 +60,7 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 安全 | [WAF](https://developers.cloudflare.com/waf/llms.txt)、[DDoS](https://developers.cloudflare.com/ddos-protection/llms.txt)、[Turnstile](https://developers.cloudflare.com/turnstile/llms.txt)、[API Shield](https://developers.cloudflare.com/api-shield/llms.txt) | [安全与网络](/platform/security-networking/)、[WAF](/platform/waf/)、[DDoS](/platform/ddos/) | 登录、评论、上传、Webhook 先加最小防护和限流。 |
 | 内网与团队访问 | [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/llms.txt)、[Tunnel](https://developers.cloudflare.com/tunnel/llms.txt) | [Zero Trust 与企业网络](/platform/zero-trust-networking/) | 后台、预览环境、内网工具不要裸露公网。 |
 | 媒体与实时 | [Images](https://developers.cloudflare.com/images/llms.txt)、[Stream](https://developers.cloudflare.com/stream/llms.txt)、[Realtime](https://developers.cloudflare.com/realtime/llms.txt) | [媒体与性能](/platform/media-performance/)、[Realtime](/platform/realtime/) | 大文件、图片、视频和音视频实时不要塞进普通静态站。 |
-| 企业与专项 | [Reference Architecture](https://developers.cloudflare.com/reference-architecture/llms.txt)、[Migration Guides](https://developers.cloudflare.com/migration-guides/llms.txt)、[Use cases](https://developers.cloudflare.com/use-cases/llms.txt) | [架构模式](/architecture/)、[迁移与 IaC](/platform/iac-migration/) | 先确认项目规模，再引入企业网络、专线、Bot 高级能力或 IaC。 |
+| 后置能力 | [Reference Architecture](https://developers.cloudflare.com/reference-architecture/llms.txt)、[Migration Guides](https://developers.cloudflare.com/migration-guides/llms.txt)、[Use cases](https://developers.cloudflare.com/use-cases/llms.txt) | [架构模式](/architecture/)、[迁移与 IaC](/platform/iac-migration/) | 先确认项目规模，再引入企业网络、专线、Bot 高级能力或 IaC。 |
 
 ## 普通项目阅读路线
 
@@ -71,7 +71,7 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 3. 做后台和协作 | Access、Tunnel、Billing、Notifications | 后台入口谁能访问，账单和异常谁能收到提醒。 |
 | 4. 做搜索和 AI | Pagefind、AI Gateway、Workers AI、AI Search、Vectorize | 搜索是否真的需要 AI，模型调用和日志是否有边界。 |
 | 5. 扩规模 | Queues、Durable Objects、Hyperdrive、Workflows、Observability | 哪些任务异步，哪些状态强一致，哪里需要更长日志。 |
-| 6. 企业化 | Terraform、Pulumi、Reference Architecture、Cloudflare One、网络专项 | 是否需要团队真源、审计、专线、合规或企业合同。 |
+| 6. 团队化 | Terraform、Pulumi、Reference Architecture、Cloudflare One、网络能力 | 是否需要团队真源、审计、专线、合规或企业合同。 |
 
 ## 整理原则
 
