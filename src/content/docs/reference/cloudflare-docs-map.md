@@ -65,17 +65,17 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
-| [API Shield](https://developers.cloudflare.com/api-shield/llms.txt) | 36 | 公开 API、移动端 API、客户数据 API 需要关注。 |
-| [Bots](https://developers.cloudflare.com/bots/llms.txt) | 45 | 爬虫、撞库、黄牛、刷接口明显时再深入。 |
+| [API Shield](https://developers.cloudflare.com/api-shield/llms.txt) | 36 | 已完成首版专题；Endpoint Management、Schema validation、Free 100 endpoints / 5 schemas / 200 kB、Enterprise API Shield 边界。 |
+| [Bots](https://developers.cloudflare.com/bots/llms.txt) | 45 | 已完成首版专题；Bot Fight Mode、Super Bot Fight Mode、Enterprise Bot Management、AI bots、AI Labyrinth、robots.txt 和 bot score 边界。 |
 | [Client-side security](https://developers.cloudflare.com/client-side-security/llms.txt) | 26 | 已完成首版专题；script monitoring、alerts、content security rules、Advanced 能力和前端供应链边界。 |
-| [Challenges](https://developers.cloudflare.com/cloudflare-challenges/llms.txt) | 17 | Challenge 平台，和 Turnstile / WAF 相关。 |
+| [Challenges](https://developers.cloudflare.com/cloudflare-challenges/llms.txt) | 17 | 已完成首版专题；Challenge Pages、Turnstile、JavaScript Detections、`cf_clearance`、Challenge Passage 和 challenge loop 限制。 |
 | [DDoS Protection](https://developers.cloudflare.com/ddos-protection/llms.txt) | 150 | 必读，理解 Cloudflare 免费入口层价值。 |
 | [DMARC Management](https://developers.cloudflare.com/dmarc-management/llms.txt) | 5 | 已完成首版专题；SPF、DKIM、DMARC、reports、DNS lookup limits 和 Cloudflare DNS 边界。 |
-| [Firewall Rules (deprecated)](https://developers.cloudflare.com/firewall/llms.txt) | 27 | 历史资料，优先看 WAF custom rules。 |
-| [Key Transparency Auditor](https://developers.cloudflare.com/key-transparency/llms.txt) | 5 | E2EE 公钥透明度，专项场景。 |
-| [Secrets Store](https://developers.cloudflare.com/secrets-store/llms.txt) | 8 | 多 Worker、多环境密钥管理。 |
-| [Security Center](https://developers.cloudflare.com/security-center/llms.txt) | 16 | 安全态势总览。 |
-| [Turnstile](https://developers.cloudflare.com/turnstile/llms.txt) | 45 | 表单、评论、登录、防刷优先看。 |
+| [Firewall Rules (deprecated)](https://developers.cloudflare.com/firewall/llms.txt) | 27 | 已完成首版专题；旧 Filters / Firewall Rules API 迁移资料，新项目改用 WAF Custom Rules / Ruleset Engine。 |
+| [Key Transparency Auditor](https://developers.cloudflare.com/key-transparency/llms.txt) | 5 | 已完成首版专题；E2EE public key distribution、append-only log、auditor API、epoch / namespace、本地验证边界。 |
+| [Secrets Store](https://developers.cloudflare.com/secrets-store/llms.txt) | 8 | 已完成首版专题；open beta、账号级密钥中心、Workers / AI Gateway integration、China Network 不可用。 |
+| [Security Center](https://developers.cloudflare.com/security-center/llms.txt) | 16 | 已完成首版专题；Security Insights 自动扫描、Free 7 天、Pro/Business 3 天、Enterprise daily、findings 巡检。 |
+| [Turnstile](https://developers.cloudflare.com/turnstile/llms.txt) | 45 | 已完成首版专题；Free 20 widgets、10 hostnames/widget、unlimited challenges、Siteverify、token 5 分钟单次验证。 |
 | [WAF](https://developers.cloudflare.com/waf/llms.txt) | 160 | 必读，Custom Rules、Managed Rules、Rate Limiting 都是常用安全边界。 |
 
 ## Cloudflare One
@@ -100,7 +100,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
-| [AI Crawl Control](https://developers.cloudflare.com/ai-crawl-control/llms.txt) | 28 | 控制 AI 爬虫访问。 |
+| [AI Crawl Control](https://developers.cloudflare.com/ai-crawl-control/llms.txt) | 28 | 已完成首版专题；available on all plans、AI crawler analytics、robots.txt compliance、crawler allow/block、Pay Per Crawl private beta。 |
 | [Analytics](https://developers.cloudflare.com/analytics/llms.txt) | 93 | Cloudflare 总体分析能力。 |
 | [Billing](https://developers.cloudflare.com/billing/llms.txt) | 33 | 必读，账单、预算、用量和订阅。 |
 | [Cloudflare Fundamentals](https://developers.cloudflare.com/fundamentals/llms.txt) | 126 | 必读，账号、zone、proxy、规则等基础概念。 |
@@ -213,7 +213,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | Fundamentals 精读 | 已整理 Profile / Account / Zone、域名接入、Proxied / DNS-only、源站保护、成员权限、API Token、Ray ID、请求头、`/cdn-cgi/`、连接限制、端口和 Under Attack。 |
 | 已完成首版 | AI 产品精读 | 已整理 AI Gateway、Workers AI、AI Search、Vectorize、Agents SDK 的定位、免费/付费边界、搜索路线、常见误区和开源参考。 |
 | 已完成首版 | 观测与日志精读 | 已整理 Web Analytics、Analytics、GraphQL Analytics API、Workers Logs、Logpush、Log Explorer、Notifications、Analytics Engine 的免费/付费边界、采样、留存、日志写法和开源参考。 |
-| 已完成首版 | 安全增强精读 | 已整理 Turnstile、API Shield、Bots、Access / Tunnel、Secrets Store、Security Center、AI Crawl Control 的免费/付费边界、落地顺序和开源参考。 |
+| 已完成首版 | 安全增强精读 | 已整理 Turnstile、Cloudflare Challenges、API Shield、Bots、Access / Tunnel、Secrets Store、Security Center、AI Crawl Control、Key Transparency、Firewall Rules deprecated 的免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 媒体与性能精读 | 已整理 Images、Stream、Speed / Observatory、Zaraz、Browser Run 的定位、免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |
 | 已完成首版 | 企业网络精读 | 已整理 Cloudflare One、Access、Gateway、Tunnel、Cloudflare One Client、Zero Trust Free / Pay-as-you-go / Contract、Cloudflare WAN 和 Network Firewall 的边界。 |

@@ -336,6 +336,14 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [AI Labyrinth](https://developers.cloudflare.com/bots/additional-configurations/ai-labyrinth/)
 - [AI Crawl Control](https://developers.cloudflare.com/ai-crawl-control/)
 - [Cloudflare Challenges](https://developers.cloudflare.com/cloudflare-challenges/)
+- [Cloudflare Challenges llms.txt](https://developers.cloudflare.com/cloudflare-challenges/llms.txt)
+- [How Challenges work](https://developers.cloudflare.com/cloudflare-challenges/concepts/how-challenges-work/)
+- [Challenge Passage](https://developers.cloudflare.com/cloudflare-challenges/challenge-types/challenge-pages/challenge-passage/)
+- [Challenge clearance](https://developers.cloudflare.com/cloudflare-challenges/concepts/clearance/)
+- [Key Transparency Auditor](https://developers.cloudflare.com/key-transparency/)
+- [Key Transparency Auditor llms.txt](https://developers.cloudflare.com/key-transparency/llms.txt)
+- [Firewall Rules deprecated](https://developers.cloudflare.com/firewall/)
+- [Firewall Rules deprecated llms.txt](https://developers.cloudflare.com/firewall/llms.txt)
 - [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/)
 - [Cloudflare One account limits](https://developers.cloudflare.com/cloudflare-one/account-limits/)
 - [Zero Trust & SASE Plans & Pricing](https://www.cloudflare.com/plans/zero-trust-services/)
@@ -542,11 +550,14 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | 官方 Ruleset Engine 文档源文件，适合理解 phases、actions、expressions 和 API 模型。 |
 | [cloudflare/cloudflare-docs DDoS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ddos-protection) | 官方 DDoS Protection 文档源文件，适合追踪 managed rulesets、best practices、analytics、alerts 和 changelog。 |
 | [cloudflare/cloudflare-docs Turnstile source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/turnstile) | 官方 Turnstile 文档源文件，适合追踪 plans、server validation、analytics 和 troubleshooting。 |
+| [cloudflare/cloudflare-docs Challenges source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-challenges) | 官方 Challenges 文档源文件，适合追踪 challenge pages、`cf_clearance`、JavaScript Detections、PAT 和 troubleshooting。 |
 | [cloudflare/cloudflare-docs API Shield source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/api-shield) | 官方 API Shield 文档源文件，适合追踪 schema validation、mTLS、JWT、BOLA、API Discovery 和 plans。 |
 | [cloudflare/cloudflare-docs Bots source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/bots) | 官方 bot solutions 文档源文件，适合追踪 Bot Fight Mode、Super Bot Fight Mode、Bot Management 和 AI bots。 |
 | [cloudflare/cloudflare-docs Security Center source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/security-center) | 官方 Security Center 文档源文件，适合追踪 Security Insights、Brand Protection、Threat Intelligence 和 reports。 |
 | [cloudflare/cloudflare-docs Security dashboard source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/security) | 官方 Security dashboard 文档源文件，适合追踪 Security Insights 扫描逻辑和频率。 |
 | [cloudflare/cloudflare-docs Secrets Store source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/secrets-store) | 官方 Secrets Store 文档源文件，适合追踪 open beta、access control、Workers integration 和 API。 |
+| [cloudflare/cloudflare-docs Key Transparency source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/key-transparency) | 官方 Key Transparency Auditor 文档源文件，适合追踪 auditor API、epochs、namespaces 和本地验证。 |
+| [cloudflare/cloudflare-docs Firewall deprecated source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/firewall) | 旧 Firewall Rules 文档源文件，适合迁移 filters、rules、priority 和旧 API，不适合作为新项目模板。 |
 | [cloudflare/cloudflare-docs Cloudflare One source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-one) | 官方 Cloudflare One 文档源文件，适合追踪 Access、Tunnel、Gateway、Zero Trust 和 account limits。 |
 | [cloudflare/cloudflare-docs Tunnel source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/tunnel) | 官方 Tunnel 文档源文件，适合追踪 `cloudflared`、routing、monitoring 和配置方式。 |
 | [cloudflare/cloudflare-docs Cloudflare WAN source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cloudflare-wan) | 官方 Cloudflare WAN 文档源文件，适合追踪 Enterprise WAN、on-ramps、Zero Trust integration 和 virtual networks。 |
