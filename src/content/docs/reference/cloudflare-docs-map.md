@@ -219,6 +219,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | 观测与日志精读 | 已整理 Web Analytics、Dashboard Analytics、GraphQL Analytics API、ABR sampling、Workers Logs、Workers Trace Events Logpush、常规 Logpush、Log Explorer、Notifications、Analytics Engine 的免费/付费边界、事实口径、采样、留存、日志写法和开源参考。 |
 | 已完成复核 | 观测与日志二次精读 | 已把 [观测与日志](/platform/observability/) 对齐 Workers Logs、Real-time logs、Workers Logpush、Logpush、Logs Engine、Log Explorer、Web Analytics、GraphQL Analytics API、Analytics Engine 和 Notifications，补齐观测分层、上线前最小配置、Worker 日志基线、长期日志出口、敏感字段边界和本站落地顺序。 |
 | 已完成首版 | 安全增强精读 | 已整理 Turnstile、Cloudflare Challenges、API Shield、Bots、Access / Tunnel、Secrets Store、Security Center、AI Crawl Control、Key Transparency、Firewall Rules deprecated 的免费/付费边界、落地顺序和开源参考。 |
+| 已完成复核 | 安全增强二次精读 | 已把 [安全与网络](/platform/security-networking/) 对齐 Turnstile Plans / Siteverify、Cloudflare Challenges、Challenge Passage、API Shield Plans、Bot Fight Mode / Bot Management、Access / Tunnel、Secrets Store、Security Insights、Security dashboard、AI Crawl Control 和 GitHub 源文件，补齐免费层优先清单、滥用场景决策、请求入口分层、表单/评论/上传保护路线和升级信号。 |
 | 已完成首版 | 媒体与性能精读 | 已整理 Images、Stream、Speed / Observatory、Zaraz、Browser Run 的定位、免费/付费边界、落地顺序和开源参考。 |
 | 已完成首版 | 迁移与 IaC 精读 | 已整理 Terraform、Pulumi、Wrangler、cf-terraforming、R2 remote state、Reference Architecture 和 Migration Guides 的落地边界。 |
 | 已完成首版 | 企业网络精读 | 已整理 Cloudflare One、Access、Gateway、Tunnel、Cloudflare One Client、Zero Trust Free / Pay-as-you-go / Contract、Cloudflare WAN 和 Network Firewall 的边界。 |

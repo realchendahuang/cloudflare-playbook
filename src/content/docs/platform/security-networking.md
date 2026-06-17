@@ -34,6 +34,39 @@ Cloudflare 的安全能力不应该被理解成一排开关。对普通项目来
 5. 有团队和多项目密钥管理需求再引入 Secrets Store。
 6. 所有结论都要能从日志、Security Events 或 Security Insights 里验证。
 
+## 二次精读结论
+
+安全增强这一页的核心，不是把 Cloudflare 安全产品逐个背下来，而是把请求路径拆开：域名、TLS、缓存、WAF、Challenge、应用认证、后台入口、密钥和观测分别负责不同风险。普通项目最容易犯的错，是在还没确认入口和写接口基线前，就去追更贵、更复杂的 Bot Management、API Shield 或企业安全套件。
+
+这轮复核后的判断是：
+
+| 判断问题 | 先看哪里 | 免费层优先动作 | 需要升级的信号 |
+| --- | --- | --- | --- |
+| 请求是不是先进了 Cloudflare？ | DNS record 是否 Proxied、SSL/TLS 是否 Full (strict)。 | Web 入口统一 Proxied，源站限制直连。 | 多源站、多区域、复杂证书和企业合规。 |
+| 是不是写接口被刷？ | Security Analytics / Events、Worker 日志、D1/R2 写入量。 | WAF Custom Rules、Rate Limiting、Turnstile。 | 误伤成本高、bot 行为复杂、需要 bot score 或完整日志。 |
+| 是不是表单或评论 spam？ | Turnstile analytics、Siteverify 失败原因、业务写入记录。 | Turnstile Free + 服务端 Siteverify。 | 需要更多 widget hostnames、30 天 analytics、组织级策略。 |
+| 是不是 API 被乱打？ | API 路径、状态码、schema 命中、认证失败。 | 认证、限流、OpenAPI schema、API Shield Free Schema validation。 | API 成为核心资产，需要 JWT/mTLS/BOLA/Log action。 |
+| 后台是否暴露公网？ | DNS、Access applications、Tunnel routes、源站访问路径。 | Tunnel 发布 + Access policy，源站验证 Access token。 | 团队设备策略、Gateway、DLP、长期审计。 |
+| 密钥是否散落？ | `wrangler secret`、Dashboard bindings、仓库泄露记录。 | 单 Worker 用 Worker secret。 | 多 Worker、多团队、多环境共享密钥。 |
+| 配置风险是否可见？ | Security Insights、Overview action items、Security Events。 | Free 每 7 天自动扫描 + on-demand。 | 需要更高扫描频率、告警、报表和团队流程。 |
+
+## 免费层优先清单
+
+安全产品里，普通人最该先用的是免费层已经覆盖的能力。这里的免费层不是“玩具版”，而是足够支撑个人站、开源知识库、小 SaaS、API demo、评论系统和内部工具早期阶段的默认安全基线。
+
+| 能力 | Free / 默认边界 | 最适合先保护什么 | 不要误解 |
+| --- | --- | --- | --- |
+| DNS + Proxied | Free/Pro/Business 不对 DNS query 收费，DNS queries 不限。 | 所有 Web 入口。 | DNS-only 记录不会获得 Cloudflare Web 安全保护。 |
+| Universal SSL / Full (strict) | 基础证书、TLS 1.3、Always Use HTTPS 等可从 Free 起步。 | 全站 HTTPS 和源站 TLS。 | Flexible 只是临时过渡，不是长期安全配置。 |
+| DDoS Protection | 所有计划都有 standard, unmetered DDoS protection。 | 公开网站、API、静态站入口。 | 源站裸露时，攻击仍可能绕过 Cloudflare。 |
+| WAF 基础能力 | WAF available on all plans，Free 有 Custom Rules、Rate Limiting Rule、Free Managed Ruleset 和 sampled Security Events。 | 登录、评论、上传、搜索、后台路径。 | 规则越多不等于越安全，误伤要从 Events 里验证。 |
+| Turnstile | Free 最多 20 个 widgets、每个 10 个 hostnames、挑战和验证请求不限量、analytics 7 天。 | 表单、评论、注册、登录、高频提交。 | 前端 widget 不等于安全，必须服务端 Siteverify。 |
+| Bot Fight Mode | Free 可用，面向简单 bot、云主机来源和 headless browser。 | 简单爬虫、低质量自动化流量。 | 控制粒度偏粗，开启后要观察误伤。 |
+| API Shield 基础能力 | Free 可用 Endpoint Management 和 Schema validation：100 endpoints、5 schemas、200 kB schema size、Block only。 | 小规模公开 API、移动端 API 起步。 | 它不能替代业务认证、权限和输入校验。 |
+| Tunnel 发布应用 | Tunnel public hostname 发布不需要 paid Access plan。 | 预览环境、内网工具、家庭服务器、临时后台。 | 没有 Access policy 时，发布出来仍是公开应用。 |
+| Security Insights | Free 每 7 天自动扫描，支持 on-demand。 | 配置风险、DNS-only 暴露、TLS、WAF、Access 巡检。 | 它发现的是配置和姿态风险，不替代业务日志。 |
+| AI Crawl Control | Available on all plans。 | 内容站、文档站、知识库观察 AI crawler。 | 不要一开始全封，先区分正常搜索和滥用抓取。 |
+
 ## 产品怎么选
 
 | 产品 | 免费 / 默认边界 | 什么时候深入 | 普通项目判断 |
@@ -53,6 +86,63 @@ Cloudflare 的安全能力不应该被理解成一排开关。对普通项目来
 | Secrets Store | Open beta，账号级密钥中心，兼容 Workers 和 AI Gateway；与 per-Worker secrets 不同。 | 多 Worker、多环境、多团队、统一密钥权限和审计。 | 单 Worker 先用 `wrangler secret`；多项目共享密钥再看 Secrets Store。 |
 | Security Center / Security Insights | Security Insights 默认自动扫描所有账户和 zone；Free 每 7 天、Pro/Business 每 3 天、Enterprise 每天。 | 手动扫描、Brand Protection、Threat Intelligence、Security Reports 等按计划和资格看。 | 每周看一次高危配置，比凭感觉加规则可靠。 |
 | AI Crawl Control | 管理 AI crawler 访问、Pay Per Crawl 和 robots.txt 相关策略。 | 内容站需要控制 AI 爬虫抓取、授权或收费时。 | 普通知识库先观察爬虫，再决定是否细化。 |
+
+## 按滥用场景决策
+
+不要从“我要不要买某个产品”开始，而要从“现在到底是哪条路径在被滥用”开始。
+
+| 现象 | 先看证据 | 免费层首选动作 | 升级动作 |
+| --- | --- | --- | --- |
+| 评论、留言、表单 spam | 提交频率、Turnstile 失败原因、D1/队列写入量。 | Turnstile + Siteverify + Rate Limiting。 | Bot Management、队列隔离、人工审核后台。 |
+| 登录撞库 | 登录路径状态码、IP / ASN / 国家、失败次数。 | Rate Limiting、Managed Challenge、必要时 Turnstile。 | Bot score、JA3/JA4、设备策略、Access。 |
+| 搜索接口被刷 | 查询参数、缓存命中、Worker CPU 时间、错误率。 | 缓存可缓存结果、限流、只对写入或重查询做 Turnstile。 | 专门的搜索服务、Bot Management、日志管道。 |
+| 上传接口被打 | 文件大小、MIME、R2 写入、失败率。 | 认证、限流、Worker 校验、短期上传凭证。 | WAF 细化规则、对象扫描、队列异步处理。 |
+| API 被乱枚举 | API endpoint、schema 违例、认证失败、404/403 分布。 | OpenAPI schema、API Shield Free、WAF、限流。 | API Shield 订阅、JWT/mTLS/BOLA、Log action。 |
+| AI crawler 抓取过重 | User-Agent、路径、robots.txt 遵守情况、带宽。 | AI Crawl Control、Block AI bots、robots.txt 管理。 | Pay Per Crawl、Bot Management、内容授权策略。 |
+| 后台暴露扫描 | admin 路径请求、源站日志、DNS 记录。 | Access + Tunnel，源站只信任 Cloudflare。 | Gateway、设备 posture、服务 token、审计流程。 |
+| 安全规则误伤 | Ray ID、Security Events、`cf-mitigated`、用户反馈。 | 缩小规则范围，先按路径和方法加条件。 | Logpush、Log Explorer、企业级规则调试。 |
+
+## 请求入口分层
+
+把请求放进这条路径里，就能判断“应该在哪里拦”：
+
+```text
+访客请求
+  ↓
+DNS / Proxied / SSL/TLS / DDoS
+  └─ 先确认请求真的经过 Cloudflare，源站不能被直连
+  ↓
+Cache / CDN
+  └─ 能缓存的先缓存，降低源站和 Worker 压力
+  ↓
+WAF / Rate Limiting / Managed Rules / Challenges
+  └─ 对登录、评论、上传、搜索、API 写入做路径级防护
+  ↓
+Turnstile
+  └─ 需要人机判断的提交入口，服务端验证 token
+  ↓
+Access / Tunnel
+  └─ 后台、预览环境、内网工具不直接裸露公网
+  ↓
+Worker / API / 数据产品
+  └─ 业务认证、权限、schema、输入校验、幂等和写入控制
+  ↓
+Security Insights / Security Analytics / Logs
+  └─ 所有规则调整都回到证据，不凭感觉加开关
+```
+
+## 表单、评论、上传保护路线
+
+这三类入口最容易被普通项目低估，因为它们看起来只是“一个按钮”，实际背后会触发数据库写入、邮件发送、对象存储、通知、队列和管理员审核。
+
+| 入口 | 最小保护 | 证据字段 | 升级信号 |
+| --- | --- | --- | --- |
+| 表单 | Turnstile + Siteverify + 每 IP / 每路径限流。 | `success`、`error-codes`、hostname、action、提交频率。 | 正常用户被卡、spam 仍穿透、需要更长 analytics。 |
+| 评论 | Turnstile + 服务端校验 + D1 写入前限流。 | 评论写入量、失败原因、用户反馈、Security Events。 | 需要审核队列、敏感词、后台管理和 Bot Management。 |
+| 上传 | 登录态 / 上传凭证 + 文件大小和类型校验 + 限流。 | R2 写入量、对象大小、状态码、Worker CPU 时间。 | 大文件滥用、恶意文件、成本异常、需要异步扫描。 |
+| 搜索 | 静态索引优先，动态搜索限频。 | 查询量、缓存命中率、Worker subrequests、错误率。 | 查询成本明显上升，需要 AI Search 或专用搜索服务。 |
+
+普通项目的默认策略可以很朴素：读路径尽量缓存，写路径必须认证或验证，后台路径必须收口，所有异常先留下证据。
 
 ## 基础入口
 
