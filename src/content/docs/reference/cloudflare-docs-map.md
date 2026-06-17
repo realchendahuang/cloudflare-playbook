@@ -211,6 +211,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | DDoS Protection 精读 | 已整理 unmetered DDoS、HTTP DDoS、Network-layer DDoS、Under Attack、源站保护、误伤排查、计划边界和开源参考。 |
 | 已完成首版 | Billing 精读 | 已整理账单类型、免费额度入口、Workers Paid、usage-based billing、Billable Usage dashboard、Budget alerts、threshold billing、权限、发票和开源参考。 |
 | 已完成首版 | Rules 精读 | 已整理 Redirects、Transform、Configuration、Origin、Snippets、Cloud Connector、Custom Errors、Page Rules 迁移、执行顺序、Trace 排查、计划边界和开源参考。 |
+| 已完成复核 | Rules 二次精读 | 已把 [Rules](/platform/rules/) 对齐 Cloudflare Rules、Ruleset Engine、Page Rules migration、Trace、Troubleshooting、Snippets vs Workers、Origin Rules 和 Cache Rules，补齐规则分层、first match vs stackable、迁移清单、raw 字段避坑、Trace / Log Explorer 边界、排查保留路径和 IaC 真源。 |
 | 已完成首版 | Fundamentals 精读 | 已整理 Profile / Account / Zone、域名接入、Proxied / DNS-only、源站保护、成员权限、API Token、Ray ID、请求头、`/cdn-cgi/`、连接限制、端口和 Under Attack。 |
 | 已完成首版 | AI 产品精读 | 已整理 AI Gateway、Workers AI、AI Search、Vectorize、Agents SDK 的定位、免费/付费边界、搜索路线、常见误区和开源参考。 |
 | 已完成首版 | 观测与日志精读 | 已整理 Web Analytics、Dashboard Analytics、GraphQL Analytics API、ABR sampling、Workers Logs、Workers Trace Events Logpush、常规 Logpush、Log Explorer、Notifications、Analytics Engine 的免费/付费边界、事实口径、采样、留存、日志写法和开源参考。 |
