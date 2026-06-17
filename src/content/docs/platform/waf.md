@@ -1,237 +1,166 @@
 ---
 title: WAF
-description: Cloudflare WAF 的 Custom Rules、Managed Rules、Rate Limiting、Ruleset Engine、计划边界、误伤排查和普通项目最佳实践。
+description: Cloudflare WAF 的普通项目判断、免费与付费边界、Custom Rules、Managed Rules、Rate Limiting 和误伤处理。
 ---
 
-最后核对日期：2026-06-17。WAF 的规则数量、Managed Rules 可用性、Rate Limiting 配额和 Dashboard 入口会变化，上线前以 Cloudflare WAF 官方页面为准。
+最后核对日期：2026-06-18。WAF 的规则数量、Managed Rules 可用性、Rate Limiting 配额和 Dashboard 入口会变化，上线前以 Cloudflare WAF 官方页面为准。
 
 ## 一句话判断
 
-Cloudflare WAF 不是“打开一个安全开关就完事”，而是把入口请求分成几层处理：
+WAF 是给 Web 入口和 API 加一层应用安全过滤：已知漏洞交给 Managed Rules，明确业务边界交给 Custom Rules，刷接口和撞库交给 Rate Limiting。
 
-```text
-HTTP 请求进入 Cloudflare
-  ↓
-DDoS L7 防护
-  ↓
-Custom Rules：你自己写的路径、IP、国家、header、cookie、score 规则
-  ↓
-Rate Limiting：按 IP、cookie、header、API key 等维度计数
-  ↓
-Managed Rules：Cloudflare 和 OWASP 维护的漏洞/攻击规则集
-  ↓
-Bot / 其他安全能力
-  ↓
-源站 / Worker / Pages
-```
+普通项目不要把 WAF 当成“越多规则越安全”。最稳的顺序是：先打开基础防护，观察 Security Events，再只对登录、后台、评论、搜索、上传、写 API 这些明确入口加规则。
 
-普通项目默认策略：**Managed Rules 先用保守模式，Custom Rules 只保护明确入口，Rate Limiting 放在登录、评论、搜索、上传和写 API 上；先观察 Security Events，再逐步收紧。**
+## 先问六个问题
 
-## 免费与付费边界
+| 问题 | 判断 |
+| --- | --- |
+| 是否有后台、登录、评论、搜索、上传或公开 API？ | 有这些入口，WAF 才有明确价值。 |
+| 是否已经把源站藏在 Cloudflare 后面？ | 源站能被直连时，WAF 只能保护经过 Cloudflare 的流量。 |
+| 是否知道最危险的路径在哪里？ | 不知道路径时，先观察日志，不要乱写全站挑战。 |
+| 是否有正常用户共用出口 IP？ | 公司、学校、代理网络容易被简单 IP 限流误伤。 |
+| 是否依赖搜索引擎、监控或第三方回调？ | 过宽规则会影响 SEO、告警和支付 / 登录回调。 |
+| 是否需要统一管理多域名规则？ | 多 zone 统一策略通常要 Enterprise account-level WAF。 |
+
+## 免费与计划边界
 
 | 能力 | Free | Pro | Business | Enterprise |
 | --- | --- | --- | --- | --- |
 | WAF | 可用 | 可用 | 可用 | 可用 |
 | Custom Rules | 5 条 | 20 条 | 100 条 | 1,000 条 |
-| Custom Rules 支持动作 | 除 Log 外均支持 | 除 Log 外均支持 | 除 Log 外均支持 | 全部支持 |
+| Custom Rules 动作 | 除 Log 外均支持 | 除 Log 外均支持 | 除 Log 外均支持 | 全部支持 |
 | Custom Rules regex | 不支持 | 不支持 | 支持 | 支持 |
-| Zone custom rulesets | 1 | 2 | 5 | 10 |
+| Zone custom rulesets | 1 个 | 2 个 | 5 个 | 10 个 |
 | Account-level custom rulesets | 不支持 | 不支持 | 不支持 | 支持 |
-| Rate Limiting Rules | 1 条 | 2 条 | 5 条 | 100 条，需对应合同 / add-on |
-| WAF Managed Rules | Free Managed Ruleset only | Cloudflare Managed / OWASP / Free Managed | Cloudflare Managed / OWASP / Free Managed | Cloudflare Managed / OWASP / SDD 等 |
+| Rate Limiting Rules | 1 条 | 2 条 | 5 条 | 100 条，按合同 / add-on |
+| Rate Limiting 周期 | 10 秒 | 计数最长 1 分钟，执行最长 1 小时 | 计数最长 10 分钟，执行最长 1 天 | 更长周期和高级字段按合同 |
+| WAF Managed Rules | Free Managed Ruleset | Free / Cloudflare Managed / OWASP | Free / Cloudflare Managed / OWASP | Free / Cloudflare Managed / OWASP / SDD |
 | WAF Attack Score | 不支持 | 不支持 | 支持一个字段 | 支持 |
 | Leaked Credentials Detection | 支持一个字段 | 支持 | 支持 | 支持 |
 | Malicious Uploads Detection | 不支持 | 不支持 | 不支持 | Paid add-on |
+| AI Security for Apps | 不支持 | 不支持 | 不支持 | Paid add-on |
 | Security Events | sampled logs only | 支持 | 支持 | 支持 |
 | Security Events alerts | 不支持 | 不支持 | 支持 | 支持，高级告警仅 Enterprise |
-| Custom Lists | 1 个 / 10,000 items | 10 个 / 10,000 items | 10 个 / 10,000 items | 1,000 个 / 500,000 items |
 
-这里的“付费”是 zone 计划或 Enterprise 合同，不是 Workers Paid。Workers Paid 每月 $5 不会自动提升 WAF 规则数量。
+这里的计划指 zone 计划或 Enterprise 合同，不是 Workers Paid。每月 5 美元的 Workers Paid 不会提升 WAF 规则数量、Managed Rules 范围或 Rate Limiting 配额。
 
-## 三类规则
+## 三种能力怎么选
 
-| 类型 | 解决什么问题 | 普通项目怎么用 |
+| 能力 | 解决什么 | 普通项目用法 |
 | --- | --- | --- |
-| Custom Rules | 你明确知道要拦、挑战、跳过的流量。 | 保护 `/admin`、`/api/*`、上传、特定国家/ASN、临时攻击路径。 |
-| Rate Limiting Rules | 防刷、防撞库、防 API 滥用。 | 登录、评论、搜索、验证码、上传、写接口优先。 |
-| Managed Rules | 已知漏洞、常见攻击、OWASP/CVE 规则。 | Pro+ 可以启用 Cloudflare Managed Ruleset；Free 至少有 Free Managed Ruleset。 |
+| Managed Rules | 已知漏洞、常见攻击、OWASP 风险。 | Free 用 Free Managed Ruleset；Pro+ 再启用 Cloudflare Managed Ruleset，先保守观察。 |
+| Custom Rules | 明确知道哪些路径、来源或请求特征需要处理。 | 保护后台、写 API、上传入口、临时攻击路径，不要写泛化规则。 |
+| Rate Limiting | 防刷、防撞库、防 API 滥用。 | 优先放在登录、评论、搜索、上传和写接口，不要套全站。 |
 
-不要一开始写一堆“看起来很安全”的规则。WAF 规则越多，误伤和排查成本越高。普通项目最有价值的规则，通常是少数几个明确入口的保护。
+如果只能做一件事，优先保证后台和写接口不裸奔。静态页面本身不需要复杂 WAF 规则，更多靠缓存、DDoS 防护和源站保护。
 
-## 执行顺序
+## 推荐默认顺序
 
-Cloudflare WAF 的现代能力基于 Ruleset Engine。安全相关阶段大致按这个顺序执行：
-
-```text
-ddos_l7
-  ↓
-http_request_firewall_custom
-  ↓
-http_ratelimit
-  ↓
-http_request_firewall_managed
-  ↓
-http_request_sbfm
-```
-
-重要影响：
-
-- Custom Rules 比 Managed Rules 更早执行。
-- Rate Limiting 在 Custom Rules 后执行。
-- 一个 terminating action，例如 Block 或 Managed Challenge，会停止后续阶段。
-- Account-level rulesets 先于 zone-level rulesets。
-- Bot Fight Mode 不走 Ruleset Engine，不能用 Custom Rules skip。
-
-## 推荐默认组合
-
-| 场景 | 推荐配置 | 说明 |
+| 阶段 | 做什么 | 为什么 |
 | --- | --- | --- |
-| 文档站 / 官网 | Free Managed Ruleset + 少量 Custom Rules | 先保护后台、登录、特殊 API，不要挑战所有访客。 |
-| 有评论 / 表单 | Rate Limiting + Turnstile 服务端验证 | WAF 限速防刷，Turnstile 验证真人。 |
-| Worker API | Custom Rules 限路径 + Rate Limiting 限写接口 | 只让需要公开的路径进 Worker，写接口更严格。 |
-| 管理后台 | Access 优先，WAF 作为补充 | 后台不要只靠 WAF；Access 更适合身份边界。 |
-| 电商 / 登录系统 | Managed Rules + Rate Limiting + Leaked Credentials Detection | 先记录和观察，再对高风险入口 block/challenge。 |
-| WordPress | Managed Rules 里只启用相关规则组 | 不用的 CMS 规则不要全开。 |
+| 1 | 确认 DNS 记录走 Proxied，源站不暴露真实 IP。 | WAF 只能保护经过 Cloudflare 的请求。 |
+| 2 | 打开 Free Managed Ruleset，Pro+ 再考虑 Cloudflare Managed Ruleset。 | 先获得基础漏洞防护。 |
+| 3 | 用 Security Events 看真实命中。 | 先看证据，再决定收紧还是放行。 |
+| 4 | 给后台、登录、写 API、上传加少量 Custom Rules。 | 规则越明确，误伤越少。 |
+| 5 | 给登录、评论、搜索、上传加 Rate Limiting。 | 这些入口最容易被低成本刷爆。 |
+| 6 | 对误伤做具体 exception，不要整套关闭。 | 保留防护面，同时减少正常业务受影响。 |
 
-本站当前是文档站，真正需要 WAF 的入口主要是评论服务、后台和未来搜索/API。静态页面不需要复杂 WAF 规则。
+## Custom Rules 只管明确边界
 
-## Custom Rules
+Custom Rules 适合表达非常清楚的边界：后台只允许可信来源、写接口先挑战、特定临时攻击路径直接拦截、上传路径单独收紧。
 
-Custom Rules 适合写明确的业务边界。常见表达式：
+不要用 Custom Rules 做模糊判断。比如“拦截坏流量”“挑战所有海外请求”“拦截所有非浏览器请求”这类规则听起来安全，实际最容易误伤搜索引擎、监控、支付回调、移动端 App 和真实用户。
 
-```text
-# 保护后台路径，只允许可信 IP。
-http.request.uri.path starts_with "/admin" and not ip.src in $trusted_admin_ips
+Free 只有 5 条 Custom Rules，应该留给最关键入口。规则不够时，先合并业务入口和删除无效规则，而不是立刻升级。
 
-# 对公开 API 的非 GET 请求做挑战。
-http.request.uri.path starts_with "/api/" and http.request.method ne "GET"
+## Managed Rules 先保守再收紧
 
-# 放过静态资源，避免安全规则误伤。
-http.request.uri.path matches "\\.(css|js|png|jpg|webp|woff2?)$"
-```
+Managed Rules 的价值是 Cloudflare 持续维护常见攻击、漏洞和 OWASP 风险。普通项目不要从第一天就把所有规则调到最激进。
 
-写规则时优先用 `starts_with`、`eq`、`contains` 这类简单操作；Business 以上才支持 regex。规则名要写出意图，例如 `challenge write api outside trusted ip`，不要写成 `block bad traffic`。
+更稳的做法：
 
-## Managed Rules
+1. 先启用默认或低风险配置。
+2. 观察 Security Events 里是否命中正常用户。
+3. 对误伤的具体规则、标签或路径做 exception。
+4. 只在有证据时提高动作强度。
 
-Managed Rules 是 Cloudflare 维护的规则集。常见规则集：
+Managed Rules 会检查请求 body，但不同计划、不同规则集的检查范围和行为不完全一样。上传、富文本、搜索、Webhook 这类入口，最容易触发误伤，应该单独观察。
 
-| 规则集 | 可用性 | 判断 |
-| --- | --- | --- |
-| Cloudflare Free Managed Ruleset | 所有计划 | Free 计划也能用，覆盖高影响和广泛利用漏洞。 |
-| Cloudflare Managed Ruleset | Pro+ | 覆盖更广，适合大多数生产站。 |
-| Cloudflare OWASP Core Ruleset | Pro+ | 需要监控误伤；官方说明它在 Cloudflare Managed Ruleset 和 WAF attack score 之上收益可能有限。 |
-| Exposed Credentials Check | Pro+，已 deprecated | 官方更推荐新的 leaked credentials detection。 |
-| Sensitive Data Detection | Enterprise | 数据泄露检测场景。 |
+## Rate Limiting 放在写入口
 
-Managed Rules 的正确打开方式：
+Rate Limiting 适合限制“频率”，不是严格保证源站只收到固定数量请求。官方说明计数和执行之间可能有短暂延迟，超额请求仍可能在短时间内到达源站。
 
-1. 先启用低风险或默认配置。
-2. 看 Security Events 里真实命中。
-3. 对误伤的具体规则做 exception 或 override。
-4. 不要为了放过一个路径就跳过整套 Managed Rules。
+优先保护这些入口：
 
-Managed Rules 会检查请求 body，但检查上限随计划不同。官方特别提醒：请求 body 没被检查的部分不会参与规则判断，较大的 body 也可能带来误伤，需要结合上传接口单独处理。
-
-## Rate Limiting
-
-Rate Limiting 用来限制请求速率，不是严格保证“只有 N 个请求能到源站”。官方说明计数和执行之间可能有几秒延迟，超额请求仍可能在短时间内到达源站。
-
-优先保护：
-
-| 入口 | 维度 | 初始动作 |
-| --- | --- | --- |
-| `/login` | IP + cookie / JA4（有条件时） | Managed Challenge 或 Block |
-| `/api/comment` | IP + path + method | Managed Challenge |
-| `/api/search` | IP + query / API key | 短周期限制 |
-| `/upload` | IP + user/session | 更低阈值 |
-| `/checkout` | `cf_clearance` cookie / session | 防 challenge token 复用 |
-
-Rate Limiting 的旧 API 和旧 Terraform resource 已在 2025-06-15 后不再支持。新配置应该走 Rulesets API 或 `cloudflare_ruleset`。
-
-## Skip 与 Allow
-
-WAF custom rules 没有 Allow 动作。要放过特定请求，使用 Skip，并明确跳过什么：
-
-| 做法 | 结果 |
+| 入口 | 为什么 |
 | --- | --- |
-| IP Access Rules 里 Allow | 可能绕过 Custom Rules、Rate Limiting、Managed Rules，且不一定出现在 Security Events。 |
-| Custom Rules 里 Skip current ruleset | 只跳过当前 ruleset 后续规则。 |
-| Custom Rules 里 Skip phases | 可以跳过 rate limiting、managed rules 或 Super Bot Fight Mode。 |
-| Managed Rules exception | 只跳过某个 managed ruleset、tag 或具体规则，更适合处理误伤。 |
+| 登录 / 注册 / 找回密码 | 撞库、爆破、短信和邮件成本。 |
+| 评论 / 留言 / 表单 | 垃圾内容和写入成本。 |
+| 搜索 | 容易放大数据库、AI 或第三方 API 成本。 |
+| 上传 | 带宽、存储和安全扫描成本更高。 |
+| 公开写 API | 被脚本刷时最容易产生账单和数据污染。 |
 
-普通项目不要把“可信 IP”全局 Allow 到过宽。更可控的方式是用 Custom Rules 的 Skip，只跳过确实需要跳过的阶段。
+不要把 Rate Limiting 粗暴套到全站。静态资源、搜索引擎、监控和正常高并发页面可能会被一起限住。
 
-## 误伤排查
+## Skip 和 exception
 
-| 现象 | 常见原因 | 处理 |
-| --- | --- | --- |
-| 搜索引擎或监控被拦 | country / ASN / path 规则过宽，或 fake bot managed rule。 | 查 Security Events，给已知 bot 或监控做精确 exception。 |
-| 后台用户被挑战循环 | Challenge cookie 与 HTTP/HTTPS、SameSite 或跨 hostname 配置冲突。 | 确保全站 HTTPS，减少跨域后台入口。 |
-| 规则没触发 | IP Access Allow 更早放行，或路径被 rewrite 后不再匹配。 | 查 Trace / Security Events，确认规则看到的请求形态。 |
-| 登录限流误伤公司网络 | 大量用户共用 NAT IP。 | Business+ 可用 IP with NAT support；否则加 session/cookie/header 维度。 |
-| Managed Rules 拦正常上传 | body 或特定规则误判。 | 对具体上传路径和具体 rule 做 exception，别关整套规则。 |
+Cloudflare WAF 里“放过”不是一个随便用的全局白名单。更好的原则是：只跳过必须跳过的规则，范围越小越好。
 
-排查顺序：
+| 场景 | 推荐做法 |
+| --- | --- |
+| 某个 Managed Rule 误伤上传接口 | 对具体路径和具体规则做 exception。 |
+| 可信监控被挑战 | 只对监控来源跳过必要阶段。 |
+| 后台用户被挑战循环 | 优先修 HTTPS、Cookie、跨域和登录入口设计。 |
+| 合作方固定 IP 访问 API | 用窄范围规则保护特定 API，不要全站 Allow。 |
 
-1. 先看 Security Events 的 source、action、rule ID。
-2. 确认是否有 IP Access Rules 或旧规则提前生效。
-3. 确认 Custom Rules 顺序和 terminating action。
-4. 如果是 Managed Rules，只 override 具体规则或 tag。
-5. 规则调整先用 Log / Challenge 观察，再 Block。
+过宽 Allow 会让后续 Custom Rules、Rate Limiting、Managed Rules 都失去意义。普通项目应少用全局白名单，多用具体 exception。
 
-## API 与 IaC
+## 什么时候升级
 
-WAF 是 zone/account 级配置，不是 Worker 代码配置。生产项目建议把关键规则写入 IaC，或者至少导出规则快照。
+| 升级信号 | 可能需要 |
+| --- | --- |
+| 5 条 Custom Rules 不够保护关键入口 | Pro 或 Business。 |
+| 需要 regex 匹配复杂路径 | Business 起。 |
+| 需要更完整 Managed Rules / OWASP | Pro 起。 |
+| 登录和 API 需要更多 Rate Limiting 规则 | Pro / Business，复杂场景看 Enterprise。 |
+| 需要多域名统一 WAF 策略 | Enterprise account-level WAF。 |
+| 需要 Attack Score、更多 bot 字段或高级限流维度 | Business / Enterprise，视具体产品合同。 |
+| 上传文件需要恶意文件检测 | Enterprise paid add-on。 |
+| AI 应用需要 prompt injection / PII / unsafe topic 检测 | Enterprise paid add-on。 |
 
-```bash
-# 读取 zone rulesets，用于备份和对账。
-curl --request GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/rulesets" \
-  --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
-```
+升级前先确认规则是否真的不够用。很多项目的问题不是计划低，而是规则太散、入口没分清、源站还暴露。
 
-```hcl
-# 使用 cloudflare_ruleset 管理 Custom Rules；旧 firewall/rate_limit 资源不要再作为新项目真源。
-resource "cloudflare_ruleset" "waf_custom" {
-  zone_id = var.zone_id
-  name    = "custom-waf"
-  kind    = "zone"
-  phase   = "http_request_firewall_custom"
+## 常见误区
 
-  rules {
-    action      = "managed_challenge"
-    expression  = "http.request.uri.path starts_with \"/api/\" and http.request.method ne \"GET\""
-    description = "challenge write api requests"
-    enabled     = true
-  }
-}
-```
+| 误区 | 更好的做法 |
+| --- | --- |
+| 开了 WAF 就不用管源站暴露。 | 先隐藏源站真实 IP，只允许 Cloudflare 回源。 |
+| 规则越多越安全。 | 少量明确规则更好排查，也更不容易误伤。 |
+| 全站 Challenge 可以防刷。 | 把挑战放在写入口、登录和高风险路径。 |
+| Rate Limiting 可以精确限住每个请求。 | 把它当作滥用缓冲层，源站仍要能承受短时突增。 |
+| Managed Rules 误伤就整套关闭。 | 对具体规则、标签或路径做 exception。 |
+| Workers Paid 会提升 WAF。 | Workers Paid 只影响 Workers 平台，不提升 WAF 配额。 |
 
 ## GitHub 开源参考
 
 | 仓库 | 可以学什么 |
 | --- | --- |
-| [cloudflare/cloudflare-docs WAF source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/waf) | 官方 WAF 文档源文件，适合追踪 Custom Rules、Managed Rules、Rate Limiting、troubleshooting 的变更。 |
-| [cloudflare/skills WAF reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/waf) | Cloudflare 官方 Agent Skills 里的 WAF 参考，适合看配置模式、常见误区和 Rulesets API 写法。 |
-| [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | 用 `cloudflare_ruleset` 管理 WAF、rate limiting、managed rulesets 和 skip/override。 |
+| [cloudflare/cloudflare-docs WAF source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/waf) | 官方 WAF 文档源文件，适合追踪 Custom Rules、Managed Rules、Rate Limiting 和 troubleshooting 的变化。 |
+| [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | Ruleset Engine 的官方文档源文件，适合理解规则、阶段、动作和表达式的边界。 |
+| [cloudflare/skills WAF reference](https://github.com/cloudflare/skills/tree/main/skills/cloudflare/references/waf) | Cloudflare 官方 Agent Skills 里的 WAF 参考，适合看产品取舍和常见误区。 |
+| [cloudflare/terraform-provider-cloudflare](https://github.com/cloudflare/terraform-provider-cloudflare) | 团队化项目用 Terraform 管理 WAF、rate limiting、managed rulesets 和 exception。 |
 | [cloudflare/cloudflare-go](https://github.com/cloudflare/cloudflare-go) | Cloudflare 官方 Go SDK，适合做规则备份、同步和审计工具。 |
-| [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | Ruleset Engine 文档源文件，适合理解 phases、actions、expressions 和 API 模型。 |
-| [freestylefly/CodexGuide](https://github.com/freestylefly/CodexGuide) | 本站早期学习的原始参考仓库之一，适合对照教程站的信息架构。 |
+| [coreruleset/coreruleset](https://github.com/coreruleset/coreruleset) | OWASP Core Rule Set 上游项目，适合理解通用 Web 攻击规则的来源。 |
 
-## 官方资料
+## 事实来源
 
 - [Cloudflare WAF](https://developers.cloudflare.com/waf/)
 - [WAF concepts](https://developers.cloudflare.com/waf/concepts/)
 - [WAF custom rules](https://developers.cloudflare.com/waf/custom-rules/)
-- [WAF custom rules settings](https://developers.cloudflare.com/waf/custom-rules/settings/)
 - [WAF managed rules](https://developers.cloudflare.com/waf/managed-rules/)
-- [Cloudflare Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-managed-ruleset/)
-- [Cloudflare Free Managed Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/cloudflare-free-managed-ruleset/)
-- [Cloudflare OWASP Core Ruleset](https://developers.cloudflare.com/waf/managed-rules/reference/owasp-core-ruleset/)
 - [Rate limiting rules](https://developers.cloudflare.com/waf/rate-limiting-rules/)
-- [WAF availability](https://developers.cloudflare.com/waf/#availability)
-- [WAF phases](https://developers.cloudflare.com/waf/reference/phases/)
 - [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/)
-- [Troubleshooting WAF](https://developers.cloudflare.com/waf/troubleshooting/)
-- [Ruleset Engine](https://developers.cloudflare.com/ruleset-engine/)
-- [Rules language](https://developers.cloudflare.com/ruleset-engine/rules-language/)
+- [Security Analytics](https://developers.cloudflare.com/waf/analytics/security-analytics/)
+- [WAF phases](https://developers.cloudflare.com/waf/reference/phases/)
+- [Security features interoperability](https://developers.cloudflare.com/waf/feature-interoperability/)
+- [WAF troubleshooting](https://developers.cloudflare.com/waf/troubleshooting/faq/)
