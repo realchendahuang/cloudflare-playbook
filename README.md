@@ -32,6 +32,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | DNS | [src/content/docs/platform/dns.md](src/content/docs/platform/dns.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/dns/) |
 | SSL/TLS | [src/content/docs/platform/ssl-tls.md](src/content/docs/platform/ssl-tls.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ssl-tls/) |
 | Cache / CDN | [src/content/docs/platform/cache.md](src/content/docs/platform/cache.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/cache/) |
+| 流量调度与四层入口 | [src/content/docs/platform/traffic-routing.md](src/content/docs/platform/traffic-routing.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/traffic-routing/) |
 | WAF | [src/content/docs/platform/waf.md](src/content/docs/platform/waf.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/waf/) |
 | DDoS Protection | [src/content/docs/platform/ddos.md](src/content/docs/platform/ddos.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ddos/) |
 | Rules | [src/content/docs/platform/rules.md](src/content/docs/platform/rules.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/rules/) |

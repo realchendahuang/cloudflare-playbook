@@ -248,7 +248,7 @@ dig example.com DNSKEY +dnssec
 | 直接切 nameservers，不管 DNSSEC。 | 迁移前关闭旧 DNSSEC，Cloudflare Active 后再重新启用。 |
 | 把源站 IP 写进公开文档或旧记录。 | 源站 IP 当成敏感信息管理，公开入口走 Cloudflare。 |
 | 用 wildcard 覆盖所有环境。 | 生产、预览、后台、验证域名分清楚，精确记录优先。 |
-| 用 DNS round-robin 当高可用。 | 真正需要健康检查和故障切换时看 Load Balancing。 |
+| 用 DNS round-robin 当高可用。 | 真正需要健康检查和故障切换时看 [Load Balancing](/platform/traffic-routing/)。 |
 | 修改 DNS 后立刻判断失败。 | 按 TTL、本地缓存和递归缓存留传播时间。 |
 
 ## GitHub 开源参考

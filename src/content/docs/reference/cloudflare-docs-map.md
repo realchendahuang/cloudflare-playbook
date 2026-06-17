@@ -45,16 +45,16 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 
 | 产品 | 页数 | 普通项目判断 |
 | --- | ---: | --- |
-| [Argo Smart Routing](https://developers.cloudflare.com/argo-smart-routing/llms.txt) | 4 | 全球链路优化，普通项目先不急。 |
+| [Argo Smart Routing](https://developers.cloudflare.com/argo-smart-routing/llms.txt) | 4 | 已完成首版专题；Paid add-on，Smart Shield，回源路径优化和 Argo for Packets。 |
 | [Automatic Platform Optimization](https://developers.cloudflare.com/automatic-platform-optimization/llms.txt) | 14 | WordPress 站点专项优化。 |
 | [Cache / CDN](https://developers.cloudflare.com/cache/llms.txt) | 77 | 必读，静态资源、HTML 缓存、Cache Rules 都在这里。 |
 | [China Network](https://developers.cloudflare.com/china-network/llms.txt) | 9 | 面向中国大陆访问优化，通常是企业需求。 |
 | [DNS](https://developers.cloudflare.com/dns/llms.txt) | 129 | 必读，域名接入、记录、代理状态、DNSSEC 都在这里。 |
 | [Google tag gateway for advertisers](https://developers.cloudflare.com/google-tag-gateway/llms.txt) | 1 | 广告和标签数据治理场景。 |
-| [Health Checks](https://developers.cloudflare.com/health-checks/llms.txt) | 6 | 多源站或负载均衡时再看。 |
-| [Load Balancing](https://developers.cloudflare.com/load-balancing/llms.txt) | 59 | 多区域源站、故障切换和权重流量。 |
+| [Health Checks](https://developers.cloudflare.com/health-checks/llms.txt) | 6 | 已完成首版专题；Standalone Health Checks，Pro 起可用，和 LB monitors 区分。 |
+| [Load Balancing](https://developers.cloudflare.com/load-balancing/llms.txt) | 59 | 已完成首版专题；paid add-on，多源站、health monitors、traffic steering、PNLB。 |
 | [Smart Shield](https://developers.cloudflare.com/smart-shield/llms.txt) | 19 | 源站保护能力，明确有源站压力后再看。 |
-| [Spectrum](https://developers.cloudflare.com/spectrum/llms.txt) | 17 | TCP/UDP 非 HTTP 服务代理。 |
+| [Spectrum](https://developers.cloudflare.com/spectrum/llms.txt) | 17 | 已完成首版专题；paid plans，TCP/UDP 非 HTTP 代理，协议/计划/限制。 |
 | [Speed](https://developers.cloudflare.com/speed/llms.txt) | 42 | 性能优化入口，图片、协议、浏览器体验相关。 |
 | [SSL/TLS](https://developers.cloudflare.com/ssl/llms.txt) | 131 | 必读，HTTPS、证书、源站加密和 TLS 策略。 |
 | [Waiting Room](https://developers.cloudflare.com/waiting-room/llms.txt) | 27 | 秒杀、活动页和流量洪峰。 |
@@ -221,7 +221,8 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | Realtime 精读 | 已整理 RealtimeKit、Realtime SFU、TURN、Durable Objects WebSocket 的边界、Beta / GA 价格模型、SFU / TURN 免费额度、limits 和开源参考。 |
 | 已完成首版 | 平台化与多租户精读 | 已整理 Cloudflare for SaaS、Workers for Platforms、Dynamic Workers、custom hostnames、dispatch namespace、worker isolation、outbound worker、免费/付费边界和 GitHub 开源参考。 |
 | 已完成首版 | 自有网络与专线精读 | 已整理 Magic Transit、BYOIP、Network Interconnect、Workers VPC、Network Firewall 标准/高级功能、Enterprise-only 边界、Workers VPC Open Beta 免费边界和 GitHub 开源参考。 |
-| 进行中 | 后续 P2/P3 精读 | Spectrum、Load Balancing、Argo Smart Routing、Web3、China Network、Time Services 等。 |
+| 已完成首版 | 流量调度与四层入口精读 | 已整理 Load Balancing、Health Checks、Spectrum、Argo Smart Routing、usage-based billing、limits、plans、private network load balancing 和 GitHub 开源参考。 |
+| 进行中 | 后续 P2/P3 精读 | Web3、China Network、Time Services、Waiting Room、Smart Shield、Automatic Platform Optimization 等。 |
 | 待开始 | 后续专题 | 更多迁移案例、参考架构和真实项目拆解。 |
 
 ## 整理规则
@@ -249,6 +250,10 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 - [Cloudflare Log Explorer llms.txt](https://developers.cloudflare.com/log-explorer/llms.txt)
 - [Cloudflare Web Analytics llms.txt](https://developers.cloudflare.com/web-analytics/llms.txt)
 - [Cloudflare Notifications llms.txt](https://developers.cloudflare.com/notifications/llms.txt)
+- [Cloudflare Load Balancing llms.txt](https://developers.cloudflare.com/load-balancing/llms.txt)
+- [Cloudflare Health Checks llms.txt](https://developers.cloudflare.com/health-checks/llms.txt)
+- [Cloudflare Spectrum llms.txt](https://developers.cloudflare.com/spectrum/llms.txt)
+- [Cloudflare Argo Smart Routing llms.txt](https://developers.cloudflare.com/argo-smart-routing/llms.txt)
 - [Cloudflare Turnstile llms.txt](https://developers.cloudflare.com/turnstile/llms.txt)
 - [Cloudflare API Shield llms.txt](https://developers.cloudflare.com/api-shield/llms.txt)
 - [Cloudflare Bots llms.txt](https://developers.cloudflare.com/bots/llms.txt)

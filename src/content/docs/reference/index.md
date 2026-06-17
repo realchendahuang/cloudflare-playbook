@@ -231,6 +231,30 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 - [Cache Reserve](https://developers.cloudflare.com/cache/advanced-configuration/cache-reserve/)
 - [Cache Plans](https://developers.cloudflare.com/cache/plans/)
 - [Workers Cache API](https://developers.cloudflare.com/workers/runtime-apis/cache/)
+- [Load Balancing](https://developers.cloudflare.com/load-balancing/)
+- [Load Balancing llms.txt](https://developers.cloudflare.com/load-balancing/llms.txt)
+- [Enable Load Balancing](https://developers.cloudflare.com/load-balancing/get-started/enable-load-balancing/)
+- [Load Balancing components](https://developers.cloudflare.com/load-balancing/understand-basics/load-balancing-components/)
+- [Load Balancing limitations](https://developers.cloudflare.com/load-balancing/reference/limitations/)
+- [Load Balancing traffic steering](https://developers.cloudflare.com/load-balancing/understand-basics/traffic-steering/)
+- [Private Network Load Balancing](https://developers.cloudflare.com/load-balancing/private-network/)
+- [Load Balancing with Spectrum](https://developers.cloudflare.com/load-balancing/additional-options/spectrum/)
+- [Load Balancing with Cloudflare Tunnel](https://developers.cloudflare.com/load-balancing/additional-options/cloudflare-tunnel/)
+- [Health Checks](https://developers.cloudflare.com/health-checks/)
+- [Health Checks llms.txt](https://developers.cloudflare.com/health-checks/llms.txt)
+- [Health Checks Get started](https://developers.cloudflare.com/health-checks/get-started/)
+- [Health Checks Analytics](https://developers.cloudflare.com/health-checks/health-checks-analytics/)
+- [Health Checks notifications](https://developers.cloudflare.com/health-checks/how-to/health-checks-notifications/)
+- [Spectrum](https://developers.cloudflare.com/spectrum/)
+- [Spectrum llms.txt](https://developers.cloudflare.com/spectrum/llms.txt)
+- [Spectrum Protocols per plan](https://developers.cloudflare.com/spectrum/protocols-per-plan/)
+- [Spectrum Settings by plan](https://developers.cloudflare.com/spectrum/reference/settings-by-plan/)
+- [Spectrum Limitations](https://developers.cloudflare.com/spectrum/reference/limitations/)
+- [Argo Smart Routing](https://developers.cloudflare.com/argo-smart-routing/)
+- [Argo Smart Routing llms.txt](https://developers.cloudflare.com/argo-smart-routing/llms.txt)
+- [Argo Smart Routing Get started](https://developers.cloudflare.com/argo-smart-routing/get-started/)
+- [Argo Smart Routing Analytics](https://developers.cloudflare.com/argo-smart-routing/analytics/)
+- [Argo for Packets](https://developers.cloudflare.com/argo-smart-routing/argo-for-packets/)
 - [WAF Docs](https://developers.cloudflare.com/waf/)
 - [WAF concepts](https://developers.cloudflare.com/waf/concepts/)
 - [WAF custom rules](https://developers.cloudflare.com/waf/custom-rules/)
@@ -392,6 +416,10 @@ Cloudflare 产品变化很快，涉及限制、价格、API、兼容性日期和
 | [cloudflare/cloudflare-docs SSL/TLS source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ssl) | 官方 SSL/TLS 文档源文件，适合追踪 encryption modes、edge certificates、Origin CA、HSTS 和 AOP。 |
 | [cloudflare/cloudflare-docs Cache source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/cache) | 官方 Cache / CDN 文档源文件，适合追踪 Cache Rules、Purge、TTL 和 Cache Reserve。 |
 | [cloudflare/cloudflare-docs Workers Cache API source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/workers/runtime-apis/cache) | 官方 Workers Cache API 文档源文件，适合追踪 `fetch()`、`caches.default` 和 Cache API 限制。 |
+| [cloudflare/cloudflare-docs Load Balancing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/load-balancing) | 官方 Load Balancing 文档源文件，适合追踪 pools、monitors、traffic steering、private network load balancing 和 limits。 |
+| [cloudflare/cloudflare-docs Health Checks source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/health-checks) | 官方 Health Checks 文档源文件，适合追踪 availability、analytics、notifications 和 regions 行为。 |
+| [cloudflare/cloudflare-docs Spectrum source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/spectrum) | 官方 Spectrum 文档源文件，适合追踪 protocols per plan、settings by plan、limitations、Proxy Protocol 和 logs。 |
+| [cloudflare/cloudflare-docs Argo Smart Routing source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/argo-smart-routing) | 官方 Argo Smart Routing 文档源文件，适合追踪 Smart Shield、analytics、billing note 和 Argo for Packets。 |
 | [cloudflare/cloudflare-docs WAF source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/waf) | 官方 WAF 文档源文件，适合追踪 Custom Rules、Managed Rules、Rate Limiting 和 troubleshooting。 |
 | [cloudflare/cloudflare-docs Rules source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/rules) | 官方 Rules 文档源文件，适合追踪 Redirects、Transform、Origin、Snippets、Trace 和 Page Rules 迁移。 |
 | [cloudflare/cloudflare-docs Ruleset Engine source](https://github.com/cloudflare/cloudflare-docs/tree/production/src/content/docs/ruleset-engine) | 官方 Ruleset Engine 文档源文件，适合理解 phases、actions、expressions 和 API 模型。 |

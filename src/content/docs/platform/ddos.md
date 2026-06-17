@@ -41,7 +41,7 @@ Cloudflare Anycast 网络
 
 | 层级 | 保护对象 | 常见攻击 | 普通项目怎么理解 |
 | --- | --- | --- | --- |
-| Network-layer DDoS | L3/L4 网络流量。 | UDP flood、SYN flood、DNS flood、ICMP flood、反射放大。 | 只要 Web 入口走 Cloudflare，攻击会先撞到 Cloudflare 网络；自有 IP 段、TCP/UDP 应用和企业网络再看 Spectrum / Magic Transit。 |
+| Network-layer DDoS | L3/L4 网络流量。 | UDP flood、SYN flood、DNS flood、ICMP flood、反射放大。 | 只要 Web 入口走 Cloudflare，攻击会先撞到 Cloudflare 网络；自有 IP 段、TCP/UDP 应用和企业网络再看 [Spectrum](/platform/traffic-routing/) / Magic Transit。 |
 | HTTP DDoS | L7 HTTP/HTTPS 请求。 | HTTP flood、cache busting、Slowloris、TLS/SSL exhaustion、已知 botnet 工具。 | 文档站、官网、API、评论入口最相关；默认启用，只有误伤或攻击未完全缓解时才调 override。 |
 
 Cloudflare 的 managed rulesets 会持续更新。普通项目不需要维护“DDoS 规则库”，更重要的是确认所有公开入口真的在 Cloudflare 后面，并且源站不会被绕过。

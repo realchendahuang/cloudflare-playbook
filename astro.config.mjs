@@ -47,6 +47,7 @@ export default defineConfig({
 						{ label: 'DNS', slug: 'platform/dns' },
 						{ label: 'SSL/TLS', slug: 'platform/ssl-tls' },
 						{ label: 'Cache / CDN', slug: 'platform/cache' },
+						{ label: '流量调度与四层入口', slug: 'platform/traffic-routing' },
 						{ label: 'WAF', slug: 'platform/waf' },
 						{ label: 'DDoS Protection', slug: 'platform/ddos' },
 						{ label: 'Rules', slug: 'platform/rules' },

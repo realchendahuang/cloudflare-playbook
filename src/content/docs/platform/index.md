@@ -18,6 +18,8 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
   │    └─ Proxied / DNS-only / Origin
   │
   ├─ DNS / CDN / SSL / DDoS / WAF
+  │    ├─ DNS / SSL / Cache / Rules
+  │    └─ Load Balancing / Health Checks / Spectrum / Argo
   │
   ├─ 静态内容
   │    ├─ Pages
@@ -109,6 +111,7 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | [Fundamentals](/platform/fundamentals/) | 核心概念和基础操作本身不额外计费；具体能力看对应产品和计划。 | Organizations 是 Enterprise-only public beta；自定义错误、日志、角色能力等按具体产品计划提升。 | 理解 Account、Zone、Proxy、Origin、API Token、Ray ID 和请求头。 | 先确认资源 scope 和代理状态，再开 WAF、Cache、Workers、Rules；自动化只用最小权限 token。 |
 | [DNS](/platform/dns/) | Free/Pro/Business 不对 DNS query 收费且不限制查询；新 Free zone 为 200 records/zone，旧 Free zone 为 1,000，Pro/Business 为 3,500。 | Enterprise 以 DNS query 等作为报价输入，records/zone 可申请提高。 | 域名解析、代理状态和流量入口。 | Web 入口用 Proxied，邮件和验证记录 DNS-only；迁移前导出旧 zone 并处理 DNSSEC。 |
 | [Cache / CDN](/platform/cache/) | Cache / CDN、Cache Rules、Purge、Tiered Cache 基础能力在 Free 可用。 | Cache Rules 数量、Edge TTL 最小值、Cache Reserve、企业拓扑和高级 cache key 随计划或 add-on 提升。 | 缓存静态内容，减少源站压力。 | 静态 hash 资源长缓存；HTML 短缓存；用户态默认 bypass；用版本化 URL 少 purge。 |
+| [流量调度与四层入口](/platform/traffic-routing/) | Health Checks Free 不可用，Pro 10、Business 50、Enterprise 1,000；Load Balancing first 500K DNS queries included；Argo first 1 GB included；Spectrum no free tier。 | Load Balancing、Spectrum、Argo 都是 paid add-on 或 usage-based；Spectrum 自定义 TCP/UDP 通常是 Enterprise paid add-on。 | 多源站故障切换、源站健康监控、TCP/UDP 代理、回源路径优化。 | 单源站先不用；多源站上 Load Balancing；非 HTTP 用 Spectrum；缓存做好后再看 Argo。 |
 | [SSL/TLS](/platform/ssl-tls/) | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 等基础能力在 Free 可用。 | Advanced Certificate Manager、Custom Certificates、Keyless SSL、Enterprise-only 模式按需求升级。 | 给站点建立完整 HTTPS 链路。 | 默认目标是 Full (strict)；源站也要有有效证书，别停在 Flexible。 |
 | [DDoS Protection](/platform/ddos/) | 官方说明所有计划都有 standard, unmetered DDoS protection，HTTP DDoS 和 Network-layer DDoS 也覆盖所有计划。 | Enterprise / Advanced DDoS 提供更多 override、Log action、Adaptive / Advanced DDoS、告警过滤和支持。 | 自动检测和缓解 L3/L4 与 L7 DDoS。 | Web 入口先保持 Proxied，隐藏源站 IP；被打时再结合 WAF、Rate Limiting、Under Attack 和日志排查。 |
 | [Rules](/platform/rules/) | Rules available on all plans；Free 有 10 条常见现代规则、15 条 Bulk Redirect Rules、10,000 条 Bulk Redirect URL。 | Pro/Business/Enterprise 提升多数现代规则到 25/50/300；Snippets 和 Custom Errors 从 paid plans 起。 | 管理跳转、重写、回源、配置、压缩、错误页和轻量边缘逻辑。 | 新项目优先现代 Rules，不再新写 Page Rules；用 Trace 验证执行顺序。 |
@@ -154,6 +157,8 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 | 后台任务 | Workers + Queues + Cron Triggers + D1/R2 |
 | 长流程和数据管道 | Workflows + R2 / D1；Pipelines + R2 Data Catalog |
 | 管理后台 | Workers Static Assets + Access/Tunnel + D1 |
+| 多源站高可用 | [Load Balancing + Health Checks](/platform/traffic-routing/) + WAF / Cache |
+| 非 HTTP 公开服务 | [Spectrum + Load Balancing](/platform/traffic-routing/) |
 | 小团队内网和运维入口 | Tunnel + Access + Cloudflare One Client + Gateway |
 | Worker 访问私有后端 | Workers VPC + Cloudflare Tunnel / Mesh + Hyperdrive |
 | 企业自有 IP 和专线 | Magic Transit + BYOIP + Network Interconnect + Network Firewall |
@@ -236,6 +241,11 @@ Cloudflare 把 Account、Zone、DNS、CDN、DDoS、Workers、D1、R2、AI Gatewa
 - [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)
 - [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)
 - [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/)
+- [Load Balancing](https://developers.cloudflare.com/load-balancing/)
+- [Load Balancing limitations](https://developers.cloudflare.com/load-balancing/reference/limitations/)
+- [Health Checks](https://developers.cloudflare.com/health-checks/)
+- [Spectrum Protocols per plan](https://developers.cloudflare.com/spectrum/protocols-per-plan/)
+- [Argo Smart Routing](https://developers.cloudflare.com/argo-smart-routing/)
 - [DNS FAQ](https://developers.cloudflare.com/dns/faq/)
 - [WAF Docs](https://developers.cloudflare.com/waf/)
 - [DDoS Protection Docs](https://developers.cloudflare.com/ddos-protection/)
