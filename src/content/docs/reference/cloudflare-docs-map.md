@@ -216,6 +216,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成首版 | SSL/TLS 精读 | 已整理 Universal SSL、Origin CA、Full (strict)、HTTPS 重定向、HSTS、TLS 1.3、Authenticated Origin Pulls、常见错误和开源参考。 |
 | 已完成复核 | SSL/TLS 文案收敛 | 已把 [SSL/TLS](/platform/ssl-tls/) 收敛为普通项目配置顺序、免费与计划边界、加密模式选择、证书选择、HTTPS / HSTS、源站保护和常见误区；保留 Universal SSL、Origin CA、Full (strict)、Strict SSL-Only Origin Pull、Always Use HTTPS、Automatic HTTPS Rewrites、HSTS、Minimum TLS、AOP、features / plans 和 Browser compatibility 来源，删除请求链路图、验证命令、Cloudflare API 示例、服务器配置细节、过细证书工具参考和排障长表。 |
 | 已完成首版 | Cache / CDN 精读 | 已整理默认缓存行为、Cache Rules、TTL、Purge、Workers Cache API、Cache Reserve、计划边界和开源参考。 |
+| 已完成复核 | Cache / CDN 文案收敛 | 已把 [Cache / CDN](/platform/cache/) 收敛为普通项目缓存判断、免费与计划边界、默认缓存行为、推荐策略、Cache Rules、Purge、Tiered Cache / R2、Cache Reserve、Workers Cache API 边界和常见误区；保留 Cache plans、Get started、Default cache behavior、Origin Cache Control、Cache Rules、Purge cache、Tiered Cache、Cache Reserve、Cache Deception Armor、R2 cache 和 Workers Cache API 来源，删除请求链路图、Worker 代码、curl / API purge 示例、Cache Reserve 细节案例、过细 header 行为和排障命令。 |
 | 已完成首版 | WAF 精读 | 已整理 Custom Rules、Managed Rules、Rate Limiting、Ruleset Engine、Skip/Allow、误伤排查、计划边界和开源参考。 |
 | 已完成首版 | DDoS Protection 精读 | 已整理 unmetered DDoS、HTTP DDoS、Network-layer DDoS、Under Attack、源站保护、误伤排查、计划边界和开源参考。 |
 | 已完成首版 | Billing 精读 | 已整理账单类型、免费额度入口、Workers Paid、usage-based billing、Billable Usage dashboard、Budget alerts、threshold billing、权限、发票和开源参考。 |
