@@ -265,6 +265,7 @@ description: 基于 Cloudflare 官方 llms.txt 的全量产品文档索引、阅
 | 已完成复核 | 首页免费额度强化 | 已把 [首页](/) 前置为免费额度入口，按静态站、小 API、D1、KV、R2、Queues、Durable Objects、AI、安全、Zero Trust 和成本提醒整理 Free 边界、免费阶段玩法矩阵和 `$5 Workers Paid` 触发信号。 |
 | 已完成复核 | 免费额度操作手册 | 已把 [免费与付费边界](/platform/free-paid/) 扩展为免费额度优先级、免费阶段玩法矩阵、Workers Paid 购买边界、完整额度速查和官方 pricing / limits 来源索引。 |
 | 已完成复核 | 免费额度首页二次强化 | 已把 [首页](/) 的免费额度入口合并为一张核心大全表，覆盖 DNS、CDN、SSL/TLS、DDoS、WAF、Turnstile、Zero Trust、Static Assets、Pages、Workers、D1、KV、R2、Queues、Durable Objects、Workers Logs、AI Search、Vectorize、Images、Browser Run、Zaraz 和 Budget alerts；同步把 [免费与付费边界](/platform/free-paid/) 调整为核心速查 + 产品级大全，减少重复导读。 |
+| 已完成复核 | 免费额度首页三次强化 | 已把 [首页](/) 增加“最值钱的免费层速查”，把 DNS / CDN / SSL / DDoS、Static Assets / Pages、Workers、D1、R2、KV、Queues、Durable Objects、Turnstile / WAF、Zero Trust、AI 和 Budget alerts 提前到第一判断；同步明确 [免费与付费边界](/platform/free-paid/) 是全站额度事实源。 |
 | 已完成复核 | 学习路线二次精读 | 已把 [学习路线](/start/) 对齐 Learning Paths、Use cases、Docs for agents、全站 `llms.txt` 和 cloudflare/cloudflare-docs 源目录，补齐官方资料读取方式、六轮阅读顺序、Use cases 到本站专题映射和学习检查表。 |
 | 已完成复核 | 最佳实践入口二次精读 | 已把 [最佳实践](/best-practices/) 对齐 Workers Best Practices、Solution guides、Static Assets billing、WAF Rate Limiting、D1 indexes、R2 CORS 和 GitHub 源目录，补齐按阶段、按风险域、Workers 项目底线和交付检查。 |
 | 已完成复核 | 独立开发者推荐栈二次精读 | 已把 [独立开发者推荐栈](/best-practices/indie-stack/) 对齐 Deploy frontend applications、APIs and microservices、Solution guides、Workers pricing、storage options、AI Gateway、Turnstile、Zero Trust setup 和 cloudflare/templates，补齐免费起步栈、三阶段路线、数据产品选择、安全最小集、常见组合和开源模板参考。 |
