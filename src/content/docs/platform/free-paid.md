@@ -24,36 +24,41 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | 先用静态搜索；AI 调用要限流、缓存和记录用量。 |
 | 实时小应用 | Durable Objects + Queues | DO 请求、运行时长、队列操作。 |
 
-## 关键免费额度
+## 免费额度大全表
 
-| 产品 / 能力 | 免费额度 / 免费边界 | 起步判断 |
-| --- | --- | --- |
-| DNS | Free / Pro / Business 不对 DNS 查询收费；新 Free zone 每个域名 200 条记录。 | 域名先接 Cloudflare；Web 记录代理，邮件和验证记录不代理。 |
-| CDN / Cache | 所有计划可用；Free 有 10 条缓存规则；静态缓存先用默认能力。 | 静态资源长缓存，HTML 谨慎缓存。 |
-| SSL/TLS | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 可在 Free 使用。 | 默认 Full (strict)，源站也要有证书。 |
-| DDoS | 所有计划都有标准且不限量的 DDoS 防护。 | 先保证网站入口真的经过 Cloudflare，源站不能被直连。 |
-| WAF / 限流 | Free 有 5 条自定义规则、1 条限流规则和免费托管规则集。 | 只给后台、登录、评论、上传、回调等高风险入口写规则。 |
-| Turnstile | Free 每账号 20 个小组件；挑战和验证请求不限量。 | 公开写入口先加，服务端必须校验。 |
-| Zero Trust / Access / Tunnel | Zero Trust Free 50 个用户；Tunnel 可发布公开主机名。 | 后台、预览环境、内网工具先用 Access + Tunnel。 |
-| Web Analytics | 免费；代理站点不限，非代理站点 10 个。 | 文档站和官网先开它，不急着做复杂埋点。 |
-| Workers Static Assets | 静态资产请求免费且不限量，资产存储无额外费用。 | 能提前构建出来的内容，优先停在静态层。 |
-| Pages | Free 每月 500 次构建、1 个并发构建、每项目 100 个自定义域名、每站 20,000 个文件。 | 纯静态站、Git 预览部署很适合。 |
-| Workers | Free 100,000 次请求/天，10 ms CPU/次调用。 | 只让接口、评论、表单、回调、鉴权等动态路径进入 Worker。 |
-| Workers Logs | Free 每天 200,000 条日志事件，保留 3 天。 | 早期排障够用；长期留存再看付费。 |
-| D1 | Free 5M 行读取/天、100k 行写入/天、5 GB 总存储。 | 评论、反馈、小后台适合；全表扫描和无索引查询先改掉。 |
-| KV | Free 每天 100k 读取、1k 写入、1k 删除、1k 列举，1 GB 存储。 | 只放读多写少的配置、公开索引和缓存。 |
-| R2 | 每月 10 GB 标准存储、1M 写入类操作、10M 读取类操作；出站带宽免费。 | 文件、附件、图片原图、导出物放 R2。 |
-| Queues | Free 10,000 次操作/天，消息保留 24 小时。 | 邮件、通知、导入、重试、后处理适合。 |
-| Durable Objects | Free 可用 SQLite-backed DO，100,000 次请求/天、13,000 GB-s/天。 | 房间、会话、限流器和强一致状态才放 DO。 |
-| Workers AI | Free 和 Paid 都有每天 10,000 Neurons 免费分配。 | 小模型、短输出、缓存和限流先上。 |
-| AI Gateway | 核心功能免费；Free 持久日志为所有网关合计 100,000 条。 | 外部模型和 Workers AI 都先过网关观察。 |
-| AI Search | 新实例在公开测试期内免费；Free 每月 20,000 次查询、每天 500 个爬取页面。 | 文档搜索先 Pagefind；自然语言搜索确认有价值后再上。 |
-| Vectorize | Free 每月 30M 查询向量维度、5M 存储向量维度。 | 文档少时不要急着上向量库。 |
-| Zaraz | 每账号每月 1,000,000 个免费事件。 | 第三方脚本变多时再看；先删不必要脚本。 |
-| Browser Run | Free 每天 10 分钟浏览器时间。 | 能用普通请求就不用浏览器；截图、PDF、动态页面抓取才看。 |
-| Images | Free 每月 5,000 次独立图片转换。 | 原图进 R2，需要多尺寸和格式转换时再看。 |
-| Stream | 上传和编码入口免费；普通文档站没有实用的免费视频存储层。 | 视频是核心业务再看，不要把普通附件当视频平台。 |
-| 预算提醒 | 可按美元阈值发邮件提醒按量费用。 | 必须开，但它不是硬封顶。 |
+这张表优先覆盖普通人最容易用到、也最容易误判的免费额度。看表时先区分周期：有些是每天重置，有些是每月包含量，有些是账号或域名级边界。
+
+| 层 / 产品 | 免费额度 / 免费边界 | 周期 / 口径 | 起步最佳实践 | 升级或重构信号 |
+| --- | --- | --- | --- | --- |
+| DNS | Free zone 每个域名 200 条记录；2024-09-01 前创建的 Free zone 默认 1,000 条。 | 每个 zone。 | Web 记录代理，邮件、验证和特殊服务记录不代理。 | 多租户、大量子域名、复杂 DNS 变更审计。 |
+| CDN / Cache | 所有计划可用；Free 有 10 条缓存规则。 | 每个 zone。 | 静态资源长缓存，HTML 谨慎缓存。 | 需要更多缓存规则、分层缓存策略或复杂绕过条件。 |
+| SSL/TLS | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 可在 Free 使用。 | 每个 zone。 | 默认 Full (strict)，源站也要有证书。 | 需要更多高级证书、mTLS 或企业证书治理。 |
+| DDoS | 所有计划都有标准且不限量的 DDoS 防护。 | 入口流量。 | 先保证真实入口经过 Cloudflare，源站不能被直连。 | 有自有 IP、专线、网络层保护或合同级 SLA。 |
+| WAF 自定义规则 | Free 有 5 条自定义规则。 | 每个 zone。 | 只保护后台、登录、评论、上传、回调等高风险入口。 | 规则数不够，或需要正则、高级字段、账户级规则。 |
+| WAF 限流规则 | Free 有 1 条限流规则，统计和封禁周期最短 10 秒。 | 每个 zone。 | 先给登录、评论、表单或搜索入口限流。 | 需要更多规则、更长周期、按 Header/Cookie/ASN 等维度统计。 |
+| Turnstile | Free 每账号 20 个小组件；每个小组件 10 个域名；挑战和验证请求不限量。 | 每账号 / 小组件。 | 公开写入口先加，服务端必须校验。 | 需要任意域名小组件、更多域名或企业风控。 |
+| Zero Trust / Access / Tunnel | Zero Trust Free 50 个用户；Tunnel 可发布公开主机名。 | 每账号。 | 后台、预览环境、内网工具先用 Access + Tunnel。 | 团队人数、设备策略、审计、DLP 和复杂策略变多。 |
+| Web Analytics | 免费；代理站点不限，非代理站点 10 个。 | 每账号。 | 文档站和官网先开它，不急着做复杂埋点。 | 需要用户级事件、漏斗、广告归因或数据仓库。 |
+| Workers Static Assets | 静态资产请求免费且不限量，资产存储无额外费用。 | 命中静态资产。 | 能提前构建出来的内容优先停在静态层。 | 静态请求误进 Worker，开始消耗动态请求和 CPU。 |
+| Pages | Free 每月 500 次构建、1 个并发构建、每项目 100 个自定义域名、每站 20,000 个文件。 | 每月 / 每项目 / 每站。 | 纯静态站、Git 预览部署很适合。 | 多分支构建频繁、站点文件数过大、构建排队。 |
+| Workers Builds | Free 每月 3,000 分钟构建、1 个并发构建、20 分钟超时。 | 每账号每月。 | 用 Workers 平台构建前端项目时先用免费层。 | 构建耗时长、多人并发发版、构建队列变慢。 |
+| Workers | Free 100,000 次请求/天，10 ms CPU/次调用。 | 每天，UTC 0 点重置。 | 只让接口、评论、表单、回调、鉴权等动态路径进入 Worker。 | 请求接近日上限，或服务端渲染、AI 前处理、大文件解析超过 CPU。 |
+| Workers Logs | Free 每天 200,000 条日志事件，保留 3 天。 | 每天 / 3 天留存。 | 早期排障、观察错误、确认是否被刷。 | 需要 7 天以上留存、长期审计或外部日志平台。 |
+| D1 | Free 5M 行读取/天、100k 行写入/天、5 GB 总存储。 | 每天 / 账号总存储。 | 评论、反馈、小后台适合；常查字段先建索引。 | 全表扫描、无索引查询、写入入口被刷、后台报表拖慢线上。 |
+| KV | Free 每天 100k 读取、1k 写入、1k 删除、1k 列举，1 GB 存储。 | 每天 / 账号存储。 | 只放读多写少的配置、公开索引和缓存。 | 写多、强一致、事务、频繁列表查询。 |
+| R2 | Standard 每月 10 GB、1M 写入类操作、10M 读取类操作；出站带宽免费。 | 每月。 | 文件、附件、图片原图、导出物放 R2。 | 热点下载无缓存，读取类操作远超预期。 |
+| Queues | Free 10,000 次操作/天，消息保留 24 小时。 | 每天。 | 邮件、通知、导入、重试、后处理适合。 | 消息大于 64 KB、重试多、死信多、读写删操作被低估。 |
+| Durable Objects | Free 可用 SQLite-backed DO，100,000 次请求/天、13,000 GB-s/天。 | 每天。 | 房间、会话、限流器和强一致状态才放 DO。 | WebSocket 长连不休眠，运行时长成为主要成本。 |
+| Hyperdrive | Free 100,000 次数据库查询/天。 | 每天。 | 少量接口连接既有 Postgres/MySQL。 | 外部数据库进入核心路径，查询量、连接池和延迟都变敏感。 |
+| Workers AI | Free 和 Paid 都有每天 10,000 Neurons 免费分配。 | 每天，UTC 0 点重置。 | 小模型、短输出、缓存和限流先上。 | 公开入口被刷、长输出无上限、模型成本不可解释。 |
+| AI Gateway | 核心功能免费；Workers Free 持久日志为所有网关合计 100,000 条。 | 总量 / 每账号。 | 外部模型和 Workers AI 都先过网关观察。 | 需要更长日志、统一账单、更多网关级治理。 |
+| AI Search | 2026-04-16 后新实例公开测试期内免费；Free 每月 20,000 次查询、每天 500 个爬取页面。 | 每月 / 每天。 | 文档搜索先 Pagefind；自然语言搜索确认有价值后再上。 | 查询量、抓取量、模型调用和向量成本都开始可见。 |
+| Vectorize | Free 每月 30M 查询向量维度、5M 存储向量维度。 | 每月 / 存储维度。 | 文档少时不要急着上向量库。 | 文档量大、维度高、查询频繁。 |
+| Browser Run | Free 每天 10 分钟浏览器时间，Browser Sessions 3 个并发浏览器。 | 每天 / 并发。 | 能用普通请求就不用浏览器；截图、PDF、动态页面抓取才看。 | 抓取任务常态化，或并发浏览器成为瓶颈。 |
+| Images | Free 每月 5,000 次独立图片转换。 | 每月。 | 原图进 R2，需要多尺寸和格式转换时再看。 | 大量图片、多尺寸、多域名、多格式分发。 |
+| Zaraz | 每账号每月 1,000,000 个免费事件；超过且未启用付费会暂停到下个账单周期。 | 每账号每月。 | 第三方脚本变多时再看；先删不必要脚本。 | 事件量大、营销脚本复杂、团队需要更细治理。 |
+| Stream | 上传和编码入口免费；普通文档站没有实用的免费视频存储层。 | 按视频存储和观看等计量。 | 视频是核心业务再看，不要把普通附件当视频平台。 | 需要稳定视频托管、转码、播放统计和成本模型。 |
+| 预算提醒 | 可按美元阈值发邮件提醒按量费用。 | 每账号。 | 必须开，但它不是硬封顶。 | 需要硬封顶时要靠应用限流、队列熔断和产品侧开关。 |
 
 ## All the fun
 
@@ -78,8 +83,8 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | 每月 3000 万 CPU 毫秒 | 服务端渲染、数据处理、签名上传、AI 代理和后台任务要看 CPU。 |
 | 更高 Workers 平台限制 | Worker 数量、定时任务、子请求、包大小、静态资产文件数等边界提高。 |
 | 更高数据产品口径 | KV、D1、Queues、Durable Objects 等会进入月度包含量或付费能力。 |
-| 更好的日志能力 | Workers Logs 月度包含量提高，Trace Events Logpush 可用。 |
-| 部分后置能力入口 | Containers、Artifacts、Email Sending、Sandbox SDK 等从这里开始看。 |
+| 更好的日志能力 | 日志月度包含量提高，也能把关键请求日志送到外部平台。 |
+| 部分后置能力入口 | 容器、构建产物管理、发邮件、代码沙箱等从这里开始看。 |
 
 它不包含：
 
@@ -99,7 +104,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | Load Balancing、Health Checks、Argo、Spectrum | 多源站、故障切换、非 HTTP 入口或缓存做好后仍然回源慢。 |
 | Waiting Room、Smart Shield、APO | 合法峰值、WordPress 性能瓶颈或源站洪峰已经明确。 |
 | Bots、API Shield、Security Center | bot 成本、接口资产、移动端接口或安全审计已经明确。 |
-| Logpush、Log Explorer、GraphQL Analytics API | 需要长期取证、外部日志平台、审计留存或自动报表。 |
+| 长期日志、日志查询、分析报表 | 需要长期取证、外部日志平台、审计留存或自动报表。 |
 | Hyperdrive、Workflows、Pipelines、Containers、R2 Data Catalog | 已有外部数据库、长流程、数据湖或完整运行环境需求。 |
 | Cloudflare for SaaS、Workers for Platforms、Dynamic Workers | 客户要绑定自己的域名，或要上传、运行自己的代码。 |
 | Magic Transit、BYOIP、Network Interconnect、Cloudflare WAN | 已经有自有 IP、专线、网络团队和合同预算。 |
@@ -126,7 +131,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | Workers、Static Assets、Builds、Logs | [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)、[Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)、[Workers Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)、[Workers Builds Limits & Pricing](https://developers.cloudflare.com/workers/ci-cd/builds/limits-and-pricing/) |
 | 账单与预算 | [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)、[Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)、[Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/) |
 | 静态站、数据与队列 | [Pages Limits](https://developers.cloudflare.com/pages/platform/limits/)、[D1 Pricing](https://developers.cloudflare.com/d1/platform/pricing/)、[D1 Limits](https://developers.cloudflare.com/d1/platform/limits/)、[KV Pricing](https://developers.cloudflare.com/kv/platform/pricing/)、[R2 Pricing](https://developers.cloudflare.com/r2/pricing/)、[Queues Pricing](https://developers.cloudflare.com/queues/platform/pricing/)、[Durable Objects Pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/) |
-| 安全与访问 | [DNS records quota](https://developers.cloudflare.com/dns/manage-dns-records/)、[WAF Custom rules](https://developers.cloudflare.com/waf/custom-rules/)、[WAF Rate limiting rules](https://developers.cloudflare.com/waf/rate-limiting-rules/)、[Turnstile Plans](https://developers.cloudflare.com/turnstile/plans/)、[Cloudflare One account limits](https://developers.cloudflare.com/cloudflare-one/account-limits/) |
+| 安全与访问 | [DNS records quota](https://developers.cloudflare.com/dns/manage-dns-records/)、[WAF Custom rules](https://developers.cloudflare.com/waf/custom-rules/)、[WAF Rate limiting rules](https://developers.cloudflare.com/waf/rate-limiting-rules/)、[Turnstile Plans](https://developers.cloudflare.com/turnstile/plans/)、[Zero Trust plans](https://www.cloudflare.com/plans/zero-trust-services/)、[Cloudflare One account limits](https://developers.cloudflare.com/cloudflare-one/account-limits/) |
 | AI 与搜索 | [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)、[AI Gateway Pricing](https://developers.cloudflare.com/ai-gateway/reference/pricing/)、[AI Search Limits & pricing](https://developers.cloudflare.com/ai-search/platform/limits-pricing/)、[Vectorize Pricing](https://developers.cloudflare.com/vectorize/platform/pricing/) |
 | 媒体、实时与浏览器 | [Images Pricing](https://developers.cloudflare.com/images/pricing/)、[Stream Pricing](https://developers.cloudflare.com/stream/pricing/)、[Realtime SFU Pricing](https://developers.cloudflare.com/realtime/sfu/pricing/)、[Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)、[Zaraz Pricing](https://developers.cloudflare.com/zaraz/pricing-info/) |
 | 开源源码与示例 | [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs)、[cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk)、[cloudflare/templates](https://github.com/cloudflare/templates)、[withastro/starlight](https://github.com/withastro/starlight)、[Pagefind/pagefind](https://github.com/Pagefind/pagefind)、[twikoojs/twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare) |

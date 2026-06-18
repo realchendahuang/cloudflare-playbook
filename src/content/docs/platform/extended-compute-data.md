@@ -33,6 +33,6 @@ description: 什么时候才需要 Hyperdrive、Workflows、Pipelines、Containe
 | 队列只能削峰，无法表达流程状态。 | 看 Workflows。 |
 | 事件量已经需要长期分析。 | 看 Pipelines + R2。 |
 | R2 上的数据要被 BI 或查询工具读取。 | 看 R2 Data Catalog。 |
-| 必须运行现成 CLI、Python 工具或完整运行环境。 | 看 Containers。 |
+| 必须运行现成工具、脚本或完整运行环境。 | 看 Containers。 |
 
 核心原则：越靠后的产品，越应该先有明确用量、恢复策略和停用策略。

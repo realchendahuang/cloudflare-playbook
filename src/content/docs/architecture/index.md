@@ -10,7 +10,7 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | 需求 | 先读 | 默认组合 |
 | --- | --- | --- |
 | 文档站、官网、博客、知识库 | [静态内容站](/architecture/static-site/) | Workers Static Assets / Pages、Cache、Pagefind、Web Analytics。 |
-| 接口、第三方回调、表单、评论、小后端 | [API 网关](/architecture/api-gateway/) | Workers、WAF、限流、D1、KV、R2、Queues。 |
+| 接口、第三方回调、表单、评论、小后端 | [接口入口](/architecture/api-gateway/) | Workers、WAF、限流、D1、KV、R2、Queues。 |
 | 聊天、协作、房间、强一致状态 | [实时应用](/architecture/realtime-app/) | Workers、Durable Objects、连接休眠、Queues。 |
 | AI 搜索、自然语言问答、模型代理 | [AI 产品](/platform/ai/) | AI Gateway、Workers AI、AI Search、Vectorize。 |
 | 客户域名、多租户、用户代码运行 | [平台化与多租户](/platform/platforms-saas/) | Cloudflare for SaaS、Workers for Platforms、Dynamic Workers。 |
@@ -23,7 +23,7 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | 先问什么 | 推荐路线 | 不要急着做什么 |
 | --- | --- | --- |
 | 主要是读内容吗？ | 静态内容站。 | 不要先上数据库、服务端渲染和 AI 搜索。 |
-| 主要是请求处理和业务接口吗？ | API 网关。 | 不要把所有逻辑塞进一个巨大 Worker。 |
+| 主要是请求处理和业务接口吗？ | 接口入口。 | 不要把所有逻辑塞进一个巨大 Worker。 |
 | 需要同一个资源的强一致状态吗？ | 实时应用。 | 不要用 KV 模拟锁、房间状态或严格计数器。 |
 | 需要音视频或 WebRTC 吗？ | Realtime / 媒体产品。 | 不要把媒体传输误判成普通 WebSocket。 |
 | 需要自然语言搜索或模型代理吗？ | AI 产品。 | 不要在内容很少时先做向量管道。 |

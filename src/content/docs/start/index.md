@@ -49,7 +49,7 @@ description: 从免费额度、入口、安全、数据和架构模式开始读 
 | 项目目标 | 优先阅读 |
 | --- | --- |
 | 文档站、官网、前端应用 | [静态内容站](/architecture/static-site/)、[Workers Static Assets](/platform/static-assets/) |
-| 接口、第三方回调、轻量后端入口 | [API 网关](/architecture/api-gateway/)、[Workers](/platform/workers/) |
+| 接口、第三方回调、轻量后端入口 | [接口入口](/architecture/api-gateway/)、[Workers](/platform/workers/) |
 | 评论、表单、登录保护 | [WAF](/platform/waf/)、[安全与网络](/platform/security-networking/)、[D1](/platform/d1/) |
 | 文件上传、附件、下载 | [R2](/platform/r2/)、[R2 签名上传](/recipes/r2-signed-upload/) |
 | 房间、协作、状态同步 | [实时应用](/architecture/realtime-app/)、[Durable Objects](/platform/durable-objects/) |

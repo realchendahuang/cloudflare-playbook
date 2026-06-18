@@ -1,64 +1,52 @@
 ---
 title: Cloudflare 文档地图
-description: Cloudflare 官方文档的阅读顺序和来源入口。
+description: Cloudflare 官方文档的压缩阅读顺序。
 ---
 
-Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这张地图只保留阅读顺序和官方入口，具体额度回到 [免费额度大全](/platform/free-paid/)。
+Cloudflare 官方文档很大。不要按产品名硬读，先把官方目录压成几个判断入口。
 
-## 怎么用这张地图
+## 官方目录怎么压缩
 
-| 你现在的问题 | 先读哪里 |
-| --- | --- |
-| 想知道免费能跑到什么程度 | [免费额度大全](/platform/free-paid/) |
-| 不知道 Cloudflare 产品怎么分层 | [Cloudflare 产品索引](/platform/) |
-| 要把文档站、官网或博客放上去 | [静态内容站](/architecture/static-site/) |
-| 要做小接口、第三方回调、评论或表单 | [API 网关](/architecture/api-gateway/) |
-| 要选 D1、KV、R2、Queues、Durable Objects | [数据产品](/platform/data/) |
-| 要做搜索、AI 摘要或自动化工具 | [AI 产品](/platform/ai/) |
-| 要保护后台、预览环境或内网工具 | [Zero Trust 与企业网络](/platform/zero-trust-networking/) |
-| 要控制成本 | [成本控制](/best-practices/cost/) |
-
-## 阅读顺序
-
-| 顺序 | 先读什么 | 为什么 |
+| 官方大类 | 先理解成什么 | 本站怎么处理 |
 | --- | --- | --- |
-| 先读 | Fundamentals、Billing、DNS、SSL/TLS、Cache、WAF、DDoS、Rules | 所有项目都会碰到入口、域名、安全、缓存和账单。 |
-| 先读 | Workers、Static Assets、Pages、D1、KV、R2、Queues、Durable Objects | 这是独立开发者最常用的开发者平台主线。 |
-| 按需读 | AI Gateway、Workers AI、AI Search、Vectorize、Agents、Browser Run | 搜索、AI 应用和自动化需求明确后再读。 |
-| 按需读 | Analytics、Web Analytics、Logs、Notifications | 排障、访问趋势和账单提醒会很快用到。 |
-| 按需读 | Turnstile、API Shield、Bots、Security Center、Secrets Store、Access / Tunnel | 有公开写入口、后台、接口或密钥治理时再深入。 |
-| 后置 | Images、Stream、Realtime、Hyperdrive、Workflows、Pipelines、Containers | 有明确业务形态后再深入。 |
-| 后置 | Terraform、Pulumi、Reference Architecture、Migration Guides、Learning Paths | 团队化、迁移和基础设施管理需求出现后再读。 |
-| 最后读 | Web3、China Network、Magic Transit、BYOIP、Cloudflare WAN、Network Interconnect | 更偏企业网络、合规或特定业务场景。 |
+| Application performance | 网站入口、缓存、证书、调度和源站压力。 | 先读 [DNS](/platform/dns/)、[SSL/TLS](/platform/ssl-tls/)、[缓存与 CDN](/platform/cache/)、[源站保护](/platform/origin-surge/)。 |
+| Application security | WAF、DDoS、Turnstile、Bot、接口保护和邮件域名保护。 | 先读 [安全与网络](/platform/security-networking/)、[WAF](/platform/waf/)、[DDoS 防护](/platform/ddos/)。 |
+| Core platform | 账号、账单、规则、日志、通知、域名治理和配置管理。 | 先读 [Fundamentals](/platform/fundamentals/)、[账单与预算](/platform/billing/)、[边缘规则](/platform/rules/)、[观测与日志](/platform/observability/)。 |
+| Developer platform | Workers、Pages、D1、KV、R2、Queues、Durable Objects、AI、媒体和后置计算。 | 先读 [Workers](/platform/workers/)、[数据产品](/platform/data/)、[AI 产品](/platform/ai/)。 |
+| Cloudflare One | Access、Tunnel、Gateway、设备、企业网络和数据区域。 | 普通项目只先看 [Zero Trust](/platform/zero-trust-networking/) 的 Access + Tunnel。 |
+| Network security | 自有 IP、专线、网络层防护和网络流量分析。 | 放到 [自有网络与专线](/platform/private-networking/)，默认最后读。 |
+| Consumer services | 1.1.1.1、Radar、WARP。 | 放到 [公共网络能力](/platform/public-network-specialties/)，不是普通站点主线。 |
+| Docs collections / Other | Learning Paths、Use cases、Migration Guides、Docs for agents、Style Guide。 | 作为学习和迁移材料，不当采购清单。 |
 
-## 官方入口
+## 先读顺序
 
-| 主题 | 官方入口 | 本站入口 |
+| 顺序 | 读什么 | 目的 |
 | --- | --- | --- |
-| 全站文档 | [Developer Docs](https://developers.cloudflare.com/)、[llms.txt](https://developers.cloudflare.com/llms.txt)、[Changelog](https://developers.cloudflare.com/changelog/) | [官方资料](/reference/) |
-| 基础、账单、域名 | [Fundamentals](https://developers.cloudflare.com/fundamentals/)、[Billing](https://developers.cloudflare.com/billing/)、[DNS](https://developers.cloudflare.com/dns/) | [Cloudflare 产品索引](/platform/) |
-| 开发者平台 | [Workers](https://developers.cloudflare.com/workers/)、[Pages](https://developers.cloudflare.com/pages/)、[Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/) | [学习路线](/start/) |
-| 数据、安全、AI | [Storage options](https://developers.cloudflare.com/workers/platform/storage-options/)、[WAF](https://developers.cloudflare.com/waf/)、[Cloudflare AI](https://developers.cloudflare.com/ai/) | [数据产品](/platform/data/)、[安全与网络](/platform/security-networking/)、[AI 产品](/platform/ai/) |
+| 1 | [免费额度大全](/platform/free-paid/) | 先知道 0 元能跑什么，5 美元/月买什么。 |
+| 2 | [Cloudflare 产品索引](/platform/) | 把产品按场景放到正确位置。 |
+| 3 | Fundamentals、DNS、SSL/TLS、Cache | 把域名、HTTPS、缓存和源站保护做对。 |
+| 4 | Workers、Static Assets、Pages | 把静态内容和动态入口分开。 |
+| 5 | D1、KV、R2、Queues、Durable Objects | 按数据形态选产品。 |
+| 6 | WAF、DDoS、Turnstile、Access / Tunnel | 保护写入口、后台和源站。 |
+| 7 | Web Analytics、Workers Logs、Billing | 能排障、能看访问、能看成本。 |
+| 8 | AI、媒体、实时、平台化、企业网络 | 有明确业务需求后再读。 |
 
-## 开源仓库入口
+## 什么时候直接去官方文档
 
-这些仓库适合追源码、示例和文档变更历史。额度和价格仍以官方价格和限制页面为准。
-
-| 仓库 | 用来看什么 |
+| 要查什么 | 官方入口 |
 | --- | --- |
-| [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs) | Cloudflare 官方文档源码、页面结构和历史变更。 |
-| [cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk) | Wrangler、Miniflare、Workers 本地开发工具链。 |
-| [cloudflare/templates](https://github.com/cloudflare/templates) | Workers / Pages 项目模板和示例。 |
-| [withastro/starlight](https://github.com/withastro/starlight) | 本站文档框架和主题扩展方式。 |
-| [Pagefind/pagefind](https://github.com/Pagefind/pagefind) | 静态站内搜索方案。 |
-| [twikoojs/twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare) | 托管在 Cloudflare Workers 上的评论后端。 |
+| 全量产品目录 | [Cloudflare llms.txt](https://developers.cloudflare.com/llms.txt) |
+| 最近变化 | [Cloudflare Changelog](https://developers.cloudflare.com/changelog/) |
+| 价格和限制 | 对应产品的 Pricing / Limits 页面 |
+| 配置字段、命令、接口 | 对应产品文档，不在本站背字段 |
+| 示例和源码 | [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs)、[cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk)、[cloudflare/templates](https://github.com/cloudflare/templates) |
 
-## 整理原则
+## 本站整理原则
 
 | 原则 | 说明 |
 | --- | --- |
-| 先场景，后产品 | 读者要先知道自己要解决什么问题，再看产品。 |
-| 先免费边界，后高级能力 | 优先确认 Free 和 5 美元/月 Workers Paid 能做什么。 |
-| 先判断，后配置 | 这份 Playbook 解释取舍；具体接口、命令和字段回到官方文档。 |
-| 官方事实与本站判断分开 | 数字、限制和计划边界以 Cloudflare 官方页面为准。 |
-| 少放实现细节 | 只有实战案例页保留代码和命令，概念页尽量只保留判断框架。 |
+| 先场景，后产品 | 先判断要解决的问题，再看产品。 |
+| 先免费边界，后高级能力 | Free 和 5 美元/月 Workers Paid 先看清楚。 |
+| 先判断，后配置 | 概念页不堆命令、字段和实现细节。 |
+| 数字不靠记忆 | 额度、价格和计划边界回官方页面核对。 |
+| 后置产品往后放 | 企业网络、平台化、媒体、长期日志和合规能力不放在新手入口。 |
