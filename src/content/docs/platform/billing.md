@@ -53,24 +53,7 @@ Workers Paid 不会提升 WAF、Bot、Cache Rules、SSL/TLS、DNS 记录数、Lo
 
 ## 账单怎么盯
 
-| 工具 | 看什么 | 别误会 |
-| --- | --- | --- |
-| Billable Usage | usage-based 产品的每日成本和产品维度用量。 | 不是完整账单，不显示所有固定订阅费。 |
-| Product usage | Workers、D1、R2、KV、Queues 等产品侧用量。 | 只是辅助观察，最终以 invoice 为准。 |
-| Budget alerts | account-wide usage-based spend 的美元阈值邮件。 | 不是硬封顶，不会自动停服务。 |
-| Invoice / Subscriptions | 实际发票、续费日期、订阅和取消入口。 | 改 DNS 或迁走流量不等于取消订阅。 |
-
-最低做法：启用付费前开 Budget alerts；每周看一次 Billable Usage；每个账期看 invoice；异常增长先回到架构里找动态请求、CPU、R2 operations、媒体播放和 AI 调用。
-
-## 降级和取消
-
-| 操作 | 先检查 |
-| --- | --- |
-| 取消 Workers Paid | Worker 请求、CPU、D1、KV、Queues、Durable Objects、Workers Logs、Containers、Email Sending 是否依赖 Paid。 |
-| Pro / Business 降到 Free | WAF、Cache、Rules、证书、上传体积和其他 plan-only 配置是否超出 Free。 |
-| 停用 R2 / Images / Stream | 数据是否迁走或删除，存储、转换、播放、operations 是否停止增长。 |
-| 域名迁出 Cloudflare | DNS 迁出不取消订阅，仍要在 Billing / Subscriptions 里处理。 |
-| 取消 add-on | 先关功能，再取消订阅；不要只删配置文件。 |
+最低做法：启用付费前开 Budget alerts；每周看一次 Billable Usage；每个账期看 invoice。异常增长先回到架构里找动态请求、CPU、R2 operations、媒体播放和 AI 调用。迁走流量、删除 DNS 或停止使用某个功能，不等于取消订阅；固定订阅仍要到 Billing / Subscriptions 里处理。
 
 ## 常见误区
 

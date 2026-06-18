@@ -57,15 +57,9 @@ Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产
 | 密钥写进仓库或普通变量。 | 非敏感配置用 vars，密钥用 secrets。 |
 | 日志记录密钥、登录凭证和请求正文。 | 只记请求编号、Ray ID、状态、耗时和匿名化标识。 |
 
-## 起步路线
+## 简单路线
 
-1. 前端和文档先用 Static Assets / Pages。
-2. 只有动态路径进入 Worker。
-3. 数据按类型放到 D1、KV、R2、Durable Objects。
-4. 写入口加 Turnstile、Rate Limiting 和最少日志。
-5. 后台和内部工具用 Access 保护。
-6. 慢任务进入 Queues / Workflows。
-7. 请求、CPU、日志或 DO 稳定进入生产后，再开 Workers Paid。
+前端和文档先用 Static Assets / Pages，只让动态路径进入 Worker。数据按类型放到 D1、KV、R2、Durable Objects；写入口加 Turnstile、Rate Limiting 和最少日志；后台用 Access 保护；慢任务进 Queues / Workflows。请求、CPU、日志或 Durable Objects 稳定进入生产后，再开 Workers Paid。
 
 ## 事实来源
 

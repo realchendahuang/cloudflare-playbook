@@ -18,15 +18,9 @@ description: 文本实时、音视频实时和 WebRTC 穿透怎么选。
 
 如果只是评论实时刷新、在线人数、通知或聊天室，先看 [Durable Objects](/platform/durable-objects/)。只有语音、视频、会议和媒体转发明确存在时，再看 RealtimeKit / SFU / TURN。
 
-## 起步路线
+## 简单路线
 
-| 阶段 | 推荐 |
-| --- | --- |
-| 只需要“实时感” | Workers + Durable Objects + WebSocket Hibernation。 |
-| 需要视频会议，但团队不想维护 WebRTC 细节 | RealtimeKit UI Kit。 |
-| 有复杂媒体路由 | Realtime SFU + 自己的房间、权限和 presence。 |
-| 只缺连接可靠性 | TURN。 |
-| 会议后处理 | Webhooks + Queues / Workflows + R2 / D1。 |
+只需要“实时感”时，用 Workers + Durable Objects + WebSocket Hibernation。需要视频会议又不想维护 WebRTC 细节时看 RealtimeKit；复杂媒体路由看 Realtime SFU；只缺连接可靠性看 TURN。会议后的录制、转录、通知和归档走 Webhooks + Queues / Workflows + R2 / D1。
 
 ## 成本先看什么
 

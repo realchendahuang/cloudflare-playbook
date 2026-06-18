@@ -27,13 +27,6 @@ description: 可以先跳过的协议、治理和平台工具。
 | 用户反馈“打不开”，但服务端没有请求记录。 | Network Error Logging | 只用于补充诊断 last mile 问题。 |
 | 做公开抽签或协议随机数，需要可验证随机源。 | Randomness Beacon | 只用于公开可验证流程，不用于私密凭证。 |
 
-## 起步顺序
-
-1. 先把 Workers Static Assets、Workers、D1、KV、R2、Queues、Durable Objects、WAF、Turnstile 和日志用好。
-2. 资源真的多了，再加 Resource Tagging。
-3. 网络失败难定位时，再看 NEL。
-4. 企业合同、封闭测试或 partner 资格相关能力，等业务资格明确后再读官方细节。
-
 ## 常见误区
 
 | 误区 | 更好的判断 |

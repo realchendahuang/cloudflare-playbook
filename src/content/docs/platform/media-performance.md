@@ -19,15 +19,9 @@ description: 图片、视频、第三方脚本和浏览器任务的取舍。
 | 第三方脚本变多 | 先删脚本，再考虑 Zaraz 管理必要脚本。 | 在模板里散落营销脚本。 |
 | 截图、PDF、动态抓取 | 只有必须打开浏览器时才看 Browser Run。 | 每个 API 请求同步开浏览器。 |
 
-## 起步顺序
+## 简单顺序
 
-| 阶段 | 推荐组合 |
-| --- | --- |
-| 文档站、官网、博客 | Static Assets / Pages + Cache + Web Analytics。 |
-| 有上传 | R2 + Worker 鉴权 + D1 索引。 |
-| 有图片变体 | R2 原图 + 固定 Images variants。 |
-| 有视频播放 | Stream；只是下载文件时先评估 R2。 |
-| 有浏览器自动化 | Browser Run + Queues + R2，异步处理。 |
+文档站、官网、博客先用 Static Assets / Pages + Cache + Web Analytics。出现上传后，用 R2 存原文件、Worker 做鉴权、D1 存索引；图片变体先固定少量尺寸；视频播放看 Stream；浏览器自动化必须异步处理，结果进 R2。
 
 ## 成本先看什么
 

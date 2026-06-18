@@ -38,26 +38,9 @@ IaC 不是把所有 Cloudflare 配置都写成 Terraform。先问一个更小的
 | 再纳入 | R2、KV、D1、Queues 等资源声明 | 资源归属要清楚；数据内容不要进 state。 |
 | 最后看 | Worker deployment | 只有团队需要统一发布模型时再上。 |
 
-## 迁移顺序
+## 迁移原则
 
-1. 盘点账号、Zone、DNS、Rules、安全策略、资源和订阅。
-2. 先选 DNS / WAF / Rules / Access 这类高风险低频配置。
-3. 生成配置只当草稿，人工整理命名和目录。
-4. 导入已有资源，确保不会重建生产资源。
-5. 对齐 plan，目标是没有意外变更。
-6. 小步修改，每次只改少量规则并复核。
-7. 锁定真源，被 IaC 管的资源不再手工改 Dashboard。
-
-## 真源原则
-
-| 资源 / 动作 | 推荐真源 | 判断 |
-| --- | --- | --- |
-| DNS、WAF、Rules、Access | Terraform / Pulumi | 入口和安全层要可复核。 |
-| Worker 代码和静态资产部署 | Wrangler / 项目部署脚本 | 构建和发布节奏更适合部署工具。 |
-| D1 数据结构迁移 | Wrangler | 资源创建和数据结构迁移是两件事。 |
-| R2 / KV / D1 / Queue 资源创建 | 小项目可 Wrangler；团队后进 IaC | 数据内容和业务结构不要进 state。 |
-| Secrets | Wrangler secret / CI secret store | 不写入仓库、state、日志或脚本参数。 |
-| 临时排障和日志 | Dashboard / Wrangler / Logs | 不是 IaC 职责。 |
+先盘点，再导入，再小步 apply。生成配置只当草稿，不复核不要进生产；被 IaC 管住的资源，就不要再从 Dashboard 手工改。DNS、WAF、Rules、Access 这类低频高风险配置最值得先纳入；Worker 代码、D1 migrations、临时排障和日志仍然交给 Wrangler / Dashboard 更直接。
 
 ## 最容易踩坑
 
@@ -71,14 +54,6 @@ IaC 不是把所有 Cloudflare 配置都写成 Terraform。先问一个更小的
 | Terraform 能替代 Wrangler。 | Wrangler 仍适合 Worker 构建、部署、D1 migrations 和日志。 |
 | 模块越多越专业。 | 少量清晰目录通常更稳。 |
 | CI 访问凭证给全账号权限。 | 访问凭证按账号、Zone、产品和操作最小化。 |
-
-## 起步路线
-
-1. 初期用 Dashboard 配域名、安全和缓存，用 Wrangler 部署 Worker。
-2. 把 `wrangler.jsonc`、关键设置和变更记录进 Git。
-3. 资源多后，先把 DNS / WAF / Rules / Access 纳入 IaC。
-4. 多人维护后，上远程状态、复核流程和最小权限访问凭证。
-5. 产品组合复杂后，再看官方 Reference Architecture。
 
 ## 事实来源
 

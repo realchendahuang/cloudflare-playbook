@@ -57,17 +57,6 @@ description: D1、KV、R2、Durable Objects、Queues、Hyperdrive、Vectorize、
 | 单个 D1 库持续变大 | 接近单库或吞吐边界 | 按租户、项目、用户或区域拆库。 |
 | Pagefind 不够 | 用户开始问自然语言问题 | 评估 AI Search 或 Vectorize。 |
 
-## 成本心智
-
-| 产品 | 先看什么 |
-| --- | --- |
-| D1 | rows read、rows written、storage；索引比换产品更重要。 |
-| KV | reads、writes、lists、同 key 写入频率；写多别用 KV。 |
-| R2 | storage、Class A、Class B；egress 免费不等于完全免费。 |
-| Durable Objects | requests、duration、storage；实时连接要能休眠。 |
-| Queues | operations、消息大小、重试和保留期。 |
-| AI Search / Vectorize | 查询量、向量维度、索引规模、AI Gateway 和 Workers AI 叠加成本。 |
-
 ## 常见误用
 
 | 误用 | 更好的做法 |
