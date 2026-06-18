@@ -1,19 +1,13 @@
 ---
 title: Worker API + D1
-description: 使用 Workers、Hono 和 D1 构建轻量评论 API 的可复现实战。
+description: 使用 Workers、Hono 和 D1 设计轻量评论 API 的边界。
 ---
 
 最后核对日期：2026-06-17。
 
 这个案例演示一个最小评论 API：Worker 提供接口，D1 保存关系型数据，Hono 负责路由和 JSON 响应。它适合表单提交、评论、轻量后台配置和小型 SaaS 的基础数据写入。
 
-## 目标
-
-- 创建 D1 数据库，并让 Worker 能读取它。
-- 用迁移文件管理表结构。
-- 用预编译 SQL 和 `bind()` 避免拼接用户输入。
-
-## 架构
+## 什么时候用
 
 ```text
 浏览器 / 客户端
@@ -31,186 +25,19 @@ D1 comments-db
 
 关键判断：Worker 负责校验输入和调用 D1，D1 负责持久化。不要在前端拼 SQL，也不要把用户输入直接拼进 SQL 字符串。
 
-## 资源准备
+| 适合 | 不适合 |
+| --- | --- |
+| 评论、留言、表单、轻量后台、低频业务表。 | 大文件、日志流、高吞吐事件、全文搜索、复杂分析。 |
 
-创建 Worker 项目：
+## 最小落地
 
-```bash
-pnpm create cloudflare@latest worker-api-d1
-```
-
-初始化时选择 Worker-only、TypeScript，并先不要部署。
-
-安装 Hono：
-
-```bash
-pnpm add hono
-```
-
-创建 D1 数据库：
-
-```bash
-pnpm wrangler d1 create comments-db
-```
-
-把输出写入 `wrangler.jsonc`：
-
-```jsonc
-{
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "worker-api-d1",
-  "main": "src/index.ts",
-  "compatibility_date": "2026-06-17",
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "comments-db",
-      "database_id": "<YOUR_DATABASE_ID>"
-    }
-  ]
-}
-```
-
-`DB` 会在 Worker 代码里通过 `c.env.DB` 读取。
-
-## 数据表
-
-创建 migration：
-
-```bash
-pnpm wrangler d1 migrations create comments-db create_comments
-```
-
-把生成的 SQL 文件改成：
-
-```sql
-CREATE TABLE IF NOT EXISTS comments (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  slug TEXT NOT NULL,
-  author TEXT NOT NULL,
-  body TEXT NOT NULL,
-  created_at TEXT NOT NULL DEFAULT (datetime('now'))
-);
-
-CREATE INDEX IF NOT EXISTS idx_comments_slug_created_at
-  ON comments (slug, created_at DESC);
-```
-
-先应用到本地 D1：
-
-```bash
-pnpm wrangler d1 migrations apply comments-db --local
-```
-
-确认无误后应用到远程 D1：
-
-```bash
-pnpm wrangler d1 migrations apply comments-db --remote
-```
-
-迁移文件应该纳入版本控制。执行迁移时优先使用不会轻易改名的数据库名，减少误操作。
-
-## Worker 代码
-
-`src/index.ts`：
-
-```ts
-import { Hono } from "hono";
-import { cors } from "hono/cors";
-
-type Bindings = {
-  DB: D1Database;
-};
-
-const app = new Hono<{ Bindings: Bindings }>();
-
-// 只给 API 路径开启 CORS，前后端同域部署时可以删掉这一行。
-app.use("/api/*", cors());
-
-app.get("/api/comments", async (c) => {
-  // slug 来自查询字符串，属于外部输入，必须先做边界校验。
-  const slug = String(c.req.query("slug") ?? "").trim();
-  if (!slug || slug.length > 120) {
-    return c.json({ error: "invalid_slug" }, 400);
-  }
-
-  // 用户输入通过 bind() 进入 SQL，避免字符串拼接造成 SQL 注入。
-  const { results } = await c.env.DB.prepare(
-    "SELECT id, slug, author, body, created_at FROM comments WHERE slug = ? ORDER BY created_at DESC LIMIT 50",
-  )
-    .bind(slug)
-    .all();
-
-  return c.json({ comments: results });
-});
-
-app.post("/api/comments", async (c) => {
-  // JSON body 是系统边界，读取后统一转换成字符串再裁剪空白。
-  const input = await c.req.json<{
-    slug?: string;
-    author?: string;
-    body?: string;
-  }>();
-
-  const slug = String(input.slug ?? "").trim();
-  const author = String(input.author ?? "").trim();
-  const body = String(input.body ?? "").trim();
-
-  if (!slug || slug.length > 120) {
-    return c.json({ error: "invalid_slug" }, 400);
-  }
-
-  if (!author || author.length > 60) {
-    return c.json({ error: "invalid_author" }, 400);
-  }
-
-  if (!body || body.length > 2_000) {
-    return c.json({ error: "invalid_body" }, 400);
-  }
-
-  // 写入同样使用 prepared statement，所有用户字段都通过 bind() 绑定。
-  const result = await c.env.DB.prepare(
-    "INSERT INTO comments (slug, author, body) VALUES (?, ?, ?)",
-  )
-    .bind(slug, author, body)
-    .run();
-
-  return c.json({ id: result.meta.last_row_id }, 201);
-});
-
-export default app;
-```
-
-## 本地验证
-
-启动本地 Worker：
-
-```bash
-pnpm wrangler dev
-```
-
-写入一条评论：
-
-```bash
-curl -X POST http://localhost:8787/api/comments \
-  -H "Content-Type: application/json" \
-  -d '{"slug":"hello-world","author":"Kim","body":"第一条 D1 评论"}'
-```
-
-读取评论：
-
-```bash
-curl "http://localhost:8787/api/comments?slug=hello-world"
-```
-
-直接查本地 D1：
-
-```bash
-pnpm wrangler d1 execute comments-db --local \
-  --command "SELECT id, slug, author, created_at FROM comments ORDER BY id DESC LIMIT 5"
-```
-
-部署后，把 `localhost:8787` 换成 Worker 域名再跑一遍 `curl`。
+| 层 | 做什么 |
+| --- | --- |
+| Worker | 接收 `/api/*`，做鉴权、输入校验、限流和 JSON 响应。 |
+| D1 | 保存关系数据，用 migration 管表结构，用索引支撑常见查询。 |
+| SQL | 读写都用 prepared statement 和 `bind()`，不拼接用户输入。 |
+| 安全 | 评论、表单等公开写入口叠加 Turnstile、Rate Limiting 或登录态。 |
+| 验证 | 本地迁移、本地接口、远程迁移、线上接口分开验证。 |
 
 ## 生产检查
 
