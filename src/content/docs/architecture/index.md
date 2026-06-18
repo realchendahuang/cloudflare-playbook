@@ -13,7 +13,7 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | --- | --- | --- |
 | 文档站、官网、博客、知识库 | [静态内容站](/architecture/static-site/) | Workers Static Assets / Pages、Cache、Pagefind、Web Analytics。 |
 | API、Webhook、表单、评论、小后端 | [API 网关](/architecture/api-gateway/) | Workers、WAF、Rate Limiting、D1、KV、R2、Queues。 |
-| 聊天、协作、房间、强一致状态 | [实时应用](/architecture/realtime-app/) | Workers、Durable Objects、WebSocket Hibernation、Queues。 |
+| 聊天、协作、房间、强一致状态 | [实时应用](/architecture/realtime-app/) | Workers、Durable Objects、连接休眠、Queues。 |
 | AI 搜索、自然语言问答、模型代理 | [AI 产品](/platform/ai/) | AI Gateway、Workers AI、AI Search、Vectorize。 |
 | 客户域名、多租户、用户代码运行 | [平台化与多租户](/platform/platforms-saas/) | Cloudflare for SaaS、Workers for Platforms、Dynamic Workers。 |
 | 图片、视频、附件、媒体分发 | [媒体与性能](/platform/media-performance/) | R2、Images、Stream、Cache。 |
@@ -40,7 +40,7 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | 文件离库 | 文件本体进 R2，D1 只存元数据、权限和索引。 |
 | 强一致靠 DO | 房间、限流桶、单资源顺序写入用 Durable Objects，不用 KV。 |
 | 慢任务异步 | 邮件、审核、导入、AI 后处理进 Queues / Workflows。 |
-| 免费边界先算 | 先看静态请求、Workers 请求、CPU、D1 rows、R2 operations，再谈升级。 |
+| 免费边界先算 | 先看静态请求、Workers 请求、CPU、D1 读写行数、R2 操作，再谈升级。 |
 | 安全不要后补 | 写入口先有 Turnstile、Rate Limiting、WAF 或身份边界。 |
 
 官方架构入口：[Reference Architecture](https://developers.cloudflare.com/reference-architecture/) 和 [Use cases](https://developers.cloudflare.com/use-cases/)；本站只保留独立开发者更常用的判断顺序。

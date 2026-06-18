@@ -20,7 +20,7 @@ description: 文本实时、音视频实时和 WebRTC 穿透怎么选。
 
 ## 简单路线
 
-只需要“实时感”时，用 Workers + Durable Objects + WebSocket Hibernation。需要视频会议又不想维护 WebRTC 细节时看 RealtimeKit；复杂媒体路由看 Realtime SFU；只缺连接可靠性看 TURN。会议后的录制、转录、通知和归档走 Webhooks + Queues / Workflows + R2 / D1。
+只需要“实时感”时，用 Workers + Durable Objects + 连接休眠。需要视频会议又不想维护 WebRTC 细节时看 RealtimeKit；复杂媒体路由看 Realtime SFU；只缺连接可靠性看 TURN。会议后的录制、转录、通知和归档走 Webhooks + Queues / Workflows + R2 / D1。
 
 ## 成本先看什么
 

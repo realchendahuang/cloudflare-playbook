@@ -11,7 +11,7 @@ Workers 是 Cloudflare 的请求级计算层，不是一台长期运行的小服
 
 | 你要做什么 | 建议 | 搭配 |
 | --- | --- | --- |
-| 文档站、官网、博客 | 静态优先，Worker 只做少量 API。 | Static Assets + `/api/*` |
+| 文档站、官网、博客 | 静态优先，Worker 只做少量动态接口。 | Static Assets + 明确的动态入口 |
 | 评论、表单、Webhook、小 API | 适合。 | Workers + D1 / KV / Turnstile |
 | 鉴权、代理、API 网关 | 适合。 | Workers + WAF / Rate Limiting |
 | 文件上传下载 | Worker 只做权限和签名。 | Workers + R2 |
@@ -31,8 +31,6 @@ Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产
 | D1、KV、Queues、Durable Objects 成为核心路径。 | 这些产品的免费层也会一起决定是否进入 Workers Paid。 |
 | 需要更多定时任务、Worker 数量、外部调用或更大包体。 | 这是工程化能力升级，不是单纯流量问题。 |
 
-完整数字见 [免费额度大全](/platform/free-paid/)。
-
 ## 架构分工
 
 | 需求 | 放哪里 | 原因 |
@@ -49,4 +47,4 @@ Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产
 
 前端和文档先用 Static Assets / Pages，只让动态路径进入 Worker。数据按类型放到 D1、KV、R2、Durable Objects；写入口加 Turnstile、Rate Limiting 和最少日志；后台用 Access 保护；慢任务进 Queues / Workflows。请求、CPU、日志或 Durable Objects 稳定进入生产后，再开 Workers Paid。
 
-官方核对入口：[Cloudflare Workers](https://developers.cloudflare.com/workers/)、[Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)、[Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)。
+额度数字回到 [免费额度大全](/platform/free-paid/) 核对。官方核对入口：[Cloudflare Workers](https://developers.cloudflare.com/workers/)、[Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)、[Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)。

@@ -38,6 +38,6 @@ API 网关只解决一件事：把动态入口收清楚。Worker 负责入口；
 | 成本被刷 | 入口限流、配额、缓存、AI Gateway 和 Budget alerts。 |
 | 敏感日志泄漏 | 不记录密钥、登录凭证和正文隐私。 |
 | D1 扫描过大 | 常用查询建索引，不做无界全表扫描。 |
-| R2 操作量过高 | 热文件要评估缓存，下载次数也是 Class B。 |
+| R2 操作量过高 | 热文件要评估缓存，下载和读取次数也会计入操作。 |
 
 官方核对入口：[APIs and microservices](https://developers.cloudflare.com/use-cases/apis/)、[Deploy APIs at the edge](https://developers.cloudflare.com/use-cases/apis/deploy-apis/)、[Protect your APIs](https://developers.cloudflare.com/use-cases/apis/protect-apis/)。

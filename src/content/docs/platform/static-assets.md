@@ -14,7 +14,7 @@ Workers Static Assets 用来托管构建好的静态文件：HTML、CSS、JavaSc
 | 场景 | 建议 |
 | --- | --- |
 | 文档站、官网、博客、产品页 | 优先用，静态请求免费且不限量。 |
-| SPA + 少量 API | 适合，静态页面走 Assets，`/api/*` 走 Worker。 |
+| SPA + 少量 API | 适合，静态页面走 Assets，动态接口走 Worker。 |
 | 静态站还需要 D1、R2、KV、Queues、AI | 适合，Workers 项目更容易统一管理。 |
 | 纯静态站，团队依赖 Git 预览部署 | Pages 也可以。 |
 | 用户上传、图片原图、附件、导出文件 | 不适合，放 R2。 |
@@ -31,8 +31,6 @@ Static Assets 的关键不是“能不能免费”，而是“有没有让静态
 | 动态 Worker 请求 | 只有进入 Worker 脚本才按 Workers 请求和 CPU 计算。 |
 | 文件大小和数量 | 大量图片、下载包、原始附件和视频应进入 R2 / Stream。 |
 
-完整数字见 [免费额度大全](/platform/free-paid/)。
-
 ## 最省钱的路径
 
 | 请求 | 推荐走法 |
@@ -47,10 +45,10 @@ Static Assets 的关键不是“能不能免费”，而是“有没有让静态
 
 | 问题 | Workers Static Assets | Pages |
 | --- | --- | --- |
-| 部署来源 | `wrangler.jsonc` 和 Worker 项目。 | Git / Pages 项目设置。 |
+| 部署来源 | Worker 项目配置。 | Git / Pages 项目设置。 |
 | 静态请求成本 | 免费且不限量。 | 免费且不限量。 |
 | API 和数据产品 | Worker 原生，适合 D1、R2、KV、DO、Queues、AI。 | Pages Functions 适合轻量 API。 |
 | 预览部署 | 需要自己组织。 | PR / 分支预览更顺。 |
 | 更适合 | 静态站 + API / Worker 生态能力。 | 纯静态站、官网、内容协作。 |
 
-官方核对入口：[Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)、[Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)、[Migrate from Pages to Workers](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)。
+额度数字回到 [免费额度大全](/platform/free-paid/) 核对。官方核对入口：[Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)、[Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)、[Migrate from Pages to Workers](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)。
