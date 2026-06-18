@@ -57,7 +57,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | 安全与网络 | [src/content/docs/platform/security-networking.md](src/content/docs/platform/security-networking.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/security-networking/) |
 | Zero Trust 与企业网络 | [src/content/docs/platform/zero-trust-networking.md](src/content/docs/platform/zero-trust-networking.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/zero-trust-networking/) |
 | 自有网络与专线 | [src/content/docs/platform/private-networking.md](src/content/docs/platform/private-networking.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/private-networking/) |
-| 免费与付费边界 | [src/content/docs/platform/free-paid.md](src/content/docs/platform/free-paid.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/free-paid/) |
+| 免费额度大全 | [src/content/docs/platform/free-paid.md](src/content/docs/platform/free-paid.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/free-paid/) |
 | Billing | [src/content/docs/platform/billing.md](src/content/docs/platform/billing.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/billing/) |
 | 架构模式总览 | [src/content/docs/architecture/index.md](src/content/docs/architecture/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/) |
 | 静态内容站 | [src/content/docs/architecture/static-site.md](src/content/docs/architecture/static-site.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/static-site/) |

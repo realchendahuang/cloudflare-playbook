@@ -1,11 +1,11 @@
 ---
-title: Zero Trust 与企业网络
-description: Cloudflare One、Access、Tunnel、Gateway 和企业网络能力的取舍。
+title: Zero Trust
+description: 后台、预览环境、内网工具和小团队出站安全怎么选。
 ---
 
 最后核对日期：2026-06-18。
 
-Zero Trust 不等于必须买一整套企业安全平台。先看三件事：Access 管谁能进后台，Tunnel 管源站怎么接入 Cloudflare，Gateway 管团队设备的出站访问。专线、企业防火墙和长期日志不是个人站点、小 SaaS 或单个后台的第一步。
+Zero Trust 不等于必须买一整套企业安全平台。普通项目先看三件事：谁能进后台，后台怎么不暴露公网，小团队设备是否需要基础出站保护。专线、企业防火墙、长期日志和设备管控不是个人站点、小 SaaS 或单个后台的第一步。
 
 ## 先判断
 
@@ -13,9 +13,9 @@ Zero Trust 不等于必须买一整套企业安全平台。先看三件事：Acc
 | --- | --- | --- |
 | 保护后台、预览环境、数据库面板 | Access + Tunnel | 最值得先做。后台不裸奔，源站也不开放公网入口。 |
 | 临时发布本地服务 | Tunnel public hostname | 可以很快上线；没有 Access 策略时就是公开访问。 |
-| 替代 VPN 访问内网 | Tunnel private network + Client | 有团队、设备和私网资源后再做。 |
-| 小团队拦恶意域名 | Gateway DNS policies | 部署成本低，适合作为安全起点。 |
-| 管控设备、文件、URL | Gateway HTTP / Network policies | 这是组织级动作，需要客户端和内部流程。 |
+| 替代 VPN 访问内网 | Tunnel 私网 + 客户端 | 有团队、设备和私网资源后再做。 |
+| 小团队拦恶意域名 | DNS 出站过滤 | 部署成本低，适合作为安全起点。 |
+| 管控设备、文件、URL | 设备和出站策略 | 这是组织级动作，需要客户端和内部流程。 |
 | 办公室、数据中心、云网络互联 | 企业网络能力 | 有网络团队和合同预算后再评估。 |
 
 ## 免费阶段先做什么
@@ -25,11 +25,11 @@ Zero Trust 不等于必须买一整套企业安全平台。先看三件事：Acc
 | 1 | 给后台、预览环境、内部工具加 Access。 | 直接降低真实入口风险。 |
 | 2 | 用 Tunnel 发布后台，关闭源站入站端口。 | 减少暴露面，不先改应用架构。 |
 | 3 | 机器访问使用服务凭证。 | 比共享人工账号更清楚，也更好撤销。 |
-| 4 | 小团队从 Gateway DNS filtering 起步。 | 不必一开始就做全量客户端和 HTTPS 解密。 |
+| 4 | 小团队从 DNS 出站过滤起步。 | 不必一开始就做全量客户端和 HTTPS 解密。 |
 | 5 | 需要私网访问时再部署 Client。 | Client 是组织级动作，不是单站点必需品。 |
 | 6 | 超出人数、日志或审计需求后再升级计划。 | 付费应该跟真实组织需求绑定。 |
 
-Zero Trust Free 适合 50 users 内的小团队 PoC；Tunnel 发布 public hostname 不等于自动受保护。更完整的价格、席位、日志留存和企业功能，落地前回官方定价页核对。
+免费层适合小团队先验证后台保护和基础出站过滤。Tunnel 发布公开主机名不等于自动受保护；需要人数、日志留存和企业功能时，再回官方定价页核对。
 
 ## 最重要的坑
 
@@ -38,18 +38,18 @@ Zero Trust Free 适合 50 users 内的小团队 PoC；Tunnel 发布 public hostn
 | 用了 Tunnel 就安全。 | Tunnel 只管连接；访问控制还要靠 Access、Gateway 或应用自身认证。 |
 | Tunnel public hostname 默认私有。 | 没有 Access policy 时，任何人都能访问。 |
 | Access 可以替代业务权限。 | Access 解决入口身份，不替代应用角色、数据权限和审计。 |
-| Gateway 打开后就会阻断未知流量。 | 策略未命中通常不会自动变安全，要明确规则。 |
+| 打开出站安全后就会阻断未知流量。 | 策略未命中通常不会自动变安全，要明确规则。 |
 | HTTP inspection 只是一个开关。 | 它涉及客户端、证书、TLS 解密和组织告知。 |
 | 企业网络是普通站点必修课。 | 没有办公室、数据中心、自有 IP 段或网络团队时，通常先不用。 |
 
 ## 产品责任边界
 
-| 产品 | 管什么 | 什么时候上 |
+| 能力 | 管什么 | 什么时候上 |
 | --- | --- | --- |
 | Access | 用户、设备、服务凭证是否能进应用。 | 后台、预览、内部工具需要保护时。 |
 | Tunnel | 源站如何通过出站连接接入 Cloudflare。 | 不想暴露源站公网入口时。 |
-| Gateway | DNS、Network、HTTP 出站策略。 | 要管理设备或网络出站访问时。 |
-| Cloudflare One Client | 把设备和身份带进策略。 | 替代 VPN、设备姿态或出站过滤时。 |
+| 出站策略 | 团队设备能访问哪些域名、网络和服务。 | 要管理设备或网络出站访问时。 |
+| 设备客户端 | 把设备和身份带进策略。 | 替代 VPN、设备姿态或出站过滤时。 |
 | 企业网络能力 | 办公室、数据中心、云网络、安全日志。 | 有明确网络资产、团队和合同预算时。 |
 
 ## 落地路线
@@ -57,8 +57,8 @@ Zero Trust Free 适合 50 users 内的小团队 PoC；Tunnel 发布 public hostn
 1. 公开站点先做好 DNS、SSL/TLS、WAF、Turnstile。
 2. 后台先建 Access 应用，再用 Tunnel 发布。
 3. 源站限制直连，避免绕过 Cloudflare。
-4. 私网资源再上 Tunnel private network + Client。
-5. 团队出站安全从 Gateway DNS 开始。
+4. 私网资源再上 Tunnel 私网和设备客户端。
+5. 团队出站安全从 DNS 过滤开始。
 6. 企业网络能力只在有网络负责人时评估。
 
 官方核对入口：[Cloudflare One](https://developers.cloudflare.com/cloudflare-one/)、[Access](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/)、[Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/routing-to-tunnel/)。

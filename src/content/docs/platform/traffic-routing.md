@@ -1,40 +1,39 @@
 ---
-title: 流量调度与四层入口
-description: Load Balancing、Health Checks、Spectrum 和 Argo Smart Routing 的取舍。
+title: 流量调度
+description: 什么时候才需要高级流量调度、健康检查和非 HTTP 入口。
 ---
 
 最后核对日期：2026-06-18。
 
-这页只回答一个问题：什么时候需要把“流量怎么走”交给 Cloudflare 的高级调度产品。默认顺序是：先把 Web 入口代理到 Cloudflare，做好缓存、WAF 和源站保护；有多源站再看 Load Balancing；只想监控源站先看 Health Checks；非 HTTP 服务才看 Spectrum；回源路径真的慢再看 Argo。
+普通网站、文档站和小 API，通常不需要先买高级流量调度。先把 Web 入口代理到 Cloudflare，做好缓存、HTTPS、WAF 和源站保护；只有出现多源站、故障切换、非 HTTP 公开服务或明显回源延迟时，再看这一类产品。
 
-## 一句话判断
+## 先判断
 
-| 你遇到的问题 | 先看什么 | 先不要做什么 |
+| 真实问题 | 先做什么 | 先别做什么 |
 | --- | --- | --- |
-| 单网站、单源站。 | Proxied DNS、Cache、WAF、DDoS Protection。 | 不需要 Load Balancing。 |
-| 两个以上源站，需要自动切换。 | Load Balancing + health monitors。 | 不要用 DNS round-robin 假装高可用。 |
-| 只想知道源站是否在线。 | Standalone Health Checks。 | 不要为了监控先买完整调度。 |
-| 公开 SSH、Minecraft、RDP 或 TCP / UDP 服务。 | Spectrum。 | 不要把普通橙云 HTTP 代理当四层代理。 |
-| 全球用户访问单一区域源站明显慢。 | Argo Smart Routing / Smart Shield。 | 不要在缓存没做好前先买路径优化。 |
-| 私有服务有多入口或多实例。 | Private Network Load Balancing。 | 不要把私有 IP 或后台服务直接暴露公网。 |
+| 单站点、单源站。 | 用代理、缓存、WAF 和源站防火墙。 | 先上负载均衡。 |
+| 有主备源站或多区域源站。 | 再看负载均衡和健康检查。 | 用普通 DNS 轮询假装高可用。 |
+| 只是想知道源站是否在线。 | 先做健康检查和告警。 | 为监控买完整调度方案。 |
+| 要公开非 HTTP 服务。 | 再看四层入口产品。 | 把普通网站代理当四层代理。 |
+| 全球回源慢且缓存已做好。 | 再看路径优化。 | 缓存没做好就买加速。 |
+| 私有服务有多个入口。 | 先做私网方案设计。 | 把后台或私有 IP 暴露公网。 |
 
 ## 推荐顺序
 
-1. 先把 Web 记录设为 Proxied，确认缓存、SSL/TLS、WAF 和 DDoS Protection 正常。
-2. 单源站阶段只做轻量健康监控。
-3. 有主备源站、多区域源站或蓝绿发布需求时，再启用 Load Balancing。
-4. 只有非 HTTP 的公开 TCP / UDP 应用，才评估 Spectrum。
-5. 静态缓存和源站性能都做好后，再用 Argo analytics 判断回源路径是否值得优化。
-6. 私有服务、多 Tunnel、多数据中心和企业网络，再进入 Private Network Load Balancing。
+1. 先保证所有 Web 流量真的经过 Cloudflare。
+2. 单源站阶段只做基础监控和源站保护。
+3. 有主备、多区域或蓝绿发布需求后，再做自动切换。
+4. 非 HTTP 服务、私有网络和专线场景，放到企业网络阶段评估。
+5. 缓存和源站性能都做好后，再判断路径优化是否值得付费。
 
 ## 产品边界
 
-| 产品 | 实践判断 |
+| 能力 | 实践判断 |
 | --- | --- |
-| Load Balancing | 价值在多源站健康判断和故障切换；单源站收益很有限。 |
-| Health Checks | 只负责监控和通知，不负责自动切流。 |
-| Spectrum | 四层代理，不是网站默认入口。 |
-| Argo Smart Routing | 优化 Cloudflare 到源站的路径，不是缓存、压缩或数据库优化。 |
-| Private Network Load Balancing | 私有网络、多入口和企业网络场景再看。 |
+| 负载均衡 | 多源站故障切换才有价值。 |
+| 健康检查 | 只负责发现问题，不等于自动切流。 |
+| 四层入口 | 只给非 HTTP 公开服务用。 |
+| 路径优化 | 优化回源路径，不替代缓存和源站性能。 |
+| 私网调度 | 私有网络、多数据中心和企业网络再看。 |
 
 官方核对入口：[Load Balancing](https://developers.cloudflare.com/load-balancing/)、[Health Checks](https://developers.cloudflare.com/health-checks/)、[Spectrum](https://developers.cloudflare.com/spectrum/)、[Argo Smart Routing](https://developers.cloudflare.com/argo-smart-routing/)。

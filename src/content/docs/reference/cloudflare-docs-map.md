@@ -42,6 +42,19 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 开发者平台 | [Workers](https://developers.cloudflare.com/workers/)、[Pages](https://developers.cloudflare.com/pages/)、[Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/) | [学习路线](/start/) |
 | 数据、安全、AI | [Storage options](https://developers.cloudflare.com/workers/platform/storage-options/)、[WAF](https://developers.cloudflare.com/waf/)、[Cloudflare AI](https://developers.cloudflare.com/ai/) | [数据产品](/platform/data/)、[安全与网络](/platform/security-networking/)、[AI 产品](/platform/ai/) |
 
+## 开源仓库入口
+
+这些仓库适合追源码、示例和文档变更历史。额度和价格仍以官方价格和限制页面为准。
+
+| 仓库 | 用来看什么 |
+| --- | --- |
+| [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs) | Cloudflare 官方文档源码、页面结构和历史变更。 |
+| [cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk) | Wrangler、Miniflare、Workers 本地开发工具链。 |
+| [cloudflare/templates](https://github.com/cloudflare/templates) | Workers / Pages 项目模板和示例。 |
+| [withastro/starlight](https://github.com/withastro/starlight) | 本站文档框架和主题扩展方式。 |
+| [Pagefind/pagefind](https://github.com/Pagefind/pagefind) | 静态站内搜索方案。 |
+| [twikoojs/twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare) | 托管在 Cloudflare Workers 上的评论后端。 |
+
 ## 整理原则
 
 | 原则 | 说明 |
