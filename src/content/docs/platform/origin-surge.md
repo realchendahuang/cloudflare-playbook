@@ -17,12 +17,12 @@ description: 源站保护、合法峰值和回源压力的取舍。
 
 ## 一句话判断
 
-| 需求 | 优先看什么 | 不要误用什么 |
+| 需求 | 优先看什么 | 边界 |
 | --- | --- | --- |
 | 静态站、文档站、官网。 | 缓存 / CDN、静态资产层、Pages。 | 不需要排队，也不需要 APO。 |
-| 秒杀、报名、抢票、发售等合法用户峰值。 | Waiting Room。 | 不要把 Waiting Room 当 DDoS 防护。 |
-| 恶意请求、自动化提交、撞库、爬虫滥用。 | DDoS、WAF、自动化流量防护、限流、Turnstile。 | 不要先上排队。 |
-| 源站回源请求多、连接数高。 | Smart Shield。 | 不要在缓存策略混乱时先买高级包。 |
+| 秒杀、报名、抢票、发售等合法用户峰值。 | Waiting Room。 | 它管理合法用户排队，不处理恶意攻击。 |
+| 恶意请求、自动化提交、撞库、爬虫滥用。 | DDoS、WAF、自动化流量防护、限流、Turnstile。 | 攻击流量先走防护和限流。 |
+| 源站回源请求多、连接数高。 | Smart Shield。 | 先整理缓存策略。 |
 | 全球用户离源站远，动态回源慢。 | Argo / Smart Shield + Argo。 | 先确认瓶颈是回源路径。 |
 | WordPress 动态 HTML 慢。 | Automatic Platform Optimization。 | APO 不是通用动态站缓存。 |
 

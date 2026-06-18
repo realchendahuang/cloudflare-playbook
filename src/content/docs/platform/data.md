@@ -3,11 +3,11 @@ title: 数据产品
 description: D1、KV、R2、Durable Objects、Queues 和后置数据产品的选择方式。
 ---
 
-数据产品先按数据形态选：关系数据进 D1，文件进 R2，读多写少配置进 KV，单对象强一致进 Durable Objects，慢任务进 Queues。
+数据产品按数据形态选：关系数据进 D1，文件进 R2，读多写少配置进 KV，单对象强一致进 Durable Objects，慢任务进 Queues。
 
 ## 按数据形态选
 
-| 你手里的数据 | 先看 | 别放错 |
+| 你手里的数据 | 先看 | 边界 |
 | --- | --- | --- |
 | 评论、表单、用户资料、小后台、订单 | [D1](/platform/d1/) | R2、KV、Durable Objects。 |
 | 图片、附件、导出文件、备份 | [R2](/platform/r2/) | D1 存文件本体。 |
@@ -31,7 +31,7 @@ description: D1、KV、R2、Durable Objects、Queues 和后置数据产品的选
 | 这件事可以晚点做、失败重试或批量处理吗？ | Queues。 |
 | 已经有外部数据库，不想迁移主库吗？ | Hyperdrive。 |
 | 是自然语言搜索吗？ | 先 Pagefind；需要语义理解再看 AI Search / Vectorize。 |
-| 是持续涌入的事件和指标吗？ | 指标分析、数据管道或 R2，不要塞进 D1。 |
+| 是持续涌入的事件和指标吗？ | 指标分析、数据管道或 R2。 |
 
 ## 什么时候迁移
 

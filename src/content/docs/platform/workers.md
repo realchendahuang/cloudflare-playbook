@@ -3,7 +3,7 @@ title: Workers
 description: Cloudflare Workers 的取舍、架构分工和升级判断。
 ---
 
-Workers 是请求进来时运行的一层代码，不是一台长期在线的小服务器。先记三句话：静态内容不要进 Worker；动态接口才用 Worker；状态、文件和后台任务交给对应产品。
+Workers 是请求进来时运行的一层代码，不是一台长期在线的小服务器。静态内容停在资产层；动态接口进 Worker；状态、文件和后台任务交给对应产品。
 
 ## 先判断
 

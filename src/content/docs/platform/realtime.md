@@ -7,12 +7,12 @@ description: 文本实时、音视频实时和浏览器实时连接怎么选。
 
 ## 先判断
 
-| 需求 | 优先选择 | 不要误用 |
+| 需求 | 优先选择 | 边界 |
 | --- | --- | --- |
-| 聊天、在线人数、通知、协作状态 | Durable Objects WebSocket。 | 不要为了实时刷新去上音视频产品。 |
-| 会议、课堂、语音房、直播互动 | RealtimeKit。 | 不要从底层 WebRTC 开始造。 |
-| 已经有 WebRTC 团队和特殊媒体路由 | Realtime SFU。 | 不要把它当低价会议系统。 |
-| 已有 WebRTC，只缺连接穿透 | TURN。 | 不要期待它管理房间、权限和界面。 |
+| 聊天、在线人数、通知、协作状态 | Durable Objects WebSocket。 | 这是状态同步，不是音视频。 |
+| 会议、课堂、语音房、直播互动 | RealtimeKit。 | 适合交付会议体验。 |
+| 已经有 WebRTC 团队和特殊媒体路由 | Realtime SFU。 | 适合自建媒体控制层。 |
+| 已有 WebRTC，只缺连接穿透 | TURN。 | 它只解决连接可靠性。 |
 
 如果只是评论实时刷新、在线人数、通知或聊天室，先看 [Durable Objects](/platform/durable-objects/)。只有语音、视频、会议和媒体转发明确存在时，再看 RealtimeKit / SFU / TURN。
 

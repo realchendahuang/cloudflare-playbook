@@ -116,7 +116,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 
 ## 进阶能力
 
-下面这些产品不是普通项目默认栈。只有触发信号明确时，再去对应页面和官方文档核对。
+下面这些产品不是普通项目的默认入口。只有触发信号明确时，再去对应页面和官方文档核对。
 
 | 产品 / 能力 | 什么时候再看 |
 | --- | --- |
@@ -128,7 +128,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | Cloudflare for SaaS、Workers for Platforms、Dynamic Workers | 客户要绑定自己的域名，或要上传、运行自己的代码。 |
 | Magic Transit、BYOIP、Network Interconnect、Cloudflare WAN | 已经有自有 IP、专线、网络团队和合同预算。 |
 | Data Localization Suite、客户端脚本安全高级能力、企业支持 | 客户、监管、合同或企业风控明确要求。 |
-| Web3、Time Services、Randomness Beacon、Privacy Gateway、Tenant API | 有对应专业场景再看，不为了“架构完整”启用。 |
+| Web3、Time Services、Randomness Beacon、Privacy Gateway、Tenant API | 有对应专业场景时再评估。 |
 
 ## 常见误区
 
