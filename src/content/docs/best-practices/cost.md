@@ -32,46 +32,11 @@ Cloudflare 账单要分成域名计划、Workers Paid、附加产品和按量计
 | 限流在边界 | 登录、评论、搜索、上传、Webhook 先做最小限流和 Turnstile，再讨论更复杂安全产品。 |
 | 日志克制 | 生产日志记录请求编号、路径、状态、耗时和错误类型；不记录密钥、登录凭证和正文隐私。 |
 
-## 什么时候付 5 USD/month
+## 付费判断
 
-Workers Paid 的每月最低 5 USD 值得付的典型信号：
+Workers Paid 只在动态请求、CPU、日志、Cron、D1、KV、Queues、Durable Objects、Hyperdrive、Browser Run 或 Workers AI 已经进入真实生产路径时才值得开。它不是 Cloudflare Pro，也不是预算硬封顶；WAF、Cache Rules、证书、Bot、R2、Images、Stream、Log Explorer 和企业日志能力都要按各自产品重新看。
 
-- Worker 请求接近或超过 100,000/day。
-- 单次 CPU 明显超过 Free 的 10 ms。
-- 需要更多 subrequests、Cron Triggers、Worker 数量或更大的 Worker bundle。
-- 需要更高 Workers Logs 额度和留存。
-- D1、KV、Queues、Durable Objects、Hyperdrive 或 Browser Run 已经成为产品主路径。
-- Workers AI 每天 10,000 Neurons 不够用。
-
-不急着付的典型信号：
-
-- 只是静态文档站、博客或官网。
-- 搜索可以用 Pagefind。
-- 评论、表单、后台功能还没有真实用户。
-- AI 搜索还只是设想，内容规模也不大。
-
-## 5 USD 买不到什么
-
-| 不包含 | 正确理解 |
-| --- | --- |
-| Cloudflare Pro / Business 的 zone 权益 | WAF 规则数量、Cache Rules、证书高级能力、部分 Bot 能力跟域名计划相关。 |
-| 预算硬封顶 | Budget alerts 只发邮件，不会自动暂停服务或阻止继续计费。 |
-| R2 全免费 | R2 没有 egress 费用，但 storage、Class A、Class B 仍然要看。 |
-| AI 无限用 | Workers AI、AI Gateway、AI Search、Vectorize 都有自己的查询、日志、模型用量或维度边界。 |
-| 企业日志能力 | Workers Paid 解锁 Workers Trace Events Logpush；常规 Logpush 和 Log Explorer 仍要单独看计划。 |
-
-## 常见误区
-
-| 误区 | 更好的做法 |
-| --- | --- |
-| 所有请求都先经过 Worker。 | 静态资产直接服务，只让动态路径进入 Worker。 |
-| KV 可以当数据库。 | KV 用于读多写少的配置和缓存；关系数据用 D1。 |
-| R2 egress 免费就完全免费。 | R2 无 egress bandwidth charge，但存储和操作会计费。 |
-| AI 一开始就做向量搜索。 | 先把内容结构化，Pagefind 能解决大部分早期搜索。 |
-| 免费额度不用看。 | 免费额度不是无限额度；公开项目要知道硬限制在哪里。 |
-| Workers Paid 等于 Cloudflare Pro。 | Workers Paid 是开发者平台账户级订阅；Pro 是 zone / domain 计划。 |
-| 只看请求数，不看 CPU。 | Workers 同时要看请求和 CPU；计算密集任务要单独估算。 |
-| 预算提醒会自动封顶。 | Budget alerts 只提醒，不暂停服务，也不停止按量计费产品。 |
+只是静态文档站、博客、官网、作品集，或者搜索用 Pagefind 就能解决时，不急着付费。详细数字和误区统一看 [免费额度大全](/platform/free-paid/)。
 
 ## 事实来源
 

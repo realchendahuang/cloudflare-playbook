@@ -14,6 +14,7 @@ export default defineConfig({
 			components: {
 				Footer: './src/components/TwikooFooter.astro',
 			},
+			routeMiddleware: ['./src/starlightRouteData.ts'],
 			plugins: [
 				starlightThemeNext(),
 			],

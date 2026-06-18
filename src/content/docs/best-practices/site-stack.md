@@ -73,6 +73,11 @@ VuePress 可以部署到 Cloudflare，也适合写普通教程。实践型文档
 
 ## 事实来源
 
+- [withastro/starlight](https://github.com/withastro/starlight)
+- [Pagefind/pagefind](https://github.com/Pagefind/pagefind)
+- [trueberryless-org/starlight-theme-next](https://github.com/trueberryless-org/starlight-theme-next)
+- [twikoojs/twikoo](https://github.com/twikoojs/twikoo)
+- [twikoojs/twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare)
 - [Starlight Site Search](https://starlight.astro.build/guides/site-search/)
 - [Pagefind Docs](https://pagefind.app/docs/)
 - [Astro Cloudflare Deployment](https://docs.astro.build/en/guides/deploy/cloudflare/)
