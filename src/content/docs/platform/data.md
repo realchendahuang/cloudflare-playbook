@@ -16,9 +16,9 @@ description: D1、KV、R2、Durable Objects、Queues 和后置数据产品的选
 | 邮件、通知、导入、审核、后处理 | [Queues](/platform/queues/) | 用户请求里同步跑慢任务。 |
 | 已有 Postgres / MySQL | [Hyperdrive](/platform/extended-compute-data/) | 新项目先建外部数据库。 |
 | 文档语义搜索 | [AI Search](/platform/ai/) / Vectorize | 文档很少时直接上向量库。 |
-| 产品指标、用量统计 | [Analytics Engine](/platform/observability/) | D1 记录海量事件。 |
+| 产品指标、用量统计 | [观测与日志](/platform/observability/) | D1 记录海量事件。 |
 
-完整免费额度见 [免费额度大全](/platform/free-paid/)。这页只讲选择顺序。
+完整免费额度见 [免费额度大全](/platform/free-paid/)。
 
 ## 判断顺序
 
@@ -31,13 +31,13 @@ description: D1、KV、R2、Durable Objects、Queues 和后置数据产品的选
 | 这件事可以晚点做、失败重试或批量处理吗？ | Queues。 |
 | 已经有外部数据库，不想迁移主库吗？ | Hyperdrive。 |
 | 是自然语言搜索吗？ | 先 Pagefind；需要语义理解再看 AI Search / Vectorize。 |
-| 是持续涌入的事件和指标吗？ | Analytics Engine、Pipelines 或 R2，不要塞进 D1。 |
+| 是持续涌入的事件和指标吗？ | 指标分析、数据管道或 R2，不要塞进 D1。 |
 
 ## 什么时候迁移
 
 | 当前做法 | 出现信号 | 下一步 |
 | --- | --- | --- |
-| D1 里塞大 JSON、图片或附件 | 数据库变慢，备份和查询都难受 | 文件本体迁到 R2，D1 只留元数据。 |
+| D1 里塞大段内容、图片或附件 | 数据库变慢，备份和查询都难受 | 文件本体迁到 R2，D1 只留元数据。 |
 | KV 存会话、库存、计数器 | 需要强撤销、强一致或高频写同一个 key | 写路径迁到 D1 或 Durable Objects。 |
 | 请求里同步处理慢任务 | 邮件、AI、导入、审核拖慢响应 | 放入 Queues，用户请求只返回状态。 |
 | R2 里只有文件，没有索引 | 需要按用户、标签、状态、时间分页 | D1 建元数据表。 |

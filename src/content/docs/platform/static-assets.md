@@ -3,9 +3,7 @@ title: Workers Static Assets
 description: Cloudflare Workers Static Assets 的定位、免费边界和 Pages 取舍。
 ---
 
-Workers Static Assets 用来托管构建好的静态文件：HTML、CSS、JavaScript、图片、字体和前端构建产物。
-
-先记一条：**能提前构建出来的内容，就尽量让 Static Assets 直接返回；只有真正需要运行代码的路径才进 Worker。**
+Workers Static Assets 用来托管构建好的静态文件：HTML、CSS、JavaScript、图片、字体和前端构建产物。能提前构建出来的内容尽量由资产层直接返回；只有真正需要运行代码的路径才进 Worker。
 
 ## 先判断
 

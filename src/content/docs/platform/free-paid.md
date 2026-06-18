@@ -5,7 +5,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 
 最后核对日期：2026-06-18。额度和价格以 Cloudflare 官方价格、限制和账单页面为准。
 
-这页只回答三件事：
+免费额度先回答三件事：
 
 1. 一个项目能不能先 0 元跑起来。
 2. 5 美元/月 Workers Paid 到底买什么。
@@ -103,7 +103,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | --- | --- |
 | Load Balancing、Health Checks、Argo、Spectrum | 多源站、故障切换、非 HTTP 入口或缓存做好后仍然回源慢。 |
 | Waiting Room、Smart Shield、APO | 合法峰值、WordPress 性能瓶颈或源站洪峰已经明确。 |
-| Bots、API Shield、Security Center | bot 成本、接口资产、移动端接口或安全审计已经明确。 |
+| Bot 治理、接口防护、安全中心 | bot 成本、接口资产、移动端接口或安全审计已经明确。 |
 | 长期日志、日志查询、分析报表 | 需要长期取证、外部日志平台、审计留存或自动报表。 |
 | Hyperdrive、Workflows、Pipelines、Containers、R2 Data Catalog | 已有外部数据库、长流程、数据湖或完整运行环境需求。 |
 | Cloudflare for SaaS、Workers for Platforms、Dynamic Workers | 客户要绑定自己的域名，或要上传、运行自己的代码。 |

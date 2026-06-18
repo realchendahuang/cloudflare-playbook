@@ -3,7 +3,7 @@ title: 扩展计算与数据管道
 description: 什么时候才需要 Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog。
 ---
 
-这组产品不是 Cloudflare 入门第一层。默认先用 Workers、D1、R2、KV、Queues 和 Durable Objects。只有基础能力解释不了需求时，再看这一页。
+扩展计算和数据管道不属于第一层。默认先用 Workers、D1、R2、KV、Queues 和 Durable Objects；只有这些基础能力解释不了需求时，再看这里。
 
 ## 先判断
 
