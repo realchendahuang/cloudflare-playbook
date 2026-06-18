@@ -50,16 +50,6 @@ WAF 的作用不是“写越多规则越安全”，而是给 Web 入口和 API 
 
 规则不够时，先合并业务入口、删掉无效规则，再考虑升级。
 
-## 常见误区
-
-| 误区 | 更好的做法 |
-| --- | --- |
-| 开了 WAF 就不用管源站。 | 先隐藏源站真实 IP，只允许 Cloudflare 回源。 |
-| 全站 Challenge 更安全。 | 只给高风险路径和异常行为加挑战。 |
-| Rate Limiting 能精确挡住每个请求。 | 它是滥用缓冲层，业务仍要能承压。 |
-| 误伤就关掉整套规则。 | 对具体规则或路径做 exception。 |
-| Workers Paid 会提升 WAF。 | WAF 跟 zone plan / Enterprise 走，不跟 Workers Paid 走。 |
-
 ## 事实来源
 
 - [Cloudflare WAF](https://developers.cloudflare.com/waf/)

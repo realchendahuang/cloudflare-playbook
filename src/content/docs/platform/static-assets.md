@@ -1,6 +1,6 @@
 ---
 title: Workers Static Assets
-description: Cloudflare Workers Static Assets 的定位、Pages 取舍和常见避坑。
+description: Cloudflare Workers Static Assets 的定位、免费边界和 Pages 取舍。
 ---
 
 最后核对日期：2026-06-18。
@@ -52,16 +52,6 @@ Static Assets 的关键不是“能不能免费”，而是“有没有让静态
 | API 和数据产品 | Worker 原生，适合 D1、R2、KV、DO、Queues、AI。 | Pages Functions 适合轻量 API。 |
 | 预览部署 | 需要自己组织。 | PR / 分支预览更顺。 |
 | 更适合 | 静态站 + API / Worker 生态能力。 | 纯静态站、官网、内容协作。 |
-
-## 常见误区
-
-| 误区 | 更好的做法 |
-| --- | --- |
-| 所有请求都先跑 Worker。 | 静态资产直接返回，只让动态路径进 Worker。 |
-| 把用户上传文件放进 Static Assets。 | 用户文件进 R2。 |
-| 把大文件塞进 `dist`。 | 超过 25 MiB 就换 R2 / Stream。 |
-| 把开发文件和调试文件打进构建产物。 | 构建前排除开发文件、调试产物、迁移残留和密钥文件。 |
-| 用静态站规则管大型迁移。 | 规则很多时用 Cloudflare Rules / Bulk Redirects。 |
 
 ## 事实来源
 

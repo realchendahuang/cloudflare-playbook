@@ -27,16 +27,6 @@ description: Data Localization、Client-side security、DMARC、Registrar、Supp
 | Support | 线上故障需要 Cloudflare 介入。 | Free 技术支持主要走社区；付费计划才有更完整支持入口。 |
 | Learning Paths / Use cases | 不知道 Cloudflare 产品怎么组合。 | 当路线参考，不当采购清单。 |
 
-## 常见误区
-
-| 误区 | 更好的判断 |
-| --- | --- |
-| Data Localization Suite 等于所有数据自动驻留。 | 它是多个能力组合，兼容性要逐产品查。 |
-| Client-side security 免费版能拦所有恶意脚本。 | 免费层更偏监控，高级检测和阻断另看计划。 |
-| 配了 MX 就等于邮件安全。 | SPF、DKIM、DMARC 才是发信域名基础防伪。 |
-| Registrar 免费注册域名。 | Cloudflare Registrar 可用，但注册和续费仍有成本。 |
-| Use cases 里的产品组合都要照做。 | 先用免费或低成本能力完成 80%。 |
-
 ## 事实来源
 
 - [Cloudflare Learning Paths](https://developers.cloudflare.com/learning-paths/llms.txt)

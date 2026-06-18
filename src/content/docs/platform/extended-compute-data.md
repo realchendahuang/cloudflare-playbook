@@ -39,16 +39,6 @@ description: 什么时候才需要 Hyperdrive、Workflows、Pipelines、Containe
 
 核心原则：越靠后的产品，越应该先有明确用量、恢复策略和停用策略。
 
-## 常见误区
-
-| 误区 | 更好的判断 |
-| --- | --- |
-| 新项目先上 Hyperdrive。 | 新小项目优先 D1；已有外部数据库再接 Hyperdrive。 |
-| 有异步任务就上 Workflows。 | 简单削峰和后台任务先用 Queues。 |
-| Pipelines 是日志默认路线。 | 小项目先用 Workers Logs、Analytics Engine 或业务表。 |
-| R2 Data Catalog 能管理所有 R2 文件。 | 附件、图片和导出物仍按 R2 对象管理。 |
-| Containers 可以替代 Worker 学习成本。 | Containers 是运行时补位，不是默认后端形态。 |
-
 ## 事实来源
 
 - [Hyperdrive pricing](https://developers.cloudflare.com/hyperdrive/platform/pricing/)

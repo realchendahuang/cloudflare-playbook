@@ -38,16 +38,6 @@ description: Waiting Room、Smart Shield 和 APO 的取舍。
 | APO | WordPress 专用，依赖 WordPress 插件和 WordPress 缓存语义。 |
 | Dedicated CDN Egress IPs | 企业源站防火墙治理问题，先隐藏源站 IP。 |
 
-## 常见误区
-
-| 误区 | 更好的判断 |
-| --- | --- |
-| Waiting Room 能挡 DDoS。 | 它主要管理合法流量峰值；恶意流量先用安全产品。 |
-| 源站一慢就买 Smart Shield。 | 先看缓存命中、源站暴露、慢查询、图片和静态资源。 |
-| 全站挂 Waiting Room 更安全。 | Waiting Room 应只放在会打满源站的入口。 |
-| APO 是所有动态站缓存。 | APO 是 WordPress 插件驱动方案。 |
-| 有 Cloudflare 就不用保护源站。 | 源站 IP 暴露时，攻击可以绕过 Cloudflare。 |
-
 ## 事实来源
 
 - [Waiting Room](https://developers.cloudflare.com/waiting-room/)

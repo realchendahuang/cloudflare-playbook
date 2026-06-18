@@ -27,16 +27,6 @@ description: 可以先跳过的协议、治理和平台工具。
 | 用户反馈“打不开”，但服务端没有请求记录。 | Network Error Logging | 只用于补充诊断 last mile 问题。 |
 | 做公开抽签或协议随机数，需要可验证随机源。 | Randomness Beacon | 只用于公开可验证流程，不用于私密凭证。 |
 
-## 常见误区
-
-| 误区 | 更好的判断 |
-| --- | --- |
-| NEL 能替代日志和监控。 | 它只补浏览器侧网络失败。 |
-| Randomness Beacon 可以生成密钥。 | 公共随机数不能当私密随机源。 |
-| Tenant API 等于 SaaS 多租户。 | 早期 SaaS 先在应用数据、客户域名和权限层实现多租户。 |
-| MoQ 是视频托管默认方案。 | 视频和实时场景先看 Stream、RealtimeKit、Realtime SFU / TURN。 |
-| Agent Memory 应该保存所有聊天原文。 | 长期记忆只放可复用的事实、偏好、约定和任务。 |
-
 ## 事实来源
 
 - [Network Error Logging](https://developers.cloudflare.com/network-error-logging/)

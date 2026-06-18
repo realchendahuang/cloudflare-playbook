@@ -31,16 +31,6 @@ description: 文本实时、音视频实时和 WebRTC 穿透怎么选。
 | Realtime SFU / TURN | Cloudflare 到客户端的出站流量。 |
 | 会议后处理 | Webhook 次数、队列任务、R2 存储和日志。 |
 
-## 常见误区
-
-| 误区 | 更好的判断 |
-| --- | --- |
-| 有 WebSocket 就该用 Realtime。 | 文本和状态同步先用 Durable Objects。 |
-| RealtimeKit beta 免费，所以生产一定无成本。 | 上线前要按正式价格预估会议时长和录制。 |
-| SFU 是 RealtimeKit 的低价替代。 | SFU 少了 UI、会议状态和业务流程。 |
-| TURN 会让所有延迟变低。 | TURN 主要解决连接可靠性和 NAT 穿透。 |
-| 录制、转录、会议结束处理放前端。 | 这些走 Webhooks 回后端，再异步处理。 |
-
 ## 事实来源
 
 - [Cloudflare Realtime](https://developers.cloudflare.com/realtime/)

@@ -45,18 +45,6 @@ Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产
 | 房间、会话、限流器 | Durable Objects | 单实体强一致。 |
 | 慢任务、通知、重试 | Queues / Workflows | 不绑在一次请求生命周期里。 |
 
-## 最容易踩坑
-
-| 误区 | 更好的做法 |
-| --- | --- |
-| 所有访问都先进 Worker。 | 只让 `/api/*`、鉴权、后台等动态路径进 Worker。 |
-| 只看请求数，不看 CPU。 | Workers Paid 同时看请求和 CPU。 |
-| 把 KV 当数据库。 | 关系数据用 D1，强一致单实体用 Durable Objects。 |
-| 上传文件先读完整内容。 | Worker 做入口控制，文件流向 R2。 |
-| 把评论、搜索、AI、后台任务塞进一个 Worker。 | 先按路径、数据和成本拆清楚。 |
-| 密钥写进仓库或普通变量。 | 非敏感配置用 vars，密钥用 secrets。 |
-| 日志记录密钥、登录凭证和请求正文。 | 只记请求编号、Ray ID、状态、耗时和匿名化标识。 |
-
 ## 简单路线
 
 前端和文档先用 Static Assets / Pages，只让动态路径进入 Worker。数据按类型放到 D1、KV、R2、Durable Objects；写入口加 Turnstile、Rate Limiting 和最少日志；后台用 Access 保护；慢任务进 Queues / Workflows。请求、CPU、日志或 Durable Objects 稳定进入生产后，再开 Workers Paid。

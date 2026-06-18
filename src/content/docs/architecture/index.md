@@ -55,18 +55,6 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | 免费边界先算 | 先看静态请求、Workers 请求、CPU、D1 rows、R2 operations，再谈升级。 |
 | 安全不要后补 | 写入口先有 Turnstile、Rate Limiting、WAF 或身份边界。 |
 
-## 常见误判
-
-| 误判 | 更好的判断 |
-| --- | --- |
-| 页面越复杂越专业。 | 先把静态、动态、数据、文件、后台任务分清楚。 |
-| Workers 能跑代码，所以所有请求都进 Worker。 | 静态内容直接走 Static Assets / Pages，只有动态路径进入 Worker。 |
-| KV 是全局存储，所以可以做锁和房间状态。 | KV 是最终一致；强一致状态用 Durable Objects 或 D1 事务。 |
-| R2 免 egress，所以大文件完全免费。 | R2 仍有 storage、Class A、Class B 操作成本。 |
-| AI 搜索是文档站标配。 | 内容少时先 Pagefind；自然语言问题明显后再上 AI Search / Vectorize。 |
-| Access / Tunnel 是企业才需要。 | 个人和小团队的后台、预览、管理工具同样应该先用身份边界保护。 |
-| Workers Paid 解决所有配额。 | Workers Paid 只扩展开发者平台，不等于 Pro、Business 或 Enterprise。 |
-
 ## 官方资料
 
 - [Reference Architecture](https://developers.cloudflare.com/reference-architecture/)

@@ -57,17 +57,6 @@ description: D1、KV、R2、Durable Objects、Queues、Hyperdrive、Vectorize、
 | 单个 D1 库持续变大 | 接近单库或吞吐边界 | 按租户、项目、用户或区域拆库。 |
 | Pagefind 不够 | 用户开始问自然语言问题 | 评估 AI Search 或 Vectorize。 |
 
-## 常见误用
-
-| 误用 | 更好的做法 |
-| --- | --- |
-| KV 当数据库 | KV 只做读多写少缓存和配置。 |
-| D1 存文件本体 | R2 存文件，D1 存 key、权限和索引。 |
-| R2 当查询数据库 | D1 / Analytics Engine / R2 SQL 负责查询，R2 保留对象。 |
-| Durable Objects 当全站大表 | DO 管单实体状态，跨实体查询落到 D1 或分析系统。 |
-| Queues 当同步接口 | Queues 做异步和重试；同步流程留在 Worker。 |
-| 一开始就上向量库 | 先整理标题、标签、来源、更新时间和站内搜索。 |
-
 ## 事实来源
 
 | 来源 | 用途 |
