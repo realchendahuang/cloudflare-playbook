@@ -20,20 +20,6 @@ Cloudflare 账单要分成域名计划、Workers Paid、附加产品和按量计
 | 5 | 日志和 AI | Workers Logs、AI Gateway、Workers AI、AI Search、Vectorize 都适合先验证，再扩大。 |
 | 6 | 固定订阅和 add-on | Workers Paid、Pro / Business、Images Paid、Stream、Log Explorer、Load Balancing 等要按产品单独判断。 |
 
-## 成本来源
-
-| 成本类型 | 常见产品 | 判断问题 |
-| --- | --- | --- |
-| 请求 | Workers、Pages Functions、Durable Objects、Queues、R2 operations | 这次访问有没有打到动态代码、对象存储或队列？ |
-| CPU | Workers、Cron、Queue Consumer | 代码是在算东西，还是在等外部 I/O？ |
-| 存储 | D1、R2、KV、Durable Objects、Stream、Images | 数据是否应该长期保留，是否可以过期、压缩或归档？ |
-| 构建 | Workers Builds、Pages Builds | 每次 push 是否都需要完整构建？ |
-| 日志 | Workers Logs、Logpush、AI Gateway logs | 日志是否记录了必要上下文，是否需要长期保留？ |
-| AI | Workers AI、AI Gateway、Vectorize、AI Search | 模型、上下文、输出长度、缓存命中率和查询次数是否可观察？ |
-| 安全 | WAF、Bot、Access、API Shield、Turnstile | 付费是在买更高配额、更细规则，还是买人工可维护性？ |
-| 固定订阅 | 域名计划、Workers Paid、附加产品 | 这是按月固定费用，还是会叠加按量费用？ |
-| 账单观察 | Billable Usage dashboard、Budget alerts、Invoices | 当前看到的是按量超额，还是完整发票？预算提醒有没有设置？ |
-
 ## 免费友好的架构规则
 
 | 规则 | 做法 |
@@ -73,23 +59,6 @@ Workers Paid 的每月最低 5 USD 值得付的典型信号：
 | R2 全免费 | R2 没有 egress 费用，但 storage、Class A、Class B 仍然要看。 |
 | AI 无限用 | Workers AI、AI Gateway、AI Search、Vectorize 都有自己的查询、日志、模型用量或维度边界。 |
 | 企业日志能力 | Workers Paid 解锁 Workers Trace Events Logpush；常规 Logpush 和 Log Explorer 仍要单独看计划。 |
-
-## 观察清单
-
-| 模块 | 先看什么 |
-| --- | --- |
-| Workers | 请求数、CPU、错误率、外部调用和包体大小。 |
-| Static Assets / Pages | 静态资产命中、文件数、单文件大小、构建次数。 |
-| D1 | rows read、rows written、慢查询、是否缺索引。 |
-| R2 | storage、Class A、Class B、公开下载热点。 |
-| KV | reads / writes / list / delete 是否符合读多写少。 |
-| Queues | 操作数、失败重试、失败队列和消息保留时间。 |
-| Durable Objects | 请求数、运行时长、实时连接是否休眠。 |
-| AI Gateway | 请求数、模型、模型用量、缓存命中和错误。 |
-| Workers AI | Neurons/day、模型单价、输入输出长度。 |
-| Browser Run | browser hours、并发浏览器、单任务耗时。 |
-| Logs | 日志量、保留期、是否能定位错误。 |
-| Billing | 按量用量、预算提醒、发票条目、固定订阅。 |
 
 ## 常见误区
 
