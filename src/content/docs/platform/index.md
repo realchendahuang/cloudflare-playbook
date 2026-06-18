@@ -18,7 +18,7 @@ description: Cloudflare 产品入口、免费优先路线和选型索引。
 | 想做安全防护 | [WAF](/platform/waf/)、[DDoS Protection](/platform/ddos/)、[安全与网络](/platform/security-networking/) |
 | 想做搜索或 AI | [AI 产品](/platform/ai/) |
 | 想看日志和访问数据 | [观测与日志](/platform/observability/) |
-| 想用 Terraform / Pulumi 管配置 | [迁移与 IaC](/platform/iac-migration/) |
+| 想把配置纳入可复核流程 | [迁移与配置管理](/platform/iac-migration/) |
 
 ## 推荐路线
 
@@ -29,7 +29,7 @@ description: Cloudflare 产品入口、免费优先路线和选型索引。
 | 数据 | D1、KV、R2 | 读写、存储、对象操作量成为真实瓶颈时再优化。 |
 | 安全 | DDoS 默认防护、WAF 最小规则、Turnstile、Access | 出现刷量、攻击、审计或团队权限需求时再加规则和计划。 |
 | 搜索 | Pagefind 起步 | 内容量大、需要自然语言搜索时再看 AI Search / Vectorize。 |
-| 观测 | Web Analytics、Workers Logs、Budget alerts | 需要长期取证、外部 SIEM 或完整日志时再看 Logpush / Log Explorer。 |
+| 观测 | Web Analytics、Workers Logs、Budget alerts | 需要长期取证、外部日志平台或完整日志时再看日志推送 / Log Explorer。 |
 
 核心原则：静态内容走静态层，文件放对象存储，关系数据放数据库，强一致状态单独处理，慢任务进队列。
 
@@ -43,11 +43,11 @@ description: Cloudflare 产品入口、免费优先路线和选型索引。
 | 数据与文件 | [D1](/platform/d1/)、[KV](/platform/kv/)、[R2](/platform/r2/)、[数据产品](/platform/data/) | SQL、配置缓存、对象存储、数据产品选型。 |
 | 状态与异步 | [Durable Objects](/platform/durable-objects/)、[Queues](/platform/queues/) | 强一致房间、限流器、WebSocket、后台任务。 |
 | 安全 | [WAF](/platform/waf/)、[DDoS Protection](/platform/ddos/)、[安全与网络](/platform/security-networking/) | 攻击防护、限流、验证码、后台保护。 |
-| AI | [AI 产品](/platform/ai/) | AI Gateway、Workers AI、AI Search、Vectorize、Agents。 |
+| AI | [AI 产品](/platform/ai/) | 模型调用、AI 搜索、向量检索和 Agent。 |
 | 观测 | [观测与日志](/platform/observability/)、[账单与预算](/platform/billing/) | 访问分析、日志、告警、账单。 |
-| 进阶计算 | [扩展计算与数据管道](/platform/extended-compute-data/) | Hyperdrive、Workflows、Pipelines、Containers。 |
+| 进阶计算 | [扩展计算与数据管道](/platform/extended-compute-data/) | 外部数据库加速、长流程、数据管道和容器。 |
 | 多租户 | [平台化与多租户](/platform/platforms-saas/) | 客户自定义域名、用户代码运行、SaaS 平台能力。 |
-| 企业网络 | [Zero Trust 与企业网络](/platform/zero-trust-networking/)、[自有网络与专线](/platform/private-networking/) | Access、Tunnel、Gateway、专线、自有 IP。 |
+| 企业网络 | [Zero Trust 与企业网络](/platform/zero-trust-networking/)、[自有网络与专线](/platform/private-networking/) | 后台访问、隧道、网关、专线、自有 IP。 |
 
 ## 免费优先顺序
 
@@ -57,9 +57,9 @@ description: Cloudflare 产品入口、免费优先路线和选型索引。
 | Workers Static Assets / Pages | 全站 SSR 或所有请求先跑 Worker。 |
 | Workers Free、D1 Free、KV Free、R2 Free | 容器、复杂工作流、外部数据库加速。 |
 | Turnstile、WAF 最小规则、Access + Tunnel | 高级 Bot、完整 API Shield、企业日志。 |
-| Pagefind、Web Analytics、Budget alerts | 一开始就做完整 AI 搜索、SIEM、复杂埋点。 |
+| Pagefind、Web Analytics、Budget alerts | 一开始就做完整 AI 搜索、外部日志平台、复杂埋点。 |
 
-第一次付费通常从 Workers Paid 开始，因为它直接放大开发者平台的请求、CPU、KV、Durable Objects、日志和部分后台能力。但 Workers Paid 不是 Cloudflare Pro，也不会自动提升 WAF、Bot、Rules、证书或企业网络配额。
+第一次付费通常从 Workers Paid 开始，因为它直接放大开发者平台的请求、CPU、KV、Durable Objects、日志和部分后台能力。但 Workers Paid 不是 Cloudflare Pro，也不会自动提升 WAF、Bot、规则、证书或企业网络配额。
 
 ## 后面再看
 
@@ -70,6 +70,6 @@ description: Cloudflare 产品入口、免费优先路线和选型索引。
 | Workers for Platforms / Dynamic Workers | 用户需要运行自己的代码，且平台有计费和隔离模型。 |
 | Magic Transit / BYOIP / Network Interconnect | 已经进入企业网络工程。 |
 | Stream / Images Paid | 媒体是核心业务，不只是站点资源优化。 |
-| Logpush / Log Explorer | 需要长期取证、合规留存或外部日志平台。 |
+| 日志推送 / Log Explorer | 需要长期取证、合规留存或外部日志平台。 |
 
 官方资料从 [Cloudflare 文档地图](/reference/cloudflare-docs-map/) 进入；额度和价格回到 [免费额度大全](/platform/free-paid/) 核对。

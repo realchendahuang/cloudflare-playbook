@@ -1,45 +1,45 @@
 ---
-title: 迁移与 IaC
-description: Cloudflare 迁移、Terraform、Pulumi、Wrangler 和配置真源管理。
+title: 迁移与配置管理
+description: Cloudflare 迁移、配置真源和团队变更边界。
 ---
 
 最后核对日期：2026-06-18。
 
-IaC 不是把所有 Cloudflare 配置都写成 Terraform。先问一个更小的问题：这个配置改错会不会影响入口、安全、账单或生产数据？会，就逐步纳入可复核的配置真源；不会，就先保持简单。
+配置管理不是把所有 Cloudflare 配置都写进工具。先问一个更小的问题：这个配置改错会不会影响入口、安全、账单或生产数据？会，就逐步纳入可复核的配置真源；不会，就先保持简单。
 
 ## 先判断
 
 | 场景 | 建议 | 先做什么 |
 | --- | --- | --- |
-| 单人项目、刚接入 Cloudflare | 不急。 | Dashboard + Wrangler + Git 记录变更。 |
-| DNS、WAF、Rules、Access 变多 | 应该上。 | 先盘点现状，再按资源逐步接管。 |
+| 单人项目、刚接入 Cloudflare | 不急。 | 控制台 + Wrangler + Git 记录变更。 |
+| DNS、WAF、规则、Access 变多 | 应该上。 | 先盘点现状，再按资源逐步接管。 |
 | 多人维护生产域名 | 应该上。 | 入口和安全配置要有人复核。 |
 | Worker 开发和部署 | 不一定。 | Wrangler 仍然是最直接的构建和部署入口。 |
-| 已有大量 Dashboard 配置 | 谨慎迁移。 | 先导出现状，不要直接 apply。 |
-| 团队已有 Terraform / Pulumi | 可以沿用。 | 同一资源不要混用 Dashboard 和 IaC 修改。 |
+| 已有大量控制台配置 | 谨慎迁移。 | 先导出现状，不要直接应用。 |
+| 团队已有基础设施配置工具 | 可以沿用。 | 同一资源不要混用控制台和代码修改。 |
 
 ## 工具边界
 
 | 工具 | 适合 | 不适合 |
 | --- | --- | --- |
-| Dashboard | 早期试错、低风险配置。 | 多人生产变更唯一真源。 |
-| Wrangler | Worker 本地开发、构建、部署、D1 迁移、日志。 | 管所有账号和 Zone 配置。 |
-| Terraform / Pulumi | DNS、Rules、WAF、Access、账号和 Zone 级资源。 | 不导入现有资源就强行接管。 |
+| 控制台 | 早期试错、低风险配置。 | 多人生产变更唯一真源。 |
+| Wrangler | Worker 本地开发、构建、部署、D1 迁移、日志。 | 管所有账号和域名配置。 |
+| 基础设施配置工具 | DNS、规则、WAF、Access、账号和域名级资源。 | 不导入现有资源就强行接管。 |
 | 生成/导入工具 | 把已有配置变成迁移草稿。 | 不复核就直接进生产。 |
-| Remote state | 团队共享 IaC 状态。 | 公开存放或把密钥写进仓库。 |
+| 远程状态 | 团队共享配置状态。 | 公开存放或把密钥写进仓库。 |
 
 ## 先纳入哪些配置
 
 | 顺序 | 资源 | 原因 |
 | --- | --- | --- |
-| 先纳入 | DNS records、SSL/TLS、Redirects | 入口层改错影响最大。 |
-| 先纳入 | WAF、Rate Limiting、Access | 安全策略需要复核和回滚。 |
-| 再纳入 | Cache Rules、Origin Rules、Transform Rules | 会影响缓存、回源、URL 和成本。 |
-| 再纳入 | R2、KV、D1、Queues 等资源声明 | 资源归属要清楚；数据内容不要进 state。 |
-| 最后看 | Worker deployment | 只有团队需要统一发布模型时再上。 |
+| 先纳入 | DNS 记录、SSL/TLS、跳转 | 入口层改错影响最大。 |
+| 先纳入 | WAF、限流、Access | 安全策略需要复核和回滚。 |
+| 再纳入 | 缓存规则、回源规则、改写规则 | 会影响缓存、回源、URL 和成本。 |
+| 再纳入 | R2、KV、D1、Queues 等资源声明 | 资源归属要清楚；数据内容不要进配置状态。 |
+| 最后看 | Worker 发布流程 | 只有团队需要统一发布模型时再上。 |
 
 ## 迁移原则
 
-先盘点，再导入，再小步 apply。生成配置只当草稿，不复核不要进生产；被 IaC 管住的资源，就不要再从 Dashboard 手工改。DNS、WAF、Rules、Access 这类低频高风险配置最值得先纳入；Worker 代码、D1 迁移、临时排障和日志仍然交给 Wrangler / Dashboard 更直接。
+先盘点，再导入，再小步应用。生成配置只当草稿，不复核不要进生产；被配置真源管住的资源，就不要再从控制台手工改。DNS、WAF、规则、Access 这类低频高风险配置最值得先纳入；Worker 代码、D1 迁移、临时排障和日志仍然交给 Wrangler / 控制台更直接。
 
 官方核对入口：[Terraform provider](https://developers.cloudflare.com/terraform/)、[Workers Infrastructure as Code](https://developers.cloudflare.com/workers/platform/infrastructure-as-code/)、[Pulumi](https://developers.cloudflare.com/pulumi/)。
