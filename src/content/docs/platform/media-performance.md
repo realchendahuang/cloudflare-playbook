@@ -33,11 +33,4 @@ description: 图片、视频、第三方脚本和浏览器任务的取舍。
 | Zaraz | 第三方工具真正需要的事件量。 |
 | Browser Run | 浏览器时长、并发、是否及时关闭 session。 |
 
-## 事实来源
-
-- [Images Pricing](https://developers.cloudflare.com/images/pricing/)
-- [Images Limits and formats](https://developers.cloudflare.com/images/get-started/limits/)
-- [Stream Pricing](https://developers.cloudflare.com/stream/pricing/)
-- [Observatory](https://developers.cloudflare.com/speed/observatory/)
-- [Zaraz Pricing](https://developers.cloudflare.com/zaraz/pricing-info/)
-- [Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)
+官方核对入口：[Images Pricing](https://developers.cloudflare.com/images/pricing/)、[Stream Pricing](https://developers.cloudflare.com/stream/pricing/)、[Zaraz Pricing](https://developers.cloudflare.com/zaraz/pricing-info/)、[Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)。

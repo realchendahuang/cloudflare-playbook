@@ -61,11 +61,4 @@ Zero Trust Free 适合 50 users 内的小团队 PoC；Tunnel 发布 public hostn
 5. 团队出站安全从 Gateway DNS 开始。
 6. 企业网络能力只在有网络负责人时评估。
 
-## 事实来源
-
-- [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/)
-- [Zero Trust & SASE Plans & Pricing](https://www.cloudflare.com/plans/zero-trust-services/)
-- [Cloudflare One account limits](https://developers.cloudflare.com/cloudflare-one/account-limits/)
-- [Publish a self-hosted application with Access](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/)
-- [Published applications with Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/routing-to-tunnel/)
-- [Gateway get started](https://developers.cloudflare.com/cloudflare-one/traffic-policies/get-started/)
+官方核对入口：[Cloudflare One](https://developers.cloudflare.com/cloudflare-one/)、[Access](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/)、[Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/routing-to-tunnel/)。

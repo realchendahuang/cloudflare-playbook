@@ -31,12 +31,4 @@ description: 文本实时、音视频实时和 WebRTC 穿透怎么选。
 | Realtime SFU / TURN | Cloudflare 到客户端的出站流量。 |
 | 会议后处理 | Webhook 次数、队列任务、R2 存储和日志。 |
 
-## 事实来源
-
-- [Cloudflare Realtime](https://developers.cloudflare.com/realtime/)
-- [Cloudflare Realtime llms.txt](https://developers.cloudflare.com/realtime/llms.txt)
-- [RealtimeKit](https://developers.cloudflare.com/realtime/realtimekit/)
-- [RealtimeKit Pricing](https://developers.cloudflare.com/realtime/realtimekit/pricing/)
-- [Realtime SFU](https://developers.cloudflare.com/realtime/sfu/)
-- [Realtime SFU Pricing](https://developers.cloudflare.com/realtime/sfu/pricing/)
-- [TURN Service](https://developers.cloudflare.com/realtime/turn/)
+官方核对入口：[Cloudflare Realtime](https://developers.cloudflare.com/realtime/)、[RealtimeKit](https://developers.cloudflare.com/realtime/realtimekit/)、[Realtime SFU](https://developers.cloudflare.com/realtime/sfu/)、[TURN Service](https://developers.cloudflare.com/realtime/turn/)。

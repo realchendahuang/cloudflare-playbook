@@ -23,7 +23,7 @@ IaC 不是把所有 Cloudflare 配置都写成 Terraform。先问一个更小的
 | 工具 | 适合 | 不适合 |
 | --- | --- | --- |
 | Dashboard | 早期试错、低风险配置。 | 多人生产变更唯一真源。 |
-| Wrangler | Worker 本地开发、构建、部署、D1 migrations、日志。 | 管所有账号和 Zone 配置。 |
+| Wrangler | Worker 本地开发、构建、部署、D1 迁移、日志。 | 管所有账号和 Zone 配置。 |
 | Terraform / Pulumi | DNS、Rules、WAF、Access、账号和 Zone 级资源。 | 不导入现有资源就强行接管。 |
 | 生成/导入工具 | 把已有配置变成迁移草稿。 | 不复核就直接进生产。 |
 | Remote state | 团队共享 IaC 状态。 | 公开存放或把密钥写进仓库。 |
@@ -40,14 +40,6 @@ IaC 不是把所有 Cloudflare 配置都写成 Terraform。先问一个更小的
 
 ## 迁移原则
 
-先盘点，再导入，再小步 apply。生成配置只当草稿，不复核不要进生产；被 IaC 管住的资源，就不要再从 Dashboard 手工改。DNS、WAF、Rules、Access 这类低频高风险配置最值得先纳入；Worker 代码、D1 migrations、临时排障和日志仍然交给 Wrangler / Dashboard 更直接。
+先盘点，再导入，再小步 apply。生成配置只当草稿，不复核不要进生产；被 IaC 管住的资源，就不要再从 Dashboard 手工改。DNS、WAF、Rules、Access 这类低频高风险配置最值得先纳入；Worker 代码、D1 迁移、临时排障和日志仍然交给 Wrangler / Dashboard 更直接。
 
-## 事实来源
-
-- [Cloudflare Terraform provider](https://developers.cloudflare.com/terraform/)
-- [Terraform Best practices](https://developers.cloudflare.com/terraform/advanced-topics/best-practices/)
-- [Import Cloudflare resources](https://developers.cloudflare.com/terraform/advanced-topics/import-cloudflare-resources/)
-- [Terraform Remote R2 backend](https://developers.cloudflare.com/terraform/advanced-topics/remote-backend/)
-- [Workers Infrastructure as Code](https://developers.cloudflare.com/workers/platform/infrastructure-as-code/)
-- [Pulumi](https://developers.cloudflare.com/pulumi/)
-- [Reference Architecture how to use](https://developers.cloudflare.com/reference-architecture/how-to-use/)
+官方核对入口：[Terraform provider](https://developers.cloudflare.com/terraform/)、[Workers Infrastructure as Code](https://developers.cloudflare.com/workers/platform/infrastructure-as-code/)、[Pulumi](https://developers.cloudflare.com/pulumi/)。

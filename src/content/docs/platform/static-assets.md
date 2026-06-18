@@ -53,10 +53,4 @@ Static Assets 的关键不是“能不能免费”，而是“有没有让静态
 | 预览部署 | 需要自己组织。 | PR / 分支预览更顺。 |
 | 更适合 | 静态站 + API / Worker 生态能力。 | 纯静态站、官网、内容协作。 |
 
-## 事实来源
-
-- [Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
-- [Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
-- [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
-- [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
-- [Migrate from Pages to Workers](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)
+官方核对入口：[Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)、[Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)、[Migrate from Pages to Workers](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)。

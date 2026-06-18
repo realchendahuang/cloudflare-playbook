@@ -3,7 +3,7 @@ title: Worker API + D1
 description: 使用 Workers、Hono 和 D1 设计轻量评论 API 的边界。
 ---
 
-最后核对日期：2026-06-17。
+最后核对日期：2026-06-18。
 
 这个案例演示一个最小评论 API：Worker 提供接口，D1 保存关系型数据，Hono 负责路由和 JSON 响应。它适合表单提交、评论、轻量后台配置和小型 SaaS 的基础数据写入。
 
@@ -17,7 +17,7 @@ description: 使用 Workers、Hono 和 D1 设计轻量评论 API 的边界。
 Worker API
   ├─ Hono 路由
   ├─ 请求参数校验
-  ├─ D1 prepared statements
+  ├─ D1 预编译语句
   └─ JSON response
   ▼
 D1 comments-db
@@ -35,7 +35,7 @@ D1 comments-db
 | --- | --- |
 | Worker | 接收 `/api/*`，做鉴权、输入校验、限流和 JSON 响应。 |
 | D1 | 保存关系数据，用 migration 管表结构，用索引支撑常见查询。 |
-| SQL | 读写都用 prepared statement 和 `bind()`，不拼接用户输入。 |
+| SQL | 读写都用预编译语句，不拼接用户输入。 |
 | 安全 | 评论、表单等公开写入口叠加 Turnstile、Rate Limiting 或登录态。 |
 | 验证 | 本地迁移、本地接口、远程迁移、线上接口分开验证。 |
 
@@ -50,10 +50,4 @@ D1 comments-db
 | 滥用防护 | 公开写接口建议叠加 Turnstile、Rate Limiting 或登录态。 |
 | 数据边界 | D1 适合轻量关系型数据，不适合把大文件、日志流或高吞吐事件全塞进去。 |
 
-## 官方资料
-
-- [D1 Getting started](https://developers.cloudflare.com/d1/get-started/)
-- [Build a Comments API](https://developers.cloudflare.com/d1/tutorials/build-a-comments-api/)
-- [D1 prepared statement methods](https://developers.cloudflare.com/d1/worker-api/prepared-statements/)
-- [D1 migrations](https://developers.cloudflare.com/d1/reference/migrations/)
-- [D1 Wrangler commands](https://developers.cloudflare.com/d1/wrangler-commands/)
+官方核对入口：[D1 Getting started](https://developers.cloudflare.com/d1/get-started/)、[Build a Comments API](https://developers.cloudflare.com/d1/tutorials/build-a-comments-api/)。

@@ -49,10 +49,4 @@ Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产
 
 前端和文档先用 Static Assets / Pages，只让动态路径进入 Worker。数据按类型放到 D1、KV、R2、Durable Objects；写入口加 Turnstile、Rate Limiting 和最少日志；后台用 Access 保护；慢任务进 Queues / Workflows。请求、CPU、日志或 Durable Objects 稳定进入生产后，再开 Workers Paid。
 
-## 事实来源
-
-- [Cloudflare Workers](https://developers.cloudflare.com/workers/)
-- [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
-- [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
-- [Workers Static Assets billing and limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
-- [Service Bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/service-bindings/)
+官方核对入口：[Cloudflare Workers](https://developers.cloudflare.com/workers/)、[Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)、[Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)。

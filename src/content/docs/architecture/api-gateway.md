@@ -40,9 +40,4 @@ API 网关只解决一件事：把动态入口收清楚。Worker 负责鉴权、
 | D1 扫描过大 | 常用查询建索引，不做无界全表扫描。 |
 | R2 操作量过高 | 热文件要评估缓存，下载次数也是 Class B。 |
 
-## 官方资料
-
-- [APIs and microservices](https://developers.cloudflare.com/use-cases/apis/)
-- [Deploy APIs at the edge](https://developers.cloudflare.com/use-cases/apis/deploy-apis/)
-- [Protect your APIs](https://developers.cloudflare.com/use-cases/apis/protect-apis/)
-- [Connect your internal network services](https://developers.cloudflare.com/use-cases/apis/internal-services/)
+官方核对入口：[APIs and microservices](https://developers.cloudflare.com/use-cases/apis/)、[Deploy APIs at the edge](https://developers.cloudflare.com/use-cases/apis/deploy-apis/)、[Protect your APIs](https://developers.cloudflare.com/use-cases/apis/protect-apis/)。

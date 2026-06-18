@@ -39,11 +39,4 @@ description: 什么时候才需要 Hyperdrive、Workflows、Pipelines、Containe
 
 核心原则：越靠后的产品，越应该先有明确用量、恢复策略和停用策略。
 
-## 事实来源
-
-- [Hyperdrive pricing](https://developers.cloudflare.com/hyperdrive/platform/pricing/)
-- [Workflows llms.txt](https://developers.cloudflare.com/workflows/llms.txt)
-- [Workflows pricing](https://developers.cloudflare.com/workflows/reference/pricing/)
-- [Pipelines](https://developers.cloudflare.com/pipelines/)
-- [R2 Data Catalog](https://developers.cloudflare.com/r2/data-catalog/)
-- [Containers pricing](https://developers.cloudflare.com/containers/pricing/)
+官方核对入口：[Hyperdrive](https://developers.cloudflare.com/hyperdrive/)、[Workflows](https://developers.cloudflare.com/workflows/)、[Pipelines](https://developers.cloudflare.com/pipelines/)、[Containers](https://developers.cloudflare.com/containers/)。

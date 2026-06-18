@@ -50,10 +50,4 @@ WAF 的作用不是“写越多规则越安全”，而是给 Web 入口和 API 
 
 规则不够时，先合并业务入口、删掉无效规则，再考虑升级。
 
-## 事实来源
-
-- [Cloudflare WAF](https://developers.cloudflare.com/waf/)
-- [WAF custom rules](https://developers.cloudflare.com/waf/custom-rules/)
-- [WAF managed rules](https://developers.cloudflare.com/waf/managed-rules/)
-- [Rate limiting rules](https://developers.cloudflare.com/waf/rate-limiting-rules/)
-- [Security Events](https://developers.cloudflare.com/waf/analytics/security-events/)
+官方核对入口：[Cloudflare WAF](https://developers.cloudflare.com/waf/)、[Custom Rules](https://developers.cloudflare.com/waf/custom-rules/)、[Rate limiting rules](https://developers.cloudflare.com/waf/rate-limiting-rules/)。

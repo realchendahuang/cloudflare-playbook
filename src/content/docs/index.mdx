@@ -1,9 +1,9 @@
 ---
 title: Cloudflare Playbook
-description: 以 Cloudflare 免费额度和 5 USD/month Workers Paid 为第一入口，再选择产品和架构的实践知识库。
+description: 先把 Cloudflare 免费额度讲透，再选择产品、架构和 5 USD/month Workers Paid 的实践知识库。
 template: splash
 hero:
-  tagline: 面向独立开发者、小团队和开源项目。先把 Cloudflare 免费额度讲透：0 元能跑什么、哪里会撞墙、5 USD/month Workers Paid 到底买到什么、哪些东西必须单独付。
+  tagline: 面向独立开发者、小团队和开源项目。先看免费额度：0 元能做什么、哪里会撞墙、5 USD/month Workers Paid 到底买到什么、哪些东西必须单独付。All the fun, but with numbers.
   actions:
     - text: 免费额度大全
       link: /platform/free-paid/
@@ -35,6 +35,19 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方 pr
 | 小 API、评论、表单能不能 0 元验证？ | 可以。Workers Free、D1、KV、R2、Queues、Durable Objects 都有免费层。 |
 | 免费阶段最该防什么？ | 防公开写入口被刷、防静态流量误进 Worker、防数据库全表扫描、防 AI 调用不设限。 |
 | 什么时候付 5 USD/month？ | 动态请求、CPU、日志、队列、D1/KV/DO 等开发者平台能力进入真实生产后再付。 |
+
+## All the fun：0 元能跑的项目，不止静态站
+
+免费额度最有价值的地方，是能把真实项目先组合出来。不要先背产品名，先把项目拆成静态流量、动态入口、数据、文件、安全、日志和搜索。
+
+| 项目形态 | 0 元起步核心 | 第一条红线 |
+| --- | --- | --- |
+| 开源文档站 / 官网 | Static Assets 或 Pages + Pagefind + Web Analytics | 构建次数、文件数、静态请求误进 Worker。 |
+| 教程站轻社区 | Static Assets + Twikoo Cloudflare + D1 + Turnstile | D1 写入、公开入口刷量、日志留存。 |
+| 小 API / Webhook | Workers Free + D1 / KV + WAF / Turnstile | 100,000 requests/day、10 ms CPU。 |
+| 上传下载工具 | R2 + 签名链接 + CDN cache | 10 GB-month、Class A、Class B。 |
+| 小团队后台 | Access + Tunnel + D1 | 50 users、审计日志、后台权限。 |
+| AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | Neurons、queries、Gateway logs。 |
 
 ## All the fun：先看这 24 个免费额度数字
 
@@ -91,22 +104,6 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方 pr
 		Workers Paid 放大开发者平台能力，不自动提升 WAF、Bot、证书、Cache Rules、Load Balancing 或企业网络权益。
 	</Card>
 </CardGrid>
-
-## All the fun：0 元先跑起来
-
-免费额度最值得玩的地方，是它能组合成真实项目，不只是单个产品的试用期。先把下面这些组合跑通，再决定要不要付费。
-
-| 项目 | 0 元起步组合 | 先盯哪个数字 |
-| --- | --- | --- |
-| 开源文档站 | Workers Static Assets / Pages + Pagefind + Web Analytics | 构建次数、文件数、静态资产是否误进 Worker。 |
-| 教程站轻社区 | Workers Static Assets + Twikoo Cloudflare + D1 + Turnstile | D1 写入、刷量、日志留存。 |
-| 个人官网 / 博客 | DNS + CDN + Universal SSL + Static Assets | 缓存命中、图片体积、构建次数。 |
-| 小 API / Webhook | Workers Free + D1 + KV + Turnstile | 100,000 requests/day、10 ms CPU、写入口滥用。 |
-| 表单 / 反馈箱 | Workers + D1 + Turnstile + Workers Logs | D1 rows written、Workers Logs 3 天留存。 |
-| 文件上传 / 下载 | R2 Standard + 签名上传 + CDN cache | 10 GB-month、Class A、Class B。 |
-| 小团队后台 | Access + Tunnel + Zero Trust Free | 50 users、后台入口、审计需求。 |
-| AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | Neurons、queries、Gateway logs。 |
-| 实时小应用 | Durable Objects + WebSocket hibernation + Queues | DO requests、GB-s、Queues operations。 |
 
 ## Cloudflare 免费额度大全
 
