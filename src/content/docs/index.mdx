@@ -1,9 +1,9 @@
 ---
 title: Cloudflare Playbook
-description: 把 Cloudflare 免费额度讲透，再选择产品、架构和 5 USD/month Workers Paid 的实践知识库。
+description: 把 Cloudflare 免费额度讲透，再选择产品、架构和 5 美元/月 Workers Paid 的实践知识库。
 template: splash
 hero:
-  tagline: 面向独立开发者、小团队和开源项目。先把免费额度看透：0 元能跑哪些真实项目、哪里会撞墙、5 USD/month Workers Paid 买到什么、哪些能力必须单独付。All the fun, with numbers first.
+  tagline: 面向独立开发者、小团队和开源项目。先把免费额度看透：0 元能跑什么、哪里会撞墙、5 美元/月 Workers Paid 买到什么。
   actions:
     - text: 免费额度大全
       link: /platform/free-paid/
@@ -32,23 +32,24 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 | 先问 | 直接答案 |
 | --- | --- |
 | 文档站、官网、博客能不能 0 元跑？ | 可以。静态资产请求免费且不限量，先用 Workers Static Assets / Pages。 |
-| 小 API、评论、表单能不能 0 元验证？ | 可以。Workers Free、D1、KV、R2、Queues、Durable Objects 都有免费层。 |
+| 小接口、评论、表单能不能 0 元验证？ | 可以。Workers Free、D1、KV、R2、Queues、Durable Objects 都有免费层。 |
 | 免费阶段最该防什么？ | 防公开写入口被刷、防静态流量误进 Worker、防数据库全表扫描、防 AI 调用不设限。 |
-| 什么时候付 5 USD/month？ | 动态请求、CPU、日志、队列、D1/KV/DO 等开发者平台能力进入真实生产后再付。 |
+| 什么时候付 5 美元/月？ | 动态请求、CPU、日志、队列、D1/KV/DO 等开发者平台能力进入真实生产后再付。 |
 
-## 0 元起步配方
+## All the fun：0 元起步配方
 
-普通项目最先需要的不是“买哪个计划”，而是把静态内容、动态入口、数据、文件、安全和搜索放到正确位置。下面这张表可以直接当成开局配方：
+普通项目最先需要的不是“买哪个计划”，而是把静态内容、动态入口、数据、文件、安全和搜索放到正确位置。0 元不是只能放静态页，真正好用的地方在于把这些免费层组合起来：
 
 | 项目 | 0 元组合 | 先看哪条线 |
 | --- | --- | --- |
 | 开源文档站 | Workers Static Assets / Pages + Pagefind + Web Analytics | 静态请求免费且不限量；Pages 每月 500 次构建。 |
 | 教程站轻社区 | 静态资产层 + Twikoo Cloudflare + D1 + Turnstile | D1 每天 100k 行写入；公开入口要防刷。 |
-| 小 API / Webhook | Workers Free + D1 / KV + 最小 WAF / 限流 | 100,000 次动态请求/天；10 ms CPU/次调用。 |
+| 小接口 / 第三方回调 | Workers Free + D1 / KV + 最小 WAF / 限流 | 100,000 次动态请求/天；10 ms CPU/次调用。 |
 | 表单 / 反馈箱 | Workers Free + D1 + Turnstile + Workers Logs | D1 写入、日志 3 天留存、垃圾提交。 |
 | 上传下载工具 | R2 + 签名链接 + CDN 缓存 | 每月 10 GB 标准存储；1M 写入类和 10M 读取类操作。 |
 | 小团队后台 | Access + Tunnel + D1 | Zero Trust Free 50 users；后台不要裸露公网。 |
 | AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | 先用静态搜索；AI 调用必须有缓存、限流和日志。 |
+| 实时小应用 | Durable Objects + 连接休眠 + Queues | 房间状态、后台任务和重试都能先小规模验证。 |
 
 ## 免费额度决定架构
 
@@ -57,7 +58,7 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 | 架构层 | 最先看的免费额度 | 起步做法 |
 | --- | --- | --- |
 | 静态内容 | 静态资产请求免费且不限量；Pages Free 每月 500 次构建。 | 文档、官网、博客、前端资源先走 Workers Static Assets / Pages。 |
-| 动态接口 | Workers Free 100,000 次请求/天，10 ms CPU/次调用。 | 只让 API、Webhook、评论、表单和后台接口进 Worker。 |
+| 动态接口 | Workers Free 100,000 次请求/天，10 ms CPU/次调用。 | 只让接口、第三方回调、评论、表单和后台入口进 Worker。 |
 | 关系数据 | D1 Free 5M 行读取/天、100k 行写入/天、5 GB 总存储。 | 评论、反馈、小后台先用 D1；常查字段先建索引。 |
 | 配置缓存 | KV Free 每天 100k 读取、1k 写入、1 GB 存储。 | 放配置、开关、低频缓存；写多和强一致状态不要放 KV。 |
 | 文件对象 | R2 Standard 每月 10 GB、1M 写入类操作、10M 读取类操作，出站带宽免费。 | 附件、图片原图、导出物放 R2；公开下载配缓存。 |
@@ -66,46 +67,19 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 | 公开写入口 | Turnstile Free 20 个小组件，每个小组件 10 个域名。 | 登录、评论、表单、上传和 AI 搜索入口先加防刷边界。 |
 | AI 与搜索 | Pagefind 不打后端；Workers AI 每天 10,000 Neurons；AI Search 新实例每月 20,000 次查询。 | 静态搜索先 Pagefind；自然语言搜索验证后再接 AI Gateway / Workers AI / AI Search。 |
 
-## 免费额度怎么读
-
-不是“看到免费就全都用”，而是把项目拆成几条线：静态内容能不能停在静态层，动态入口能不能压到最少，数据和文件有没有放对地方，公开写入口有没有防刷，AI 和日志有没有上限。
-
-| 先判断 | 免费层最友好的做法 |
-| --- | --- |
-| 主流量是什么 | 文档、官网、博客和前端资源先走静态资产层。 |
-| 哪些请求必须运行代码 | 只让 API、Webhook、评论、表单和后台接口进入 Worker。 |
-| 数据是什么形态 | 关系数据进 D1，文件进 R2，读多写少配置进 KV，强一致状态进 Durable Objects。 |
-| 谁能公开写入 | 登录、评论、表单、上传、搜索和 Webhook 先加 Turnstile、限流或业务权限。 |
-| 哪些会放大账单 | AI、日志、浏览器自动化、媒体和大文件下载都要先设边界。 |
-
-## All the fun：0 元能跑的项目，不止静态站
-
-免费额度最有价值的地方，是能把真实项目先组合出来。不要先背产品名，先把项目拆成静态流量、动态入口、数据、文件、安全、日志和搜索。
-
-| 项目形态 | 0 元起步核心 | 第一条红线 |
-| --- | --- | --- |
-| 开源文档站 / 官网 | 静态资产层或 Pages + Pagefind + Web Analytics | 构建次数、文件数、静态请求误进 Worker。 |
-| 教程站轻社区 | 静态资产层 + Twikoo Cloudflare + D1 + Turnstile | D1 写入、公开入口刷量、日志留存。 |
-| 小 API / Webhook | Workers Free + D1 / KV + WAF / Turnstile | 100,000 次动态请求/天、10 ms CPU/次调用。 |
-| 表单 / 反馈箱 | Workers Free + D1 + Turnstile + Workers Logs | 写入刷量、D1 写入行数、日志 3 天留存。 |
-| 上传下载工具 | R2 + 签名链接 + CDN 缓存 | 每月 10 GB 存储量、写入类和读取类操作。 |
-| 小团队后台 | Access + Tunnel + D1 | 50 users、审计日志、后台权限。 |
-| AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | 模型用量、搜索次数、网关日志。 |
-| 实时小应用 | Durable Objects + WebSocket 休眠 + Queues | DO 运行时长、连接规模、队列操作。 |
-
 ## 首页重点：免费额度大全
 
-这不是完整账单说明，而是普通项目启动前最该先看的免费额度清单。首页先把最影响架构的数字摆出来：能 0 元验证就先验证；进入真实生产后，再核对 `$5/month` Workers Paid、单独付费产品和域名计划边界。
+这不是完整账单说明，而是普通项目启动前最该先看的免费额度清单。首页先把最影响架构的数字摆出来：能 0 元验证就先验证；进入真实生产后，再核对 5 美元/月 Workers Paid、单独付费产品和域名计划边界。
 
 | 关键数字 | 代表什么 | 起步项目怎么用 |
 | --- | --- | --- |
-| 静态资产请求免费且不限量 | Workers Static Assets / Pages 命中静态资源时不消耗 Worker 请求。 | 文档站、官网、博客、前端 bundle 先放静态层。 |
+| 静态资产请求免费且不限量 | Workers Static Assets / Pages 命中静态资源时不消耗 Worker 请求。 | 文档站、官网、博客、前端构建产物先放静态层。 |
 | 每月 500 次构建 | Pages Free 构建额度。 | 开源文档站和官网通常够用；多分支预览要观察构建次数。 |
-| 100,000 次动态请求/天 | Workers Free 每日动态请求额度，UTC 0 点重置。 | 小 API、Webhook、评论、表单先用它验证。 |
-| 10 ms CPU/次调用 | Workers Free 单次 CPU 额度。 | I/O 型接口通常够用；SSR、解析大文件、AI 前处理要谨慎。 |
-| 5 USD/month | Workers Paid 账号级最低月费。 | 不是 Cloudflare Pro，也不是账单封顶；它买的是开发者平台动态能力。 |
-| 每月 1000 万次动态请求 | Workers Paid 已包含的动态请求量。 | 公开 API 或评论系统稳定有人用后，再考虑升级。 |
-| 每月 3000 万 CPU 毫秒 | Workers Paid 已包含的 CPU 用量。 | SSR、队列消费者、定时任务和数据处理要一起看 CPU。 |
+| 100,000 次动态请求/天 | Workers Free 每日动态请求额度，UTC 0 点重置。 | 小接口、第三方回调、评论、表单先用它验证。 |
+| 10 ms CPU/次调用 | Workers Free 单次 CPU 额度。 | 轻量接口通常够用；服务端渲染、解析大文件、AI 前处理要谨慎。 |
+| 5 美元/月 | Workers Paid 账号级最低月费。 | 不是 Cloudflare Pro，也不是账单封顶；它买的是开发者平台动态能力。 |
+| 每月 1000 万次动态请求 | Workers Paid 已包含的动态请求量。 | 公开接口或评论系统稳定有人用后，再考虑升级。 |
+| 每月 3000 万 CPU 毫秒 | Workers Paid 已包含的 CPU 用量。 | 服务端渲染、队列消费者、定时任务和数据处理要一起看 CPU。 |
 | 每天 20 万条日志事件 | Workers Logs Free 每日日志额度，保留 3 天。 | 早期排障够用；生产长期排障再看 Workers Paid 和日志推送。 |
 | 每月 2000 万条日志事件 | Workers Paid 已包含日志额度，保留 7 天。 | 日志量和留存开始影响排障时再看。 |
 | 每月 1000 万次日志推送请求 | Workers Trace Events Logpush 只在 Workers Paid 可用。 | 需要把 Worker 请求日志长期送到外部日志平台时再用。 |
@@ -124,7 +98,7 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 | 每月 20,000 次查询 | AI Search 新实例 Free 查询额度，公开测试期内免费。 | 文档搜索先 Pagefind；自然语言搜索确定有价值后再上 AI Search。 |
 | 每月 3000 万查询向量维度 | Vectorize Free 查询维度额度。 | 小规模语义搜索可试验；先整理文档再做向量化。 |
 | 每月 100 万个事件 | Zaraz Free 事件额度。 | 第三方脚本治理、同意管理和埋点先小规模验证。 |
-| Budget alerts 只发邮件 | 可按美元阈值提醒按量费用。 | 付费前必须开，但它不是硬封顶。 |
+| 预算提醒只发邮件 | 可按美元阈值提醒按量费用。 | 付费前必须开，但它不是硬封顶。 |
 
 ## 免费阶段最容易撞的红线
 
@@ -132,8 +106,8 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 
 | 红线 | 为什么危险 | 起步做法 |
 | --- | --- | --- |
-| 静态资源误进 Worker | 图片、脚本、样式和 HTML 会消耗动态请求与 CPU。 | 静态内容先放 Workers Static Assets / Pages，只让 API 进 Worker。 |
-| 公开写入口裸奔 | 评论、表单、上传、搜索和 Webhook 会被刷。 | Turnstile、限流、鉴权和业务配额先上。 |
+| 静态资源误进 Worker | 图片、脚本、样式和 HTML 会消耗动态请求与 CPU。 | 静态内容先放 Workers Static Assets / Pages，只让接口进 Worker。 |
+| 公开写入口裸奔 | 评论、表单、上传、搜索和第三方回调会被刷。 | Turnstile、限流、鉴权和业务配额先上。 |
 | D1 无索引查询 | D1 按读取行数计量，全表扫描会浪费免费额度。 | 常查字段建索引，列表查询分页，后台报表离线跑。 |
 | KV 写多或强一致 | KV 免费写入少，且不是强一致数据库。 | 配置和低频缓存用 KV；状态、评论、订单用 D1 或 Durable Objects。 |
 | R2 热点读取无缓存 | R2 免出站带宽费，但读取类操作仍然计量。 | 公开下载配 CDN 缓存，私有下载用签名链接。 |
@@ -148,7 +122,7 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 		Workers Static Assets / Pages 命中静态资源时，请求免费且不限量。文档站、官网、博客和前端资源要先停在这里。
 	</Card>
 	<Card title="动态能力先用 Free 验证" icon="server">
-		Workers Free 有 100,000 次动态请求/天和 10 ms CPU/次调用。小 API、Webhook、表单和评论接口可以先从这里起步。
+		Workers Free 有 100,000 次动态请求/天和 10 ms CPU/次调用。小接口、第三方回调、表单和评论可以先从这里起步。
 	</Card>
 	<Card title="数据和文件都有免费层" icon="database">
 		D1、KV、R2、Queues、Durable Objects 都有可用免费额度。重点是按数据形态放对位置，而不是把所有东西塞进一个产品。
@@ -159,69 +133,29 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 	<Card title="AI 先小步试验" icon="rocket">
 		Pagefind 先解决静态搜索；自然语言搜索明确有价值后，再接 AI Gateway、Workers AI、AI Search 或 Vectorize。
 	</Card>
-	<Card title="5 USD/month 不是 Pro" icon="warning">
+	<Card title="5 美元/月不是 Pro" icon="warning">
 		Workers Paid 放大开发者平台能力，不自动提升 WAF、Bot、证书、缓存规则、负载均衡或企业网络权益。
 	</Card>
 </CardGrid>
 
-## Cloudflare 免费额度大全
-
-这张速查表先回答“免费能不能跑”和“5 美元有没有帮助”。完整产品级表格、计费解释和官方来源见 [免费额度大全](/platform/free-paid/)。
-
-| 能力 | Free 额度 / 免费边界 | 5 USD/month Workers Paid 是否相关 | 最容易撞墙 |
-| --- | --- | --- | --- |
-| DNS | Free / Pro / Business 不按 DNS 查询收费；新 Free zone 每个域名 200 条记录，旧 Free zone 1,000 条。 | 无关。DNS 属于域名和账号基础能力。 | 记录数、团队权限、企业级 DNS 需求。 |
-| CDN / Cache | 所有计划可用；Free 有 10 条缓存规则；Free / Pro / Business 最大可缓存文件 512 MB。 | 无关。Workers Paid 不增加缓存规则。 | 复杂缓存规则、大文件、频繁清缓存。 |
-| SSL/TLS | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 可在 Free 使用。 | 无关。证书高级能力看域名计划或单独付费能力。 | 自定义证书、Keyless SSL、复杂证书治理。 |
-| DDoS Protection | 所有计划都有标准且不限量的 DDoS 防护。 | 无关。高级 DDoS 配置看企业能力或单独付费能力。 | 源站 IP 暴露、应用层恶意写入、误伤排查。 |
-| WAF 自定义规则 | Free 5 条；Pro 20；Business 100。 | 无关。Workers Paid 不增加 WAF 规则。 | 规则数量、事件历史、Bot / API 高级防护。 |
-| 限流规则 | Free 1 条；Pro 2；Business 5。 | 无关。它跟 WAF / 域名计划走。 | 登录、评论、上传、Webhook 入口太多。 |
-| Turnstile | Free 每账号 20 个小组件，每个小组件 10 个域名，挑战和验证请求不限量。 | 无关。Enterprise 才提升小组件、域名和统计边界。 | 多域名、多租户、品牌和高级 Bot 检测。 |
-| Zero Trust / Access / Tunnel | Free 适合 50 个用户以内的小团队；Tunnel 可发布公开主机名。 | 无关。Zero Trust 用户席位和日志另看计划。 | 用户数、网关、数据防泄漏、设备姿态、审计日志。 |
-| Web Analytics | 免费；代理站点不限，非代理站点 10 个。 | 无关。 | 复杂归因、长期原始日志、跨系统分析。 |
-| Workers Static Assets | 静态资产请求免费且不限量；存储 Assets 不额外收费。 | 相关但不收费。Paid 后静态请求仍免费且不限量。 | 整站先跑 Worker、SSR、API 路径误打进 Worker。 |
-| Pages | Free 每月 500 次构建、1 个并发构建、每项目 100 个自定义域名、每站 20,000 个文件、单文件 25 MiB。 | Pages Functions 按 Workers 计费。纯静态不需要先付。 | 构建次数、文件数、Functions 请求。 |
-| Workers 请求 | Free 100,000 次/天，UTC 0 点重置。 | Paid 含每月 1000 万次请求，超出 0.30 USD/million。 | 公开 API、评论、搜索代理、SSR 动态请求。 |
-| Workers CPU | Free 10 ms/次调用。 | Paid 含每月 3000 万 CPU 毫秒；单次默认 30s，可设到 5min。 | SSR、AI 前处理、批量解析、大 JSON。 |
-| Workers Logs | Free 每天 200,000 条日志事件，保留 3 天。 | Paid 含每月 2000 万条日志事件，保留 7 天。 | 生产排障、长期审计、日志过量。 |
-| Workers Builds | Free 每月 3,000 构建分钟、1 个并发构建。 | Paid 每月 6,000 构建分钟、6 个并发构建。 | 多分支预览、频繁构建、大型站点。 |
-| D1 | 5M 行读取/天、100k 行写入/天、5 GB 总存储。 | Paid 含 25B 行读取/月、50M 行写入/月、5 GB。 | 无索引查询、写入增长、报表扫描。 |
-| KV | 每天 100k 次读取、1k 次写入、1k 次删除、1k 次列举，1 GB 存储。 | Paid 含更高月度读写删列和 1 GB。 | 写多、列举多、强一致需求。 |
-| R2 Standard | 每月 10 GB 标准存储、100 万次写入类操作、1000 万次读取类操作；出站带宽免费。 | 无需 Workers Paid 才能用；超出按 R2 自己计费。 | 热点读取、海量小文件、低频访问存储误用。 |
-| Queues | 10,000 次操作/天，消息保留 24 小时。 | Paid 含 1M 次操作/月，保留期可到 14 天。 | 重试、批处理、死信、消息体超过 64 KB。 |
-| Durable Objects | SQLite-backed DO 可用；100,000 次请求/天、13,000 GB-s/天。 | Paid 含每月 1M 次请求、400,000 GB-s。 | 实时连接未休眠、对象常驻、连接规模。 |
-| Durable Objects SQLite storage | 5M 行读取/天、100k 行写入/天、5 GB 总存储。 | Paid 含每月 25B 行读取、50M 行写入、5 GB 存储量。 | 把 DO 当全站数据库或分析库。 |
-| Hyperdrive | 每天 100,000 次数据库查询。 | Paid 为数据库查询不限量。 | 外部数据库慢查询、连接池、源库本身成本。 |
-| Workflows | Free 100,000 次请求/天、10 ms CPU/次调用、1 GB 存储。 | Paid 含每月 10M 次请求、30M CPU ms、1 GB 存储。 | 长流程、重试、状态增长。 |
-| Analytics Engine | 每天 100,000 个数据点、10,000 次读取查询。 | Paid 含每月 10M 个数据点、1M 次读取查询。 | 把指标系统当事务数据库。 |
-| Workers AI | 每天 10,000 Neurons 免费分配。 | 超过每日免费分配需要 Workers Paid，再按 Neurons 计费。 | 大模型、长输出、开放式无缓存调用。 |
-| AI Gateway | 核心功能免费；Free 持久日志为所有网关合计 100,000 条。 | Paid 为每个网关 10M 条日志，并可用日志推送。 | 日志留存、模型成本、无上限调用。 |
-| AI Search | 2026-04-16 后新实例公开测试期内免费；Free 每月 20,000 次查询、每天 500 个爬取页面。 | Paid 提升实例、文件、查询和爬取边界。 | 文档量、自然语言查询、AI Gateway / Workers AI 叠加用量。 |
-| Vectorize | 每月 30M 查询向量维度、5M 存储向量维度。 | Paid 含更高维度包。 | 文档未整理好就上向量库。 |
-| Images | 每月 5,000 个独立图片转换。 | Images Paid 另算，不由 Workers Paid 包掉。 | 原图存储、转换量、图片交付量。 |
-| Browser Run | 每天 10 分钟浏览器时间、3 个并发浏览器。 | Paid 含每月 10 小时。 | 截图、PDF、网页抓取不关闭 session。 |
-| Zaraz | 每月 1,000,000 个事件免费。 | Zaraz Paid 另算，不由 Workers Paid 包掉。 | 第三方脚本事件量、同意管理、脚本治理。 |
-| Realtime SFU / TURN | Cloudflare 到客户端出站前每月 1,000 GB 免费；STUN 免费且不限量。 | 超出按 realtime 产品计费，不是 Workers Paid 包掉。 | 音视频出站流量、并发会议、TURN 用量。 |
-| Budget alerts | Pay-as-you-go 账号可按美元阈值邮件提醒按量费用。 | 付费前必须开，但它不是封顶。 | 以为提醒会自动暂停服务。 |
-
-## 什么时候付 5 USD/month
+## 什么时候付 5 美元/月
 
 Workers Paid 是账号级订阅，不是 Cloudflare Pro，也不是账单封顶。它最适合在 Free 已经证明项目有人用之后再开。
 
 | 该付的信号 | 为什么 |
 | --- | --- |
 | Worker 请求稳定接近 100,000 次/天。 | Free 会在日额度耗尽后出问题；Paid 改成月度已包含用量。 |
-| CPU 经常超过 10 ms。 | SSR、AI 前处理、批处理和大 payload 解析需要更高 CPU 上限。 |
+| CPU 经常超过 10 ms。 | 服务端渲染、AI 前处理、批处理和大内容解析需要更高 CPU 上限。 |
 | 日志 3 天不够排障。 | Paid Workers Logs 留存和月度额度更适合生产。 |
 | D1、KV、Queues、Durable Objects 已经是核心功能。 | 这些产品在 Paid 下进入更高月度额度和付费扩展。 |
 | 需要更多定时任务、子请求、Worker 数量或更大构建包。 | 这是开发者平台工程化能力，不是单次流量问题。 |
 
 | 不该误会 | 正确理解 |
 | --- | --- |
-| 5 USD/month 不是 Cloudflare Pro。 | 它不增加 WAF、缓存规则、Bot、证书或域名计划权益。 |
-| Static Assets 不是所有请求免费。 | 命中静态资产才免费；SSR、Functions、API、整站先跑 Worker 会走 Workers 计费。 |
+| 5 美元/月不是 Cloudflare Pro。 | 它不增加 WAF、缓存规则、Bot、证书或域名计划权益。 |
+| Static Assets 不是所有请求免费。 | 命中静态资产才免费；服务端渲染、动态函数、接口、整站先跑 Worker 会走 Workers 计费。 |
 | R2 出站带宽免费不是 R2 全免费。 | 存储量、写入类操作和读取类操作仍然要看。 |
-| Budget alerts 不是硬封顶。 | 它只发邮件，不会暂停服务或阻止继续计费。 |
+| 预算提醒不是硬封顶。 | 它只发邮件，不会暂停服务或阻止继续计费。 |
 | AI 免费额度不是公开无限用。 | 必须做缓存、限流、模型选择和日志观察。 |
 
 ## 继续读

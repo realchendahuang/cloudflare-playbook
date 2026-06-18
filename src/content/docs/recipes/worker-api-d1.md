@@ -1,11 +1,11 @@
 ---
-title: Worker API + D1
-description: 使用 Workers、Hono 和 D1 设计轻量评论 API 的边界。
+title: Worker 接口 + D1
+description: 使用 Workers、Hono 和 D1 设计轻量评论接口的边界。
 ---
 
 最后核对日期：2026-06-18。
 
-这个案例演示一个最小评论 API：Worker 提供接口，D1 保存关系型数据，Hono 负责路由和 JSON 响应。它适合表单提交、评论、轻量后台配置和小型 SaaS 的基础数据写入。
+这个案例演示一个最小评论接口：Worker 提供入口，D1 保存关系型数据，Hono 负责路由和 JSON 响应。它适合表单提交、评论、轻量后台配置和小型 SaaS 的基础数据写入。
 
 ## 什么时候用
 
@@ -14,11 +14,11 @@ description: 使用 Workers、Hono 和 D1 设计轻量评论 API 的边界。
   │ GET /api/comments?slug=hello-world
   │ POST /api/comments
   ▼
-Worker API
+Worker 接口
   ├─ Hono 路由
   ├─ 请求参数校验
   ├─ D1 预编译语句
-  └─ JSON response
+  └─ JSON 响应
   ▼
 D1 comments-db
 ```
@@ -34,9 +34,9 @@ D1 comments-db
 | 层 | 做什么 |
 | --- | --- |
 | Worker | 接收 `/api/*`，做鉴权、输入校验、限流和 JSON 响应。 |
-| D1 | 保存关系数据，用 migration 管表结构，用索引支撑常见查询。 |
+| D1 | 保存关系数据，用迁移文件管理表结构，用索引支撑常见查询。 |
 | SQL | 读写都用预编译语句，不拼接用户输入。 |
-| 安全 | 评论、表单等公开写入口叠加 Turnstile、Rate Limiting 或登录态。 |
+| 安全 | 评论、表单等公开写入口叠加 Turnstile、限流或登录态。 |
 | 验证 | 本地迁移、本地接口、远程迁移、线上接口分开验证。 |
 
 ## 生产检查
@@ -47,7 +47,7 @@ D1 comments-db
 | SQL 写法 | 读写都用预编译语句，不拼接用户输入。 |
 | 索引 | 高频筛选字段要建索引；这个案例按 `slug + created_at` 建索引。 |
 | 幂等 | 评论、表单、支付回调这类写入场景要考虑重复提交。 |
-| 滥用防护 | 公开写接口建议叠加 Turnstile、Rate Limiting 或登录态。 |
+| 滥用防护 | 公开写接口建议叠加 Turnstile、限流或登录态。 |
 | 数据边界 | D1 适合轻量关系型数据，不适合把大文件、日志流或高吞吐事件全塞进去。 |
 
 官方核对入口：[D1 Getting started](https://developers.cloudflare.com/d1/get-started/)、[Build a Comments API](https://developers.cloudflare.com/d1/tutorials/build-a-comments-api/)。

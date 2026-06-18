@@ -39,7 +39,7 @@ Cloudflare 产品变化很快。额度、价格、限制和部署口径，以官
 | --- | --- |
 | 免费额度和价格 | 官方 pricing / limits -> Cloudflare changelog -> [免费额度大全](/platform/free-paid/) |
 | 产品怎么选 | 本站产品页 -> 官方产品 `llms.txt` -> 官方概念页 |
-| API、命令、字段 | 官方 API / Wrangler 文档 -> 对应产品文档 |
+| 接口、命令、字段 | 官方接口 / Wrangler 文档 -> 对应产品文档 |
 | 最新变更 | Changelog -> 对应产品文档 |
 
 常用官方页统一放到 [Cloudflare 文档地图](/reference/cloudflare-docs-map/)；免费额度优先看 [免费额度大全](/platform/free-paid/)。
