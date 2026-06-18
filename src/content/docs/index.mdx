@@ -3,7 +3,7 @@ title: Cloudflare Playbook
 description: 先把 Cloudflare 免费额度讲透，再选择产品、架构和 5 USD/month Workers Paid 的实践知识库。
 template: splash
 hero:
-  tagline: 面向独立开发者、小团队和开源项目。先把免费额度看透：0 元能做什么、哪里会撞墙、5 USD/month Workers Paid 买到什么、哪些能力必须单独付。All the fun, but with numbers.
+  tagline: 面向独立开发者、小团队和开源项目。先把免费额度看透：0 元能做什么、哪里会撞墙、5 USD/month Workers Paid 买到什么、哪些能力必须单独付。All the fun, with numbers first.
   actions:
     - text: 免费额度大全
       link: /platform/free-paid/
@@ -22,7 +22,7 @@ import { Aside, Card, CardGrid } from '@astrojs/starlight/components';
 
 Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价格和限制页面为最终依据；首页先把起步项目最该看的免费额度摊开，完整口径见 [免费额度大全](/platform/free-paid/)。
 
-这个 Playbook 不从产品名开始，而是从免费额度开始。免费额度不是附录，它决定一个普通项目最初怎么设计。读者真正关心的是四件事：
+这个 Playbook 不从产品名开始，而是从免费额度开始。免费额度不是附录，它决定一个普通项目最初怎么设计。先回答四个问题：
 
 - 项目能不能先 0 元跑起来。
 - 0 元能跑到什么程度。
@@ -35,6 +35,22 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 | 小 API、评论、表单能不能 0 元验证？ | 可以。Workers Free、D1、KV、R2、Queues、Durable Objects 都有免费层。 |
 | 免费阶段最该防什么？ | 防公开写入口被刷、防静态流量误进 Worker、防数据库全表扫描、防 AI 调用不设限。 |
 | 什么时候付 5 USD/month？ | 动态请求、CPU、日志、队列、D1/KV/DO 等开发者平台能力进入真实生产后再付。 |
+
+## 免费额度决定架构
+
+先把项目拆成几层，再把每一层放到最合适的免费额度里。这样写出来的架构更稳，也更容易知道哪一天该升级。
+
+| 架构层 | 最先看的免费额度 | 起步做法 |
+| --- | --- | --- |
+| 静态内容 | 静态资产请求免费且不限量；Pages Free 每月 500 次构建。 | 文档、官网、博客、前端资源先走 Workers Static Assets / Pages。 |
+| 动态接口 | Workers Free 100,000 次请求/天，10 ms CPU/次调用。 | 只让 API、Webhook、评论、表单和后台接口进 Worker。 |
+| 关系数据 | D1 Free 5M 行读取/天、100k 行写入/天、5 GB 总存储。 | 评论、反馈、小后台先用 D1；常查字段先建索引。 |
+| 配置缓存 | KV Free 每天 100k 读取、1k 写入、1 GB 存储。 | 放配置、开关、低频缓存；写多和强一致状态不要放 KV。 |
+| 文件对象 | R2 Standard 每月 10 GB、1M 写入类操作、10M 读取类操作，出站带宽免费。 | 附件、图片原图、导出物放 R2；公开下载配缓存。 |
+| 异步任务 | Queues Free 10,000 次操作/天。 | 邮件、通知、导入、后处理进队列；重试和消息大小要计入操作数。 |
+| 强一致状态 | Durable Objects Free 100,000 次请求/天、13,000 GB-s/天。 | 房间、会话、限流器用 DO；实时连接优先做休眠。 |
+| 公开写入口 | Turnstile Free 20 个小组件，每个小组件 10 个域名。 | 登录、评论、表单、上传和 AI 搜索入口先加防刷边界。 |
+| AI 与搜索 | Pagefind 不打后端；Workers AI 每天 10,000 Neurons；AI Search 新实例每月 20,000 次查询。 | 静态搜索先 Pagefind；自然语言搜索验证后再接 AI Gateway / Workers AI / AI Search。 |
 
 ## 免费额度怎么读
 
@@ -57,9 +73,11 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 | 开源文档站 / 官网 | 静态资产层或 Pages + Pagefind + Web Analytics | 构建次数、文件数、静态请求误进 Worker。 |
 | 教程站轻社区 | 静态资产层 + Twikoo Cloudflare + D1 + Turnstile | D1 写入、公开入口刷量、日志留存。 |
 | 小 API / Webhook | Workers Free + D1 / KV + WAF / Turnstile | 100,000 次动态请求/天、10 ms CPU/次调用。 |
+| 表单 / 反馈箱 | Workers Free + D1 + Turnstile + Workers Logs | 写入刷量、D1 写入行数、日志 3 天留存。 |
 | 上传下载工具 | R2 + 签名链接 + CDN 缓存 | 每月 10 GB 存储量、写入类和读取类操作。 |
 | 小团队后台 | Access + Tunnel + D1 | 50 users、审计日志、后台权限。 |
 | AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | 模型用量、搜索次数、网关日志。 |
+| 实时小应用 | Durable Objects + WebSocket 休眠 + Queues | DO 运行时长、连接规模、队列操作。 |
 
 ## All the fun：首页版免费额度大全
 
@@ -75,6 +93,8 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 | 每月 1000 万次动态请求 | Workers Paid 已包含的动态请求量。 | 公开 API 或评论系统稳定有人用后，再考虑升级。 |
 | 每月 3000 万 CPU 毫秒 | Workers Paid 已包含的 CPU 用量。 | SSR、队列消费者、定时任务和数据处理要一起看 CPU。 |
 | 每天 20 万条日志事件 | Workers Logs Free 每日日志额度，保留 3 天。 | 早期排障够用；生产长期排障再看 Workers Paid 和日志推送。 |
+| 每月 2000 万条日志事件 | Workers Paid 已包含日志额度，保留 7 天。 | 日志量和留存开始影响排障时再看。 |
+| 每月 1000 万次日志推送请求 | Workers Trace Events Logpush 只在 Workers Paid 可用。 | 需要把 Worker 请求日志长期送到外部日志平台时再用。 |
 | 5M 行读取/天 | D1 Free 每日读取行数。 | 评论、反馈、小后台够起步；全表扫描会很快浪费额度。 |
 | 100k 行写入/天 | D1 Free 每日写入行数。 | 写入型功能要做 Turnstile、限流和去重。 |
 | 每天 10 万次读取 | KV Free 每日读取额度。 | 配置、开关、低频缓存适合；不要拿 KV 当强一致数据库。 |
