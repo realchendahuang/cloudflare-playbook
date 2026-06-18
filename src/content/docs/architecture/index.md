@@ -5,7 +5,7 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 
 最后核对日期：2026-06-18。
 
-架构页只回答一个问题：**一个项目应该怎么组合 Cloudflare 产品。** 它不是产品手册，也不是企业方案收藏。Cloudflare 官方 Reference Architecture 适合查完整设计，Use cases 适合从场景反推产品；本站只保留能帮助独立开发者、小团队和开源项目做判断的部分。
+架构页只回答一个问题：**一个项目应该怎么组合 Cloudflare 产品。** 它不是产品手册，也不是企业方案收藏。
 
 ## 快速分流
 
@@ -30,18 +30,6 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | 需要音视频或 WebRTC 吗？ | Realtime / 媒体产品。 | 不要把媒体传输误判成普通 WebSocket。 |
 | 需要自然语言搜索或模型代理吗？ | AI 产品。 | 不要在内容很少时先做向量管道。 |
 | 需要后台和私有服务吗？ | Zero Trust / Access / Tunnel。 | 不要自写弱登录或把后台裸露公网。 |
-
-## Use Cases 对照
-
-| Cloudflare Use case | 本站入口 | 落地判断 |
-| --- | --- | --- |
-| Web sites and web apps | 静态内容站、API 网关 | 前端静态化，动态路径交给 Worker。 |
-| APIs and microservices | API 网关 | 入口安全、路由、数据、文件和异步任务。 |
-| AI applications | AI 产品 | AI Gateway 先做观测和限流，再评估 Workers AI、AI Search、Vectorize。 |
-| SaaS platforms | 平台化与多租户 | 客户域名、租户隔离、Workers for Platforms、Dynamic Workers。 |
-| Media and streaming | 媒体与性能 | Images、Stream、R2、Cache；大媒体不要塞进静态包。 |
-| Application security | 安全边界、WAF | 登录、评论、表单、API、上传先有最小防护。 |
-| Company security | Zero Trust 与企业网络 | Access / Tunnel 保护后台、预览和内部工具。 |
 
 ## 取舍原则
 

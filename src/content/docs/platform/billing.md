@@ -65,12 +65,4 @@ Workers Paid 不会提升 WAF、Bot、Cache Rules、SSL/TLS、DNS 记录数、Lo
 | 所有请求都进 Worker 方便统计。 | 静态资产应该直接命中 Assets / Pages，动态路径才进 Worker。 |
 | R2 / Images / Stream 只看流量。 | 它们还要看存储、操作、转换、播放分钟数或交付次数。 |
 
-## 事实来源
-
-| 来源 | 用途 |
-| --- | --- |
-| [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/) | 账单、发票、订阅、付款和预算提醒入口。 |
-| [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/) | 哪些产品按用量计费，以及已包含用量的判断方式。 |
-| [Monitor billable usage](https://developers.cloudflare.com/billing/manage/billable-usage/) | Billable Usage dashboard 能看什么、不能看什么。 |
-| [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/) | 预算提醒的触发方式和限制。 |
-| [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/) | Workers Paid、请求、CPU、日志和开发者平台额度。 |
+官方核对入口：[Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)、[Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)、[Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/)、[Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)。

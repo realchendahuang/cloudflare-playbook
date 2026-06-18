@@ -1,6 +1,6 @@
 ---
 title: 数据产品
-description: D1、KV、R2、Durable Objects、Queues、Hyperdrive、Vectorize、Pipelines 和 Analytics Engine 的选择方式。
+description: D1、KV、R2、Durable Objects、Queues 和后置数据产品的选择方式。
 ---
 
 最后核对日期：2026-06-18。
@@ -35,17 +35,6 @@ description: D1、KV、R2、Durable Objects、Queues、Hyperdrive、Vectorize、
 | 是自然语言搜索吗？ | 先 Pagefind；需要语义理解再看 AI Search / Vectorize。 |
 | 是持续涌入的事件和指标吗？ | Analytics Engine、Pipelines 或 R2，不要塞进 D1。 |
 
-## 常见组合
-
-| 场景 | 推荐组合 | 原因 |
-| --- | --- | --- |
-| 评论 / 表单 / 轻后台 | Workers + D1 + Turnstile + Queues | D1 存业务状态，Queues 做通知和审核。 |
-| 文件上传 / 下载 | R2 + Worker 签名 URL + D1 元数据 | R2 存对象，D1 存权限和展示索引。 |
-| 文档站搜索 | Pagefind -> AI Search / Vectorize | 先用静态搜索，需求成立后再加 AI。 |
-| 实时房间 / 协作 | Durable Objects + D1 / R2 | DO 管实时状态，长期数据单独落库。 |
-| 批量导入 / 后台任务 | Queues + D1 幂等表 + R2 原始输入 | 任务可重试，输入和结果可追溯。 |
-| 现有数据库加速 | Workers + Hyperdrive + 原数据库 | 先减少连接开销，再评估是否迁移。 |
-
 ## 什么时候迁移
 
 | 当前做法 | 出现信号 | 下一步 |
@@ -54,16 +43,7 @@ description: D1、KV、R2、Durable Objects、Queues、Hyperdrive、Vectorize、
 | KV 存会话、库存、计数器 | 需要强撤销、强一致或高频写同一个 key | 写路径迁到 D1 或 Durable Objects。 |
 | 请求里同步处理慢任务 | 邮件、AI、导入、审核拖慢响应 | 放入 Queues，用户请求只返回状态。 |
 | R2 里只有文件，没有索引 | 需要按用户、标签、状态、时间分页 | D1 建元数据表。 |
-| 单个 D1 库持续变大 | 接近单库或吞吐边界 | 按租户、项目、用户或区域拆库。 |
+| 单个 D1 库持续变大 | 接近边界 | 按租户、项目、用户或区域拆库。 |
 | Pagefind 不够 | 用户开始问自然语言问题 | 评估 AI Search 或 Vectorize。 |
 
-## 事实来源
-
-| 来源 | 用途 |
-| --- | --- |
-| [Choose a data or storage product](https://developers.cloudflare.com/workers/platform/storage-options/) | Cloudflare 官方数据产品选择入口。 |
-| [D1](https://developers.cloudflare.com/d1/) | 关系数据、SQL、pricing 和 limits。 |
-| [KV](https://developers.cloudflare.com/kv/) | 读多写少 key-value、最终一致和 limits。 |
-| [R2](https://developers.cloudflare.com/r2/) | 对象存储、pricing、limits 和 S3 API。 |
-| [Durable Objects](https://developers.cloudflare.com/durable-objects/) | 单对象强一致状态和 WebSocket。 |
-| [Queues](https://developers.cloudflare.com/queues/) | 异步任务、重试和 operations。 |
+官方核对入口：[Choose a data or storage product](https://developers.cloudflare.com/workers/platform/storage-options/)、[D1](https://developers.cloudflare.com/d1/)、[KV](https://developers.cloudflare.com/kv/)、[R2](https://developers.cloudflare.com/r2/)、[Durable Objects](https://developers.cloudflare.com/durable-objects/)、[Queues](https://developers.cloudflare.com/queues/)。

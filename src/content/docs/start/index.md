@@ -5,7 +5,7 @@ description: 从免费额度、入口、安全、数据和架构模式开始读 
 
 最后核对日期：2026-06-18。
 
-这条路线只解决一个问题：第一次读 Cloudflare 时该按什么顺序看。先从免费额度和最常见的静态站开始，再看 Worker、数据、安全和少数架构模式。
+这条路线只解决一个问题：第一次读 Cloudflare 时该按什么顺序看。先看免费额度，再看上线入口、动态能力、数据和安全。
 
 ## 先读这三页
 
@@ -17,17 +17,17 @@ description: 从免费额度、入口、安全、数据和架构模式开始读 
 
 只记一条：**先跑免费路径，再为真实瓶颈买复杂度。**
 
-## 第一轮：入口和账单
+## 第一轮：先上线
 
-先解决域名、证书、代理、缓存、安全默认值和账单边界。Worker 放到动态功能出现后再看。
+先解决域名、证书、代理、缓存和账单边界。Worker 放到动态功能出现后再看。
 
 | 先读 | 要判断什么 |
 | --- | --- |
-| [Fundamentals](/platform/fundamentals/) | Account、Zone、Proxied、DNS-only、源站和 API 访问凭证的边界。 |
+| [Fundamentals](/platform/fundamentals/) | 账号、域名、代理状态、源站和权限边界。 |
 | [DNS](/platform/dns/) | 哪些记录走 Cloudflare 代理，哪些保持 DNS-only。 |
 | [SSL/TLS](/platform/ssl-tls/) | 为什么生产环境优先 Full (strict)。 |
 | [Cache / CDN](/platform/cache/) | 静态资源怎么减少回源，什么时候不要缓存。 |
-| [DDoS Protection](/platform/ddos/)、[WAF](/platform/waf/)、[Rules](/platform/rules/) | 基础防护和规则边界。 |
+| [DDoS Protection](/platform/ddos/)、[WAF](/platform/waf/)、[Rules](/platform/rules/) | 基础防护和边缘规则。 |
 | [账单与预算](/platform/billing/) | Workers Paid、域名计划、附加产品和按量计费怎么分开看。 |
 
 ## 第二轮：开发者平台主线
@@ -44,7 +44,7 @@ description: 从免费额度、入口、安全、数据和架构模式开始读 
 | 做异步任务、削峰、后台处理 | [Queues](/platform/queues/) |
 | 做单实体强一致状态、房间、协作 | [Durable Objects](/platform/durable-objects/) |
 
-读完这一轮，你要能回答三句话：入口在哪里，状态放哪里，异步工作怎么处理。
+读完这一轮，只要能回答三句话：入口在哪里，数据放哪里，慢任务怎么移出用户请求。
 
 ## 第三轮：按项目目标读
 
@@ -58,25 +58,13 @@ description: 从免费额度、入口、安全、数据和架构模式开始读 
 | AI 搜索、自然语言问答、模型网关 | [AI 产品](/platform/ai/) |
 | 访问后台、保护内网工具 | [Zero Trust 与企业网络](/platform/zero-trust-networking/) |
 
-## 跑两个案例
-
-| 案例 | 适合学习 |
-| --- | --- |
-| [Worker API + D1](/recipes/worker-api-d1/) | 轻量接口、关系型数据和最小查询。 |
-| [R2 签名上传](/recipes/r2-signed-upload/) | 文件上传、下载和权限控制。 |
-
-案例不用全背。重点是知道结构化数据进 D1，文件对象进 R2，公开写入口要有限流、验证和日志。
-
 ## 容易走偏的方式
 
 - 从项目目标反推产品组合，不从产品名开始背。
 - 免费额度不是无限额度，先看请求、CPU、读写次数、存储和构建次数。
 - 早期用更少的产品把路径跑通，再按真实瓶颈升级。
-- 涉及限制、价格、配置和部署命令时，回到官方文档核对。
+- 涉及限制、价格和部署命令时，回到官方文档核对。
 
 ## 官方入口
 
-- [Cloudflare Developer Documentation `llms.txt`](https://developers.cloudflare.com/llms.txt)
-- [Cloudflare Learning Paths `llms.txt`](https://developers.cloudflare.com/learning-paths/llms.txt)
-- [Cloudflare Use cases `llms.txt`](https://developers.cloudflare.com/use-cases/llms.txt)
-- [Cloudflare 文档地图](/reference/cloudflare-docs-map/)
+官方资料从 [Cloudflare 文档地图](/reference/cloudflare-docs-map/) 进入；额度和价格先看 [免费额度大全](/platform/free-paid/)。
