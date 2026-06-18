@@ -1,9 +1,9 @@
 ---
 title: Cloudflare Playbook
-description: 先把 Cloudflare 免费额度讲透，再选择产品、架构和 5 USD/month Workers Paid 的实践知识库。
+description: 把 Cloudflare 免费额度讲透，再选择产品、架构和 5 USD/month Workers Paid 的实践知识库。
 template: splash
 hero:
-  tagline: 面向独立开发者、小团队和开源项目。先把免费额度看透：0 元能做什么、哪里会撞墙、5 USD/month Workers Paid 买到什么、哪些能力必须单独付。All the fun, with numbers first.
+  tagline: 面向独立开发者、小团队和开源项目。先把免费额度看透：0 元能跑哪些真实项目、哪里会撞墙、5 USD/month Workers Paid 买到什么、哪些能力必须单独付。All the fun, with numbers first.
   actions:
     - text: 免费额度大全
       link: /platform/free-paid/
@@ -22,7 +22,7 @@ import { Aside, Card, CardGrid } from '@astrojs/starlight/components';
 
 Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价格和限制页面为最终依据；首页先把起步项目最该看的免费额度摊开，完整口径见 [免费额度大全](/platform/free-paid/)。
 
-这个 Playbook 不从产品名开始，而是从免费额度开始。免费额度不是附录，它决定一个普通项目最初怎么设计。先回答四个问题：
+这个 Playbook 不从产品名开始，而是从免费额度开始。免费额度不是附录，也不是试用装；它是一套可以组合的起步架构。先回答四个问题：
 
 - 项目能不能先 0 元跑起来。
 - 0 元能跑到什么程度。
@@ -35,6 +35,20 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 | 小 API、评论、表单能不能 0 元验证？ | 可以。Workers Free、D1、KV、R2、Queues、Durable Objects 都有免费层。 |
 | 免费阶段最该防什么？ | 防公开写入口被刷、防静态流量误进 Worker、防数据库全表扫描、防 AI 调用不设限。 |
 | 什么时候付 5 USD/month？ | 动态请求、CPU、日志、队列、D1/KV/DO 等开发者平台能力进入真实生产后再付。 |
+
+## 0 元起步配方
+
+普通项目最先需要的不是“买哪个计划”，而是把静态内容、动态入口、数据、文件、安全和搜索放到正确位置。下面这张表可以直接当成开局配方：
+
+| 项目 | 0 元组合 | 先看哪条线 |
+| --- | --- | --- |
+| 开源文档站 | Workers Static Assets / Pages + Pagefind + Web Analytics | 静态请求免费且不限量；Pages 每月 500 次构建。 |
+| 教程站轻社区 | 静态资产层 + Twikoo Cloudflare + D1 + Turnstile | D1 每天 100k 行写入；公开入口要防刷。 |
+| 小 API / Webhook | Workers Free + D1 / KV + 最小 WAF / 限流 | 100,000 次动态请求/天；10 ms CPU/次调用。 |
+| 表单 / 反馈箱 | Workers Free + D1 + Turnstile + Workers Logs | D1 写入、日志 3 天留存、垃圾提交。 |
+| 上传下载工具 | R2 + 签名链接 + CDN 缓存 | 每月 10 GB 标准存储；1M 写入类和 10M 读取类操作。 |
+| 小团队后台 | Access + Tunnel + D1 | Zero Trust Free 50 users；后台不要裸露公网。 |
+| AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | 先用静态搜索；AI 调用必须有缓存、限流和日志。 |
 
 ## 免费额度决定架构
 
@@ -79,7 +93,7 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 | AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | 模型用量、搜索次数、网关日志。 |
 | 实时小应用 | Durable Objects + WebSocket 休眠 + Queues | DO 运行时长、连接规模、队列操作。 |
 
-## All the fun：首页版免费额度大全
+## 首页重点：免费额度大全
 
 这不是完整账单说明，而是普通项目启动前最该先看的免费额度清单。首页先把最影响架构的数字摆出来：能 0 元验证就先验证；进入真实生产后，再核对 `$5/month` Workers Paid、单独付费产品和域名计划边界。
 
@@ -111,6 +125,19 @@ Cloudflare 的价格、额度和计划边界会变化。本站数字以官方价
 | 每月 3000 万查询向量维度 | Vectorize Free 查询维度额度。 | 小规模语义搜索可试验；先整理文档再做向量化。 |
 | 每月 100 万个事件 | Zaraz Free 事件额度。 | 第三方脚本治理、同意管理和埋点先小规模验证。 |
 | Budget alerts 只发邮件 | 可按美元阈值提醒按量费用。 | 付费前必须开，但它不是硬封顶。 |
+
+## 免费阶段最容易撞的红线
+
+免费额度最怕的不是数字小，而是入口放错。先把这些红线写进项目设计里，后面就少很多账单和排障焦虑。
+
+| 红线 | 为什么危险 | 起步做法 |
+| --- | --- | --- |
+| 静态资源误进 Worker | 图片、脚本、样式和 HTML 会消耗动态请求与 CPU。 | 静态内容先放 Workers Static Assets / Pages，只让 API 进 Worker。 |
+| 公开写入口裸奔 | 评论、表单、上传、搜索和 Webhook 会被刷。 | Turnstile、限流、鉴权和业务配额先上。 |
+| D1 无索引查询 | D1 按读取行数计量，全表扫描会浪费免费额度。 | 常查字段建索引，列表查询分页，后台报表离线跑。 |
+| KV 写多或强一致 | KV 免费写入少，且不是强一致数据库。 | 配置和低频缓存用 KV；状态、评论、订单用 D1 或 Durable Objects。 |
+| R2 热点读取无缓存 | R2 免出站带宽费，但读取类操作仍然计量。 | 公开下载配 CDN 缓存，私有下载用签名链接。 |
+| AI 无缓存无上限 | Workers AI、AI Gateway、AI Search 和 Vectorize 都会被开放式调用放大。 | Pagefind 先顶上；AI 入口加缓存、限流、模型选择和日志。 |
 
 <Aside type="caution" title="先记住这条">
 免费额度先服务架构顺序：静态内容 -> 静态层；文件 -> R2；关系数据 -> D1；配置缓存 -> KV；强一致状态 -> Durable Objects；耗时任务 -> Queues；公开写入口 -> Turnstile。
