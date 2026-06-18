@@ -14,7 +14,7 @@ Workers Static Assets 用来托管构建好的静态文件：HTML、CSS、JavaSc
 | 场景 | 建议 |
 | --- | --- |
 | 文档站、官网、博客、产品页 | 优先用，静态请求免费且不限量。 |
-| SPA + 少量 API | 适合，静态页面走 Assets，动态接口走 Worker。 |
+| 单页应用 + 少量接口 | 适合，静态页面走资产层，动态接口走 Worker。 |
 | 静态站还需要 D1、R2、KV、Queues、AI | 适合，Workers 项目更容易统一管理。 |
 | 纯静态站，团队依赖 Git 预览部署 | Pages 也可以。 |
 | 用户上传、图片原图、附件、导出文件 | 不适合，放 R2。 |
@@ -22,7 +22,9 @@ Workers Static Assets 用来托管构建好的静态文件：HTML、CSS、JavaSc
 
 ## 免费阶段怎么用
 
-Static Assets 的关键不是“能不能免费”，而是“有没有让静态请求真的停在静态层”。页面、CSS、JS、字体、图片索引和 Pagefind 文件都应该由资产层直接返回；评论、表单、Webhook、后台接口再进入 Worker。
+Static Assets 的关键不是“能不能免费”，而是“有没有让静态请求真的停在静态层”。页面、样式、脚本、字体、图片索引和 Pagefind 文件都应该由资产层直接返回。
+
+评论、表单、第三方回调和后台接口再进入 Worker。
 
 | 边界 | 判断 |
 | --- | --- |
@@ -36,10 +38,10 @@ Static Assets 的关键不是“能不能免费”，而是“有没有让静态
 | 请求 | 推荐走法 |
 | --- | --- |
 | 页面、CSS、JS、字体、Pagefind 索引 | Static Assets 直接返回。 |
-| 评论、搜索 API、Webhook、后台接口 | 只让对应路径进入 Worker。 |
+| 评论、搜索接口、第三方回调、后台接口 | 只让对应路径进入 Worker。 |
 | 用户上传文件 | Worker 做鉴权，文件进 R2。 |
 | 公开下载文件 | 页面用 Static Assets，文件本体进 R2。 |
-| SPA 前端路由 | 用静态回退，API 路径单独处理。 |
+| 单页应用前端路由 | 用静态回退，接口路径单独处理。 |
 
 ## 和 Pages 怎么选
 
@@ -47,8 +49,8 @@ Static Assets 的关键不是“能不能免费”，而是“有没有让静态
 | --- | --- | --- |
 | 部署来源 | Worker 项目配置。 | Git / Pages 项目设置。 |
 | 静态请求成本 | 免费且不限量。 | 免费且不限量。 |
-| API 和数据产品 | Worker 原生，适合 D1、R2、KV、DO、Queues、AI。 | Pages Functions 适合轻量 API。 |
-| 预览部署 | 需要自己组织。 | PR / 分支预览更顺。 |
-| 更适合 | 静态站 + API / Worker 生态能力。 | 纯静态站、官网、内容协作。 |
+| 接口和数据产品 | Worker 原生，适合 D1、R2、KV、Durable Objects、Queues、AI。 | Pages 动态函数适合轻量接口。 |
+| 预览部署 | 需要自己组织。 | 分支和 PR 预览更顺。 |
+| 更适合 | 静态站 + 接口 / Worker 生态能力。 | 纯静态站、官网、内容协作。 |
 
 额度数字回到 [免费额度大全](/platform/free-paid/) 核对。官方核对入口：[Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)、[Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)、[Migrate from Pages to Workers](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)。

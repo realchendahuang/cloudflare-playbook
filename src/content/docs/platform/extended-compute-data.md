@@ -15,7 +15,7 @@ description: 什么时候才需要 Hyperdrive、Workflows、Pipelines、Containe
 | 任务跨很长时间，并且失败后要恢复。 | Workflows。 | 简单邮件、通知、导入直接上复杂流程。 |
 | 大量事件要进入 R2 做长期分析。 | Pipelines。 | 早期把所有日志做成数据湖。 |
 | R2 里的分析数据要被查询工具当表读。 | R2 Data Catalog。 | 文件、图片、附件管理。 |
-| Worker 原生运行时装不下依赖。 | Containers。 | API 和后台任务。 |
+| Worker 原生运行时装不下依赖。 | Containers。 | 接口和后台任务。 |
 
 ## 默认先不用
 

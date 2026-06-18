@@ -17,7 +17,7 @@ description: 图片、视频、第三方脚本和浏览器任务的取舍。
 | 视频是产品体验的一部分 | 看 Stream 的播放、签名、分析和录制能力。 | 用静态站或 D1 存视频。 |
 | 页面变慢 | 先查图片尺寸、缓存命中、第三方脚本和真实访问数据。 | 只看一次 Lighthouse 分数就重构。 |
 | 第三方脚本变多 | 先删脚本，再考虑 Zaraz 管理必要脚本。 | 在模板里散落营销脚本。 |
-| 截图、PDF、动态抓取 | 只有必须打开浏览器时才看 Browser Run。 | 每个 API 请求同步开浏览器。 |
+| 截图、PDF、动态抓取 | 只有必须打开浏览器时才看 Browser Run。 | 每个接口请求同步开浏览器。 |
 
 ## 简单顺序
 
@@ -31,6 +31,6 @@ description: 图片、视频、第三方脚本和浏览器任务的取舍。
 | Images | 转换参数数量、原图大小、常用尺寸缓存。 |
 | Stream | 存储分钟数、播放分钟数、私有内容访问控制。 |
 | Zaraz | 第三方工具真正需要的事件量。 |
-| Browser Run | 浏览器时长、并发、是否及时关闭 session。 |
+| Browser Run | 浏览器时长、并发、是否及时关闭浏览器会话。 |
 
 官方核对入口：[Images Pricing](https://developers.cloudflare.com/images/pricing/)、[Stream Pricing](https://developers.cloudflare.com/stream/pricing/)、[Zaraz Pricing](https://developers.cloudflare.com/zaraz/pricing-info/)、[Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)。
