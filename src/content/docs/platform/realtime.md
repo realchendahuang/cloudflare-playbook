@@ -3,8 +3,6 @@ title: 实时能力
 description: 文本实时、音视频实时和浏览器实时连接怎么选。
 ---
 
-最后核对日期：2026-06-18。Realtime 相关价格和 beta 状态变化快，具体数字统一看 [免费额度大全](/platform/free-paid/) 和官方页面。
-
 先记住一句：**文本实时和音视频实时是两类问题。**
 
 ## 先判断
@@ -32,5 +30,3 @@ description: 文本实时、音视频实时和浏览器实时连接怎么选。
 | RealtimeKit | 参与者时长、录制、转录和导出。 |
 | Realtime SFU / TURN | Cloudflare 到客户端的出站流量。 |
 | 会议后处理 | 回调次数、队列任务、R2 存储和日志。 |
-
-官方核对入口：[Cloudflare Realtime](https://developers.cloudflare.com/realtime/)、[RealtimeKit](https://developers.cloudflare.com/realtime/realtimekit/)、[Realtime SFU](https://developers.cloudflare.com/realtime/sfu/)、[TURN Service](https://developers.cloudflare.com/realtime/turn/)。

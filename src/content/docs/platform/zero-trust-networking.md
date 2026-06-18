@@ -3,8 +3,6 @@ title: Zero Trust
 description: 后台、预览环境、内网工具和小团队出站安全怎么选。
 ---
 
-最后核对日期：2026-06-18。
-
 Zero Trust 不等于必须买一整套企业安全平台。普通项目先看三件事：谁能进后台，后台怎么不暴露公网，小团队设备是否需要基础出站保护。专线、企业防火墙、长期日志和设备管控不是个人站点、小 SaaS 或单个后台的第一步。
 
 ## 先判断
@@ -60,5 +58,3 @@ Zero Trust 不等于必须买一整套企业安全平台。普通项目先看三
 4. 私网资源再上 Tunnel 私网和设备客户端。
 5. 团队出站安全从 DNS 过滤开始。
 6. 企业网络能力只在有网络负责人时评估。
-
-官方核对入口：[Cloudflare One](https://developers.cloudflare.com/cloudflare-one/)、[Access](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/)、[Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/routing-to-tunnel/)。

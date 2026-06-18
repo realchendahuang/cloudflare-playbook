@@ -3,8 +3,6 @@ title: 缓存与 CDN
 description: Cloudflare 缓存策略、免费边界和安全误区。
 ---
 
-最后核对日期：2026-06-18。
-
 缓存不是“把所有东西都留下来”。先记住一句：**静态资源长缓存，HTML 谨慎缓存，登录态和用户数据不要进共享缓存。**
 
 ## 先问五个问题
@@ -51,5 +49,3 @@ Free 计划的缓存能力足够静态站起步。真正要记住的是：缓存
 | 把 CDN 当对象存储。 | 大文件、视频、下载归档应该看 R2 / Stream / Images。 |
 | 让查询参数、登录状态和请求头随意影响缓存命中。 | 命中率会被打碎，也更难排查。 |
 | 先开 Cache Reserve 再算账。 | 它会产生存储和操作费用。 |
-
-官方核对入口：[Cloudflare Cache](https://developers.cloudflare.com/cache/)、[Default cache behavior](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/)、[Cache Rules](https://developers.cloudflare.com/cache/how-to/cache-rules/)、[Purge cache](https://developers.cloudflare.com/cache/how-to/purge-cache/)。

@@ -3,8 +3,6 @@ title: 边缘规则
 description: Cloudflare 边缘规则的取舍、旧规则迁移和常见误区。
 ---
 
-最后核对日期：2026-06-18。
-
 边缘规则解决的是“请求到 Cloudflare 之后怎么处理”：跳转、改路径、改请求头、改回源、改缓存或做少量边缘设置。它不是应用后端，也不是 Workers Paid 的一部分。
 
 ## 先用规则的场景
@@ -52,5 +50,3 @@ Snippets 是轻量脚本，Workers 是完整开发者平台。
 | 旧博客迁移。 | 少量规律路径用单条跳转或改写规则；大量静态映射用批量跳转。 |
 | 静态站缓存。 | 缓存规则控制 HTML 和带版本号的静态资源。 |
 | 接口后端分流。 | 改写规则调路径，回源规则调后端；复杂鉴权交给 Worker。 |
-
-官方核对入口：[Cloudflare Rules](https://developers.cloudflare.com/rules/)、[Redirects](https://developers.cloudflare.com/rules/url-forwarding/)、[Transform Rules](https://developers.cloudflare.com/rules/transform/)、[Page Rules migration guide](https://developers.cloudflare.com/rules/reference/page-rules-migration/)。

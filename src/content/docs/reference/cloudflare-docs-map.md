@@ -3,8 +3,6 @@ title: Cloudflare 文档地图
 description: Cloudflare 官方文档的阅读顺序和来源入口。
 ---
 
-最后核对日期：2026-06-18。
-
 Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这张地图只保留阅读顺序和官方入口，具体额度回到 [免费额度大全](/platform/free-paid/)。
 
 ## 怎么用这张地图
@@ -12,7 +10,7 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 你现在的问题 | 先读哪里 |
 | --- | --- |
 | 想知道免费能跑到什么程度 | [免费额度大全](/platform/free-paid/) |
-| 不知道 Cloudflare 产品怎么分层 | [Cloudflare 产品大图谱](/platform/) |
+| 不知道 Cloudflare 产品怎么分层 | [Cloudflare 产品索引](/platform/) |
 | 要把文档站、官网或博客放上去 | [静态内容站](/architecture/static-site/) |
 | 要做小接口、第三方回调、评论或表单 | [API 网关](/architecture/api-gateway/) |
 | 要选 D1、KV、R2、Queues、Durable Objects | [数据产品](/platform/data/) |
@@ -38,7 +36,7 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 主题 | 官方入口 | 本站入口 |
 | --- | --- | --- |
 | 全站文档 | [Developer Docs](https://developers.cloudflare.com/)、[llms.txt](https://developers.cloudflare.com/llms.txt)、[Changelog](https://developers.cloudflare.com/changelog/) | [官方资料](/reference/) |
-| 基础、账单、域名 | [Fundamentals](https://developers.cloudflare.com/fundamentals/)、[Billing](https://developers.cloudflare.com/billing/)、[DNS](https://developers.cloudflare.com/dns/) | [Cloudflare 产品大图谱](/platform/) |
+| 基础、账单、域名 | [Fundamentals](https://developers.cloudflare.com/fundamentals/)、[Billing](https://developers.cloudflare.com/billing/)、[DNS](https://developers.cloudflare.com/dns/) | [Cloudflare 产品索引](/platform/) |
 | 开发者平台 | [Workers](https://developers.cloudflare.com/workers/)、[Pages](https://developers.cloudflare.com/pages/)、[Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/) | [学习路线](/start/) |
 | 数据、安全、AI | [Storage options](https://developers.cloudflare.com/workers/platform/storage-options/)、[WAF](https://developers.cloudflare.com/waf/)、[Cloudflare AI](https://developers.cloudflare.com/ai/) | [数据产品](/platform/data/)、[安全与网络](/platform/security-networking/)、[AI 产品](/platform/ai/) |
 
@@ -64,5 +62,3 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 先判断，后配置 | 这份 Playbook 解释取舍；具体接口、命令和字段回到官方文档。 |
 | 官方事实与本站判断分开 | 数字、限制和计划边界以 Cloudflare 官方页面为准。 |
 | 少放实现细节 | 只有实战案例页保留代码和命令，概念页尽量只保留判断框架。 |
-
-官方核对入口：[Cloudflare Developer Documentation](https://developers.cloudflare.com/)、[llms.txt](https://developers.cloudflare.com/llms.txt)、[Docs for agents](https://developers.cloudflare.com/docs-for-agents/)、[Cloudflare Changelog](https://developers.cloudflare.com/changelog/)。

@@ -3,8 +3,6 @@ title: Workers
 description: Cloudflare Workers 的取舍、架构分工和升级判断。
 ---
 
-最后核对日期：2026-06-18。
-
 Workers 是请求进来时运行的一层代码，不是一台长期在线的小服务器。先记三句话：静态内容不要进 Worker；动态接口才用 Worker；状态、文件和后台任务交给对应产品。
 
 ## 先判断
@@ -46,5 +44,3 @@ Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产
 ## 简单路线
 
 前端和文档先用静态资产层或 Pages，只让动态路径进入 Worker。数据按类型放到 D1、KV、R2、Durable Objects；写入口加 Turnstile、限流和最少日志；后台用 Access 保护；慢任务进 Queues / Workflows。请求、CPU、日志或 Durable Objects 稳定进入生产后，再开 Workers Paid。
-
-额度数字回到 [免费额度大全](/platform/free-paid/) 核对。官方核对入口：[Cloudflare Workers](https://developers.cloudflare.com/workers/)、[Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)、[Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)。

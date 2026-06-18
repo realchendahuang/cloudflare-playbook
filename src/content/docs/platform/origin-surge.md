@@ -3,8 +3,6 @@ title: 源站保护与流量洪峰
 description: 源站保护、合法峰值和回源压力的取舍。
 ---
 
-最后核对日期：2026-06-18。
-
 源站快被打满时，先判断流量类型：**恶意流量先做 DDoS、WAF、自动化流量防护和限流；合法峰值才看排队；回源请求和连接压力才看回源优化；WordPress 动态 HTML 慢才看 APO。**
 
 ## 免费阶段先做什么
@@ -37,5 +35,3 @@ description: 源站保护、合法峰值和回源压力的取舍。
 | Argo Smart Routing | 优化回源路径，不解决应用逻辑、数据库慢查询和缓存缺失。 |
 | APO | WordPress 专用，依赖 WordPress 插件和 WordPress 缓存语义。 |
 | 专用回源 IP | 企业源站防火墙治理问题，先隐藏源站 IP。 |
-
-官方核对入口：[Waiting Room](https://developers.cloudflare.com/waiting-room/)、[Smart Shield](https://developers.cloudflare.com/smart-shield/) 和 [Automatic Platform Optimization](https://developers.cloudflare.com/automatic-platform-optimization/)。

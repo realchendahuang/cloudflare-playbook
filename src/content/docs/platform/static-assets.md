@@ -3,8 +3,6 @@ title: Workers Static Assets
 description: Cloudflare Workers Static Assets 的定位、免费边界和 Pages 取舍。
 ---
 
-最后核对日期：2026-06-18。
-
 Workers Static Assets 用来托管构建好的静态文件：HTML、CSS、JavaScript、图片、字体和前端构建产物。
 
 先记一条：**能提前构建出来的内容，就尽量让 Static Assets 直接返回；只有真正需要运行代码的路径才进 Worker。**
@@ -52,5 +50,3 @@ Static Assets 的关键不是“能不能免费”，而是“有没有让静态
 | 接口和数据产品 | Worker 原生，适合 D1、R2、KV、Durable Objects、Queues、AI。 | Pages 动态函数适合轻量接口。 |
 | 预览部署 | 需要自己组织。 | 分支和 PR 预览更顺。 |
 | 更适合 | 静态站 + 接口 / Worker 生态能力。 | 纯静态站、官网、内容协作。 |
-
-额度数字回到 [免费额度大全](/platform/free-paid/) 核对。官方核对入口：[Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)、[Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)、[Migrate from Pages to Workers](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)。

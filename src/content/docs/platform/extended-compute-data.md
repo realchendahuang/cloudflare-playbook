@@ -3,8 +3,6 @@ title: 扩展计算与数据管道
 description: 什么时候才需要 Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog。
 ---
 
-最后核对日期：2026-06-18。后置产品变化快，具体价格和限制统一看 [免费额度大全](/platform/free-paid/) 和官方页面。
-
 这组产品不是 Cloudflare 入门第一层。默认先用 Workers、D1、R2、KV、Queues 和 Durable Objects。只有基础能力解释不了需求时，再看这一页。
 
 ## 先判断
@@ -38,5 +36,3 @@ description: 什么时候才需要 Hyperdrive、Workflows、Pipelines、Containe
 | 必须运行现成 CLI、Python 工具或完整运行环境。 | 看 Containers。 |
 
 核心原则：越靠后的产品，越应该先有明确用量、恢复策略和停用策略。
-
-官方核对入口：[Hyperdrive](https://developers.cloudflare.com/hyperdrive/)、[Workflows](https://developers.cloudflare.com/workflows/)、[Pipelines](https://developers.cloudflare.com/pipelines/)、[Containers](https://developers.cloudflare.com/containers/)。

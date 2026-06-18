@@ -3,8 +3,6 @@ title: 文档站技术栈
 description: 面向 Cloudflare 文档站、开源教程站和轻社区的推荐技术栈。
 ---
 
-最后核对日期：2026-06-18。
-
 这篇只给文档站、开源教程站和轻社区一个可复用选择：框架用成熟方案，搜索先静态，评论用成熟组件，部署放到 Cloudflare 静态资产层。
 
 ## 推荐组合
@@ -69,5 +67,3 @@ VuePress 可以部署到 Cloudflare，也适合写普通教程。这个仓库更
 | 自写评论组件 | 评论涉及存储、审核、安全、管理后台和反垃圾，成熟库更合适。 |
 | 一开始做 AI 搜索 | 内容量不够时，先把目录、标题、标签和 Pagefind 做好。 |
 | 让所有静态请求都先进 Worker | 会浪费 Workers Free / Paid 的动态请求和 CPU 边界。 |
-
-官方核对入口：[Starlight](https://github.com/withastro/starlight)、[Starlight Theme Next](https://github.com/trueberryless-org/starlight-theme-next)、[Pagefind](https://github.com/Pagefind/pagefind)、[Twikoo](https://github.com/twikoojs/twikoo)、[twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare)、[Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)。

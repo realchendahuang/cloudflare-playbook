@@ -3,8 +3,6 @@ title: 数据产品
 description: D1、KV、R2、Durable Objects、Queues 和后置数据产品的选择方式。
 ---
 
-最后核对日期：2026-06-18。
-
 数据产品先按数据形态选：关系数据进 D1，文件进 R2，读多写少配置进 KV，单对象强一致进 Durable Objects，慢任务进 Queues。
 
 ## 按数据形态选
@@ -45,5 +43,3 @@ description: D1、KV、R2、Durable Objects、Queues 和后置数据产品的选
 | R2 里只有文件，没有索引 | 需要按用户、标签、状态、时间分页 | D1 建元数据表。 |
 | 单个 D1 库持续变大 | 接近边界 | 按租户、项目、用户或区域拆库。 |
 | Pagefind 不够 | 用户开始问自然语言问题 | 评估 AI Search 或 Vectorize。 |
-
-官方核对入口：[Choose a data or storage product](https://developers.cloudflare.com/workers/platform/storage-options/)、[D1](https://developers.cloudflare.com/d1/)、[KV](https://developers.cloudflare.com/kv/)、[R2](https://developers.cloudflare.com/r2/)、[Durable Objects](https://developers.cloudflare.com/durable-objects/)、[Queues](https://developers.cloudflare.com/queues/)。

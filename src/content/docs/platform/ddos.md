@@ -3,8 +3,6 @@ title: DDoS 防护
 description: DDoS 防护、源站保护、临时防护模式和升级判断。
 ---
 
-最后核对日期：2026-06-18。
-
 Cloudflare 的 DDoS 防护是入口层能力。不需要先研究规则细节，先确认公开网站流量真的经过 Cloudflare，源站不能被直连，静态资源能被缓存。
 
 ## 一句话判断
@@ -56,5 +54,3 @@ Cloudflare 的 DDoS 防护是入口层能力。不需要先研究规则细节，
 | 按路径开启 | 更推荐，用在登录、后台、写接口或被打路径。 |
 | 长期开启 | 不推荐。攻击结束后回到 WAF 和限流的精确规则。 |
 | 替代源站保护 | 不行。源站直连问题必须单独处理。 |
-
-官方核对入口：[DDoS Protection](https://developers.cloudflare.com/ddos-protection/)、[Under Attack mode](https://developers.cloudflare.com/fundamentals/reference/under-attack-mode/)、[Protect your origin server](https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/)。

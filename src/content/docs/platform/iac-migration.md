@@ -3,8 +3,6 @@ title: 迁移与配置管理
 description: Cloudflare 迁移、配置真源和团队变更边界。
 ---
 
-最后核对日期：2026-06-18。
-
 配置管理不是把所有 Cloudflare 配置都写进工具。先问一个更小的问题：这个配置改错会不会影响入口、安全、账单或生产数据？会，就逐步纳入可复核的配置真源；不会，就先保持简单。
 
 ## 先判断
@@ -41,5 +39,3 @@ description: Cloudflare 迁移、配置真源和团队变更边界。
 ## 迁移原则
 
 先盘点，再导入，再小步应用。生成配置只当草稿，不复核不要进生产；被配置真源管住的资源，就不要再从控制台手工改。DNS、WAF、规则、Access 这类低频高风险配置最值得先纳入；Worker 代码、D1 迁移、临时排障和日志仍然交给 Wrangler / 控制台更直接。
-
-官方核对入口：[Terraform provider](https://developers.cloudflare.com/terraform/)、[Workers Infrastructure as Code](https://developers.cloudflare.com/workers/platform/infrastructure-as-code/)、[Pulumi](https://developers.cloudflare.com/pulumi/)。

@@ -3,8 +3,6 @@ title: 媒体与性能
 description: 图片、视频、第三方脚本和浏览器任务的取舍。
 ---
 
-最后核对日期：2026-06-18。媒体产品的价格和限制变化快，具体数字统一看 [免费额度大全](/platform/free-paid/) 和官方页面。
-
 先记住一句：**大图、附件和视频不要塞进静态站构建产物。**
 
 ## 先判断
@@ -32,5 +30,3 @@ description: 图片、视频、第三方脚本和浏览器任务的取舍。
 | Stream | 存储分钟数、播放分钟数、私有内容访问控制。 |
 | Zaraz | 第三方工具真正需要的事件量。 |
 | Browser Run | 浏览器时长、并发、是否及时关闭浏览器会话。 |
-
-官方核对入口：[Images Pricing](https://developers.cloudflare.com/images/pricing/)、[Stream Pricing](https://developers.cloudflare.com/stream/pricing/)、[Zaraz Pricing](https://developers.cloudflare.com/zaraz/pricing-info/)、[Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)。

@@ -3,8 +3,6 @@ title: 安全边界
 description: Cloudflare 项目上线前需要检查的入口、写接口、后台、密钥和观测边界。
 ---
 
-最后核对日期：2026-06-18。
-
 安全边界先回答四个问题：入口是否经过 Cloudflare，写入口能不能被刷，后台是否公开，密钥和日志是否可控。先做能验证的最小边界，再按真实风险升级。
 
 ## 默认顺序
@@ -62,5 +60,3 @@ Turnstile 的关键点是：**前端组件不等于保护完成**。服务端必
 3. 对具体路径加 WAF / 限流，不要一上来全站粗暴封。
 4. 登录、评论、搜索、上传、AI 调用优先加 Turnstile、配额或登录态。
 5. Under Attack Mode 只当短期止血，不当长期配置。
-
-官方核对入口：[源站保护](https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/)、[WAF](https://developers.cloudflare.com/waf/)、[Turnstile](https://developers.cloudflare.com/turnstile/)、[Access](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/)。

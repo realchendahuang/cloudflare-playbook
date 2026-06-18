@@ -1,75 +1,57 @@
 ---
-title: Cloudflare 产品大图谱
-description: Cloudflare 产品入口、免费优先路线和选型索引。
+title: Cloudflare 产品索引
+description: 按场景选择 Cloudflare 产品，先免费、再付费、最后看企业能力。
 ---
 
-最后核对日期：2026-06-18。
+这页只做入口索引。不要从产品名开始学，先从你要解决的问题开始。
 
-这页只回答三个问题：先读哪一页、默认用哪些能力、哪些能力后面再看。这里不堆配置细节，先帮你把产品放到正确位置。
+## 先读哪页
 
-## 先看这个
-
-| 你要解决什么 | 先读 |
+| 你现在要解决什么 | 先读 |
 | --- | --- |
-| 不知道 Cloudflare 能不能免费跑项目 | [免费额度大全](/platform/free-paid/) |
-| 想把网站上线 | [DNS](/platform/dns/)、[SSL/TLS](/platform/ssl-tls/)、[Workers Static Assets](/platform/static-assets/) 或 [Pages](/platform/pages/) |
-| 想写接口或后端逻辑 | [Workers](/platform/workers/) |
-| 想存数据 | [数据产品](/platform/data/) |
-| 想做安全防护 | [WAF](/platform/waf/)、[DDoS Protection](/platform/ddos/)、[安全与网络](/platform/security-networking/) |
+| 想知道 0 元能跑到哪里 | [免费额度大全](/platform/free-paid/) |
+| 想把网站上线 | [Fundamentals](/platform/fundamentals/)、[DNS](/platform/dns/)、[SSL/TLS](/platform/ssl-tls/) |
+| 想放文档站、官网、博客 | [Workers Static Assets](/platform/static-assets/) 或 [Pages](/platform/pages/) |
+| 想写接口、评论、表单、回调 | [Workers](/platform/workers/) |
+| 想选数据库、缓存、文件、队列 | [数据产品](/platform/data/) |
+| 想保护入口、后台和写接口 | [安全与网络](/platform/security-networking/) |
 | 想做搜索或 AI | [AI 产品](/platform/ai/) |
-| 想看日志和访问数据 | [观测与日志](/platform/observability/) |
-| 想把配置纳入可复核流程 | [迁移与配置管理](/platform/iac-migration/) |
+| 想看日志、访问和账单 | [观测与日志](/platform/observability/)、[账单与预算](/platform/billing/) |
 
-## 推荐路线
+## 默认路线
 
-| 阶段 | 默认选择 | 升级信号 |
+| 阶段 | 默认选法 | 后面再看 |
 | --- | --- | --- |
-| 上线 | DNS、Universal SSL、CDN、Static Assets / Pages | 需要多源站、专线、企业证书或复杂缓存时再升级。 |
-| 动态接口 | Workers | 请求、CPU、日志或后台任务接近 Free 边界时，考虑 Workers Paid。 |
-| 数据 | D1、KV、R2 | 读写、存储、对象操作量成为真实瓶颈时再优化。 |
-| 安全 | DDoS 默认防护、WAF 最小规则、Turnstile、Access | 出现刷量、攻击、审计或团队权限需求时再加规则和计划。 |
-| 搜索 | Pagefind 起步 | 内容量大、需要自然语言搜索时再看 AI Search / Vectorize。 |
-| 观测 | Web Analytics、Workers Logs、预算提醒 | 需要长期取证、外部日志平台或完整日志时再看日志推送 / 日志查询。 |
+| 入口 | DNS、Universal SSL、CDN、DDoS 默认防护 | 多源站、专线、自有 IP。 |
+| 静态内容 | Workers Static Assets / Pages | 全站服务端渲染、所有请求先跑 Worker。 |
+| 动态能力 | Workers Free + D1 / KV / R2 | Workers Paid、队列、长流程、容器。 |
+| 写入口 | WAF 最小规则、限流、Turnstile | Bot、API Shield、企业日志。 |
+| 后台 | Access + Tunnel | 设备管控、长期日志、企业网络。 |
+| 搜索 | Pagefind | AI Search、Vectorize、Workers AI。 |
+| 观测 | Web Analytics、Workers Logs、预算提醒 | Logpush、Log Explorer、外部日志平台。 |
 
-核心原则：静态内容走静态层，文件放对象存储，关系数据放数据库，强一致状态单独处理，慢任务进队列。
+一句话：静态内容留在静态层，文件进 R2，关系数据进 D1，配置缓存进 KV，强一致状态进 Durable Objects，慢任务进 Queues。
 
-## 产品怎么选
+## 产品分组
 
-| 产品域 | 先看 | 适合解决 |
+| 分组 | 先看 | 用来解决 |
 | --- | --- | --- |
-| 基础入口 | [Fundamentals](/platform/fundamentals/)、[DNS](/platform/dns/)、[SSL/TLS](/platform/ssl-tls/) | 账号、域名、代理、HTTPS、源站保护。 |
-| 静态站 | [Workers Static Assets](/platform/static-assets/)、[Pages](/platform/pages/) | 文档站、官网、博客、前端应用。 |
-| 动态计算 | [Workers](/platform/workers/) | 接口、第三方回调、鉴权、轻量后端。 |
-| 数据与文件 | [D1](/platform/d1/)、[KV](/platform/kv/)、[R2](/platform/r2/)、[数据产品](/platform/data/) | SQL、配置缓存、对象存储、数据产品选型。 |
-| 状态与异步 | [Durable Objects](/platform/durable-objects/)、[Queues](/platform/queues/) | 强一致房间、限流器、WebSocket、后台任务。 |
-| 安全 | [WAF](/platform/waf/)、[DDoS Protection](/platform/ddos/)、[安全与网络](/platform/security-networking/) | 攻击防护、限流、验证码、后台保护。 |
-| AI | [AI 产品](/platform/ai/) | 模型调用、AI 搜索、向量检索和 Agent。 |
-| 观测 | [观测与日志](/platform/observability/)、[账单与预算](/platform/billing/) | 访问分析、日志、告警、账单。 |
-| 进阶计算 | [扩展计算与数据管道](/platform/extended-compute-data/) | 外部数据库加速、长流程、数据管道和容器。 |
-| 多租户 | [平台化与多租户](/platform/platforms-saas/) | 客户自定义域名、用户代码运行、SaaS 平台能力。 |
-| 企业网络 | [Zero Trust 与企业网络](/platform/zero-trust-networking/)、[自有网络与专线](/platform/private-networking/) | 后台访问、隧道、网关、专线、自有 IP。 |
+| 基础入口 | Fundamentals、DNS、SSL/TLS、Cache | 域名、HTTPS、代理、缓存、源站保护。 |
+| 开发者平台 | Workers、Static Assets、Pages | 静态站、接口、前端应用、轻后端。 |
+| 数据和状态 | D1、KV、R2、Queues、Durable Objects | 关系数据、缓存、文件、异步任务、强一致状态。 |
+| 安全和访问 | WAF、DDoS、Turnstile、Access、Tunnel | 攻击防护、反刷、后台保护。 |
+| AI 和搜索 | Pagefind、AI Gateway、Workers AI、AI Search、Vectorize | 站内搜索、模型调用、自然语言检索。 |
+| 观测和账单 | Web Analytics、Workers Logs、Notifications、Billing | 访问趋势、错误排查、预算提醒。 |
+| 后置能力 | Images、Stream、Realtime、Hyperdrive、Workflows、Containers | 媒体、实时、外部数据库、长流程、完整运行环境。 |
+| 企业网络 | Magic Transit、BYOIP、Network Interconnect、Cloudflare WAN | 自有 IP、专线、网络团队和合同场景。 |
 
-## 免费优先顺序
+## 什么时候付费
 
-| 先用 | 后面再看 |
+| 触发信号 | 先看什么 |
 | --- | --- |
-| DNS、CDN、Universal SSL、DDoS 默认防护 | Load Balancing、Argo、Spectrum、专线。 |
-| Workers Static Assets / Pages | 全站服务端渲染或所有请求先跑 Worker。 |
-| Workers Free、D1 Free、KV Free、R2 Free | 容器、复杂工作流、外部数据库加速。 |
-| Turnstile、WAF 最小规则、Access + Tunnel | 高级 Bot、完整接口防护、企业日志。 |
-| Pagefind、Web Analytics、预算提醒 | 一开始就做完整 AI 搜索、外部日志平台、复杂埋点。 |
-
-第一次付费通常从 Workers Paid 开始，因为它直接放大开发者平台的请求、CPU、KV、Durable Objects、日志和部分后台能力。但 Workers Paid 不是 Cloudflare Pro，也不会自动提升 WAF、Bot、规则、证书或企业网络配额。
-
-## 后面再看
-
-| 产品 / 能力 | 触发信号 |
-| --- | --- |
-| Containers | Worker 运行时装不下依赖，必须运行完整环境。 |
-| Workflows | 队列不能表达长流程、等待和恢复状态。 |
-| Workers for Platforms / Dynamic Workers | 用户需要运行自己的代码，且平台有计费和隔离模型。 |
-| Magic Transit / BYOIP / Network Interconnect | 已经进入企业网络工程。 |
-| Stream / Images Paid | 媒体是核心业务，不只是站点资源优化。 |
-| 日志推送 / 日志查询 | 需要长期取证、合规留存或外部日志平台。 |
-
-官方资料从 [Cloudflare 文档地图](/reference/cloudflare-docs-map/) 进入；额度和价格回到 [免费额度大全](/platform/free-paid/) 核对。
+| Worker 请求、CPU、日志、队列或数据产品接近 Free 边界 | Workers Paid。 |
+| WAF、Bot、缓存规则、证书、域名级安全能力不够 | Pro / Business / Enterprise 域名计划。 |
+| 图片、视频、浏览器任务、第三方脚本事件开始成为主成本 | Images、Stream、Browser Run、Zaraz 的独立计费。 |
+| 需要长期日志、合规留存、外部日志平台 | Logpush、Log Explorer、企业日志能力。 |
+| 客户要绑定域名或运行自己的代码 | Cloudflare for SaaS、Workers for Platforms、Dynamic Workers。 |
+| 有自有公网 IP、专线或企业网络团队 | Magic Transit、BYOIP、Network Interconnect、Cloudflare WAN。 |
