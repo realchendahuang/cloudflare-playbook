@@ -63,16 +63,4 @@ Turnstile 的关键点是：**前端组件不等于保护完成**。服务端必
 4. 登录、评论、搜索、上传、AI 调用优先加 Turnstile、配额或登录态。
 5. Under Attack Mode 只当短期止血，不当长期配置。
 
-## 事实来源
-
-- [Protect your origin server](https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/)
-- [WAF custom rules](https://developers.cloudflare.com/waf/custom-rules/)
-- [WAF rate limiting rules](https://developers.cloudflare.com/waf/rate-limiting-rules/)
-- [DDoS proactive defense](https://developers.cloudflare.com/ddos-protection/best-practices/proactive-defense/)
-- [Turnstile server-side validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
-- [Turnstile plans](https://developers.cloudflare.com/turnstile/plans/)
-- [Publish a self-hosted application with Access](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/)
-- [Tunnel configuration](https://developers.cloudflare.com/tunnel/configuration/)
-- [API Shield get started](https://developers.cloudflare.com/api-shield/get-started/)
-- [Secrets Store Workers integration](https://developers.cloudflare.com/secrets-store/integrations/workers/)
-- [Security Insights how it works](https://developers.cloudflare.com/security/security-insights/how-it-works/)
+官方核对入口：[源站保护](https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/)、[WAF](https://developers.cloudflare.com/waf/)、[Turnstile](https://developers.cloudflare.com/turnstile/)、[Access](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/)。

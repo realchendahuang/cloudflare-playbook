@@ -38,12 +38,4 @@ description: Waiting Room、Smart Shield 和 APO 的取舍。
 | APO | WordPress 专用，依赖 WordPress 插件和 WordPress 缓存语义。 |
 | Dedicated CDN Egress IPs | 企业源站防火墙治理问题，先隐藏源站 IP。 |
 
-## 事实来源
-
-- [Waiting Room](https://developers.cloudflare.com/waiting-room/)
-- [Waiting Room plans](https://developers.cloudflare.com/waiting-room/plans/)
-- [Waiting Room best practices](https://developers.cloudflare.com/waiting-room/reference/best-practices/)
-- [Smart Shield](https://developers.cloudflare.com/smart-shield/)
-- [Smart Shield get started](https://developers.cloudflare.com/smart-shield/get-started/)
-- [Automatic Platform Optimization](https://developers.cloudflare.com/automatic-platform-optimization/)
-- [APO about](https://developers.cloudflare.com/automatic-platform-optimization/about/)
+官方核对入口：[Waiting Room](https://developers.cloudflare.com/waiting-room/)、[Smart Shield](https://developers.cloudflare.com/smart-shield/) 和 [Automatic Platform Optimization](https://developers.cloudflare.com/automatic-platform-optimization/)。

@@ -27,12 +27,4 @@ description: 可以先跳过的协议、治理和平台工具。
 | 用户反馈“打不开”，但服务端没有请求记录。 | Network Error Logging | 只用于补充诊断 last mile 问题。 |
 | 做公开抽签或协议随机数，需要可验证随机源。 | Randomness Beacon | 只用于公开可验证流程，不用于私密凭证。 |
 
-## 事实来源
-
-- [Network Error Logging](https://developers.cloudflare.com/network-error-logging/)
-- [Resource Tagging](https://developers.cloudflare.com/resource-tagging/)
-- [Version Management](https://developers.cloudflare.com/version-management/)
-- [Privacy Gateway](https://developers.cloudflare.com/privacy-gateway/)
-- [Privacy Proxy](https://developers.cloudflare.com/privacy-proxy/)
-- [MoQ](https://developers.cloudflare.com/moq/)
-- [Agent Memory](https://developers.cloudflare.com/agent-memory/)
+这些都是后置能力。具体入口从 [Cloudflare 文档地图](/reference/cloudflare-docs-map/) 进入，先不要把它们当默认架构主线。

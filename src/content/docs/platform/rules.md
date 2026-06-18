@@ -63,13 +63,4 @@ Snippets 是轻量 JavaScript，Workers 是完整开发者平台。
 | 静态站缓存。 | Cache Rules 控制 HTML 和静态 hash 资源。 |
 | API 后端分流。 | Transform Rules 调路径，Origin Rules 调回源；复杂鉴权交给 Worker。 |
 
-## 事实来源
-
-- [Cloudflare Rules](https://developers.cloudflare.com/rules/)
-- [Redirects](https://developers.cloudflare.com/rules/url-forwarding/)
-- [Transform Rules](https://developers.cloudflare.com/rules/transform/)
-- [Configuration Rules](https://developers.cloudflare.com/rules/configuration-rules/)
-- [Origin Rules](https://developers.cloudflare.com/rules/origin-rules/)
-- [Cloudflare Snippets](https://developers.cloudflare.com/rules/snippets/)
-- [Trace a request](https://developers.cloudflare.com/rules/trace-request/)
-- [Page Rules migration guide](https://developers.cloudflare.com/rules/reference/page-rules-migration/)
+官方核对入口：[Cloudflare Rules](https://developers.cloudflare.com/rules/)、[Redirects](https://developers.cloudflare.com/rules/url-forwarding/)、[Transform Rules](https://developers.cloudflare.com/rules/transform/)、[Page Rules migration guide](https://developers.cloudflare.com/rules/reference/page-rules-migration/)。

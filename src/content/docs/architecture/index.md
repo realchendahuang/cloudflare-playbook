@@ -55,13 +55,4 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | 免费边界先算 | 先看静态请求、Workers 请求、CPU、D1 rows、R2 operations，再谈升级。 |
 | 安全不要后补 | 写入口先有 Turnstile、Rate Limiting、WAF 或身份边界。 |
 
-## 官方资料
-
-- [Reference Architecture](https://developers.cloudflare.com/reference-architecture/)
-- [Reference Architecture by solution](https://developers.cloudflare.com/reference-architecture/by-solution/)
-- [Use cases](https://developers.cloudflare.com/use-cases/)
-- [Web sites and web apps](https://developers.cloudflare.com/use-cases/web-apps/)
-- [APIs and microservices](https://developers.cloudflare.com/use-cases/apis/)
-- [AI applications](https://developers.cloudflare.com/use-cases/ai/)
-- [SaaS platforms](https://developers.cloudflare.com/use-cases/saas/)
-- [Media and streaming](https://developers.cloudflare.com/use-cases/media-streaming/)
+官方架构入口：[Reference Architecture](https://developers.cloudflare.com/reference-architecture/) 和 [Use cases](https://developers.cloudflare.com/use-cases/)；本站只保留独立开发者更常用的判断顺序。

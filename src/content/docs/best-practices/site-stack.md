@@ -52,7 +52,7 @@ VuePress 可以部署到 Cloudflare，也适合写普通教程。实践型文档
 
 ## 评论路线
 
-评论区不要自写 UI 和后端，除非评论本身就是你的核心产品。成熟组件通常已经处理了管理面板、回复、审核、邮件通知、垃圾内容防护和数据结构。
+评论区优先复用成熟组件，除非评论本身就是你的核心产品。成熟组件通常已经处理了管理面板、回复、审核、邮件通知、反滥用能力和数据结构。
 
 | 模块 | 推荐选择 | 判断 |
 | --- | --- | --- |
@@ -73,18 +73,9 @@ VuePress 可以部署到 Cloudflare，也适合写普通教程。实践型文档
 
 ## 事实来源
 
-- [withastro/starlight](https://github.com/withastro/starlight)
-- [Pagefind/pagefind](https://github.com/Pagefind/pagefind)
-- [trueberryless-org/starlight-theme-next](https://github.com/trueberryless-org/starlight-theme-next)
-- [twikoojs/twikoo](https://github.com/twikoojs/twikoo)
-- [twikoojs/twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare)
-- [Starlight Site Search](https://starlight.astro.build/guides/site-search/)
-- [Pagefind Docs](https://pagefind.app/docs/)
-- [Astro Cloudflare Deployment](https://docs.astro.build/en/guides/deploy/cloudflare/)
-- [Cloudflare Astro on Workers](https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/)
-- [Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
-- [Workers Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
-- [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
-- [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/workers-best-practices/)
-- [Cloudflare AI Search](https://developers.cloudflare.com/ai-search/)
-- [AI Search Limits and Pricing](https://developers.cloudflare.com/ai-search/platform/limits-pricing/)
+| 类型 | 来源 |
+| --- | --- |
+| 文档框架 | [withastro/starlight](https://github.com/withastro/starlight)、[trueberryless-org/starlight-theme-next](https://github.com/trueberryless-org/starlight-theme-next) |
+| 搜索 | [Pagefind/pagefind](https://github.com/Pagefind/pagefind)、[Starlight Site Search](https://starlight.astro.build/guides/site-search/) |
+| 评论 | [twikoojs/twikoo](https://github.com/twikoojs/twikoo)、[twikoojs/twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare) |
+| Cloudflare 部署 | [Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)、[Astro on Workers](https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/) |

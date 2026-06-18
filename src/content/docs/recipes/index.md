@@ -22,13 +22,4 @@ description: 最常复用的 Cloudflare 产品组合案例。
 2. 再看 [R2 签名上传](/recipes/r2-signed-upload/)：理解文件为什么放 R2，为什么不能把 R2 密钥放到浏览器。
 3. 做真实项目时，把 D1 里的业务记录和 R2 的对象 key 关联起来。
 
-## 官方资料
-
-- [Workers Examples](https://developers.cloudflare.com/workers/examples/)
-- [Workers Tutorials](https://developers.cloudflare.com/workers/tutorials/)
-- [D1 Tutorials](https://developers.cloudflare.com/d1/tutorials/)
-- [Build a Comments API](https://developers.cloudflare.com/d1/tutorials/build-a-comments-api/)
-- [R2 Tutorials](https://developers.cloudflare.com/r2/tutorials/)
-- [Securely access and upload assets with R2](https://developers.cloudflare.com/workers/tutorials/upload-assets-with-r2/)
-- [R2 presigned URLs](https://developers.cloudflare.com/r2/api/s3/presigned-urls/)
-- [R2 CORS](https://developers.cloudflare.com/r2/buckets/cors/)
+官方案例入口：[Workers Examples](https://developers.cloudflare.com/workers/examples/)、[D1 Tutorials](https://developers.cloudflare.com/d1/tutorials/) 和 [R2 Tutorials](https://developers.cloudflare.com/r2/tutorials/)。

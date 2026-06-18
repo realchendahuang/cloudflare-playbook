@@ -72,9 +72,4 @@ description: Cloudflare 产品入口、免费优先路线和选型索引。
 | Stream / Images Paid | 媒体是核心业务，不只是站点资源优化。 |
 | Logpush / Log Explorer | 需要长期取证、合规留存或外部日志平台。 |
 
-## 事实来源
-
-- [Cloudflare Developer Documentation llms.txt](https://developers.cloudflare.com/llms.txt)
-- [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
-- [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
-- [Cloudflare Billing](https://developers.cloudflare.com/billing/)
+官方资料从 [Cloudflare 文档地图](/reference/cloudflare-docs-map/) 进入；额度和价格回到 [免费额度大全](/platform/free-paid/) 核对。

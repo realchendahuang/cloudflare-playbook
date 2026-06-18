@@ -38,20 +38,4 @@ Workers Paid 只在动态请求、CPU、日志、Cron、D1、KV、Queues、Durab
 
 只是静态文档站、博客、官网、作品集，或者搜索用 Pagefind 就能解决时，不急着付费。详细数字和误区统一看 [免费额度大全](/platform/free-paid/)。
 
-## 事实来源
-
-- [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
-- [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
-- [Workers Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)
-- [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)
-- [How Cloudflare billing works](https://developers.cloudflare.com/billing/understand/how-billing-works/)
-- [Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)
-- [Monitor billable usage](https://developers.cloudflare.com/billing/manage/billable-usage/)
-- [Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/)
-- [D1 Pricing](https://developers.cloudflare.com/d1/platform/pricing/)
-- [R2 Pricing](https://developers.cloudflare.com/r2/pricing/)
-- [Queues Pricing](https://developers.cloudflare.com/queues/platform/pricing/)
-- [AI Gateway Pricing](https://developers.cloudflare.com/ai-gateway/reference/pricing/)
-- [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
-- [AI Search Limits & Pricing](https://developers.cloudflare.com/ai-search/platform/limits-pricing/)
-- [Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)
+成本页只讲判断。具体数字看 [免费额度大全](/platform/free-paid/)；账单、预算提醒和发票看 [账单与预算](/platform/billing/)。

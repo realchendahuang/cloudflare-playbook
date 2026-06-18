@@ -64,8 +64,3 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 - [Docs for agents](https://developers.cloudflare.com/docs-for-agents/)
 - [Markdown for agents](https://developers.cloudflare.com/fundamentals/reference/markdown-for-agents/)
 - [Cloudflare Changelog](https://developers.cloudflare.com/changelog/)
-- [Cloudflare Use cases](https://developers.cloudflare.com/use-cases/llms.txt)
-- [Cloudflare Learning Paths](https://developers.cloudflare.com/learning-paths/llms.txt)
-- [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
-- [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)
-- [Cloudflare Billing](https://developers.cloudflare.com/billing/)

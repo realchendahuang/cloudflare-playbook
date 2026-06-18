@@ -27,13 +27,4 @@ description: Data Localization、Client-side security、DMARC、Registrar、Supp
 | Support | 线上故障需要 Cloudflare 介入。 | Free 技术支持主要走社区；付费计划才有更完整支持入口。 |
 | Learning Paths / Use cases | 不知道 Cloudflare 产品怎么组合。 | 当路线参考，不当采购清单。 |
 
-## 事实来源
-
-- [Cloudflare Learning Paths](https://developers.cloudflare.com/learning-paths/llms.txt)
-- [Cloudflare Use cases](https://developers.cloudflare.com/use-cases/)
-- [Data Localization Suite](https://developers.cloudflare.com/data-localization/)
-- [Client-side security](https://developers.cloudflare.com/client-side-security/)
-- [DMARC Management](https://developers.cloudflare.com/dmarc-management/)
-- [Cloudflare Registrar](https://developers.cloudflare.com/registrar/)
-- [Contacting Cloudflare Support](https://developers.cloudflare.com/support/contacting-cloudflare-support/)
-- [Cloudflare Status](https://developers.cloudflare.com/support/cloudflare-status/)
+官方核对入口：[Learning Paths](https://developers.cloudflare.com/learning-paths/llms.txt)、[Use cases](https://developers.cloudflare.com/use-cases/)、[Registrar](https://developers.cloudflare.com/registrar/) 和 [Support](https://developers.cloudflare.com/support/contacting-cloudflare-support/)。

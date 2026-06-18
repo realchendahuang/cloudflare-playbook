@@ -59,14 +59,4 @@ Free 计划的缓存能力足够静态站起步。真正要记住的是：Cache 
 | 让查询参数、登录状态和请求头随意影响缓存命中。 | 命中率会被打碎，也更难排查。 |
 | 先开 Cache Reserve 再算账。 | 它会产生存储和操作费用。 |
 
-## 事实来源
-
-- [Cloudflare Cache](https://developers.cloudflare.com/cache/)
-- [Cache plans](https://developers.cloudflare.com/cache/plans/)
-- [Default cache behavior](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/)
-- [Origin Cache Control](https://developers.cloudflare.com/cache/concepts/cache-control/)
-- [Cache Rules](https://developers.cloudflare.com/cache/how-to/cache-rules/)
-- [Purge cache](https://developers.cloudflare.com/cache/how-to/purge-cache/)
-- [Tiered Cache](https://developers.cloudflare.com/cache/how-to/tiered-cache/)
-- [Cache Reserve](https://developers.cloudflare.com/cache/advanced-configuration/cache-reserve/)
-- [Workers Cache API](https://developers.cloudflare.com/workers/runtime-apis/cache/)
+官方核对入口：[Cloudflare Cache](https://developers.cloudflare.com/cache/)、[Default cache behavior](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/)、[Cache Rules](https://developers.cloudflare.com/cache/how-to/cache-rules/)、[Purge cache](https://developers.cloudflare.com/cache/how-to/purge-cache/)。
