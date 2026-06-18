@@ -5,7 +5,7 @@ description: 基于 Cloudflare 官方 llms.txt 的阅读顺序和来源入口。
 
 最后核对日期：2026-06-18。
 
-Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这张地图只做一件事：把官方 `llms.txt` 压成更容易行动的阅读顺序。
+Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这张地图只保留阅读顺序和官方入口，具体额度先回到 [免费额度大全](/platform/free-paid/)。
 
 ## 怎么用这张地图
 
@@ -33,20 +33,6 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 后置 | Terraform、Pulumi、Reference Architecture、Migration Guides、Learning Paths | 团队化、迁移和基础设施管理需求出现后再读。 |
 | 最后读 | Web3、China Network、Magic Transit、BYOIP、Cloudflare WAN、Network Interconnect | 更偏企业网络、合规或特定业务场景。 |
 
-## 官方分类
-
-| 官方分类 | 本站读法 |
-| --- | --- |
-| Application performance | 先读 Cache、SSL/TLS、Web Analytics；Load Balancing、Argo、Waiting Room 有明确流量压力再看。 |
-| Application security | 先读 WAF、DDoS、Turnstile；API Shield、Bots、Security Center 按风险升级。 |
-| Cloudflare One | 先读 Access 和 Tunnel；Gateway、DLP、WAN、Network Firewall 更偏团队和企业网络。 |
-| Consumer services | 1.1.1.1、Radar、WARP 多是辅助理解，不是网站默认栈。 |
-| Core platform | 先读 Fundamentals、Billing、Rules、Analytics、Notifications。 |
-| Developer platform | Workers、Static Assets、Pages、D1、KV、R2、Queues、Durable Objects 是主线。 |
-| Docs collections | Learning Paths 适合补官方学习路线。 |
-| Network security | Magic Transit、BYOIP、Network Interconnect 多为企业网络工程。 |
-| Other | Use cases、Migration Guides、Style Guide 适合反推项目组合和写作方式。 |
-
 ## 产品域入口
 
 | 产品域 | 官方入口 | 本站入口 | 先判断 |
@@ -61,17 +47,6 @@ Cloudflare 官方文档很大，直接从产品名开始读很容易迷路。这
 | 内网与团队访问 | [Cloudflare One](https://developers.cloudflare.com/cloudflare-one/llms.txt)、[Tunnel](https://developers.cloudflare.com/tunnel/llms.txt) | [Zero Trust 与企业网络](/platform/zero-trust-networking/) | 后台、预览环境、内网工具不要裸露公网。 |
 | 媒体与实时 | [Images](https://developers.cloudflare.com/images/llms.txt)、[Stream](https://developers.cloudflare.com/stream/llms.txt)、[Realtime](https://developers.cloudflare.com/realtime/llms.txt) | [媒体与性能](/platform/media-performance/)、[Realtime](/platform/realtime/) | 大文件、图片、视频和音视频实时不要塞进静态站。 |
 | 后置能力 | [Reference Architecture](https://developers.cloudflare.com/reference-architecture/llms.txt)、[Migration Guides](https://developers.cloudflare.com/migration-guides/llms.txt)、[Use cases](https://developers.cloudflare.com/use-cases/llms.txt) | [架构模式](/architecture/)、[迁移与 IaC](/platform/iac-migration/) | 先确认项目规模，再引入企业网络、专线、Bot 高级能力或 IaC。 |
-
-## 阅读路线
-
-| 阶段 | 先读 | 读完要能回答 |
-| --- | --- | --- |
-| 1. 上线一个站 | DNS、SSL/TLS、Cache、Workers Static Assets / Pages | 域名怎么接入，静态请求是否免费，源站怎么保护。 |
-| 2. 加动态功能 | Workers、D1、KV、R2、Turnstile | 哪些请求会计费，数据应该放哪里，写接口怎么防刷。 |
-| 3. 做后台和协作 | Access、Tunnel、Billing、Notifications | 后台入口谁能访问，账单和异常谁能收到提醒。 |
-| 4. 做搜索和 AI | Pagefind、AI Gateway、Workers AI、AI Search、Vectorize | 搜索是否真的需要 AI，模型调用和日志是否有边界。 |
-| 5. 扩规模 | Queues、Durable Objects、Hyperdrive、Workflows、Observability | 哪些任务异步，哪些状态强一致，哪里需要更长日志。 |
-| 6. 团队化 | Terraform、Pulumi、Reference Architecture、Cloudflare One、网络能力 | 是否需要团队真源、审计、专线、合规或企业合同。 |
 
 ## 整理原则
 
