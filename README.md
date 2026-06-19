@@ -7,7 +7,7 @@
 - Cloudflare 免费额度到底能跑什么。
 - 独立开发者项目先接哪些能力。
 - Workers Paid、域名计划、R2、D1、AI、日志这些费用怎么分开看。
-- 文档站、官网、轻社区、小型 SaaS、文件工具、实时应用和 AI 搜索该怎么搭。
+- 常见项目类型该优先使用哪些 Cloudflare 能力，哪些能力可以先不碰。
 - 安全、成本、缓存、日志、上传、评论和后台入口先守住哪些边界。
 
 线上阅读：[cloudflare-playbook.chendahuang.top](https://cloudflare-playbook.chendahuang.top/)

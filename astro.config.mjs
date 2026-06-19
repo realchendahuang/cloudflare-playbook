@@ -104,6 +104,7 @@ export default defineConfig({
 					label: '实战案例',
 					items: [
 						{ label: '案例总览', slug: 'recipes' },
+						{ label: '开源项目案例索引', slug: 'recipes/open-source-cases' },
 						{ label: 'Worker API + D1', slug: 'recipes/worker-api-d1' },
 						{ label: 'R2 签名上传', slug: 'recipes/r2-signed-upload' },
 					],
