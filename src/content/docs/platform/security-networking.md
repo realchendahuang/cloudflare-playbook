@@ -3,8 +3,6 @@ title: 安全与网络
 description: Cloudflare 安全产品的入口顺序、免费层边界和升级信号。
 ---
 
-安全产品按入口放：公开网站先进 Cloudflare，写接口加验证和限流，后台用 Access / Tunnel，密钥放 secrets，规则调整靠日志证据。
-
 ## 先做什么
 
 | 顺序 | 动作 | 为什么 |

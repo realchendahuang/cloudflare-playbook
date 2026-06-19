@@ -3,8 +3,6 @@ title: 架构模式
 description: 常见 Cloudflare 架构组合和取舍顺序。
 ---
 
-一个项目先按类型定能力组合，再看安全、成本和升级边界。
-
 ## 快速分流
 
 | 需求 | 先读 | 默认组合 |
@@ -15,8 +13,6 @@ description: 常见 Cloudflare 架构组合和取舍顺序。
 | AI 搜索、自然语言问答、模型代理 | [AI 能力](/platform/ai/) | AI Gateway、Workers AI、AI Search、Vectorize。 |
 | 客户域名、多租户、用户代码运行 | [平台化与多租户](/platform/platforms-saas/) | Cloudflare for SaaS、Workers for Platforms、Dynamic Workers。 |
 | 图片、视频、附件、媒体分发 | [媒体与性能](/platform/media-performance/) | R2、Images、Stream、Cache。 |
-
-先把三条路径分清：静态阅读、动态写入、数据和文件。边界清楚后，再加安全、搜索、AI、实时和观测。
 
 ## 判断顺序
 

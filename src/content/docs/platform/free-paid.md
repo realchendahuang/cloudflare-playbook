@@ -5,12 +5,6 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 
 额度和价格会变化，付费前再做一次核对。
 
-看免费额度先分清三件事：
-
-1. 一个项目能不能先 0 元跑起来。
-2. 5 美元/月 Workers Paid 到底买什么。
-3. 哪些东西不归 Workers Paid 管，要单独看域名计划、媒体用量、网络产品或企业合同。
-
 ## 0 元起步
 
 | 你要做什么 | 先用什么 | 免费阶段最该盯什么 |
@@ -26,8 +20,6 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 
 ## 免费额度大全表
 
-这张表优先覆盖普通人最容易用到、也最容易误判的免费额度。看表时先区分周期：有些每天重置，有些按月包含，有些跟账号、域名或单个项目绑定。
-
 | 层 / 产品 | 免费额度 / 免费边界 | 5 美元或付费后怎么变 | 起步最佳实践 |
 | --- | --- | --- | --- |
 | DNS | 新 Free zone 每个域名 200 条记录；2024-09-01 前创建的 Free zone 默认 1,000 条。 | DNS 记录数跟域名计划走，Workers Paid 不影响。 | Web 记录代理；邮件、验证和特殊服务记录保持 DNS only。 |
@@ -36,7 +28,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | DDoS | 所有计划都有标准且不限量的 DDoS 防护。 | 自有 IP、专线和网络层 SLA 走企业网络产品。 | 确保真实入口经过 Cloudflare，源站不能被直连。 |
 | WAF 自定义规则 | Free 有 5 条自定义规则。 | Pro 20 条，Business 100 条，Enterprise 1,000 条。 | 保护后台、登录、评论、上传、回调等高风险入口。 |
 | WAF 限流规则 | Free 有 1 条限流规则，统计和封禁周期最短 10 秒。 | Pro 2 条，Business 5 条，Enterprise 通常更高；字段和统计维度随计划增加。 | 先给登录、评论、表单或搜索入口限流。 |
-| Turnstile | Free 每账号 20 个 widget，每个 widget 10 个域名，挑战和验证请求不限量。 | Enterprise 可增加 widget、域名和高级风控。 | 公开写入口先加，服务端必须校验 token。 |
+| Turnstile | Free 每账号 20 个 widget，每个 widget 10 个域名，挑战和验证请求不限量。 | Enterprise 可增加 widget、域名和高级风控。 | 公开写入口先加，服务端校验 token。 |
 | Zero Trust / Access / Tunnel | Zero Trust Free 50 个用户；Tunnel 可发布公开主机名。 | 团队人数、设备策略、审计、DLP 和更复杂网络能力走 Zero Trust 计划。 | 后台、预览环境、内网工具先用 Access + Tunnel。 |
 | Web Analytics | 代理站点不限；非代理站点 10 个。 | Web Analytics 规则数量跟域名计划走。 | 文档站和官网先开它，先看页面趋势。 |
 | Workers Static Assets | 静态资产请求免费且不限量，资产存储无额外费用。 | 命中静态资产仍免费；动态 Worker 请求按 Workers 计费。 | 能提前构建出来的内容优先停在静态层。 |
@@ -58,13 +50,11 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | Browser Run | Free 每天 10 分钟浏览器时间，Browser Sessions 3 个并发浏览器。 | Paid 每月 10 小时浏览器时间、10 个并发浏览器，超出按量。 | 能用普通请求就不用浏览器；截图、PDF、动态页面抓取才看。 |
 | Images | Free 每月 5,000 次独立图片转换，超出后新转换返回错误且不计费。 | Paid 含 5,000 次转换，超出按 1,000 次计费；Images 存储和交付另计。 | 原图进 R2，需要多尺寸和格式转换时再看。 |
 | Zaraz | 每账号每月 1,000,000 个免费事件；未启用付费且超出会暂停到下个账单周期。 | Paid 每额外 1,000,000 个事件 5 美元/月。 | 第三方脚本变多时再看；先保留必要脚本。 |
-| Stream | 上传和编码入口免费；普通文档站没有实用的免费视频存储层。 | 按视频存储、观看和交付等计量。 | 视频是业务主线再看；普通附件优先放 R2。 |
+| Stream | 上传和编码入口免费；普通文档站没有实用的免费视频存储层。 | 按视频存储、观看和交付等计量。 | 视频是核心体验再看；普通附件优先放 R2。 |
 | Containers | Free 不可用。 | Workers Paid 含 25 GiB-hours、375 vCPU-minutes、200 GB-hours，超出按量。 | 只有 Worker 运行时不够承载时再看。 |
-| 预算提醒 | 可按美元阈值发邮件提醒按量费用。 | 仍然只是提醒。 | 必须开；硬边界靠限流、配额、队列熔断和产品开关。 |
+| 预算提醒 | 可按美元阈值发邮件提醒按量费用。 | 仍然只是提醒。 | 启用提醒；硬边界靠限流、配额、队列熔断和产品开关。 |
 
 ## All the fun
-
-免费额度最有用的地方，是能先把一个项目组合出来。
 
 | 项目目标 | 免费组合 | 先证明什么 |
 | --- | --- | --- |
@@ -76,8 +66,6 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | 实时原型 | Durable Objects + Queues | 房间状态、连接和后台任务。 |
 
 ## 5 美元 Workers Paid
-
-可以把 5 美元/月理解成“开发者平台的生产底座”。它买的是动态执行、CPU、日志、队列、数据库、状态对象和部分后续产品的月度包含量。
 
 | 能力 | Workers Paid 包含量 | 超出后的方向 | 实际意义 |
 | --- | --- | --- | --- |
@@ -93,8 +81,6 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | Browser Run | 10 小时/月、10 个并发浏览器 | 浏览器小时和并发数按量 | 少量截图、PDF、动态页面验证可以进入生产。 |
 | Containers | 25 GiB-hours、375 vCPU-minutes、200 GB-hours/月 | 内存、CPU、磁盘按秒计费 | Worker 运行时不够用时再考虑。 |
 | Static Assets | 静态资产请求仍免费且不限量 | 只有动态 Worker 才进计费 | 静态主流量继续停在资产层。 |
-
-它不包含：
 
 | 不包含 | 为什么要分开看 |
 | --- | --- |
@@ -115,8 +101,6 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | 想加强 WAF、Bot、证书、缓存规则 | 看域名计划。 |
 
 ## 后面再看
-
-下面这些产品按触发信号阅读。信号明确后，再核对最新口径。
 
 | 产品 / 能力 | 什么时候再看 |
 | --- | --- |

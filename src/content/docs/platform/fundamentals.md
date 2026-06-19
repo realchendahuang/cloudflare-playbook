@@ -3,8 +3,6 @@ title: Fundamentals
 description: Cloudflare 账号、域名入口、源站保护、权限和排障入口怎么放。
 ---
 
-Cloudflare 的基础层先看五件事：账号归属、域名入口、代理状态、源站保护、权限交接。
-
 ## 五个判断
 
 | 问题 | 判断 |
@@ -30,8 +28,6 @@ Cloudflare 的基础层先看五件事：账号归属、域名入口、代理状
 | 走代理 | 网站、公开接口、文档站、需要 WAF、缓存、DDoS 和规则的入口。 |
 | 不代理 | 邮件、域名验证、SSH、数据库、部分第三方 SaaS 验证。 |
 
-只有经过代理层的 HTTP/HTTPS 请求，才进入 WAF、缓存、DDoS 和规则链路。邮件、验证记录、SSH、数据库和很多第三方服务通常保持 DNS only。
-
 ## 源站保护
 
 | 优先级 | 做法 |
@@ -53,5 +49,3 @@ Cloudflare 的基础层先看五件事：账号归属、域名入口、代理状
 | 部署自动化 | 用最小权限访问凭证；DNS 自动化只给目标域名权限。 |
 | 配置被改 | 查审计日志。 |
 | 请求失败 | 记录 URL、UTC 时间、状态码和 Cloudflare 请求编号。 |
-
-域名接入细节看 [DNS](/platform/dns/) 和 [SSL/TLS](/platform/ssl-tls/)。最后要做到：网站记录走代理，邮件和验证记录保持 DNS only，HTTPS 使用 Full (strict)。

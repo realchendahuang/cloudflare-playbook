@@ -3,8 +3,6 @@ title: 数据能力
 description: D1、KV、R2、Durable Objects、Queues 和后续数据能力怎么选。
 ---
 
-数据能力按数据形态选：关系数据进 D1，文件进 R2，读多写少配置进 KV，单对象强一致进 Durable Objects，慢任务进 Queues。
-
 ## 按数据形态选
 
 | 你手里的数据 | 先看 | 边界 |
@@ -18,8 +16,6 @@ description: D1、KV、R2、Durable Objects、Queues 和后续数据能力怎么
 | 文档语义搜索 | [AI Search](/platform/ai/) / Vectorize | 文档很少时直接上向量库。 |
 | 产品指标、用量统计 | [观测与日志](/platform/observability/) | D1 记录海量事件。 |
 
-免费额度见 [免费额度大全](/platform/free-paid/)。
-
 ## 判断顺序
 
 | 问题 | 选择 |
@@ -27,7 +23,7 @@ description: D1、KV、R2、Durable Objects、Queues 和后续数据能力怎么
 | 这是文件本体吗？ | R2；归属、权限和索引再放 D1。 |
 | 需要 SQL、筛选、排序、关联和迁移吗？ | D1。 |
 | 读远多于写，且可以接受短时间旧值吗？ | KV。 |
-| 同一个实体必须全局顺序写入吗？ | Durable Objects。 |
+| 同一个实体需要全局顺序写入吗？ | Durable Objects。 |
 | 这件事可以晚点做、失败重试或批量处理吗？ | Queues。 |
 | 已经有外部数据库，不想迁移主库吗？ | Hyperdrive。 |
 | 是自然语言搜索吗？ | 先 Pagefind；需要语义理解再看 AI Search / Vectorize。 |

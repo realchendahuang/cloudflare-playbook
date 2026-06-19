@@ -3,8 +3,6 @@ title: Workers Static Assets
 description: Cloudflare Workers Static Assets 的定位、免费边界和 Pages 取舍。
 ---
 
-Workers Static Assets 用来托管构建好的静态文件：HTML、CSS、JavaScript、图片、字体和前端构建产物。能提前构建出来的内容尽量由资产层直接返回；只有真正需要运行代码的路径才进 Worker。
-
 ## 先判断
 
 | 场景 | 建议 |
@@ -17,10 +15,6 @@ Workers Static Assets 用来托管构建好的静态文件：HTML、CSS、JavaSc
 | 视频、大安装包、超过 25 MiB 的文件 | 不适合，放 R2 或 Stream。 |
 
 ## 免费阶段怎么用
-
-Static Assets 最重要的是让静态请求停在静态层。页面、样式、脚本、字体、图片索引和 Pagefind 文件都应该由资产层直接返回。
-
-评论、表单、第三方回调和后台接口再进入 Worker。
 
 | 边界 | 判断 |
 | --- | --- |

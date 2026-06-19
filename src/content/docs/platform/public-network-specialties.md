@@ -3,8 +3,6 @@ title: 公共网络能力
 description: 终端 DNS、趋势研究、时间同步、Web3、区域交付和广告测量怎么判断。
 ---
 
-这些能力当补充阅读。先把 DNS、SSL/TLS、Cache、WAF、DDoS、Workers 和数据能力跑通，再按真实场景补。
-
 ## 先判断场景
 
 | 你遇到的问题 | 看什么 | 边界 |

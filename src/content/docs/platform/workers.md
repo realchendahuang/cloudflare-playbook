@@ -3,8 +3,6 @@ title: Workers
 description: Cloudflare Workers 的取舍、架构分工和升级判断。
 ---
 
-Workers 是请求进来时运行的一层代码，按请求处理动态逻辑。静态内容停在资产层；动态接口进 Worker；状态、文件和后台任务交给对应产品。
-
 ## 先判断
 
 | 你要做什么 | 建议 | 搭配 |
@@ -18,8 +16,6 @@ Workers 是请求进来时运行的一层代码，按请求处理动态逻辑。
 | 服务端渲染、重搜索、AI 前处理 | 谨慎。 | 先估 CPU，再决定是否付费 |
 
 ## 什么时候升级
-
-Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产命中不该消耗 Worker 请求，服务端渲染、接口、评论、搜索代理、AI 前处理才进入动态口径。
 
 | 升级信号 | 判断 |
 | --- | --- |
@@ -40,7 +36,3 @@ Workers 的成本先看动态请求、CPU、日志和绑定产品。静态资产
 | 图片、附件、导出包 | R2 | Worker 不存大对象。 |
 | 房间、会话、限流器 | Durable Objects | 单实体强一致。 |
 | 慢任务、通知、重试 | Queues / Workflows | 不绑在一次请求生命周期里。 |
-
-## 简单路线
-
-前端和文档先用静态资产层或 Pages，只让动态路径进入 Worker。数据按类型放到 D1、KV、R2、Durable Objects；写入口加 Turnstile、限流和最少日志；后台用 Access 保护；慢任务进 Queues / Workflows。请求、CPU、日志或 Durable Objects 稳定进入生产后，再开 Workers Paid。

@@ -3,8 +3,6 @@ title: 扩展计算与数据管道
 description: Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog 什么时候才需要。
 ---
 
-扩展计算和数据管道主要给已有系统、长流程、数据湖和特殊运行时用。普通项目先用 Workers、D1、R2、KV、Queues 和 Durable Objects。
-
 ## 选择表
 
 | 需求 | 看什么 | 边界 |
@@ -23,7 +21,7 @@ description: Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog
 | Workflows | 任务需要状态、恢复、等待和多步骤编排。 |
 | Pipelines | 事件流已经有长期分析价值。 |
 | R2 Data Catalog | R2 数据已经按分析表组织。 |
-| Containers | 必须运行 Worker 原生运行时承载不了的依赖或工具。 |
+| Containers | 需要运行 Worker 原生运行时承载不了的依赖或工具。 |
 
 ## 升级信号
 
@@ -33,6 +31,4 @@ description: Hyperdrive、Workflows、Pipelines、Containers 和 R2 Data Catalog
 | 队列只能削峰，无法表达流程状态。 | 看 Workflows。 |
 | 事件量已经需要长期分析。 | 看 Pipelines + R2。 |
 | R2 上的数据要被 BI 或查询工具读取。 | 看 R2 Data Catalog。 |
-| 必须运行现成工具、脚本或完整运行环境。 | 看 Containers。 |
-
-碰这些产品前，先确认用量、恢复策略和停用策略。
+| 需要运行现成工具、脚本或完整运行环境。 | 看 Containers。 |
