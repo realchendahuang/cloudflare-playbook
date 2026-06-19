@@ -3,7 +3,7 @@ title: 架构模式
 description: 常见 Cloudflare 架构组合和取舍顺序。
 ---
 
-一个项目先按类型定产品组合，再看安全、成本和升级边界。
+一个项目先按类型定能力组合，再看安全、成本和升级边界。
 
 ## 快速分流
 
@@ -12,7 +12,7 @@ description: 常见 Cloudflare 架构组合和取舍顺序。
 | 文档站、官网、博客、知识库 | [静态内容站](/architecture/static-site/) | Workers Static Assets / Pages、Cache、Pagefind、Web Analytics。 |
 | 接口、第三方回调、表单、评论、小后端 | [接口入口](/architecture/api-gateway/) | Workers、WAF、限流、D1、KV、R2、Queues。 |
 | 聊天、协作、房间、强一致状态 | [实时应用](/architecture/realtime-app/) | Workers、Durable Objects、连接休眠、Queues。 |
-| AI 搜索、自然语言问答、模型代理 | [AI 产品](/platform/ai/) | AI Gateway、Workers AI、AI Search、Vectorize。 |
+| AI 搜索、自然语言问答、模型代理 | [AI 能力](/platform/ai/) | AI Gateway、Workers AI、AI Search、Vectorize。 |
 | 客户域名、多租户、用户代码运行 | [平台化与多租户](/platform/platforms-saas/) | Cloudflare for SaaS、Workers for Platforms、Dynamic Workers。 |
 | 图片、视频、附件、媒体分发 | [媒体与性能](/platform/media-performance/) | R2、Images、Stream、Cache。 |
 
@@ -23,10 +23,10 @@ description: 常见 Cloudflare 架构组合和取舍顺序。
 | 先问什么 | 推荐路线 | 边界 |
 | --- | --- | --- |
 | 主要是读内容吗？ | 静态内容站。 | 数据库、服务端渲染和 AI 搜索放到明确需求后。 |
-| 主要是请求处理和业务接口吗？ | 接口入口。 | Worker 负责入口，状态和文件交给对应产品。 |
+| 主要是请求处理和业务接口吗？ | 接口入口。 | Worker 负责入口，状态和文件交给对应能力。 |
 | 需要同一个资源的强一致状态吗？ | 实时应用。 | KV 不适合锁、房间状态或严格计数器。 |
-| 需要音视频或 WebRTC 吗？ | Realtime / 媒体产品。 | 媒体传输和普通 WebSocket 是两类问题。 |
-| 需要自然语言搜索或模型代理吗？ | AI 产品。 | 内容少时先用结构化目录和 Pagefind。 |
+| 需要音视频或 WebRTC 吗？ | Realtime / 媒体能力。 | 媒体传输和普通 WebSocket 是两类问题。 |
+| 需要自然语言搜索或模型代理吗？ | AI 能力。 | 内容少时先用结构化目录和 Pagefind。 |
 | 需要后台和私有服务吗？ | Zero Trust / Access / Tunnel。 | 后台入口先有身份边界。 |
 
 ## 怎么取舍

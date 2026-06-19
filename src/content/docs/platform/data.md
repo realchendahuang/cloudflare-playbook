@@ -1,9 +1,9 @@
 ---
-title: 数据产品
-description: D1、KV、R2、Durable Objects、Queues 和后续数据产品怎么选。
+title: 数据能力
+description: D1、KV、R2、Durable Objects、Queues 和后续数据能力怎么选。
 ---
 
-数据产品按数据形态选：关系数据进 D1，文件进 R2，读多写少配置进 KV，单对象强一致进 Durable Objects，慢任务进 Queues。
+数据能力按数据形态选：关系数据进 D1，文件进 R2，读多写少配置进 KV，单对象强一致进 Durable Objects，慢任务进 Queues。
 
 ## 按数据形态选
 

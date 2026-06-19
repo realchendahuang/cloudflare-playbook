@@ -14,7 +14,7 @@ export default defineConfig({
 			plugins: [
 				lucode({
 					navLinks: [
-						{ label: '产品索引', link: '/platform/' },
+						{ label: '能力清单', link: '/platform/' },
 						{ label: '最佳实践', link: '/best-practices/' },
 					],
 				}),
@@ -42,7 +42,7 @@ export default defineConfig({
 					],
 				},
 				{
-					label: '产品地图',
+					label: '能力清单',
 					items: [
 						{ label: '总览', slug: 'platform' },
 						{ label: 'Fundamentals', slug: 'platform/fundamentals' },
@@ -61,7 +61,7 @@ export default defineConfig({
 						{ label: 'WAF', slug: 'platform/waf' },
 						{ label: 'DDoS Protection', slug: 'platform/ddos' },
 						{ label: 'Rules', slug: 'platform/rules' },
-						{ label: '数据产品', slug: 'platform/data' },
+						{ label: '数据能力', slug: 'platform/data' },
 						{ label: 'D1', slug: 'platform/d1' },
 						{ label: 'KV', slug: 'platform/kv' },
 						{ label: 'R2', slug: 'platform/r2' },
@@ -70,7 +70,7 @@ export default defineConfig({
 						{ label: 'Realtime', slug: 'platform/realtime' },
 						{ label: '平台化与多租户', slug: 'platform/platforms-saas' },
 						{ label: '扩展计算与数据管道', slug: 'platform/extended-compute-data' },
-						{ label: 'AI 产品', slug: 'platform/ai' },
+						{ label: 'AI 能力', slug: 'platform/ai' },
 						{ label: '媒体与性能', slug: 'platform/media-performance' },
 						{ label: '迁移与 IaC', slug: 'platform/iac-migration' },
 						{ label: '观测与日志', slug: 'platform/observability' },

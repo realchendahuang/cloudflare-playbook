@@ -1,9 +1,9 @@
 ---
-title: AI 产品
+title: AI 能力
 description: AI Gateway、Workers AI、AI Search、Vectorize 和 Agents 该怎么选。
 ---
 
-Cloudflare 的 AI 产品按三类看：模型入口、搜索检索、自动执行。早期文档站先用 Pagefind；只要调用模型，就用 Worker 做入口边界。
+Cloudflare 的 AI 能力按三类看：模型入口、搜索检索、自动执行。早期文档站先用 Pagefind；只要调用模型，就用 Worker 做入口边界。
 
 ## 先判断
 

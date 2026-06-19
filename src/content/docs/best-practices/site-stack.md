@@ -33,7 +33,7 @@ VuePress 可以部署到 Cloudflare，也适合写普通教程。Cloudflare Play
 | 选择 | 适合场景 | 判断 |
 | --- | --- | --- |
 | Pages | 纯静态站、营销页、博客、预览部署。 | Git 工作流轻，静态资产同样免费；动态函数进入 Workers 计费口径。 |
-| Workers Static Assets | 静态内容 + 接口 + Cloudflare 数据产品 + 自定义 Worker 行为。 | 更适合展示 Workers、D1、R2、AI、Queues 等能力。 |
+| Workers Static Assets | 静态内容 + 接口 + Cloudflare 数据能力 + 自定义 Worker 行为。 | 更适合展示 Workers、D1、R2、AI、Queues 等能力。 |
 
 可以这样选：项目只是内容站，Pages 足够；内容旁边还要接评论、接口、数据和搜索接口，就优先看 Workers Static Assets。
 

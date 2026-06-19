@@ -45,6 +45,6 @@ Static Assets 最重要的是让静态请求停在静态层。页面、样式、
 | --- | --- | --- |
 | 部署来源 | Worker 项目配置。 | Git / Pages 项目设置。 |
 | 静态请求成本 | 免费且不限量。 | 免费且不限量。 |
-| 接口和数据产品 | Worker 原生，适合 D1、R2、KV、Durable Objects、Queues、AI。 | Pages 动态函数适合轻量接口。 |
+| 接口和数据能力 | Worker 原生，适合 D1、R2、KV、Durable Objects、Queues、AI。 | Pages 动态函数适合轻量接口。 |
 | 预览部署 | 需要自己组织。 | 分支和 PR 预览更顺。 |
-| 更适合 | 静态站 + 接口 / Worker 绑定和数据产品。 | 纯静态站、官网、内容协作。 |
+| 更适合 | 静态站 + 接口 / Worker 绑定和数据能力。 | 纯静态站、官网、内容协作。 |

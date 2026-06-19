@@ -10,7 +10,7 @@ description: 从免费额度、入口、安全、数据和架构模式开始读 
 | 先读 | 为什么 |
 | --- | --- |
 | [免费额度大全](/platform/free-paid/) | 先知道 0 元能跑什么，5 美元/月 Workers Paid 买到什么。 |
-| [Cloudflare 产品索引](/platform/) | 把产品按入口、计算、数据、安全、AI、观测和后续产品分组。 |
+| [Cloudflare 能力清单](/platform/) | 把能力按入口、计算、数据、安全、AI、观测和后续场景分组。 |
 | [静态内容站](/architecture/static-site/) | 文档站、官网、博客和前端应用是最常见入口。 |
 
 先抓住这条：**先跑免费路径，再按真实瓶颈升级。**
@@ -30,7 +30,7 @@ description: 从免费额度、入口、安全、数据和架构模式开始读 
 
 ## 第二轮：开发者平台主线
 
-按用途分层，不把所有产品都当数据库或后端框架。
+按用途分层，不把所有能力都当数据库或后端框架。
 
 | 你要做什么 | 优先阅读 |
 | --- | --- |
@@ -53,12 +53,12 @@ description: 从免费额度、入口、安全、数据和架构模式开始读 
 | 评论、表单、登录保护 | [WAF](/platform/waf/)、[安全与网络](/platform/security-networking/)、[D1](/platform/d1/) |
 | 文件上传、附件、下载 | [R2](/platform/r2/)、[R2 签名上传](/recipes/r2-signed-upload/) |
 | 房间、协作、状态同步 | [实时应用](/architecture/realtime-app/)、[Durable Objects](/platform/durable-objects/) |
-| AI 搜索、自然语言问答、模型网关 | [AI 产品](/platform/ai/) |
+| AI 搜索、自然语言问答、模型网关 | [AI 能力](/platform/ai/) |
 | 访问后台、保护内网工具 | [Zero Trust 与企业网络](/platform/zero-trust-networking/) |
 
 ## 少绕路的做法
 
-- 从项目目标反推产品组合，不从产品名开始记。
+- 从项目目标反推能力组合，不从服务名开始记。
 - 免费额度有明确边界，先看请求、CPU、读写次数、存储和构建次数。
-- 早期用更少的产品把路径跑通，再按真实瓶颈升级。
+- 早期用更少的能力把路径跑通，再按真实瓶颈升级。
 - 涉及限制、价格和部署命令时，先核对最新口径。

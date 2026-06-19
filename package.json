@@ -2,7 +2,7 @@
   "name": "cloudflare-playbook",
   "version": "0.1.0",
   "private": true,
-  "description": "面向独立开发者的 Cloudflare 最佳实践。",
+  "description": "一份面向独立开发者和一人公司的 Cloudflare 实战指南：从免费套餐、Pages、Workers、R2、D1、KV、Email 到完整项目部署，能省钱的地方狠狠省。",
   "type": "module",
   "engines": {
     "node": ">=22.12.0"
