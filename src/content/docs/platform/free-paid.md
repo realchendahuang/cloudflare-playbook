@@ -25,17 +25,17 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | DNS | 新 Free zone 每个域名 200 条记录；2024-09-01 前创建的 Free zone 默认 1,000 条。 | DNS 记录数跟域名计划走，Workers Paid 不影响。 | Web 记录代理；邮件、验证和特殊服务记录保持 DNS only。 |
 | CDN / Cache | CDN 可用；Free 有 10 条缓存规则。 | 更多缓存规则和高级缓存能力跟域名计划走。 | 静态资源长缓存，HTML 谨慎缓存。 |
 | SSL/TLS | Universal SSL、Origin CA、Always Use HTTPS、HSTS、TLS 1.3 可在 Free 使用。 | 高级证书、mTLS、证书治理按域名计划或企业能力看。 | 源站证书配好，优先用 Full (strict)。 |
-| DDoS | 所有计划都有标准且不限量的 DDoS 防护。 | 自有 IP、专线和网络层 SLA 走企业网络产品。 | 确保真实入口经过 Cloudflare，源站不能被直连。 |
+| DDoS | 所有计划都有标准且不限量的 DDoS 防护。 | 自有 IP、专线和网络层 SLA 走企业网络产品。 | 确保入口经过 Cloudflare，源站不能被直连。 |
 | WAF 自定义规则 | Free 有 5 条自定义规则。 | Pro 20 条，Business 100 条，Enterprise 1,000 条。 | 保护后台、登录、评论、上传、回调等高风险入口。 |
 | WAF 限流规则 | Free 有 1 条限流规则，统计和封禁周期最短 10 秒。 | Pro 2 条，Business 5 条，Enterprise 通常更高；字段和统计维度随计划增加。 | 先给登录、评论、表单或搜索入口限流。 |
 | Turnstile | Free 每账号 20 个 widget，每个 widget 10 个域名，挑战和验证请求不限量。 | Enterprise 可增加 widget、域名和高级风控。 | 公开写入口先加，服务端校验 token。 |
 | Zero Trust / Access / Tunnel | Zero Trust Free 50 个用户；Tunnel 可发布公开主机名。 | 团队人数、设备策略、审计、DLP 和更复杂网络能力走 Zero Trust 计划。 | 后台、预览环境、内网工具先用 Access + Tunnel。 |
 | Web Analytics | 代理站点不限；非代理站点 10 个。 | Web Analytics 规则数量跟域名计划走。 | 文档站和官网先开它，先看页面趋势。 |
-| Workers Static Assets | 静态资产请求免费且不限量，资产存储无额外费用。 | 命中静态资产仍免费；动态 Worker 请求按 Workers 计费。 | 能提前构建出来的内容优先停在静态层。 |
+| Workers Static Assets | 静态资产请求免费且不限量，资产存储无额外费用。 | 静态资产直接返回仍免费；动态 Worker 请求按 Workers 计费。 | 能提前构建出来的内容优先停在静态层。 |
 | Pages | Free 每月 500 次构建、1 个并发构建、每项目 100 个自定义域名、每站 20,000 个文件、单文件 25 MiB。 | Pro/Business 构建次数、并发和文件数更高；Pages Functions 按 Workers 计费。 | 纯静态站、Git 预览部署很适合。 |
 | Workers Builds | Free 每月 3,000 分钟构建、1 个并发构建、20 分钟超时。 | Paid 每月 6,000 分钟、6 个并发，超出按分钟计费。 | 用 Workers 平台构建前端项目时先用免费层。 |
-| Workers | Free 100,000 次请求/天，10 ms CPU/次调用。 | Workers Paid 最低 5 美元/月，含 10M 请求/月、30M CPU ms/月，超出按量。 | 只让接口、评论、表单、回调、鉴权等动态路径进入 Worker。 |
-| Worker 平台限制 | Free 有 100 个 Worker、50 次子请求/调用、5 个 Cron、3 MB Worker 包。 | Paid 有 500 个 Worker、10,000 次子请求/调用、250 个 Cron、10 MB Worker 包。 | 免费阶段项目少而清晰，复杂拆分留到真实需要出现后。 |
+| Workers | Free 100,000 次请求/天，10 ms CPU/次调用。 | Workers Paid 最低 5 美元/月，含 10M 请求/月、30M CPU ms/月，超出按量。 | 只让接口、评论、表单、回调、鉴权等动态路径交给 Worker。 |
+| Worker 平台限制 | Free 有 100 个 Worker、50 次子请求/调用、5 个 Cron、3 MB Worker 包。 | Paid 有 500 个 Worker、10,000 次子请求/调用、250 个 Cron、10 MB Worker 包。 | 免费阶段项目少而清晰，复杂拆分留到实际需要出现后。 |
 | Workers Logs | Free 每天 200,000 条日志事件，保留 3 天。 | Paid 每月 20M 条日志事件，保留 7 天，超出按量。 | 记录请求编号、路径、状态、耗时和错误类型。 |
 | KV | Free 每天 100k 读取、1k 写入、1k 删除、1k 列举，1 GB 存储。 | Paid 每月 10M 读取、1M 写入、1M 删除、1M 列举，1 GB 存储，超出按量。 | 只放读多写少的配置、公开索引和缓存。 |
 | D1 | Free 5M 行读取/天、100k 行写入/天、5 GB 总存储。 | Paid 每月 25B 行读取、50M 行写入、5 GB 存储，超出按量。 | 评论、反馈、小后台适合；常查字段先建索引。 |
@@ -50,7 +50,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | Browser Run | Free 每天 10 分钟浏览器时间，Browser Sessions 3 个并发浏览器。 | Paid 每月 10 小时浏览器时间、10 个并发浏览器，超出按量。 | 能用普通请求就不用浏览器；截图、PDF、动态页面抓取才看。 |
 | Images | Free 每月 5,000 次独立图片转换，超出后新转换返回错误且不计费。 | Paid 含 5,000 次转换，超出按 1,000 次计费；Images 存储和交付另计。 | 原图进 R2，需要多尺寸和格式转换时再看。 |
 | Zaraz | 每账号每月 1,000,000 个免费事件；未启用付费且超出会暂停到下个账单周期。 | Paid 每额外 1,000,000 个事件 5 美元/月。 | 第三方脚本变多时再看；先保留必要脚本。 |
-| Stream | 上传和编码入口免费；普通文档站没有实用的免费视频存储层。 | 按视频存储、观看和交付等计量。 | 视频是核心体验再看；普通附件优先放 R2。 |
+| Stream | 上传和编码入口免费；普通文档站没有实用的免费视频存储层。 | 按视频存储、观看和交付等计量。 | 视频是主要内容时再看；普通附件优先放 R2。 |
 | Containers | Free 不可用。 | Workers Paid 含 25 GiB-hours、375 vCPU-minutes、200 GB-hours，超出按量。 | 只有 Worker 运行时不够承载时再看。 |
 | 预算提醒 | 可按美元阈值发邮件提醒按量费用。 | 仍然只是提醒。 | 启用提醒；硬边界靠限流、配额、队列熔断和产品开关。 |
 
@@ -100,9 +100,9 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | 需要 7 天日志、更多 Cron、更多子请求、更大包或更多 Worker | 该认真考虑 Workers Paid。 |
 | 想加强 WAF、Bot、证书、缓存规则 | 看域名计划。 |
 
-## 后面再看
+## 后续评估
 
-| 产品 / 能力 | 什么时候再看 |
+| 产品 / 能力 | 什么时候评估 |
 | --- | --- |
 | Load Balancing、Health Checks、Argo、Spectrum | 多源站、故障切换、非 HTTP 入口或缓存做好后仍然回源慢。 |
 | Waiting Room、Smart Shield、APO | 合法峰值、WordPress 性能瓶颈或源站洪峰已经明确。 |
@@ -118,7 +118,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 
 | 误区 | 更好的做法 |
 | --- | --- |
-| 所有请求都先进 Worker。 | 静态资产直接服务，只让动态路径进 Worker。 |
+| 所有请求都先交给 Worker。 | 静态资产直接返回，只让动态路径交给 Worker。 |
 | KV 可以当数据库。 | KV 用于读多写少；关系数据用 D1。 |
 | R2 出站带宽免费就完全免费。 | R2 不收出站带宽费，但存储和操作会计费。 |
 | AI 一开始就做向量搜索。 | 先整理内容结构，Pagefind 能解决大部分早期搜索。 |

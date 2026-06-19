@@ -3,7 +3,7 @@ title: 成本控制
 description: Cloudflare 项目中常见成本来源、免费额度边界和控制方式。
 ---
 
-Cloudflare 账单分四条线看：域名计划、Workers Paid、附加产品和按量计费。预算提醒、用量面板和发票规则见 [账单与预算](/platform/billing/)；额度口径见 [免费额度大全](/platform/free-paid/)。
+Cloudflare 账单分四条线看：域名计划、Workers Paid、附加产品和按量计费。预算提醒、用量面板和发票规则见 [账单与预算](/platform/billing/)；额度数字见 [免费额度大全](/platform/free-paid/)。
 
 ## 免费额度优先级
 
@@ -20,7 +20,7 @@ Cloudflare 账单分四条线看：域名计划、Workers Paid、附加产品和
 
 | 规则 | 做法 |
 | --- | --- |
-| 静态优先 | 文档、官网、前端构建产物走 Workers Static Assets 或 Pages；只有接口进 Worker。 |
+| 静态优先 | 文档、官网、前端构建产物走 Workers Static Assets 或 Pages；只有接口交给 Worker。 |
 | 数据归位 | 关系数据进 D1，文件进 R2，配置和缓存进 KV，强一致房间状态进 Durable Objects。 |
 | 后台异步 | 邮件、通知、导入、转码、爬取、AI 批处理放 Queues 或定时任务。 |
 | AI 先网关 | 模型调用先过 AI Gateway，观察请求数、模型用量、缓存和错误，再决定是否扩大。 |
@@ -30,6 +30,6 @@ Cloudflare 账单分四条线看：域名计划、Workers Paid、附加产品和
 
 ## 付费判断
 
-Workers Paid 只在动态请求、CPU、日志、定时任务、D1、KV、Queues、Durable Objects、Hyperdrive、Browser Run 或 Workers AI 已经进入真实生产路径时才值得开。它属于开发者平台订阅；WAF、缓存规则、证书、Bot、R2、Images、Stream、日志查询和企业日志都要按各自产品重新看。
+Workers Paid 只在动态请求、CPU、日志、定时任务、D1、KV、Queues、Durable Objects、Hyperdrive、Browser Run 或 Workers AI 已经在线上稳定使用时才值得开。它属于开发者平台订阅；WAF、缓存规则、证书、Bot、R2、Images、Stream、日志查询和企业日志按各自规则计费。
 
 静态文档站、博客、官网、作品集，或者搜索用 Pagefind 就能解决时，先用免费层。详细数字和常见误区见 [免费额度大全](/platform/free-paid/)。

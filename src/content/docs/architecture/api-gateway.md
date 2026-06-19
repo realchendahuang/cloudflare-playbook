@@ -1,6 +1,6 @@
 ---
 title: 接口入口
-description: 用 Workers 承接接口、第三方回调、表单、上传和轻量后端入口。
+description: 用 Workers 处理接口、第三方回调、表单、上传和轻量后端入口。
 ---
 
 ## 先判断场景

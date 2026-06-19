@@ -18,9 +18,9 @@ description: Cloudflare Workers Static Assets 的定位、免费边界和 Pages 
 
 | 边界 | 判断 |
 | --- | --- |
-| 静态资产请求 | 命中资产层时免费且不限量，是文档站和官网的主流量入口。 |
+| 静态资产请求 | 由资产层直接返回时免费且不限量，是文档站和官网的主流量入口。 |
 | 部署产物 | 适合放构建结果，不适合放用户上传、附件、导出包和媒体库。 |
-| 动态 Worker 请求 | 只有进入 Worker 脚本才按 Workers 请求和 CPU 计算。 |
+| 动态 Worker 请求 | 只有交给 Worker 脚本处理时，才按 Workers 请求和 CPU 计算。 |
 | 文件大小和数量 | 大量图片、下载包、原始附件和视频应进入 R2 / Stream。 |
 
 ## 最省钱的路径
@@ -28,7 +28,7 @@ description: Cloudflare Workers Static Assets 的定位、免费边界和 Pages 
 | 请求 | 推荐走法 |
 | --- | --- |
 | 页面、CSS、JS、字体、Pagefind 索引 | Static Assets 直接返回。 |
-| 评论、搜索接口、第三方回调、后台接口 | 只让对应路径进入 Worker。 |
+| 评论、搜索接口、第三方回调、后台接口 | 只让对应路径交给 Worker。 |
 | 用户上传文件 | Worker 做鉴权，文件进 R2。 |
 | 公开下载文件 | 页面用 Static Assets，文件本体进 R2。 |
 | 单页应用前端路由 | 用静态回退，接口路径单独处理。 |

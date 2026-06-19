@@ -29,7 +29,7 @@ description: 常见 Cloudflare 架构组合和取舍顺序。
 
 | 判断 | 直接含义 |
 | --- | --- |
-| 静态优先 | 阅读流量留在 Static Assets / Pages，不进入 Worker。 |
+| 静态优先 | 阅读流量留在 Static Assets / Pages，不用 Worker 处理。 |
 | 动态分层 | Worker 负责入口和轻逻辑，D1 / R2 / KV / Queues / DO 各管各的状态。 |
 | 文件离库 | 文件本体进 R2，D1 只存元数据、权限和索引。 |
 | 强一致靠 DO | 房间、限流桶、单资源顺序写入用 Durable Objects，不用 KV。 |

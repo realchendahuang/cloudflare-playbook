@@ -14,6 +14,7 @@ description: Cloudflare Workers 的取舍、架构分工和升级判断。
 | 房间、会话、协作状态 | Worker 只做入口。 | Workers + Durable Objects |
 | 邮件、导入、重试、后处理 | 放到后台异步处理。 | Workers + Queues / Workflows |
 | 服务端渲染、重搜索、AI 前处理 | 谨慎。 | 先估 CPU，再决定是否付费 |
+| 爬取、总结、通知、导出串联 | 不要放在一次请求里。 | Workers 入队 + Queues / Workflows / Containers |
 
 ## 什么时候升级
 
@@ -22,7 +23,7 @@ description: Cloudflare Workers 的取舍、架构分工和升级判断。
 | 动态请求稳定接近 Free 边界。 | 公开接口、评论、搜索代理或服务端渲染已经有人持续使用。 |
 | CPU 经常不够。 | 解析大请求、服务端渲染、加密、AI 前处理和批量数据处理都要单独看 CPU。 |
 | 日志留存不够排障。 | 生产问题需要更长留存、请求追踪日志或外部日志平台。 |
-| D1、KV、Queues、Durable Objects 成为主要路径。 | 这些产品的免费层也会一起决定是否进入 Workers Paid。 |
+| D1、KV、Queues、Durable Objects 成为主要依赖。 | 这些产品的免费层也会一起决定是否升级到 Workers Paid。 |
 | 需要更多定时任务、Worker 数量、外部调用或更大包体。 | 这是工程配额升级。 |
 
 ## 架构分工
@@ -36,3 +37,13 @@ description: Cloudflare Workers 的取舍、架构分工和升级判断。
 | 图片、附件、导出包 | R2 | Worker 不存大对象。 |
 | 房间、会话、限流器 | Durable Objects | 单实体强一致。 |
 | 慢任务、通知、重试 | Queues / Workflows | 不绑在一次请求生命周期里。 |
+
+## 长任务边界
+
+| 做法 | 判断 |
+| --- | --- |
+| `ctx.waitUntil()` | 只适合返回响应后的短尾任务，例如日志、缓存刷新、轻通知；不要把它当后台线程。 |
+| 请求里串外部 API | 本地可能正常，上线后外部 API 一慢，整条请求就会被拖住。 |
+| 用户提交后立刻返回 | 校验输入、写任务记录、入队，然后返回任务状态。 |
+| 消费端慢慢处理 | 邮件、爬取、AI 总结、文件解析、通知发送放到队列或工作流里。 |
+| 真正重计算 | Worker 运行时不适合硬扛时，再看 Containers 或外部计算服务。 |

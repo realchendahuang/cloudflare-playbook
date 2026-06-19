@@ -12,7 +12,7 @@ description: Cloudflare SSL/TLS 的配置顺序、免费边界和源站保护。
 | Workers / Pages 自定义域名 | 多数证书由 Cloudflare 管理。 |
 | 还在用 Flexible | 只适合短期迁移，长期会明文回源并容易循环跳转。 |
 | 想开 HSTS preload | 等所有子域、证书续期和回滚路径稳定后再说。 |
-| 想上传自有证书 | 通常不用；先看计划边界和真实兼容需求。 |
+| 想上传自有证书 | 通常不用；先看计划边界和兼容需求。 |
 
 ## 免费与计划边界
 
@@ -23,7 +23,7 @@ description: Cloudflare SSL/TLS 的配置顺序、免费边界和源站保护。
 | Full / Full (strict) | 可用 | 新项目直接以 Full (strict) 为目标。 |
 | Always Use HTTPS | 可用 | Full (strict) 正常后再开。 |
 | HSTS | 可用 | 强但难回滚，先短周期验证。 |
-| Authenticated Origin Pulls | 可用 | 有真实源站且担心绕过 Cloudflare 时再评估。 |
+| Authenticated Origin Pulls | 可用 | 有自有源站且担心绕过 Cloudflare 时再评估。 |
 | 高阶证书能力 | 多为付费或高阶计划 | 有自定义证书、旧客户端或合规要求时再看。 |
 
 ## 默认顺序

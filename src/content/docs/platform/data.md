@@ -3,7 +3,7 @@ title: 数据能力
 description: D1、KV、R2、Durable Objects、Queues 和后续数据能力怎么选。
 ---
 
-## 按数据形态选
+## 按数据类型选
 
 | 你手里的数据 | 先看 | 边界 |
 | --- | --- | --- |

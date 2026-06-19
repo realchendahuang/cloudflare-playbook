@@ -53,7 +53,7 @@
 | [WAF](src/content/docs/platform/waf.md) | 后台、登录、评论、上传、搜索和写接口的应用安全过滤。 |
 | [DDoS Protection](src/content/docs/platform/ddos.md) | DDoS 防护、源站暴露、Under Attack Mode 和入口确认。 |
 | [Rules](src/content/docs/platform/rules.md) | 跳转、改写、回源、缓存规则和旧 Page Rules 迁移。 |
-| [数据能力](src/content/docs/platform/data.md) | D1、KV、R2、Queues、Durable Objects、Hyperdrive、AI Search 的数据形态选择。 |
+| [数据能力](src/content/docs/platform/data.md) | D1、KV、R2、Queues、Durable Objects、Hyperdrive、AI Search 的数据类型选择。 |
 | [D1](src/content/docs/platform/d1.md) | 评论、表单、小后台、轻业务表和关系数据边界。 |
 | [KV](src/content/docs/platform/kv.md) | 读多写少配置、缓存、公开索引和一致性边界。 |
 | [R2](src/content/docs/platform/r2.md) | 文件、图片、附件、备份、导入导出和对象存储成本。 |
