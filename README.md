@@ -1,161 +1,126 @@
 # Cloudflare Playbook
 
-Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队的 Cloudflare 最佳实践知识库。它帮助读者理解 Workers、Pages、D1、KV、R2、Durable Objects、Queues、AI、安全、缓存、部署和可观测性在真实项目里应该怎么选、怎么组合、怎么验证。
+Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队的 Cloudflare 最佳实践内容库。
 
-这个仓库使用 Astro + Starlight 搭建文档站，通过 Cloudflare Workers Static Assets 部署，并使用 Starlight 生态主题与 Twikoo 评论组件。它定位为面向 Cloudflare 实践的开源知识库样板。
+它帮助读者回答这些问题：
 
-> Cloudflare 提供了覆盖计算、存储、网络、安全、AI 和可观测性的完整平台。对独立开发者和早期团队来说，理解这些产品的边界和组合方式，可以显著降低项目启动和运维成本。
+- Cloudflare 免费额度到底能跑什么。
+- 一个普通项目应该先用哪些产品。
+- Workers Paid、域名计划、R2、D1、AI、日志这些费用怎么分开看。
+- 文档站、官网、轻社区、小型 SaaS、文件工具、实时应用和 AI 搜索该怎么组合产品。
+- 安全、成本、缓存、日志、上传、评论和后台入口应该先守住哪些边界。
 
-线上站点：[cloudflare-playbook.chendahuang.top](https://cloudflare-playbook.chendahuang.top/)
+线上阅读：[cloudflare-playbook.chendahuang.top](https://cloudflare-playbook.chendahuang.top/)
 
-## 当前定位
+## 推荐阅读顺序
 
-- **产品地图**：解释 Cloudflare 主要产品各自解决什么问题。
-- **架构模式**：整理静态站点、API 网关、SaaS 后端、实时应用、AI 应用、文件服务等常见组合。
-- **最佳实践**：沉淀成本、安全、缓存、可观测性、部署和回滚经验。
-- **实战案例**：用可复现步骤展示如何把产品组合落到代码和配置里。
-- **资料索引**：优先链接 Cloudflare 官方文档、变更日志和可验证来源。
-
-## 文档主页
-
-所有文档既可以在 GitHub 仓库里直接看，也可以在网站里看。
-
-| 文档 | 仓库文件 | 网站 |
+| 顺序 | 先读 | 解决的问题 |
 | --- | --- | --- |
-| 首页 | [src/content/docs/index.mdx](src/content/docs/index.mdx) | [打开](https://cloudflare-playbook.chendahuang.top/) |
-| 学习路线 | [src/content/docs/start/index.md](src/content/docs/start/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/start/) |
-| Cloudflare 产品大图谱 | [src/content/docs/platform/index.md](src/content/docs/platform/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/) |
-| Fundamentals | [src/content/docs/platform/fundamentals.md](src/content/docs/platform/fundamentals.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/fundamentals/) |
-| Workers | [src/content/docs/platform/workers.md](src/content/docs/platform/workers.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/workers/) |
-| Workers Static Assets | [src/content/docs/platform/static-assets.md](src/content/docs/platform/static-assets.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/static-assets/) |
-| Pages | [src/content/docs/platform/pages.md](src/content/docs/platform/pages.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/pages/) |
-| DNS | [src/content/docs/platform/dns.md](src/content/docs/platform/dns.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/dns/) |
-| SSL/TLS | [src/content/docs/platform/ssl-tls.md](src/content/docs/platform/ssl-tls.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ssl-tls/) |
-| Cache / CDN | [src/content/docs/platform/cache.md](src/content/docs/platform/cache.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/cache/) |
-| 流量调度与四层入口 | [src/content/docs/platform/traffic-routing.md](src/content/docs/platform/traffic-routing.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/traffic-routing/) |
-| 源站保护与流量洪峰 | [src/content/docs/platform/origin-surge.md](src/content/docs/platform/origin-surge.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/origin-surge/) |
-| 公共网络与专项服务 | [src/content/docs/platform/public-network-specialties.md](src/content/docs/platform/public-network-specialties.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/public-network-specialties/) |
-| 治理、合规与学习路径 | [src/content/docs/platform/governance-compliance-learning.md](src/content/docs/platform/governance-compliance-learning.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/governance-compliance-learning/) |
-| 低频协议与平台工具 | [src/content/docs/platform/edge-protocols-utilities.md](src/content/docs/platform/edge-protocols-utilities.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/edge-protocols-utilities/) |
-| 开发者与网络补充专项 | [src/content/docs/platform/developer-network-additions.md](src/content/docs/platform/developer-network-additions.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/developer-network-additions/) |
-| WAF | [src/content/docs/platform/waf.md](src/content/docs/platform/waf.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/waf/) |
-| DDoS Protection | [src/content/docs/platform/ddos.md](src/content/docs/platform/ddos.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ddos/) |
-| Rules | [src/content/docs/platform/rules.md](src/content/docs/platform/rules.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/rules/) |
-| 数据产品 | [src/content/docs/platform/data.md](src/content/docs/platform/data.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/data/) |
-| D1 | [src/content/docs/platform/d1.md](src/content/docs/platform/d1.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/d1/) |
-| KV | [src/content/docs/platform/kv.md](src/content/docs/platform/kv.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/kv/) |
-| R2 | [src/content/docs/platform/r2.md](src/content/docs/platform/r2.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/r2/) |
-| Durable Objects | [src/content/docs/platform/durable-objects.md](src/content/docs/platform/durable-objects.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/durable-objects/) |
-| Queues | [src/content/docs/platform/queues.md](src/content/docs/platform/queues.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/queues/) |
-| Realtime | [src/content/docs/platform/realtime.md](src/content/docs/platform/realtime.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/realtime/) |
-| 平台化与多租户 | [src/content/docs/platform/platforms-saas.md](src/content/docs/platform/platforms-saas.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/platforms-saas/) |
-| 扩展计算与数据管道 | [src/content/docs/platform/extended-compute-data.md](src/content/docs/platform/extended-compute-data.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/extended-compute-data/) |
-| AI 产品 | [src/content/docs/platform/ai.md](src/content/docs/platform/ai.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/ai/) |
-| 媒体与性能 | [src/content/docs/platform/media-performance.md](src/content/docs/platform/media-performance.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/media-performance/) |
-| 迁移与 IaC | [src/content/docs/platform/iac-migration.md](src/content/docs/platform/iac-migration.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/iac-migration/) |
-| 观测与日志 | [src/content/docs/platform/observability.md](src/content/docs/platform/observability.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/observability/) |
-| 安全与网络 | [src/content/docs/platform/security-networking.md](src/content/docs/platform/security-networking.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/security-networking/) |
-| Zero Trust 与企业网络 | [src/content/docs/platform/zero-trust-networking.md](src/content/docs/platform/zero-trust-networking.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/zero-trust-networking/) |
-| 自有网络与专线 | [src/content/docs/platform/private-networking.md](src/content/docs/platform/private-networking.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/private-networking/) |
-| 免费额度大全 | [src/content/docs/platform/free-paid.md](src/content/docs/platform/free-paid.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/free-paid/) |
-| Billing | [src/content/docs/platform/billing.md](src/content/docs/platform/billing.md) | [打开](https://cloudflare-playbook.chendahuang.top/platform/billing/) |
-| 架构模式总览 | [src/content/docs/architecture/index.md](src/content/docs/architecture/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/) |
-| 静态内容站 | [src/content/docs/architecture/static-site.md](src/content/docs/architecture/static-site.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/static-site/) |
-| API 网关 | [src/content/docs/architecture/api-gateway.md](src/content/docs/architecture/api-gateway.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/api-gateway/) |
-| 实时应用 | [src/content/docs/architecture/realtime-app.md](src/content/docs/architecture/realtime-app.md) | [打开](https://cloudflare-playbook.chendahuang.top/architecture/realtime-app/) |
-| 最佳实践总览 | [src/content/docs/best-practices/index.md](src/content/docs/best-practices/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/) |
-| 本站技术栈 | [src/content/docs/best-practices/site-stack.md](src/content/docs/best-practices/site-stack.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/site-stack/) |
-| 独立开发者推荐栈 | [src/content/docs/best-practices/indie-stack.md](src/content/docs/best-practices/indie-stack.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/indie-stack/) |
-| Codex 协作 | [src/content/docs/best-practices/codex-cloudflare.md](src/content/docs/best-practices/codex-cloudflare.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/codex-cloudflare/) |
-| 安全边界 | [src/content/docs/best-practices/security.md](src/content/docs/best-practices/security.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/security/) |
-| 成本控制 | [src/content/docs/best-practices/cost.md](src/content/docs/best-practices/cost.md) | [打开](https://cloudflare-playbook.chendahuang.top/best-practices/cost/) |
-| 实战案例总览 | [src/content/docs/recipes/index.md](src/content/docs/recipes/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/recipes/) |
-| Worker API + D1 | [src/content/docs/recipes/worker-api-d1.md](src/content/docs/recipes/worker-api-d1.md) | [打开](https://cloudflare-playbook.chendahuang.top/recipes/worker-api-d1/) |
-| R2 签名上传 | [src/content/docs/recipes/r2-signed-upload.md](src/content/docs/recipes/r2-signed-upload.md) | [打开](https://cloudflare-playbook.chendahuang.top/recipes/r2-signed-upload/) |
-| 官方资料索引 | [src/content/docs/reference/index.md](src/content/docs/reference/index.md) | [打开](https://cloudflare-playbook.chendahuang.top/reference/) |
-| Cloudflare 文档地图 | [src/content/docs/reference/cloudflare-docs-map.md](src/content/docs/reference/cloudflare-docs-map.md) | [打开](https://cloudflare-playbook.chendahuang.top/reference/cloudflare-docs-map/) |
+| 1 | [免费额度大全](https://cloudflare-playbook.chendahuang.top/platform/free-paid/) | 0 元能跑到哪里，5 美元 Workers Paid 买到什么。 |
+| 2 | [学习路线](https://cloudflare-playbook.chendahuang.top/start/) | 第一次读 Cloudflare 时该按什么顺序看。 |
+| 3 | [产品索引](https://cloudflare-playbook.chendahuang.top/platform/) | 把 Cloudflare 官方产品压成普通项目能用的分类。 |
+| 4 | [架构模式](https://cloudflare-playbook.chendahuang.top/architecture/) | 按项目类型组合产品。 |
+| 5 | [最佳实践](https://cloudflare-playbook.chendahuang.top/best-practices/) | 处理成本、安全、数据、日志和上线边界。 |
+| 6 | [实战案例](https://cloudflare-playbook.chendahuang.top/recipes/) | 看具体场景怎么落地。 |
+| 7 | [官方资料索引](https://cloudflare-playbook.chendahuang.top/reference/) | 回到 Cloudflare 官方文档和可验证来源。 |
 
-## 当前技术栈
+## 内容地图
 
-```text
-Astro + Starlight
-  ├─ Markdown / MDX 文档
-  ├─ Pagefind 站内搜索
-  ├─ Starlight Theme Next 主题
-  ├─ Twikoo 评论组件
-  └─ dist 静态资产
+### 开始
 
-Cloudflare Worker
-  ├─ Workers Static Assets 托管文档站
-  └─ Twikoo Cloudflare Worker 承载评论服务
+| 章节 | 内容 |
+| --- | --- |
+| [免费额度大全](https://cloudflare-playbook.chendahuang.top/platform/free-paid/) | Cloudflare 免费层、5 美元 Workers Paid、常见产品额度和升级信号。 |
+| [学习路线](https://cloudflare-playbook.chendahuang.top/start/) | 从免费额度、上线入口、动态能力、数据产品、安全边界一路读下去。 |
 
-Cloudflare D1
-  └─ 保存 Twikoo 评论数据
-```
+### 产品地图
 
-搜索先使用 Starlight 默认的 Pagefind，评论使用 Twikoo 连接 Cloudflare Worker 和 D1。等内容规模变大后，再评估 Cloudflare AI Search 做自然语言搜索。
+| 章节 | 内容 |
+| --- | --- |
+| [产品索引](https://cloudflare-playbook.chendahuang.top/platform/) | 按 Application performance、Application security、Core platform、Developer platform 等官方大类压缩阅读路径。 |
+| [Fundamentals](https://cloudflare-playbook.chendahuang.top/platform/fundamentals/) | 账号、域名、代理状态、源站保护、权限和排障入口。 |
+| [Workers](https://cloudflare-playbook.chendahuang.top/platform/workers/) | 动态接口、第三方回调、评论、表单、代理和轻后端入口。 |
+| [Workers Static Assets](https://cloudflare-playbook.chendahuang.top/platform/static-assets/) | 文档站、官网、博客和前端构建产物的静态资产层。 |
+| [Pages](https://cloudflare-playbook.chendahuang.top/platform/pages/) | Git 协作、预览部署、纯静态站和轻量动态函数边界。 |
+| [DNS](https://cloudflare-playbook.chendahuang.top/platform/dns/) | 哪些记录走代理，哪些保持 DNS only，域名迁移怎么核对。 |
+| [SSL/TLS](https://cloudflare-playbook.chendahuang.top/platform/ssl-tls/) | Universal SSL、Full (strict)、源站证书和 HSTS 的起步顺序。 |
+| [Cache / CDN](https://cloudflare-playbook.chendahuang.top/platform/cache/) | 静态资源缓存、HTML 边界、R2 公开文件和用户态绕过。 |
+| [流量调度](https://cloudflare-playbook.chendahuang.top/platform/traffic-routing/) | 负载均衡、健康检查、四层入口、路径优化和私网调度。 |
+| [源站保护与流量洪峰](https://cloudflare-playbook.chendahuang.top/platform/origin-surge/) | 源站被打满、合法峰值、回源压力、Waiting Room、Smart Shield、APO。 |
+| [公共网络能力](https://cloudflare-playbook.chendahuang.top/platform/public-network-specialties/) | 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway。 |
+| [治理、合规与学习路径](https://cloudflare-playbook.chendahuang.top/platform/governance-compliance-learning/) | 合规、脚本安全、官方支持、学习材料和团队治理。 |
+| [后置协议与工具](https://cloudflare-playbook.chendahuang.top/platform/edge-protocols-utilities/) | Web3、Time Services、Randomness Beacon、Privacy Gateway、Tenant API 等补充能力。 |
+| [后置开发者能力](https://cloudflare-playbook.chendahuang.top/platform/developer-network-additions/) | 事务邮件、功能灰度、构建产物、代码执行、R2 查询和助手协作。 |
+| [WAF](https://cloudflare-playbook.chendahuang.top/platform/waf/) | 后台、登录、评论、上传、搜索和写接口的应用安全过滤。 |
+| [DDoS Protection](https://cloudflare-playbook.chendahuang.top/platform/ddos/) | DDoS 防护、源站暴露、Under Attack Mode 和入口确认。 |
+| [Rules](https://cloudflare-playbook.chendahuang.top/platform/rules/) | 跳转、改写、回源、缓存规则和旧 Page Rules 迁移。 |
+| [数据产品](https://cloudflare-playbook.chendahuang.top/platform/data/) | D1、KV、R2、Queues、Durable Objects、Hyperdrive、AI Search 的数据形态选择。 |
+| [D1](https://cloudflare-playbook.chendahuang.top/platform/d1/) | 评论、表单、小后台、轻业务表和关系数据边界。 |
+| [KV](https://cloudflare-playbook.chendahuang.top/platform/kv/) | 读多写少配置、缓存、公开索引和一致性边界。 |
+| [R2](https://cloudflare-playbook.chendahuang.top/platform/r2/) | 文件、图片、附件、备份、导入导出和对象存储成本。 |
+| [Durable Objects](https://cloudflare-playbook.chendahuang.top/platform/durable-objects/) | 房间、会话、限流器、锁和单实体强一致状态。 |
+| [Queues](https://cloudflare-playbook.chendahuang.top/platform/queues/) | 邮件、通知、导入、回调重试和后台异步任务。 |
+| [Realtime](https://cloudflare-playbook.chendahuang.top/platform/realtime/) | 文本实时、音视频实时、RealtimeKit、Realtime SFU 和 TURN。 |
+| [平台化与多租户](https://cloudflare-playbook.chendahuang.top/platform/platforms-saas/) | 客户域名、客户代码、Cloudflare for SaaS、Workers for Platforms、Dynamic Workers。 |
+| [扩展计算与数据管道](https://cloudflare-playbook.chendahuang.top/platform/extended-compute-data/) | Hyperdrive、Workflows、Pipelines、Containers、R2 Data Catalog。 |
+| [AI 产品](https://cloudflare-playbook.chendahuang.top/platform/ai/) | Pagefind、AI Gateway、Workers AI、AI Search、Vectorize、Agents 的选择顺序。 |
+| [媒体与性能](https://cloudflare-playbook.chendahuang.top/platform/media-performance/) | 图片、视频、第三方脚本、Browser Run 和性能成本边界。 |
+| [迁移与配置管理](https://cloudflare-playbook.chendahuang.top/platform/iac-migration/) | DNS、WAF、规则、Access、资源声明和配置真源。 |
+| [观测与日志](https://cloudflare-playbook.chendahuang.top/platform/observability/) | Web Analytics、Workers Logs、业务事件、日志留存和敏感字段边界。 |
+| [安全与网络](https://cloudflare-playbook.chendahuang.top/platform/security-networking/) | 入口代理、源站保护、写接口、Access / Tunnel、密钥和安全事件。 |
+| [Zero Trust 与企业网络](https://cloudflare-playbook.chendahuang.top/platform/zero-trust-networking/) | Access、Tunnel、Gateway、设备 Client、私网访问和团队访问边界。 |
+| [自有网络与专线](https://cloudflare-playbook.chendahuang.top/platform/private-networking/) | 自有公网 IP、私有网络、专线、企业网络和网络团队场景。 |
+| [账单与预算](https://cloudflare-playbook.chendahuang.top/platform/billing/) | Workers Paid、域名计划、按量计费、预算提醒和账单异常排查。 |
 
-## 本地开发
+### 架构模式
 
-环境要求：
+| 章节 | 内容 |
+| --- | --- |
+| [架构模式总览](https://cloudflare-playbook.chendahuang.top/architecture/) | 静态阅读路径、动态写入路径、数据和文件路径的组合顺序。 |
+| [静态内容站](https://cloudflare-playbook.chendahuang.top/architecture/static-site/) | 文档站、官网、博客、作品集、知识库和前端应用。 |
+| [接口入口](https://cloudflare-playbook.chendahuang.top/architecture/api-gateway/) | 表单、评论、第三方回调、上传、小型 SaaS 接口、AI 代理和内部服务入口。 |
+| [实时应用](https://cloudflare-playbook.chendahuang.top/architecture/realtime-app/) | 聊天、在线人数、协作状态、房间、限流器和媒体实时边界。 |
 
-- Node.js >= 22.12.0
-- pnpm 10+
+### 最佳实践
 
-```bash
-pnpm install
-pnpm dev
-```
+| 章节 | 内容 |
+| --- | --- |
+| [最佳实践总览](https://cloudflare-playbook.chendahuang.top/best-practices/) | 免费额度、安全边界、升级信号和上线前检查。 |
+| [文档站方案](https://cloudflare-playbook.chendahuang.top/best-practices/site-stack/) | 文档站、搜索、评论、自然语言搜索和轻社区选择。 |
+| [独立开发者推荐栈](https://cloudflare-playbook.chendahuang.top/best-practices/indie-stack/) | 个人项目、开源项目、早期 SaaS、AI 工具、文件工具和后台任务组合。 |
+| [Codex 协作](https://cloudflare-playbook.chendahuang.top/best-practices/codex-cloudflare/) | 用 Codex 维护 Cloudflare 内容、事实来源、写作结构和复核方式。 |
+| [安全边界](https://cloudflare-playbook.chendahuang.top/best-practices/security/) | 入口、写接口、后台、密钥、日志、Turnstile、WAF 和应急动作。 |
+| [成本控制](https://cloudflare-playbook.chendahuang.top/best-practices/cost/) | 动态请求、CPU、D1、R2、AI、日志、预算提醒和付费判断。 |
 
-构建静态站点：
+### 实战案例
 
-```bash
-pnpm build
-```
+| 章节 | 内容 |
+| --- | --- |
+| [案例总览](https://cloudflare-playbook.chendahuang.top/recipes/) | 可复用的 Workers、D1、R2、上传、评论和接口案例入口。 |
+| [Worker 接口 + D1](https://cloudflare-playbook.chendahuang.top/recipes/worker-api-d1/) | 轻量评论接口、输入校验、预编译 SQL、D1 数据边界和生产检查。 |
+| [R2 签名上传](https://cloudflare-playbook.chendahuang.top/recipes/r2-signed-upload/) | Worker 代理上传、预签名 URL、私有下载、权限设计和生产检查。 |
 
-本地预览构建产物：
+### 资料索引
 
-```bash
-pnpm preview
-```
+| 章节 | 内容 |
+| --- | --- |
+| [官方资料](https://cloudflare-playbook.chendahuang.top/reference/) | 官方文档、变更日志、GitHub 仓库、示例模板和学习资料。 |
+| [Cloudflare 文档地图](https://cloudflare-playbook.chendahuang.top/reference/cloudflare-docs-map/) | 把 Cloudflare 官方文档大类压缩成本站阅读顺序。 |
 
-## 部署到 Cloudflare Workers
+## 内容原则
 
-构建并部署：
-
-```bash
-pnpm build
-pnpm run deploy
-```
-
-`wrangler.jsonc` 是部署配置真源，当前包含：
-
-```text
-assets.directory = ./dist
-routes.pattern = cloudflare-playbook.chendahuang.top
-```
-
-评论服务使用单独的 Worker 配置：
-
-```text
-wrangler.comments.jsonc
-comments.cloudflare-playbook.chendahuang.top
-```
-
-## 写作原则
-
-- 官方事实优先：限制、价格、API、配置字段必须回到 Cloudflare 官方文档核对。
-- 面向普通人：先解释“什么时候用”和“什么时候不用”，再给配置和代码。
-- 保持可复现：案例需要包含环境、输入、关键配置、验证方式和风险提示。
-- 不确定就标注：无法确认的内容写成 `TODO` 或说明待核对。
-- 过时就更新：Cloudflare 产品变化快，旧结论要及时修订或删除。
+- 免费额度先讲清楚，再讨论产品组合。
+- 先回答“什么时候用”，再回答“用哪个”。
+- 概念页不堆命令、字段和配置细节。
+- 数字、价格、限制和计划边界回到 Cloudflare 官方文档核对。
+- 文章服务普通项目，优先覆盖文档站、官网、小接口、轻社区、小型 SaaS、文件工具、后台和 AI 搜索。
 
 ## 贡献方向
 
-欢迎补充：
+欢迎补充这些内容：
 
-- 某个 Cloudflare 产品的入门解释。
-- 一个真实架构的产品组合图和取舍说明。
-- 一个可跑通的 Workers / Pages / D1 / R2 / Durable Objects 案例。
-- 成本、安全、缓存、日志、回滚相关的踩坑记录。
-- 官方文档更新后的同步修订。
+- Cloudflare 产品的清晰解释和适用边界。
+- 真实项目的产品组合、成本判断和安全边界。
+- 免费额度变化后的同步修订。
+- 从官方文档、GitHub 仓库、案例项目提炼出的可验证经验。
+- Workers、D1、R2、KV、Queues、Durable Objects、AI、WAF、Access / Tunnel 的实战案例。
