@@ -1,8 +1,8 @@
 # Cloudflare Playbook
 
-Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队的 Cloudflare 最佳实践知识库。它不只罗列产品名，而是帮助读者理解 Workers、Pages、D1、KV、R2、Durable Objects、Queues、AI、安全、缓存、部署和可观测性在真实项目里应该怎么选、怎么组合、怎么验证。
+Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队的 Cloudflare 最佳实践知识库。它帮助读者理解 Workers、Pages、D1、KV、R2、Durable Objects、Queues、AI、安全、缓存、部署和可观测性在真实项目里应该怎么选、怎么组合、怎么验证。
 
-这个仓库使用 Astro + Starlight 搭建文档站，通过 Cloudflare Workers Static Assets 部署，并使用 Starlight 生态主题与 Twikoo 评论组件。它不是只放静态页面，而是一个面向 Cloudflare 实践的开源知识库样板。
+这个仓库使用 Astro + Starlight 搭建文档站，通过 Cloudflare Workers Static Assets 部署，并使用 Starlight 生态主题与 Twikoo 评论组件。它定位为面向 Cloudflare 实践的开源知识库样板。
 
 > Cloudflare 提供了覆盖计算、存储、网络、安全、AI 和可观测性的完整平台。对独立开发者和早期团队来说，理解这些产品的边界和组合方式，可以显著降低项目启动和运维成本。
 
@@ -147,7 +147,7 @@ comments.cloudflare-playbook.chendahuang.top
 - 官方事实优先：限制、价格、API、配置字段必须回到 Cloudflare 官方文档核对。
 - 面向普通人：先解释“什么时候用”和“什么时候不用”，再给配置和代码。
 - 保持可复现：案例需要包含环境、输入、关键配置、验证方式和风险提示。
-- 不确定就标注：无法确认的内容写成 `TODO`，不要写成确定结论。
+- 不确定就标注：无法确认的内容写成 `TODO` 或说明待核对。
 - 过时就更新：Cloudflare 产品变化快，旧结论要及时修订或删除。
 
 ## 贡献方向

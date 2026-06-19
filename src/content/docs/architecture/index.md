@@ -3,7 +3,7 @@ title: 架构模式
 description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 ---
 
-架构页只回答一个问题：**一个项目应该怎么组合 Cloudflare 产品。** 它不是产品手册，也不是企业方案收藏。
+架构页只回答一个问题：**一个项目应该怎么组合 Cloudflare 产品。** 这里保留普通项目常用的判断顺序。
 
 ## 快速分流
 
@@ -16,18 +16,18 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | 客户域名、多租户、用户代码运行 | [平台化与多租户](/platform/platforms-saas/) | Cloudflare for SaaS、Workers for Platforms、Dynamic Workers。 |
 | 图片、视频、附件、媒体分发 | [媒体与性能](/platform/media-performance/) | R2、Images、Stream、Cache。 |
 
-最先要分清三件事：静态阅读路径、动态写入路径、数据和文件路径。只要这三条边界清楚，后面再加安全、搜索、AI、实时和观测才不会乱。
+最先分清三件事：静态阅读路径、动态写入路径、数据和文件路径。三条边界清楚后，再加安全、搜索、AI、实时和观测。
 
 ## 判断顺序
 
-| 先问什么 | 推荐路线 | 不要急着做什么 |
+| 先问什么 | 推荐路线 | 边界 |
 | --- | --- | --- |
-| 主要是读内容吗？ | 静态内容站。 | 不要先上数据库、服务端渲染和 AI 搜索。 |
-| 主要是请求处理和业务接口吗？ | 接口入口。 | 不要把所有逻辑塞进一个巨大 Worker。 |
-| 需要同一个资源的强一致状态吗？ | 实时应用。 | 不要用 KV 模拟锁、房间状态或严格计数器。 |
-| 需要音视频或 WebRTC 吗？ | Realtime / 媒体产品。 | 不要把媒体传输误判成普通 WebSocket。 |
-| 需要自然语言搜索或模型代理吗？ | AI 产品。 | 不要在内容很少时先做向量管道。 |
-| 需要后台和私有服务吗？ | Zero Trust / Access / Tunnel。 | 不要自写弱登录或把后台裸露公网。 |
+| 主要是读内容吗？ | 静态内容站。 | 数据库、服务端渲染和 AI 搜索放到明确需求后。 |
+| 主要是请求处理和业务接口吗？ | 接口入口。 | Worker 负责入口，状态和文件交给对应产品。 |
+| 需要同一个资源的强一致状态吗？ | 实时应用。 | KV 不适合锁、房间状态或严格计数器。 |
+| 需要音视频或 WebRTC 吗？ | Realtime / 媒体产品。 | 媒体传输和普通 WebSocket 是两类问题。 |
+| 需要自然语言搜索或模型代理吗？ | AI 产品。 | 内容少时先用结构化目录和 Pagefind。 |
+| 需要后台和私有服务吗？ | Zero Trust / Access / Tunnel。 | 后台入口先有身份边界。 |
 
 ## 取舍原则
 
@@ -39,6 +39,6 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | 强一致靠 DO | 房间、限流桶、单资源顺序写入用 Durable Objects，不用 KV。 |
 | 慢任务异步 | 邮件、审核、导入、AI 后处理进 Queues / Workflows。 |
 | 免费边界先算 | 先看静态请求、Workers 请求、CPU、D1 读写行数、R2 操作，再谈升级。 |
-| 安全不要后补 | 写入口先有 Turnstile、限流、WAF 或身份边界。 |
+| 安全前置 | 写入口先有 Turnstile、限流、WAF 或身份边界。 |
 
 官方架构入口：[Reference Architecture](https://developers.cloudflare.com/reference-architecture/) 和 [Use cases](https://developers.cloudflare.com/use-cases/)；本站只保留独立开发者更常用的判断顺序。

@@ -15,7 +15,7 @@ Cloudflare 官方文档很大。本站先把官方目录压成几个判断入口
 | Developer platform | Workers、Pages、D1、KV、R2、Queues、Durable Objects、AI、媒体和后置计算。 | 先读 [Workers](/platform/workers/)、[数据产品](/platform/data/)、[AI 产品](/platform/ai/)。 |
 | Cloudflare One | Access、Tunnel、Gateway、设备、企业网络和数据区域。 | 普通项目只先看 [Zero Trust](/platform/zero-trust-networking/) 的 Access + Tunnel。 |
 | Network security | 自有 IP、专线、网络层防护和网络流量分析。 | 放到 [自有网络与专线](/platform/private-networking/)，默认最后读。 |
-| Consumer services | 1.1.1.1、Radar、WARP。 | 放到 [公共网络能力](/platform/public-network-specialties/)，不是普通站点主线。 |
+| Consumer services | 1.1.1.1、Radar、WARP。 | 放到 [公共网络能力](/platform/public-network-specialties/)，作为补充能力阅读。 |
 | Docs collections / Other | Learning Paths、Use cases、Migration Guides、Docs for agents、Style Guide。 | 作为学习和迁移材料，不当采购清单。 |
 
 ## 先读顺序

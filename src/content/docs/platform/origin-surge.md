@@ -24,7 +24,7 @@ description: 源站保护、合法峰值和回源压力的取舍。
 | 恶意请求、自动化提交、撞库、爬虫滥用。 | DDoS、WAF、自动化流量防护、限流、Turnstile。 | 攻击流量先走防护和限流。 |
 | 源站回源请求多、连接数高。 | Smart Shield。 | 先整理缓存策略。 |
 | 全球用户离源站远，动态回源慢。 | Argo / Smart Shield + Argo。 | 先确认瓶颈是回源路径。 |
-| WordPress 动态 HTML 慢。 | Automatic Platform Optimization。 | APO 不是通用动态站缓存。 |
+| WordPress 动态 HTML 慢。 | Automatic Platform Optimization。 | APO 面向 WordPress 缓存语义。 |
 
 ## 产品边界
 

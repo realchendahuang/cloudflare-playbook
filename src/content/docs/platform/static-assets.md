@@ -18,7 +18,7 @@ Workers Static Assets 用来托管构建好的静态文件：HTML、CSS、JavaSc
 
 ## 免费阶段怎么用
 
-Static Assets 的关键不是“能不能免费”，而是“有没有让静态请求真的停在静态层”。页面、样式、脚本、字体、图片索引和 Pagefind 文件都应该由资产层直接返回。
+Static Assets 的关键是让静态请求停在静态层。页面、样式、脚本、字体、图片索引和 Pagefind 文件都应该由资产层直接返回。
 
 评论、表单、第三方回调和后台接口再进入 Worker。
 
