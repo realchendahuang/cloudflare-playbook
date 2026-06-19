@@ -26,8 +26,7 @@ Cloudflare 产品变化很快。额度、价格、限制和部署口径，以官
 | [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs) | Cloudflare 官方文档源码和页面编辑历史。 |
 | [cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk) | Wrangler、Miniflare 和 Workers 开发工具链。 |
 | [cloudflare/templates](https://github.com/cloudflare/templates) | Workers / Pages 项目模板和示例入口。 |
-| [freestylefly/CodexGuide](https://github.com/freestylefly/CodexGuide) | Codex Guide 的开源文档结构参考。 |
-| [withastro/starlight](https://github.com/withastro/starlight) | 当前文档框架。 |
+| [withastro/starlight](https://github.com/withastro/starlight) | Astro 文档框架和主题生态。 |
 | [Pagefind/pagefind](https://github.com/Pagefind/pagefind) | 静态站内搜索。 |
 | [twikoojs/twikoo](https://github.com/twikoojs/twikoo)、[twikoojs/twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare) | 评论组件和 Cloudflare Workers 后端。 |
 

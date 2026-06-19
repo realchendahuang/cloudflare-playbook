@@ -34,6 +34,6 @@ Cloudflare 账单要分成域名计划、Workers Paid、附加产品和按量计
 
 Workers Paid 只在动态请求、CPU、日志、定时任务、D1、KV、Queues、Durable Objects、Hyperdrive、Browser Run 或 Workers AI 已经进入真实生产路径时才值得开。它属于开发者平台订阅；WAF、缓存规则、证书、Bot、R2、Images、Stream、日志查询和企业日志能力都要按各自产品重新看。
 
-静态文档站、博客、官网、作品集，或者搜索用 Pagefind 就能解决时，先用免费层。详细数字和误区统一看 [免费额度大全](/platform/free-paid/)。
+静态文档站、博客、官网、作品集，或者搜索用 Pagefind 就能解决时，先用免费层。详细数字和常见误区见 [免费额度大全](/platform/free-paid/)。
 
-成本页只讲判断。具体数字看 [免费额度大全](/platform/free-paid/)；账单、预算提醒和发票看 [账单与预算](/platform/billing/)。
+具体数字看 [免费额度大全](/platform/free-paid/)；账单、预算提醒和发票看 [账单与预算](/platform/billing/)。

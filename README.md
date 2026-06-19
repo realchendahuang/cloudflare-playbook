@@ -18,7 +18,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | --- | --- | --- |
 | 1 | [免费额度大全](https://cloudflare-playbook.chendahuang.top/platform/free-paid/) | 0 元能跑到哪里，5 美元 Workers Paid 买到什么。 |
 | 2 | [学习路线](https://cloudflare-playbook.chendahuang.top/start/) | 第一次读 Cloudflare 时该按什么顺序看。 |
-| 3 | [产品索引](https://cloudflare-playbook.chendahuang.top/platform/) | 把 Cloudflare 官方产品压成普通项目能用的分类。 |
+| 3 | [产品索引](https://cloudflare-playbook.chendahuang.top/platform/) | 把 Cloudflare 官方产品整理成普通项目能用的分类。 |
 | 4 | [架构模式](https://cloudflare-playbook.chendahuang.top/architecture/) | 按项目类型组合产品。 |
 | 5 | [最佳实践](https://cloudflare-playbook.chendahuang.top/best-practices/) | 处理成本、安全、数据、日志和上线边界。 |
 | 6 | [实战案例](https://cloudflare-playbook.chendahuang.top/recipes/) | 看具体场景怎么落地。 |
@@ -37,7 +37,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 
 | 章节 | 内容 |
 | --- | --- |
-| [产品索引](https://cloudflare-playbook.chendahuang.top/platform/) | 按 Application performance、Application security、Core platform、Developer platform 等官方大类压缩阅读路径。 |
+| [产品索引](https://cloudflare-playbook.chendahuang.top/platform/) | 按 Application performance、Application security、Core platform、Developer platform 等官方大类整理阅读路径。 |
 | [Fundamentals](https://cloudflare-playbook.chendahuang.top/platform/fundamentals/) | 账号、域名、代理状态、源站保护、权限和排障入口。 |
 | [Workers](https://cloudflare-playbook.chendahuang.top/platform/workers/) | 动态接口、第三方回调、评论、表单、代理和轻后端入口。 |
 | [Workers Static Assets](https://cloudflare-playbook.chendahuang.top/platform/static-assets/) | 文档站、官网、博客和前端构建产物的静态资产层。 |
@@ -49,8 +49,8 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | [源站保护与流量洪峰](https://cloudflare-playbook.chendahuang.top/platform/origin-surge/) | 源站被打满、合法峰值、回源压力、Waiting Room、Smart Shield、APO。 |
 | [公共网络能力](https://cloudflare-playbook.chendahuang.top/platform/public-network-specialties/) | 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway。 |
 | [治理、合规与学习路径](https://cloudflare-playbook.chendahuang.top/platform/governance-compliance-learning/) | 合规、脚本安全、官方支持、学习材料和团队治理。 |
-| [后置协议与工具](https://cloudflare-playbook.chendahuang.top/platform/edge-protocols-utilities/) | Web3、Time Services、Randomness Beacon、Privacy Gateway、Tenant API 等补充能力。 |
-| [后置开发者能力](https://cloudflare-playbook.chendahuang.top/platform/developer-network-additions/) | 事务邮件、功能灰度、构建产物、代码执行、R2 查询和助手协作。 |
+| [进阶协议与工具](https://cloudflare-playbook.chendahuang.top/platform/edge-protocols-utilities/) | Web3、Time Services、Randomness Beacon、Privacy Gateway、Tenant API 等补充能力。 |
+| [进阶开发者能力](https://cloudflare-playbook.chendahuang.top/platform/developer-network-additions/) | 事务邮件、功能灰度、构建产物、代码执行、R2 查询和助手协作。 |
 | [WAF](https://cloudflare-playbook.chendahuang.top/platform/waf/) | 后台、登录、评论、上传、搜索和写接口的应用安全过滤。 |
 | [DDoS Protection](https://cloudflare-playbook.chendahuang.top/platform/ddos/) | DDoS 防护、源站暴露、Under Attack Mode 和入口确认。 |
 | [Rules](https://cloudflare-playbook.chendahuang.top/platform/rules/) | 跳转、改写、回源、缓存规则和旧 Page Rules 迁移。 |
@@ -104,4 +104,4 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | 章节 | 内容 |
 | --- | --- |
 | [官方资料](https://cloudflare-playbook.chendahuang.top/reference/) | 官方文档、变更日志、GitHub 仓库、示例模板和学习资料。 |
-| [Cloudflare 文档地图](https://cloudflare-playbook.chendahuang.top/reference/cloudflare-docs-map/) | 把 Cloudflare 官方文档大类压缩成可阅读的产品路径。 |
+| [Cloudflare 文档地图](https://cloudflare-playbook.chendahuang.top/reference/cloudflare-docs-map/) | 把 Cloudflare 官方文档大类整理成可阅读的产品路径。 |

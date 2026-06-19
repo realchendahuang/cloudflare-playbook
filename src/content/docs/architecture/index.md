@@ -29,9 +29,9 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | 需要自然语言搜索或模型代理吗？ | AI 产品。 | 内容少时先用结构化目录和 Pagefind。 |
 | 需要后台和私有服务吗？ | Zero Trust / Access / Tunnel。 | 后台入口先有身份边界。 |
 
-## 取舍原则
+## 怎么取舍
 
-| 原则 | 直接含义 |
+| 判断 | 直接含义 |
 | --- | --- |
 | 静态优先 | 阅读流量留在 Static Assets / Pages，不进入 Worker。 |
 | 动态分层 | Worker 负责入口和轻逻辑，D1 / R2 / KV / Queues / DO 各管各的状态。 |

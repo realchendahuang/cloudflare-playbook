@@ -1,22 +1,22 @@
 ---
 title: Cloudflare 文档地图
-description: Cloudflare 官方文档的压缩阅读顺序。
+description: Cloudflare 官方文档的场景化阅读顺序。
 ---
 
 Cloudflare 官方文档很大。先按场景缩小范围，再进入对应产品页。
 
-## 官方目录怎么压缩
+## 官方目录怎么读
 
 | 官方大类 | 先理解成什么 | 先读哪里 |
 | --- | --- | --- |
 | Application performance | 网站入口、缓存、证书、调度和源站压力。 | 先读 [DNS](/platform/dns/)、[SSL/TLS](/platform/ssl-tls/)、[缓存与 CDN](/platform/cache/)、[源站保护](/platform/origin-surge/)。 |
 | Application security | WAF、DDoS、Turnstile、Bot、接口保护和邮件域名保护。 | 先读 [安全与网络](/platform/security-networking/)、[WAF](/platform/waf/)、[DDoS 防护](/platform/ddos/)。 |
 | Core platform | 账号、账单、规则、日志、通知、域名治理和配置管理。 | 先读 [Fundamentals](/platform/fundamentals/)、[账单与预算](/platform/billing/)、[边缘规则](/platform/rules/)、[观测与日志](/platform/observability/)。 |
-| Developer platform | Workers、Pages、D1、KV、R2、Queues、Durable Objects、AI、媒体和后置计算。 | 先读 [Workers](/platform/workers/)、[数据产品](/platform/data/)、[AI 产品](/platform/ai/)。 |
+| Developer platform | Workers、Pages、D1、KV、R2、Queues、Durable Objects、AI、媒体和进阶计算。 | 先读 [Workers](/platform/workers/)、[数据产品](/platform/data/)、[AI 产品](/platform/ai/)。 |
 | Cloudflare One | Access、Tunnel、Gateway、设备、企业网络和数据区域。 | 普通项目只先看 [Zero Trust](/platform/zero-trust-networking/) 的 Access + Tunnel。 |
 | Network security | 自有 IP、专线、网络层防护和网络流量分析。 | 放到 [自有网络与专线](/platform/private-networking/)，默认最后读。 |
 | Consumer services | 1.1.1.1、Radar、WARP。 | 放到 [公共网络能力](/platform/public-network-specialties/)，作为补充能力阅读。 |
-| Docs collections / Other | Learning Paths、Use cases、Migration Guides、Docs for agents、Style Guide。 | 作为学习和迁移材料，不当采购清单。 |
+| Docs collections / Other | Learning Paths、Use cases、Migration Guides、Docs for agents、Style Guide。 | 适合作为学习和迁移材料，不直接当选型清单。 |
 
 ## 先读顺序
 
