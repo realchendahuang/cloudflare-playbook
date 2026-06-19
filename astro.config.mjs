@@ -11,9 +11,6 @@ export default defineConfig({
 			title: 'Cloudflare Playbook',
 			description: '面向普通开发者和小团队的 Cloudflare 最佳实践知识库。',
 			customCss: ['./src/styles/cloudflare-theme.css'],
-			components: {
-				Footer: './src/components/TwikooFooter.astro',
-			},
 			routeMiddleware: ['./src/starlightRouteData.ts'],
 			plugins: [
 				starlightThemeNext(),

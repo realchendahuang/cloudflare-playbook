@@ -15,9 +15,6 @@
     "preview": "astro preview",
     "astro": "astro",
     "typecheck": "tsc --noEmit --skipLibCheck --types @cloudflare/workers-types --lib ES2022,WebWorker src/worker.ts",
-    "comments:dev": "wrangler dev -c wrangler.comments.jsonc",
-    "comments:migrate": "wrangler d1 execute cloudflare-playbook --remote --file=./comments-worker/schema.sql",
-    "comments:deploy": "wrangler deploy -c wrangler.comments.jsonc --minify",
     "worker:dev": "wrangler dev",
     "deploy": "wrangler deploy"
   },
@@ -29,9 +26,7 @@
     "@astrojs/starlight": "^0.40.0",
     "astro": "^6.4.7",
     "sharp": "^0.34.5",
-    "starlight-theme-next": "0.4.0",
-    "twikoo": "1.7.12",
-    "twikoo-cloudflare": "1.6.41"
+    "starlight-theme-next": "0.4.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260617.0",
