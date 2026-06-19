@@ -1,14 +1,14 @@
 # Cloudflare Playbook
 
-Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队的 Cloudflare 最佳实践内容库。
+Cloudflare Playbook 是面向独立开发者的 Cloudflare 最佳实践，整理产品选择、架构组合、成本边界和上线检查。
 
-它帮助你回答这些问题：
+这份手册主要回答几类问题：
 
 - Cloudflare 免费额度到底能跑什么。
-- 一个普通项目应该先用哪些产品。
+- 独立开发者项目应该先用哪些产品。
 - Workers Paid、域名计划、R2、D1、AI、日志这些费用怎么分开看。
-- 文档站、官网、轻社区、小型 SaaS、文件工具、实时应用和 AI 搜索该怎么组合产品。
-- 安全、成本、缓存、日志、上传、评论和后台入口应该先守住哪些边界。
+- 文档站、官网、轻社区、小型 SaaS、文件工具、实时应用和 AI 搜索该怎么搭。
+- 安全、成本、缓存、日志、上传、评论和后台入口先守住哪些边界。
 
 线上阅读：[cloudflare-playbook.chendahuang.top](https://cloudflare-playbook.chendahuang.top/)
 
@@ -17,8 +17,8 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | 顺序 | 先读 | 解决的问题 |
 | --- | --- | --- |
 | 1 | [免费额度大全](src/content/docs/platform/free-paid.md) | 0 元能跑到哪里，5 美元 Workers Paid 买到什么。 |
-| 2 | [学习路线](src/content/docs/start/index.md) | 第一次读 Cloudflare 时该按什么顺序看。 |
-| 3 | [产品索引](src/content/docs/platform/index.md) | 把 Cloudflare 产品整理成普通项目能用的分类。 |
+| 2 | [学习路线](src/content/docs/start/index.md) | 第一次系统看 Cloudflare 时该按什么顺序读。 |
+| 3 | [产品索引](src/content/docs/platform/index.md) | 把 Cloudflare 产品整理成独立开发者项目能用的分类。 |
 | 4 | [架构模式](src/content/docs/architecture/index.md) | 按项目类型组合产品。 |
 | 5 | [最佳实践](src/content/docs/best-practices/index.md) | 处理成本、安全、数据、日志和上线边界。 |
 | 6 | [实战案例](src/content/docs/recipes/index.md) | 看具体场景怎么落地。 |
@@ -30,7 +30,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | 章节 | 内容 |
 | --- | --- |
 | [免费额度大全](src/content/docs/platform/free-paid.md) | Cloudflare 免费层、5 美元 Workers Paid、常见产品额度和升级信号。 |
-| [学习路线](src/content/docs/start/index.md) | 从免费额度、上线入口、动态能力、数据产品、安全边界一路读下去。 |
+| [学习路线](src/content/docs/start/index.md) | 按免费额度、上线入口、动态功能、数据产品和安全边界读。 |
 
 ### 产品地图
 
@@ -48,8 +48,8 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | [源站保护与流量洪峰](src/content/docs/platform/origin-surge.md) | 源站被打满、合法峰值、回源压力、Waiting Room、Smart Shield、APO。 |
 | [公共网络能力](src/content/docs/platform/public-network-specialties.md) | 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway。 |
 | [治理、合规与学习路径](src/content/docs/platform/governance-compliance-learning.md) | 合规、脚本安全、支持渠道、学习材料和团队治理。 |
-| [进阶协议与工具](src/content/docs/platform/edge-protocols-utilities.md) | Web3、Time Services、Randomness Beacon、Privacy Gateway、Tenant API 等补充能力。 |
-| [进阶开发者能力](src/content/docs/platform/developer-network-additions.md) | 事务邮件、功能灰度、构建产物、代码执行、R2 查询和助手协作。 |
+| [进阶协议与工具](src/content/docs/platform/edge-protocols-utilities.md) | Web3、Time Services、Randomness Beacon、Privacy Gateway、Tenant API 等补充产品。 |
+| [进阶开发者能力](src/content/docs/platform/developer-network-additions.md) | 事务邮件、灰度发布、构建产物、代码执行、R2 查询和助手协作。 |
 | [WAF](src/content/docs/platform/waf.md) | 后台、登录、评论、上传、搜索和写接口的应用安全过滤。 |
 | [DDoS Protection](src/content/docs/platform/ddos.md) | DDoS 防护、源站暴露、Under Attack Mode 和入口确认。 |
 | [Rules](src/content/docs/platform/rules.md) | 跳转、改写、回源、缓存规则和旧 Page Rules 迁移。 |
@@ -75,7 +75,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 
 | 章节 | 内容 |
 | --- | --- |
-| [架构模式总览](src/content/docs/architecture/index.md) | 静态阅读路径、动态写入路径、数据和文件路径的组合顺序。 |
+| [架构模式总览](src/content/docs/architecture/index.md) | 静态阅读、动态写入、数据和文件路径怎么组合。 |
 | [静态内容站](src/content/docs/architecture/static-site.md) | 文档站、官网、博客、作品集、知识库和前端应用。 |
 | [接口入口](src/content/docs/architecture/api-gateway.md) | 表单、评论、第三方回调、上传、小型 SaaS 接口、AI 代理和内部服务入口。 |
 | [实时应用](src/content/docs/architecture/realtime-app.md) | 聊天、在线人数、协作状态、房间、限流器和媒体实时边界。 |

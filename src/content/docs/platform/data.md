@@ -1,6 +1,6 @@
 ---
 title: 数据产品
-description: D1、KV、R2、Durable Objects、Queues 和进阶数据产品的选择方式。
+description: D1、KV、R2、Durable Objects、Queues 和后续数据产品怎么选。
 ---
 
 数据产品按数据形态选：关系数据进 D1，文件进 R2，读多写少配置进 KV，单对象强一致进 Durable Objects，慢任务进 Queues。
@@ -18,7 +18,7 @@ description: D1、KV、R2、Durable Objects、Queues 和进阶数据产品的选
 | 文档语义搜索 | [AI Search](/platform/ai/) / Vectorize | 文档很少时直接上向量库。 |
 | 产品指标、用量统计 | [观测与日志](/platform/observability/) | D1 记录海量事件。 |
 
-完整免费额度见 [免费额度大全](/platform/free-paid/)。
+免费额度见 [免费额度大全](/platform/free-paid/)。
 
 ## 判断顺序
 

@@ -1,6 +1,6 @@
 ---
 title: Worker 接口 + D1
-description: 使用 Workers、Hono 和 D1 设计轻量评论接口的边界。
+description: 用 Workers、Hono 和 D1 设计轻量评论接口的边界。
 ---
 
 一个最小评论接口可以这样拆：Worker 提供入口，D1 保存关系型数据，Hono 负责路由和 JSON 响应。这个结构也适合表单提交、轻量后台配置和小型 SaaS 的基础数据写入。
@@ -21,7 +21,7 @@ Worker 接口
 D1 comments-db
 ```
 
-关键判断：Worker 负责校验输入和调用 D1，D1 负责持久化。SQL 在服务端使用预编译语句，用户输入只作为绑定参数。
+这里的分工很清楚：Worker 校验输入并调用 D1，D1 负责持久化。SQL 在服务端使用预编译语句，用户输入只作为绑定参数。
 
 | 适合 | 不适合 |
 | --- | --- |

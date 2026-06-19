@@ -1,9 +1,9 @@
 ---
 title: 架构模式
-description: 常见 Cloudflare 架构组合和判断顺序。
+description: 常见 Cloudflare 架构组合和取舍顺序。
 ---
 
-一个项目先按类型选择产品组合，再看安全、成本和升级边界。
+一个项目先按类型定产品组合，再看安全、成本和升级边界。
 
 ## 快速分流
 
@@ -16,7 +16,7 @@ description: 常见 Cloudflare 架构组合和判断顺序。
 | 客户域名、多租户、用户代码运行 | [平台化与多租户](/platform/platforms-saas/) | Cloudflare for SaaS、Workers for Platforms、Dynamic Workers。 |
 | 图片、视频、附件、媒体分发 | [媒体与性能](/platform/media-performance/) | R2、Images、Stream、Cache。 |
 
-最先分清三件事：静态阅读路径、动态写入路径、数据和文件路径。三条边界清楚后，再加安全、搜索、AI、实时和观测。
+先把三条路径分清：静态阅读、动态写入、数据和文件。边界清楚后，再加安全、搜索、AI、实时和观测。
 
 ## 判断顺序
 

@@ -9,10 +9,15 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Cloudflare Playbook',
-			description: '面向普通开发者和小团队的 Cloudflare 最佳实践知识库。',
+			description: '面向独立开发者的 Cloudflare 最佳实践。',
 			routeMiddleware: ['./src/starlightRouteData.ts'],
 			plugins: [
-				lucode(),
+				lucode({
+					navLinks: [
+						{ label: '产品索引', link: '/platform/' },
+						{ label: '最佳实践', link: '/best-practices/' },
+					],
+				}),
 			],
 			// 当前内容以简体中文为主，根路径直接作为中文站点。
 			locales: {

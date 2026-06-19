@@ -1,42 +1,32 @@
 ---
 title: Cloudflare Playbook
-description: 把 Cloudflare 免费额度讲透，再选择产品、架构和 5 美元/月 Workers Paid 的实践知识库。
+description: 面向独立开发者的 Cloudflare 最佳实践。
 template: splash
 hero:
-  tagline: 面向独立开发者、小团队和开源项目。先把免费额度看透：0 元能跑什么、哪里会撞墙、5 美元/月 Workers Paid 买到什么。
+  layout: centered
+  tagline: 为文档站、官网、小接口、轻后台和 AI 搜索原型选择合适的 Cloudflare 组合。
   actions:
-    - text: 免费额度大全
-      link: /platform/free-paid/
-      icon: open-book
-    - text: 学习路线
+    - text: 开始阅读
       link: /start/
       icon: right-arrow
+    - text: 产品索引
+      link: /platform/
+      icon: open-book
       variant: minimal
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { ContainerSection } from 'lucode-starlight/components';
 
-## 免费额度先讲透
+<ContainerSection width="lg">
 
-Cloudflare Playbook 的第一入口就是免费额度。普通项目最关心 0 元能跑到哪里、哪一层会先撞墙、5 美元/月 Workers Paid 到底买到什么。价格、额度和计划边界会变化，首页只放第一判断，完整口径见 [免费额度大全](/platform/free-paid/)；需要查最新配置、价格和限制时，看 [Cloudflare 官方文档](https://developers.cloudflare.com/)。
+## 主要入口
 
-<Aside type="tip" title="先看这条主线">
-能静态化的先放静态资产层；需要关系数据的用 D1；读多写少的配置用 KV；文件进 R2；公开写入口加 Turnstile；只有动态接口、回调、评论、搜索代理和后台任务才进 Worker。
-</Aside>
+<CardGrid>
+	<LinkCard href="/platform/free-paid/" title="免费额度" description="先看常用产品的免费层、付费边界和账单风险。" />
+	<LinkCard href="/platform/" title="产品索引" description="按普通项目的使用场景整理 Cloudflare 产品。" />
+	<LinkCard href="/architecture/" title="架构模式" description="从文档站、小接口、实时应用等项目类型反推产品组合。" />
+	<LinkCard href="/best-practices/" title="最佳实践" description="成本、安全、数据、日志和上线边界的实用判断。" />
+</CardGrid>
 
-| 先问 | 直接答案 |
-| --- | --- |
-| 文档站、官网、博客能不能 0 元跑？ | 可以。静态资产请求免费且不限量，先用 Workers Static Assets / Pages。 |
-| 小接口、评论、表单能不能 0 元验证？ | 可以。Workers Free、D1、KV、R2、Queues、Durable Objects 都有免费层。 |
-| 搜索和轻社区能不能先不买服务？ | 可以。Pagefind 解决静态搜索；Twikoo Cloudflare + D1 可做轻评论；AI 搜索等确认价值后再上。 |
-| 免费阶段最该防什么？ | 防公开写入口被刷、防静态流量误进 Worker、防数据库全表扫描、防 AI 调用不设限。 |
-| 什么时候付 5 美元/月？ | 动态请求、CPU、日志、队列、D1/KV/DO 等开发者平台能力进入真实生产后再付。 |
-
-## 继续读
-
-- [免费额度大全](/platform/free-paid/)
-- [Cloudflare 产品索引](/platform/)
-- [账单与预算](/platform/billing/)
-- [成本控制](/best-practices/cost/)
-- [独立开发者推荐栈](/best-practices/indie-stack/)
-- [文档站技术栈](/best-practices/site-stack/)
+</ContainerSection>

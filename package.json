@@ -2,7 +2,7 @@
   "name": "cloudflare-playbook",
   "version": "0.1.0",
   "private": true,
-  "description": "面向普通开发者和小团队的 Cloudflare 最佳实践知识库。",
+  "description": "面向独立开发者的 Cloudflare 最佳实践。",
   "type": "module",
   "engines": {
     "node": ">=22.12.0"

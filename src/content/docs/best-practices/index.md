@@ -1,9 +1,9 @@
 ---
 title: 最佳实践
-description: Cloudflare 项目的免费额度、安全、成本、数据和部署实践入口。
+description: Cloudflare 项目的免费额度、安全、成本、数据和部署检查入口。
 ---
 
-最佳实践页只做问题分流和上线检查。具体数字看 [免费额度大全](/platform/free-paid/)，具体产品定位看 [产品索引](/platform/)。
+这个页面只做问题分流和上线检查。具体数字看 [免费额度大全](/platform/free-paid/)，具体产品定位看 [产品索引](/platform/)。
 
 ## 按问题阅读
 

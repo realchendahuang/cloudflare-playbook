@@ -1,9 +1,9 @@
 ---
 title: Fundamentals
-description: Cloudflare 账号、域名入口、源站保护、权限和排障入口。
+description: Cloudflare 账号、域名入口、源站保护、权限和排障入口怎么放。
 ---
 
-Cloudflare 的基础层只看五件事：账号归属、域名入口、代理状态、源站保护、权限交接。
+Cloudflare 的基础层先看五件事：账号归属、域名入口、代理状态、源站保护、权限交接。
 
 ## 五个判断
 
@@ -54,4 +54,4 @@ Cloudflare 的基础层只看五件事：账号归属、域名入口、代理状
 | 配置被改 | 查审计日志。 |
 | 请求失败 | 记录 URL、UTC 时间、状态码和 Cloudflare 请求编号。 |
 
-域名接入细节看 [DNS](/platform/dns/) 和 [SSL/TLS](/platform/ssl-tls/)。目标状态：网站记录走代理，邮件和验证记录保持 DNS only，HTTPS 使用 Full (strict)。
+域名接入细节看 [DNS](/platform/dns/) 和 [SSL/TLS](/platform/ssl-tls/)。最后要做到：网站记录走代理，邮件和验证记录保持 DNS only，HTTPS 使用 Full (strict)。

@@ -1,6 +1,6 @@
 ---
 title: 免费额度大全
-description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界。
+description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界怎么分。
 ---
 
 额度和价格会变化，付费前再做一次核对。
@@ -52,19 +52,19 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | Durable Objects | Free 可用 SQLite-backed DO，100,000 次请求/天、13,000 GB-s/天。 | Paid 每月 1M 请求、400k GB-s；SQLite 存储和读写进入月度包含量。 | 房间、会话、限流器和强一致状态才放 DO。 |
 | Hyperdrive | Free 100,000 次数据库查询/天。 | Paid 查询量不设固定包含上限。 | 少量接口连接既有 Postgres/MySQL。 |
 | Workers AI | Free 和 Paid 都有每天 10,000 Neurons 免费分配。 | Paid 超出免费分配后按 Neurons 计费。 | 小模型、短输出、缓存和限流先上。 |
-| AI Gateway | 核心功能免费；Workers Free 持久日志为所有网关合计 100,000 条。 | Workers Paid 每个网关 10M 条持久日志，Logpush 另按请求计费。 | 外部模型和 Workers AI 都先过网关观察。 |
+| AI Gateway | 基础功能免费；Workers Free 持久日志为所有网关合计 100,000 条。 | Workers Paid 每个网关 10M 条持久日志，Logpush 另按请求计费。 | 外部模型和 Workers AI 都先过网关观察。 |
 | AI Search | 2026-04-16 后新实例公开测试期内免费；Free 每月 20,000 次查询、每天 500 个爬取页面。 | Workers Paid 查询和爬取页数不限，实例与文件上限更高；Workers AI / AI Gateway 另计。 | 文档搜索先 Pagefind；自然语言搜索确认有价值后再上。 |
 | Vectorize | Free 每月 30M 查询向量维度、5M 存储向量维度。 | Paid 每月 50M 查询向量维度、10M 存储向量维度，超出按量。 | 文档少时先用 Pagefind；向量库只放明确搜索需求。 |
 | Browser Run | Free 每天 10 分钟浏览器时间，Browser Sessions 3 个并发浏览器。 | Paid 每月 10 小时浏览器时间、10 个并发浏览器，超出按量。 | 能用普通请求就不用浏览器；截图、PDF、动态页面抓取才看。 |
 | Images | Free 每月 5,000 次独立图片转换，超出后新转换返回错误且不计费。 | Paid 含 5,000 次转换，超出按 1,000 次计费；Images 存储和交付另计。 | 原图进 R2，需要多尺寸和格式转换时再看。 |
 | Zaraz | 每账号每月 1,000,000 个免费事件；未启用付费且超出会暂停到下个账单周期。 | Paid 每额外 1,000,000 个事件 5 美元/月。 | 第三方脚本变多时再看；先保留必要脚本。 |
-| Stream | 上传和编码入口免费；普通文档站没有实用的免费视频存储层。 | 按视频存储、观看和交付等计量。 | 视频是核心业务再看；普通附件优先放 R2。 |
+| Stream | 上传和编码入口免费；普通文档站没有实用的免费视频存储层。 | 按视频存储、观看和交付等计量。 | 视频是业务主线再看；普通附件优先放 R2。 |
 | Containers | Free 不可用。 | Workers Paid 含 25 GiB-hours、375 vCPU-minutes、200 GB-hours，超出按量。 | 只有 Worker 运行时不够承载时再看。 |
 | 预算提醒 | 可按美元阈值发邮件提醒按量费用。 | 仍然只是提醒。 | 必须开；硬边界靠限流、配额、队列熔断和产品开关。 |
 
 ## All the fun
 
-免费额度真正有价值的地方，是能把一个项目先组合出来。
+免费额度最有用的地方，是能先把一个项目组合出来。
 
 | 项目目标 | 免费组合 | 先证明什么 |
 | --- | --- | --- |
@@ -77,7 +77,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 
 ## 5 美元 Workers Paid
 
-把 5 美元/月理解成“开发者平台的生产底座”。它买的是动态执行、CPU、日志、队列、数据库、状态对象和部分进阶能力的月度包含量。
+可以把 5 美元/月理解成“开发者平台的生产底座”。它买的是动态执行、CPU、日志、队列、数据库、状态对象和部分后续产品的月度包含量。
 
 | 能力 | Workers Paid 包含量 | 超出后的方向 | 实际意义 |
 | --- | --- | --- | --- |
@@ -110,13 +110,13 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | 只是文档站、官网、博客、作品集 | 通常先不付。静态资产请求免费且不限量，搜索用 Pagefind。 |
 | 小接口每天稳定几千到几万次 | 可以继续 Free，但要看 CPU、日志和公开入口滥用。 |
 | Worker 请求接近 100,000 次/天 | 该认真考虑 Workers Paid。 |
-| D1、KV、Queues、Durable Objects 已经是核心功能 | 该认真考虑 Workers Paid。 |
+| D1、KV、Queues、Durable Objects 已经是主要功能 | 该认真考虑 Workers Paid。 |
 | 需要 7 天日志、更多 Cron、更多子请求、更大包或更多 Worker | 该认真考虑 Workers Paid。 |
-| 想提升 WAF、Bot、证书、缓存规则 | 看域名计划。 |
+| 想加强 WAF、Bot、证书、缓存规则 | 看域名计划。 |
 
-## 进阶能力
+## 后面再看
 
-下面这些产品按触发信号阅读。触发信号明确后，再核对最新口径。
+下面这些产品按触发信号阅读。信号明确后，再核对最新口径。
 
 | 产品 / 能力 | 什么时候再看 |
 | --- | --- |

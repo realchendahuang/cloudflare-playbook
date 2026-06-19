@@ -1,9 +1,9 @@
 ---
 title: DNS
-description: Cloudflare DNS 的接入顺序、免费边界、代理状态和迁移清单。
+description: Cloudflare DNS 的接入顺序、免费边界、代理状态和迁移检查。
 ---
 
-DNS 决定哪些流量进入 Cloudflare，哪些流量直接去第三方服务或源站。默认顺序：完整接入域名，网站入口走代理，邮件和验证记录不代理，迁移前先处理旧的 DNSSEC。
+DNS 决定哪些流量进入 Cloudflare，哪些流量直接去第三方服务或源站。默认顺序是：完整接入域名，网站入口走代理，邮件和验证记录不代理，迁移前先处理旧的 DNSSEC。
 
 ## 先记住
 
