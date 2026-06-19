@@ -2,7 +2,7 @@
 
 Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队的 Cloudflare 最佳实践内容库。
 
-它帮助读者回答这些问题：
+它帮助你回答这些问题：
 
 - Cloudflare 免费额度到底能跑什么。
 - 一个普通项目应该先用哪些产品。
@@ -88,7 +88,6 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | [最佳实践总览](https://cloudflare-playbook.chendahuang.top/best-practices/) | 免费额度、安全边界、升级信号和上线前检查。 |
 | [文档站方案](https://cloudflare-playbook.chendahuang.top/best-practices/site-stack/) | 文档站、搜索、评论、自然语言搜索和轻社区选择。 |
 | [独立开发者推荐栈](https://cloudflare-playbook.chendahuang.top/best-practices/indie-stack/) | 个人项目、开源项目、早期 SaaS、AI 工具、文件工具和后台任务组合。 |
-| [Codex 协作](https://cloudflare-playbook.chendahuang.top/best-practices/codex-cloudflare/) | 用 Codex 维护 Cloudflare 内容、事实来源、写作结构和复核方式。 |
 | [安全边界](https://cloudflare-playbook.chendahuang.top/best-practices/security/) | 入口、写接口、后台、密钥、日志、Turnstile、WAF 和应急动作。 |
 | [成本控制](https://cloudflare-playbook.chendahuang.top/best-practices/cost/) | 动态请求、CPU、D1、R2、AI、日志、预算提醒和付费判断。 |
 
@@ -105,22 +104,4 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | 章节 | 内容 |
 | --- | --- |
 | [官方资料](https://cloudflare-playbook.chendahuang.top/reference/) | 官方文档、变更日志、GitHub 仓库、示例模板和学习资料。 |
-| [Cloudflare 文档地图](https://cloudflare-playbook.chendahuang.top/reference/cloudflare-docs-map/) | 把 Cloudflare 官方文档大类压缩成本站阅读顺序。 |
-
-## 内容原则
-
-- 免费额度先讲清楚，再讨论产品组合。
-- 先回答“什么时候用”，再回答“用哪个”。
-- 概念页不堆命令、字段和配置细节。
-- 数字、价格、限制和计划边界回到 Cloudflare 官方文档核对。
-- 文章服务普通项目，优先覆盖文档站、官网、小接口、轻社区、小型 SaaS、文件工具、后台和 AI 搜索。
-
-## 贡献方向
-
-欢迎补充这些内容：
-
-- Cloudflare 产品的清晰解释和适用边界。
-- 真实项目的产品组合、成本判断和安全边界。
-- 免费额度变化后的同步修订。
-- 从官方文档、GitHub 仓库、案例项目提炼出的可验证经验。
-- Workers、D1、R2、KV、Queues、Durable Objects、AI、WAF、Access / Tunnel 的实战案例。
+| [Cloudflare 文档地图](https://cloudflare-playbook.chendahuang.top/reference/cloudflare-docs-map/) | 把 Cloudflare 官方文档大类压缩成可阅读的产品路径。 |

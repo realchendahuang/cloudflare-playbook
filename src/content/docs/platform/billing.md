@@ -3,7 +3,7 @@ title: 账单与预算
 description: Cloudflare 账单、免费额度、Workers Paid、按量计费和预算提醒的判断。
 ---
 
-账单页只回答四个问题：免费层够不够，5 美元 Workers Paid 买什么，哪些费用另算，怎么发现异常用量。
+看账单先分清四件事：免费层够不够，5 美元 Workers Paid 买什么，哪些费用另算，怎么发现异常用量。
 
 ## 核心判断
 

@@ -3,11 +3,11 @@ title: Cloudflare 文档地图
 description: Cloudflare 官方文档的压缩阅读顺序。
 ---
 
-Cloudflare 官方文档很大。本站先把官方目录压成几个判断入口，再按场景进入产品页。
+Cloudflare 官方文档很大。先按场景缩小范围，再进入对应产品页。
 
 ## 官方目录怎么压缩
 
-| 官方大类 | 先理解成什么 | 本站怎么处理 |
+| 官方大类 | 先理解成什么 | 先读哪里 |
 | --- | --- | --- |
 | Application performance | 网站入口、缓存、证书、调度和源站压力。 | 先读 [DNS](/platform/dns/)、[SSL/TLS](/platform/ssl-tls/)、[缓存与 CDN](/platform/cache/)、[源站保护](/platform/origin-surge/)。 |
 | Application security | WAF、DDoS、Turnstile、Bot、接口保护和邮件域名保护。 | 先读 [安全与网络](/platform/security-networking/)、[WAF](/platform/waf/)、[DDoS 防护](/platform/ddos/)。 |
@@ -38,15 +38,5 @@ Cloudflare 官方文档很大。本站先把官方目录压成几个判断入口
 | 全量产品目录 | [Cloudflare llms.txt](https://developers.cloudflare.com/llms.txt) |
 | 最近变化 | [Cloudflare Changelog](https://developers.cloudflare.com/changelog/) |
 | 价格和限制 | 对应产品的 Pricing / Limits 页面 |
-| 配置字段、命令、接口 | 对应产品文档，不在本站背字段 |
+| 配置字段、命令、接口 | 对应产品文档的最新页面 |
 | 示例和源码 | [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs)、[cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk)、[cloudflare/templates](https://github.com/cloudflare/templates) |
-
-## 本站整理原则
-
-| 原则 | 说明 |
-| --- | --- |
-| 先场景，后产品 | 先判断要解决的问题，再看产品。 |
-| 先免费边界，后高级能力 | Free 和 5 美元/月 Workers Paid 先看清楚。 |
-| 先判断，后配置 | 概念页不堆命令、字段和实现细节。 |
-| 数字不靠记忆 | 额度、价格和计划边界回官方页面核对。 |
-| 后置产品按触发信号阅读 | 企业网络、平台化、媒体、长期日志和合规能力放到对应问题出现后。 |

@@ -5,7 +5,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 
 最后核对日期：2026-06-18。额度和价格以 Cloudflare 官方价格、限制和账单页面为准。
 
-免费额度先回答三件事：
+看免费额度先分清三件事：
 
 1. 一个项目能不能先 0 元跑起来。
 2. 5 美元/月 Workers Paid 到底买什么。
