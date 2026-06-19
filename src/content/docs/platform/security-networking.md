@@ -4,15 +4,13 @@ title: 安全与网络
 
 ## 推荐顺序
 
-| 顺序 | 动作 | 原因 |
-| --- | --- | --- |
-| 1 | Web 入口开启代理，SSL/TLS 用 Full (strict)。 | 请求先到 Cloudflare，源站也走 HTTPS。 |
-| 2 | 源站限制直连。 | 源站 IP 暴露时，攻击可以绕过 Cloudflare。 |
-| 3 | 静态内容缓存；动态和登录态内容按路径处理。 | 减少源站和 Worker 压力。 |
-| 4 | 登录、评论、表单、上传、搜索加 WAF、限流和 Turnstile。 | 写入口容易出现滥用。 |
-| 5 | 后台、预览环境、内网工具走 Access / Tunnel。 | 管理入口通过身份或内网入口访问。 |
-| 6 | 密钥放在 Worker secrets 或 Secrets Store。 | 访问凭证、数据库凭证、第三方密钥不进入仓库。 |
-| 7 | 每周看安全巡检和安全事件。 | 规则调整要靠证据。 |
+1. Web 入口开启代理，SSL/TLS 用 Full (strict)，让请求先到 Cloudflare，源站也走 HTTPS。
+2. 源站限制直连。源站 IP 暴露时，攻击可以绕过 Cloudflare。
+3. 静态内容缓存，动态和登录态内容按路径处理，减少源站和 Worker 压力。
+4. 登录、评论、表单、上传、搜索加 WAF、限流和 Turnstile，写入口最容易出现滥用。
+5. 后台、预览环境、内网工具走 Access / Tunnel，管理入口通过身份或内网入口访问。
+6. 密钥放在 Worker secrets 或 Secrets Store，访问凭证、数据库凭证、第三方密钥不进入仓库。
+7. 每周看安全巡检和安全事件，规则调整要靠证据。
 
 ## 按风险入口选产品
 
@@ -28,13 +26,11 @@ title: 安全与网络
 
 ## 配置检查
 
-| 配置项 | 判断依据 |
-| --- | --- |
-| 只开 Cloudflare，不保护源站。 | 源站防火墙只允许 Cloudflare IP 段和可信运维入口。 |
-| 长期使用 Flexible SSL。 | 目标设为 Full (strict)。 |
-| Turnstile 只放前端。 | 服务端调用 Siteverify，并校验动作、域名和验证状态。 |
-| WAF 规则越写越多。 | 优先使用托管规则，再给高风险路径加少量规则。 |
-| Tunnel 发布后以为自动私有。 | 后台和内网工具要配 Access 应用。 |
-| 接口保护只看高级产品。 | 认证、权限、请求格式和限流先到位。 |
-| Bot 问题 | 识别路径和行为，再分层处理。 |
-| 密钥写进配置或前端。 | Worker secrets；多项目共享再看 Secrets Store。 |
+- 不要只开 Cloudflare，却不保护源站。源站防火墙只允许 Cloudflare IP 段和可信运维入口。
+- 不要长期使用 Flexible SSL，目标设为 Full (strict)。
+- Turnstile 不能只放前端，服务端要调用 Siteverify，并校验动作、域名和验证状态。
+- WAF 规则不要越写越多，优先使用托管规则，再给高风险路径加少量规则。
+- Tunnel 发布后不会自动私有，后台和内网工具要配 Access 应用。
+- 接口保护不要只看高级产品，认证、权限、请求格式和限流先到位。
+- Bot 问题先识别路径和行为，再分层处理。
+- 密钥不要写进配置或前端，单项目用 Worker secrets，多项目共享再看 Secrets Store。

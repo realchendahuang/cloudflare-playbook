@@ -14,14 +14,12 @@
 
 ## 推荐阅读顺序
 
-| 顺序 | 推荐阅读 |
-| --- | --- |
-| 1 | [免费额度大全](src/content/docs/platform/free-paid.md) |
-| 2 | [学习路线](src/content/docs/start/index.md) |
-| 3 | [能力清单](src/content/docs/platform/index.md) |
-| 4 | [架构模式](src/content/docs/architecture/index.md) |
-| 5 | [最佳实践](src/content/docs/best-practices/index.md) |
-| 6 | [实战案例](src/content/docs/recipes/index.md) |
+1. [免费额度大全](src/content/docs/platform/free-paid.md)
+2. [学习路线](src/content/docs/start/index.md)
+3. [能力清单](src/content/docs/platform/index.md)
+4. [架构模式](src/content/docs/architecture/index.md)
+5. [最佳实践](src/content/docs/best-practices/index.md)
+6. [实战案例](src/content/docs/recipes/index.md)
 
 ## 内容地图
 

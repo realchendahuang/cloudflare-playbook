@@ -4,13 +4,7 @@ title: WAF
 
 ## 一句话判断
 
-| 需求场景 | 推荐方案 |
-| --- | --- |
-| 已知漏洞和常见攻击 | 托管规则。 |
-| 后台、上传、写接口这种明确路径 | 自定义规则。 |
-| 登录、评论、搜索、上传被刷 | 限流。 |
-| 表单和评论需要人机判断 | Turnstile。 |
-| 源站 IP 可能被绕过 | 先看 [Fundamentals](/platform/fundamentals/) 和 [DDoS Protection](/platform/ddos/)。 |
+已知漏洞和常见攻击优先用托管规则。后台、上传、写接口这种明确路径用自定义规则。登录、评论、搜索、上传被刷时用限流。表单和评论需要人机判断时用 Turnstile。源站 IP 可能被绕过时，先看 [Fundamentals](/platform/fundamentals/) 和 [DDoS Protection](/platform/ddos/)。
 
 规则数量和计划限制看 [免费额度大全](/platform/free-paid/)；WAF 跟域名计划走，不跟 Workers Paid 走。
 
@@ -24,9 +18,4 @@ title: WAF
 
 ## Custom Rules
 
-| 规则对象 | 规则范围 |
-| --- | --- |
-| 后台入口 | 可信来源或 Access。 |
-| 写接口 | 挑战、方法限制或速率限制。 |
-| 上传路径 | 文件大小、方法和来源限制。 |
-| 临时攻击路径 | 按路径拦截或挑战。 |
+后台入口通常限制可信来源或放到 Access 后面。写接口可以做挑战、方法限制或速率限制。上传路径要限制文件大小、方法和来源。临时攻击路径可以按路径拦截或挑战。

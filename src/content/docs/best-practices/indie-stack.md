@@ -19,16 +19,11 @@ title: 独立开发者推荐栈
 
 ## MVP 骨架
 
-| 位置 | 默认方案 | 判断依据 |
-| --- | --- | --- |
-| 写代码 | Codex + GitHub | 优先完成全栈原型、版本控制和部署流程，不为早期项目搭复杂工程平台。 |
-| 前端 | TanStack Start / Astro / Starlight | 应用选前端框架，文档、官网、教程站优先静态化。 |
-| API | Hono + Workers | 让 Worker 做入口、鉴权、签名、回调和轻业务逻辑。 |
-| 支付 | Stripe | 支付系统优先接入成熟服务，不在 MVP 阶段自写。 |
-| 数据 | D1 + R2 + KV | D1 放关系数据，R2 放文件，KV 放读多写少的配置和缓存。 |
-| 后台 | Queues / Workflows | 邮件、爬取、AI 批处理、导入导出进异步任务。 |
-| 外部主库 | Hyperdrive | 已有 Postgres / MySQL 时接入。 |
-| 重依赖运行时 | Containers | 只有 Worker 原生运行时装不下依赖或工具时再上。 |
+MVP 阶段先把全栈原型、版本控制和部署流程跑通，不为早期项目搭复杂工程平台。写代码用 Codex + GitHub；应用前端选 TanStack Start，文档、官网、教程站优先 Astro / Starlight 静态化。
+
+API 用 Hono + Workers，让 Worker 做入口、鉴权、签名、回调和轻业务逻辑。支付优先接 Stripe，不在 MVP 阶段自写支付系统。数据层用 D1 + R2 + KV：D1 放关系数据，R2 放文件，KV 放读多写少的配置和缓存。
+
+邮件、爬取、AI 批处理、导入导出进 Queues / Workflows。已有 Postgres / MySQL 时再接 Hyperdrive。只有 Worker 原生运行时装不下依赖或工具时，再上 Containers。
 
 ## 按常见场景选
 
@@ -46,16 +41,14 @@ title: 独立开发者推荐栈
 
 ## 升级信号
 
-| 能力 | 起步方案 |
-| --- | --- |
-| Kubernetes / VPS 集群 | Workers + D1 / R2 / KV 可覆盖大多数早期场景。 |
-| 自建对象存储 | R2 可先解决文件与 egress 压力。 |
-| 自写认证系统 | Access、成熟认证库或清晰的外部身份服务优先。 |
-| 过早引入向量库 | 内容量较少时优先使用 Pagefind；有自然语言搜索场景后再评估 AI Search / Vectorize。 |
-| 所有请求都交给 Worker | 静态资产直接返回，只有动态路径交给 Worker。 |
-| 一次请求做完整流程 | 请求只做校验、入库或入队，慢任务交给 Queues / Workflows / Containers。 |
-| 为省钱忽略日志和额度 | 免费额度大，但上线后要看请求、CPU、D1 行读写、R2 操作和日志。 |
-| 过早担心平台锁定 | R2 兼容 S3，业务早期更重要的是低成本验证；迁移成本明确后再拆分。 |
-| 只选技术栈，不验证使用价值 | 技术栈解决交付成本，方向仍要先证明有人需要、愿意使用或付费。 |
-| 自写评论系统 | 优先复用成熟组件和后端，把精力放在内容与体验。 |
-| 平台化 | 有客户自定义域名或用户代码运行场景后，再看 Cloudflare for SaaS / Workers for Platforms。 |
+- 不要太早上 Kubernetes / VPS 集群。Workers + D1 / R2 / KV 可覆盖大多数早期场景。
+- 不要太早自建对象存储。R2 可先解决文件与 egress 压力。
+- 不要太早自写认证系统。Access、成熟认证库或清晰的外部身份服务优先。
+- 内容量较少时不要急着上向量库，先用 Pagefind；有自然语言搜索场景后再评估 AI Search / Vectorize。
+- 静态资产直接返回，只有动态路径交给 Worker，不要把所有请求都打进 Worker。
+- 一次请求只做校验、入库或入队，慢任务交给 Queues / Workflows / Containers。
+- 免费额度大，但上线后仍要看请求、CPU、D1 行读写、R2 操作和日志。
+- 业务早期更重要的是低成本验证；R2 兼容 S3，迁移成本明确后再拆分。
+- 技术栈只能降低交付成本，方向仍要先证明有人需要、愿意使用或付费。
+- 评论系统优先复用成熟组件和后端，把精力放在内容与体验。
+- 有客户自定义域名或用户代码运行场景后，再看 Cloudflare for SaaS / Workers for Platforms。

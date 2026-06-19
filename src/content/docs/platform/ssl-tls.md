@@ -4,14 +4,9 @@ title: SSL/TLS
 
 ## 判断
 
-| 问题 | 判断依据 |
-| --- | --- |
-| 文档站、官网、博客、前端应用 | Universal SSL 通常够用。 |
-| 有 VPS / NGINX / Caddy 源站 | 源站装公开 CA 或 Cloudflare Origin CA 证书，然后用 Full (strict)。 |
-| Workers / Pages 自定义域名 | 多数证书由 Cloudflare 管理。 |
-| 还在用 Flexible | 只适合短期迁移，长期会明文回源并容易循环跳转。 |
-| 想开 HSTS preload | 等所有子域、证书续期和回滚路径稳定后再说。 |
-| 想上传自有证书 | 看计划限制和兼容要求。 |
+文档站、官网、博客、前端应用通常用 Universal SSL 就够。Workers / Pages 自定义域名多数由 Cloudflare 管理证书。
+
+如果有 VPS / NGINX / Caddy 源站，源站装公开 CA 或 Cloudflare Origin CA 证书，然后用 Full (strict)。Flexible 只适合短期迁移，长期会明文回源并容易循环跳转。HSTS preload 等所有子域、证书续期和回滚路径稳定后再启用；自有证书要看计划限制和兼容要求。
 
 ## 免费与计划限制
 
@@ -27,15 +22,7 @@ title: SSL/TLS
 
 ## 默认顺序
 
-| 顺序 | 操作 |
-| --- | --- |
-| 1 | DNS 记录确认开启代理。 |
-| 2 | 等 Universal SSL 可用。 |
-| 3 | 源站准备公开 CA 或 Cloudflare Origin CA 证书。 |
-| 4 | SSL/TLS 模式设为 Full (strict)。 |
-| 5 | 开 Always Use HTTPS。 |
-| 6 | 按用户群体设置最低 TLS 版本。 |
-| 7 | 最后评估 HSTS。 |
+默认顺序是：DNS 记录确认开启代理，等 Universal SSL 可用，源站准备公开 CA 或 Cloudflare Origin CA 证书，然后把 SSL/TLS 模式设为 Full (strict)。确认链路稳定后再开 Always Use HTTPS，按用户群体设置最低 TLS 版本，最后评估 HSTS。
 
 ## 源站保护
 
