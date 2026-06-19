@@ -14,12 +14,12 @@ importers:
       astro:
         specifier: ^6.4.7
         version: 6.4.7(@types/node@24.13.2)(rollup@4.62.0)
+      lucode-starlight:
+        specifier: ^0.1.6
+        version: 0.1.6(@astrojs/starlight@0.40.0(astro@6.4.7(@types/node@24.13.2)(rollup@4.62.0))(typescript@5.9.3))
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
-      starlight-theme-next:
-        specifier: 0.4.0
-        version: 0.4.0(@astrojs/starlight@0.40.0(astro@6.4.7(@types/node@24.13.2)(rollup@4.62.0))(typescript@5.9.3))
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20260617.0
@@ -1345,6 +1345,11 @@ packages:
     resolution: {integrity: sha512-RPimw/7aMdv2oqRrxKwvZXcPfwBrn/JZ2xYcY9Hus/6LaS3VOAKVWKWgNLCFSiOm1ESXinjsDlidVU7JlnCN2A==}
     engines: {node: 20 || >=22}
 
+  lucode-starlight@0.1.6:
+    resolution: {integrity: sha512-rLHcTNQmN1dmk170QyxyZoCs5TWHDZyEQsTU2uT0+RNaFhj8PaWm9huKVNPCRcEXvrOYWD27Z6EsxsHaeNhKqg==}
+    peerDependencies:
+      '@astrojs/starlight': '>=0.38.3'
+
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
@@ -1357,6 +1362,11 @@ packages:
 
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
+
+  marked@18.0.5:
+    resolution: {integrity: sha512-S6GcvALHg6K4ohtu4E7x0a1AqhAjp6cV8KhLSyN9qVapnzJkusVBxZRcIU9AeYsbe6P1hKDusSbEOzGyyuce6w==}
+    engines: {node: '>= 20'}
+    hasBin: true
 
   mdast-util-definitions@6.0.0:
     resolution: {integrity: sha512-scTllyX6pnYNZH/AIp/0ePz6s4cZtARxImwoPJ7kS42n+MnVsI4XbnG6d4ibehRIldYMWM2LD7ImQblVhUejVQ==}
@@ -1780,12 +1790,6 @@ packages:
 
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
-
-  starlight-theme-next@0.4.0:
-    resolution: {integrity: sha512-rIHrl9xZSITamEnBSqmTWdHWSp44Tx5zDpME3SBoONuD2diq0HxVKP4f9atq5QB01NIzulpFSkDRUkzl/L3Cow==}
-    engines: {node: '>=22.12.0'}
-    peerDependencies:
-      '@astrojs/starlight': '>=0.38'
 
   stream-replace-string@2.0.0:
     resolution: {integrity: sha512-TlnjJ1C0QrmxRNrON00JvaFFlNh5TTG00APw23j74ET7gkQpTASi6/L2fuiav8pzK715HXtUeClpBTw2NPSn6w==}
@@ -3428,6 +3432,12 @@ snapshots:
 
   lru-cache@11.5.1: {}
 
+  lucode-starlight@0.1.6(@astrojs/starlight@0.40.0(astro@6.4.7(@types/node@24.13.2)(rollup@4.62.0))(typescript@5.9.3)):
+    dependencies:
+      '@astrojs/starlight': 0.40.0(astro@6.4.7(@types/node@24.13.2)(rollup@4.62.0))(typescript@5.9.3)
+      '@pagefind/default-ui': 1.5.2
+      marked: 18.0.5
+
   magic-string@0.30.21:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
@@ -3441,6 +3451,8 @@ snapshots:
   markdown-extensions@2.0.0: {}
 
   markdown-table@3.0.4: {}
+
+  marked@18.0.5: {}
 
   mdast-util-definitions@6.0.0:
     dependencies:
@@ -4295,10 +4307,6 @@ snapshots:
   source-map@0.7.6: {}
 
   space-separated-tokens@2.0.2: {}
-
-  starlight-theme-next@0.4.0(@astrojs/starlight@0.40.0(astro@6.4.7(@types/node@24.13.2)(rollup@4.62.0))(typescript@5.9.3)):
-    dependencies:
-      '@astrojs/starlight': 0.40.0(astro@6.4.7(@types/node@24.13.2)(rollup@4.62.0))(typescript@5.9.3)
 
   stream-replace-string@2.0.0: {}
 
