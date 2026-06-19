@@ -1,6 +1,5 @@
 ---
 title: SSL/TLS
-description: Cloudflare SSL/TLS 的配置顺序、免费边界和源站保护。
 ---
 
 ## 判断
@@ -12,9 +11,9 @@ description: Cloudflare SSL/TLS 的配置顺序、免费边界和源站保护。
 | Workers / Pages 自定义域名 | 多数证书由 Cloudflare 管理。 |
 | 还在用 Flexible | 只适合短期迁移，长期会明文回源并容易循环跳转。 |
 | 想开 HSTS preload | 等所有子域、证书续期和回滚路径稳定后再说。 |
-| 想上传自有证书 | 通常不用；先看计划边界和兼容需求。 |
+| 想上传自有证书 | 看计划限制和兼容要求。 |
 
-## 免费与计划边界
+## 免费与计划限制
 
 | 能力 | Free 是否够用 | 实践判断 |
 | --- | --- | --- |

@@ -1,6 +1,5 @@
 ---
 title: DNS
-description: Cloudflare DNS 的接入顺序、免费边界、代理状态和迁移检查。
 ---
 
 ## 判断

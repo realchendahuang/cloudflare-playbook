@@ -1,6 +1,5 @@
 ---
 title: 成本控制
-description: Cloudflare 项目中常见成本来源、免费额度边界和控制方式。
 ---
 
 Cloudflare 账单分四条线看：域名计划、Workers Paid、附加产品和按量计费。预算提醒、用量面板和发票规则见 [账单与预算](/platform/billing/)；额度数字见 [免费额度大全](/platform/free-paid/)。
@@ -25,11 +24,11 @@ Cloudflare 账单分四条线看：域名计划、Workers Paid、附加产品和
 | 后台异步 | 邮件、通知、导入、转码、爬取、AI 批处理放 Queues 或定时任务。 |
 | AI 先网关 | 模型调用先过 AI Gateway，观察请求数、模型用量、缓存和错误，再决定是否扩大。 |
 | 大文件离站点 | 图片原图、附件、导出、视频离开静态站构建包；图片进 R2 / Images，视频进 Stream。 |
-| 限流在边界 | 登录、评论、搜索、上传、第三方回调先做最小限流和 Turnstile，再讨论更重的安全产品。 |
+| 入口限流 | 登录、评论、搜索、上传、第三方回调先做最小限流和 Turnstile，再看更重的安全产品。 |
 | 日志克制 | 生产日志记录请求编号、路径、状态、耗时和错误类型；不记录密钥、登录凭证和正文隐私。 |
 
 ## 付费判断
 
 Workers Paid 只在动态请求、CPU、日志、定时任务、D1、KV、Queues、Durable Objects、Hyperdrive、Browser Run 或 Workers AI 已经在线上稳定使用时才值得开。它属于开发者平台订阅；WAF、缓存规则、证书、Bot、R2、Images、Stream、日志查询和企业日志按各自规则计费。
 
-静态文档站、博客、官网、作品集，或者搜索用 Pagefind 就能解决时，先用免费层。详细数字和常见误区见 [免费额度大全](/platform/free-paid/)。
+静态文档站、博客、官网、作品集，或者搜索用 Pagefind 就能解决时，先用免费层。详细数字和关键区分见 [免费额度大全](/platform/free-paid/)。

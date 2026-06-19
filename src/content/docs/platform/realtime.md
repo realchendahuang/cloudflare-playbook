@@ -1,16 +1,15 @@
 ---
 title: 实时能力
-description: 文本实时、音视频实时和浏览器实时连接怎么选。
 ---
 
 ## 先判断
 
-| 需求 | 优先选择 | 边界 |
-| --- | --- | --- |
-| 聊天、在线人数、通知、协作状态 | Durable Objects WebSocket。 | 这是状态同步。 |
-| 会议、课堂、语音房、直播互动 | RealtimeKit。 | 适合交付会议体验。 |
-| 已经有 WebRTC 团队和特殊媒体路由 | Realtime SFU。 | 适合自建媒体控制层。 |
-| 已有 WebRTC，只缺连接穿透 | TURN。 | 它只解决连接可靠性。 |
+| 场景 | 优先选择 |
+| --- | --- |
+| 聊天、在线人数、通知、协作状态 | Durable Objects WebSocket。 |
+| 会议、课堂、语音房、直播互动 | RealtimeKit。 |
+| 已经有 WebRTC 团队和特殊媒体路由 | Realtime SFU。 |
+| 已有 WebRTC，只缺连接穿透 | TURN。 |
 
 ## 选型路线
 

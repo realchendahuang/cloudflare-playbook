@@ -1,15 +1,14 @@
 ---
 title: 进阶开发者能力
-description: 邮件、灰度、代码沙箱、数据扫描和助手协作什么时候再碰。
 ---
 
 ## 选择表
 
-| 你想做的事 | 看什么 | 边界 |
+| 你想做的事 | 看什么 |
 | --- | --- |
-| 发事务邮件或处理入站邮件 | Email Service / Email Workers | 营销邮件还要处理退订、投诉、声誉和合规。 |
-| 做功能关闭、灰度和定向发布 | Flagship / 配置开关 | 简单项目用配置和回滚流程即可。 |
-| 保存构建产物或临时文件树 | Artifacts | 普通文件、图片和附件放 R2。 |
-| 执行不可信代码 | Sandbox SDK / Containers | 需要安全边界、成本边界和任务隔离。 |
-| 查询 R2 里的分析数据 | R2 SQL / R2 Data Catalog | 用于分析数据，不替代 D1。 |
-| 让助手辅助配置和排障 | Agent Lee / Docs for agents | 生产变更仍要人工确认和留痕。 |
+| 发事务邮件或处理入站邮件 | Email Service / Email Workers |
+| 做功能关闭、灰度和定向发布 | Flagship / 配置开关 |
+| 保存构建产物或临时文件树 | Artifacts |
+| 执行不可信代码 | Sandbox SDK / Containers |
+| 查询 R2 里的分析数据 | R2 SQL / R2 Data Catalog |
+| 让助手辅助配置和排障 | Agent Lee / Docs for agents |

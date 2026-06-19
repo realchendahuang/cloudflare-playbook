@@ -1,11 +1,10 @@
 ---
 title: 架构模式
-description: 常见 Cloudflare 架构组合和取舍顺序。
 ---
 
 ## 快速分流
 
-| 需求 | 先读 | 默认组合 |
+| 场景 | 先读 | 默认组合 |
 | --- | --- | --- |
 | 文档站、官网、博客、知识库 | [静态内容站](/architecture/static-site/) | Workers Static Assets / Pages、Cache、Pagefind、Web Analytics。 |
 | 接口、第三方回调、表单、评论、小后端 | [接口入口](/architecture/api-gateway/) | Workers、WAF、限流、D1、KV、R2、Queues。 |
@@ -16,14 +15,14 @@ description: 常见 Cloudflare 架构组合和取舍顺序。
 
 ## 判断顺序
 
-| 先问什么 | 推荐路线 | 边界 |
+| 先问什么 | 推荐路线 | 判断 |
 | --- | --- | --- |
-| 主要是读内容吗？ | 静态内容站。 | 数据库、服务端渲染和 AI 搜索放到明确需求后。 |
+| 主要是读内容吗？ | 静态内容站。 | 静态资产层承接主流量。 |
 | 主要是请求处理和业务接口吗？ | 接口入口。 | Worker 负责入口，状态和文件交给对应能力。 |
-| 需要同一个资源的强一致状态吗？ | 实时应用。 | KV 不适合锁、房间状态或严格计数器。 |
-| 需要音视频或 WebRTC 吗？ | Realtime / 媒体能力。 | 媒体传输和普通 WebSocket 是两类问题。 |
-| 需要自然语言搜索或模型代理吗？ | AI 能力。 | 内容少时先用结构化目录和 Pagefind。 |
-| 需要后台和私有服务吗？ | Zero Trust / Access / Tunnel。 | 后台入口先有身份边界。 |
+| 需要同一个资源的强一致状态吗？ | 实时应用。 | 房间、锁、计数器进 Durable Objects。 |
+| 需要音视频或 WebRTC 吗？ | Realtime / 媒体能力。 | 媒体传输走实时媒体产品。 |
+| 需要自然语言搜索或模型代理吗？ | AI 能力。 | 搜索先看内容结构，再看模型能力。 |
+| 需要后台和私有服务吗？ | Zero Trust / Access / Tunnel。 | Access 管身份，Tunnel 管入口。 |
 
 ## 怎么取舍
 
@@ -34,5 +33,5 @@ description: 常见 Cloudflare 架构组合和取舍顺序。
 | 文件离库 | 文件本体进 R2，D1 只存元数据、权限和索引。 |
 | 强一致靠 DO | 房间、限流桶、单资源顺序写入用 Durable Objects，不用 KV。 |
 | 慢任务异步 | 邮件、审核、导入、AI 后处理进 Queues / Workflows。 |
-| 免费边界先算 | 先看静态请求、Workers 请求、CPU、D1 读写行数、R2 操作，再谈升级。 |
-| 安全前置 | 写入口先有 Turnstile、限流、WAF 或身份边界。 |
+| 免费额度先算 | 先看静态请求、Workers 请求、CPU、D1 读写行数、R2 操作，再谈升级。 |
+| 写入口单独处理 | 写入口配 Turnstile、限流、WAF 或身份。 |
