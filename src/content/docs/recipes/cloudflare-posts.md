@@ -15,21 +15,13 @@ title: Cloudflare 帖子合集
 | 任务变重以后怎么办 | Containers、Go 后端迁移、长任务拆分 | [扩展计算与数据管道](/platform/extended-compute-data/)、[Queues](/platform/queues/) |
 | 怎么让 AI / Agent 帮忙运维 | Codex 接管日志、Cloudflare MCP / skill、AI Gateway | [观测与日志](/platform/observability/)、[AI 能力](/platform/ai/) |
 
-## 可补进原帖
+## Cloudflare 为什么薅不垮
 
-这段可以接在“我的回答是：不会。”后面：
+Cloudflare 干的活，基本就是互联网的水电煤：DNS、CDN、防攻击、WAF、边缘计算。你每天打开的一大堆网站，背后可能都从它这张网里过一遍。
 
-> 先说 Cloudflare 是什么级别的公司。
->
-> 它干的活，基本就是互联网的水电煤：DNS、CDN、防攻击、WAF、边缘计算。你每天打开的一大堆网站，背后可能都从它这张网里过一遍。
->
-> 这种公司的逻辑很简单：用的人越多，它越强。
->
-> 免费用户多了，它的网络更大，流量样本更多，攻击样本更多，开发者心智更强，跟供应商谈判也更有筹码。
->
-> 后面真正付钱的，是企业客户，是那些需要安全、稳定、权限、合规和更高额度的人。
->
-> 所以我们正常用免费额度，薅不垮它。某种意义上，我们也是它这张网的一部分。
+这种公司的逻辑很简单：用的人越多，它越强。免费用户多了，它的网络更大，流量样本更多，攻击样本更多，开发者心智更强，跟供应商谈判也更有筹码。
+
+后面真正付钱的，是企业客户，是那些需要安全、稳定、权限、合规和更高额度的人。所以正常用免费额度，薅不垮它。某种意义上，我们也是它这张网的一部分。
 
 ## 主线帖
 
@@ -75,12 +67,12 @@ title: Cloudflare 帖子合集
 | Agent 配置 Cloudflare | 人手动配容易漏，Agent 适合做配置检查、日志分析和最佳实践对照。 | [原帖](https://x.com/realchendahuang/status/2066599746744340858) |
 | 用 AI 迁移技术栈 | 早期技术栈不必被旧实现绑死，AI 编程工具可以降低迁移成本。 | [原帖](https://x.com/realchendahuang/status/2066539662337048712) |
 
-## 风格札记
+## 相关动态
 
-| 原帖标题 | 内容作用 | 原帖 |
+| 原帖标题 | 摘要 | 原帖 |
 | --- | --- | --- |
-| 一个人就是一个团队 | 这套项目的气质：用嘴输出，用 AI 写码，用 Cloudflare 低成本上线。 | [原帖](https://x.com/realchendahuang/status/2067012516837044529) |
-| 开始密集更新 Cloudflare | 更新起点。 | [原帖](https://x.com/realchendahuang/status/2066890336002293909) |
-| 准备继续写 Cloudflare | 主页里这组帖子的承接点：后续继续把普通人怎么用 Cloudflare 讲清楚。 | [原帖](https://x.com/realchendahuang/status/2066491827574976671) |
-| Cloudflare 内容被传播 | 这组内容开始被外部整理和洗稿，说明选题本身有需求。 | [原帖](https://x.com/realchendahuang/status/2067223242843295967) |
-| Cloud Fire 帖子带来关注 | 从内容运营角度看，能降低成本、提高效率、抹平信息差的 Cloudflare 经验更容易被传播。 | [原帖](https://x.com/realchendahuang/status/2066566691358916917) |
+| 一个人就是一个团队 | 用 AI 写代码，用 Cloudflare 低成本上线，一个人也能搭出完整产品栈。 | [原帖](https://x.com/realchendahuang/status/2067012516837044529) |
+| 开始密集更新 Cloudflare | Cloudflare 系列内容的更新起点。 | [原帖](https://x.com/realchendahuang/status/2066890336002293909) |
+| 准备继续写 Cloudflare | 后续会继续按具体场景拆普通人怎么用 Cloudflare。 | [原帖](https://x.com/realchendahuang/status/2066491827574976671) |
+| Cloudflare 内容被传播 | 外部开始整理这组内容，说明低成本基础设施这个选题有需求。 | [原帖](https://x.com/realchendahuang/status/2067223242843295967) |
+| Cloudflare 帖子带来关注 | 降低成本、提高效率、抹平信息差的 Cloudflare 经验更容易被传播。 | [原帖](https://x.com/realchendahuang/status/2066566691358916917) |
