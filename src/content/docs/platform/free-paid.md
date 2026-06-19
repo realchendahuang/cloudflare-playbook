@@ -2,9 +2,9 @@
 title: 免费额度大全
 ---
 
-## 0 元起步
+## 免费阶段
 
-| 场景 | 先用什么 | 免费阶段最该盯什么 |
+| 场景 | 推荐方案 | 免费阶段重点指标 |
 | --- | --- | --- |
 | 开源文档站 / 官网 / 博客 | Workers Static Assets 或 Pages + Pagefind + Web Analytics | 静态资产请求免费且不限量；Pages Free 每月 500 次构建。 |
 | 教程站轻社区 | 静态资产层 + Twikoo Cloudflare + D1 + Turnstile | D1 每天 100k 行写入；公开写入口要防刷。 |
@@ -12,12 +12,12 @@ title: 免费额度大全
 | 表单 / 反馈箱 | Workers + D1 + Turnstile + Workers Logs | D1 写入、垃圾提交、日志 3 天留存。 |
 | 文件上传 / 下载 | R2 + 签名链接 + CDN 缓存 | R2 每月 10 GB 标准存储、1M 写入类操作、10M 读取类操作。 |
 | 小团队后台 | Access + Tunnel | Zero Trust Free 50 个用户；后台入口走 Access 登录。 |
-| AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | 先用静态搜索；AI 调用要限流、缓存和记录用量。 |
+| AI 搜索原型 | Pagefind + AI Gateway + Workers AI / AI Search | 优先使用静态搜索；AI 调用要限流、缓存和记录用量。 |
 | 实时小应用 | Durable Objects + Queues | DO 请求、运行时长、队列操作。 |
 
 ## 免费额度大全表
 
-| 层 / 产品 | 免费额度 / 免费限制 | 5 美元或付费后怎么变 | 起步用法 |
+| 层级 / 产品 | 免费额度 / 免费限制 | 付费后变化 | 起步使用方式 |
 | --- | --- | --- | --- |
 | DNS | 新 Free zone 每个域名 200 条记录；2024-09-01 前创建的 Free zone 默认 1,000 条。 | DNS 记录数跟域名计划走，Workers Paid 不影响。 | Web 记录代理；邮件、验证和特殊服务记录保持 DNS only。 |
 | CDN / Cache | CDN 可用；Free 有 10 条缓存规则。 | 更多缓存规则和高级缓存能力跟域名计划走。 | 静态资源长缓存，HTML 短缓存或重新验证。 |
@@ -44,27 +44,16 @@ title: 免费额度大全
 | AI Gateway | 基础功能免费；Workers Free 持久日志为所有网关合计 100,000 条。 | Workers Paid 每个网关 10M 条持久日志，Logpush 另按请求计费。 | 外部模型和 Workers AI 都先过网关观察。 |
 | AI Search | 2026-04-16 后新实例公开测试期内免费；Free 每月 20,000 次查询、每天 500 个爬取页面。 | Workers Paid 查询和爬取页数不限，实例与文件上限更高；Workers AI / AI Gateway 另计。 | 文档搜索先 Pagefind；自然语言搜索确认有价值后再上。 |
 | Vectorize | Free 每月 30M 查询向量维度、5M 存储向量维度。 | Paid 每月 50M 查询向量维度、10M 存储向量维度，超出按量。 | 文档少时先用 Pagefind；向量库只放明确搜索场景。 |
-| Browser Run | Free 每天 10 分钟浏览器时间，Browser Sessions 3 个并发浏览器。 | Paid 每月 10 小时浏览器时间、10 个并发浏览器，超出按量。 | 能用普通请求就不用浏览器；截图、PDF、动态页面抓取才看。 |
+| Browser Run | Free 每天 10 分钟浏览器时间，Browser Sessions 3 个并发浏览器。 | Paid 每月 10 小时浏览器时间、10 个并发浏览器，超出按量。 | 能用普通请求完成时不使用浏览器；截图、PDF、动态页面抓取才评估。 |
 | Images | Free 每月 5,000 次独立图片转换，超出后新转换返回错误且不计费。 | Paid 含 5,000 次转换，超出按 1,000 次计费；Images 存储和交付另计。 | 原图进 R2，需要多尺寸和格式转换时再看。 |
 | Zaraz | 每账号每月 1,000,000 个免费事件；未启用付费且超出会暂停到下个账单周期。 | Paid 每额外 1,000,000 个事件 5 美元/月。 | 第三方脚本变多时再看；先保留必要脚本。 |
 | Stream | 上传和编码入口免费；普通文档站没有实用的免费视频存储层。 | 按视频存储、观看和交付等计量。 | 视频是主要内容时再看；普通附件优先放 R2。 |
-| Containers | Free 不可用。 | Workers Paid 含 25 GiB-hours、375 vCPU-minutes、200 GB-hours，超出按量。 | 只有 Worker 运行时不够承载时再看。 |
+| Containers | Free 不可用。 | Workers Paid 含 25 GiB-hours、375 vCPU-minutes、200 GB-hours，超出按量。 | 只有 Worker 运行时无法承载时再评估。 |
 | 预算提醒 | 可按美元阈值发邮件提醒按量费用。 | 只发提醒，不自动停用产品。 | 停止超额靠限流、配额、队列熔断和产品开关。 |
-
-## All the fun
-
-| 起步场景 | 免费组合 | 先证明什么 |
-| --- | --- | --- |
-| 文档站 | 静态资产层 + Pagefind + Web Analytics | 内容结构、搜索、访问趋势。 |
-| 轻社区 | 静态资产层 + Twikoo Cloudflare + D1 + Turnstile | 留言、反馈、轻审核。 |
-| 小工具 | Workers + D1 / KV + R2 | 接口、配置、文件下载。 |
-| 小团队后台 | Tunnel + Access + D1 | 后台登录、内部入口和轻业务数据。 |
-| AI 原型 | Pagefind + AI Gateway + Workers AI | 搜索体验和模型成本。 |
-| 实时原型 | Durable Objects + Queues | 房间状态、连接和后台任务。 |
 
 ## 5 美元 Workers Paid
 
-| 能力 | Workers Paid 包含量 | 超出后的方向 | 实际意义 |
+| 能力 | Workers Paid 包含量 | 超额计费方式 | 适用说明 |
 | --- | --- | --- | --- |
 | Worker 请求 | 10M 次/月 | +$0.30 / 额外 1M 请求 | 评论、表单、接口、回调和搜索代理进入月度额度。 |
 | CPU 时间 | 30M CPU ms/月 | +$0.02 / 额外 1M CPU ms | 服务端渲染、数据处理、签名上传、AI 代理和后台任务要看 CPU。 |
@@ -76,21 +65,21 @@ title: 免费额度大全
 | Durable Objects | 1M 请求/月、400k GB-s/月 | 请求、运行时长和存储分别按量 | 房间、会话、限流器和实时状态进入月度额度。 |
 | Hyperdrive | 数据库查询不设固定日额度 | 外部数据库本身仍另算 | 连接既有 Postgres/MySQL 时，不再被 Free 日查询卡住。 |
 | Browser Run | 10 小时/月、10 个并发浏览器 | 浏览器小时和并发数按量 | 少量截图、PDF、动态页面验证可以进入生产。 |
-| Containers | 25 GiB-hours、375 vCPU-minutes、200 GB-hours/月 | 内存、CPU、磁盘按秒计费 | Worker 运行时不够用时再考虑。 |
+| Containers | 25 GiB-hours、375 vCPU-minutes、200 GB-hours/月 | 内存、CPU、磁盘按秒计费 | Worker 运行时无法承载时再考虑。 |
 | Static Assets | 静态资产请求仍免费且不限量 | 只有动态 Worker 才进计费 | 静态主流量继续停在资产层。 |
 
-| 不包含 | 为什么要分开看 |
+| 不包含范围 | 区分原因 |
 | --- | --- |
 | Cloudflare Pro / Business 的域名权益 | WAF、缓存规则、证书、Bot、部分安全能力跟域名计划走。 |
 | 媒体和对象存储全部成本 | R2、Images、Stream、Browser Run、Zaraz 都有自己的计量单位。 |
 | 企业网络能力 | Magic Transit、BYOIP、Network Interconnect、部分日志和 Bot 能力仍然是企业能力。 |
 | 账单硬封顶 | 预算提醒只提醒，不会自动暂停服务或停止按量计费。 |
 
-## 5 美元该不该花
+## Workers Paid 评估
 
-| 场景 | 判断 |
+| 场景 | 判断依据 |
 | --- | --- |
-| 只是文档站、官网、博客、作品集 | 先用 Free。静态资产请求免费且不限量，搜索用 Pagefind。 |
+| 只是文档站、官网、博客、作品集 | 使用 Free。静态资产请求免费且不限量，搜索用 Pagefind。 |
 | 小接口每天稳定几千到几万次 | 继续看 CPU、日志和公开入口用量。 |
 | Worker 请求接近 100,000 次/天 | 看 Workers Paid。 |
 | D1、KV、Queues、Durable Objects 已经是主要功能 | 看 Workers Paid。 |
@@ -99,7 +88,7 @@ title: 免费额度大全
 
 ## 后续评估
 
-| 产品 / 能力 | 什么时候评估 |
+| 产品 / 能力 | 评估条件 |
 | --- | --- |
 | Load Balancing、Health Checks、Argo、Spectrum | 多源站、故障切换、非 HTTP 入口或缓存做好后仍然回源慢。 |
 | Waiting Room、Smart Shield、APO | 合法峰值、WordPress 性能瓶颈或源站洪峰已经明确。 |
@@ -113,12 +102,12 @@ title: 免费额度大全
 
 ## 关键区分
 
-| 容易混在一起的点 | 实际处理 |
+| 常见误区 | 正确说明 |
 | --- | --- |
 | 所有请求都先交给 Worker。 | 静态资产直接返回，只让动态路径交给 Worker。 |
 | KV 可以当数据库。 | KV 用于读多写少；关系数据用 D1。 |
 | R2 出站带宽免费就完全免费。 | R2 不收出站带宽费，但存储和操作会计费。 |
-| AI 一开始就做向量搜索。 | 先整理内容结构，Pagefind 能解决大部分早期搜索。 |
+| 过早使用向量搜索。 | 先整理内容结构，Pagefind 能解决大部分早期搜索。 |
 | Workers Paid 等于 Cloudflare Pro。 | Workers Paid 是账号级开发者平台订阅；Pro / Business 是域名计划。 |
 | 预算提醒会自动封顶。 | 它只发邮件，不暂停服务，也不停止按量计费。 |
 | 日志越多越安全。 | 日志要能定位问题，也要控制采样、留存和敏感字段。 |

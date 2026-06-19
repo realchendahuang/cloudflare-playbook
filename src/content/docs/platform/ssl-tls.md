@@ -4,7 +4,7 @@ title: SSL/TLS
 
 ## 判断
 
-| 问题 | 判断 |
+| 问题 | 判断依据 |
 | --- | --- |
 | 文档站、官网、博客、前端应用 | Universal SSL 通常够用。 |
 | 有 VPS / NGINX / Caddy 源站 | 源站装公开 CA 或 Cloudflare Origin CA 证书，然后用 Full (strict)。 |
@@ -15,7 +15,7 @@ title: SSL/TLS
 
 ## 免费与计划限制
 
-| 能力 | Free 是否够用 | 实践判断 |
+| 能力 | Free 是否够用 | 判断依据 |
 | --- | --- | --- |
 | Universal SSL | 通常够用 | 自动签发和续期，覆盖多数站点。 |
 | Origin CA | 可用 | 源站只经 Cloudflare 访问时好用；不能给浏览器直连用。 |
@@ -27,7 +27,7 @@ title: SSL/TLS
 
 ## 默认顺序
 
-| 顺序 | 做什么 |
+| 顺序 | 操作 |
 | --- | --- |
 | 1 | DNS 记录确认开启代理。 |
 | 2 | 等 Universal SSL 可用。 |

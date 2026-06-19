@@ -2,24 +2,24 @@
 title: 学习路线
 ---
 
-## 先读这三页
+## 入门阅读
 
-| 先读 | 为什么 |
+| 推荐阅读 | 阅读原因 |
 | --- | --- |
-| [免费额度大全](/platform/free-paid/) | 先知道 0 元能跑什么，5 美元/月 Workers Paid 买到什么。 |
+| [免费额度大全](/platform/free-paid/) | 了解免费阶段适用范围，以及 5 美元/月 Workers Paid 的覆盖能力。 |
 | [Cloudflare 能力清单](/platform/) | 把能力按入口、计算、数据、安全、AI、观测和后续场景分组。 |
 | [静态内容站](/architecture/static-site/) | 文档站、官网、博客和前端应用是最常见入口。 |
 
 ## 第一轮：先上线
 
-| 先读 | 要判断什么 |
+| 推荐阅读 | 判断目标 |
 | --- | --- |
 | [Fundamentals](/platform/fundamentals/) | 账号、域名、代理状态、源站和权限。 |
 | [DNS](/platform/dns/) | 哪些记录走 Cloudflare 代理，哪些保持不代理。 |
 | [SSL/TLS](/platform/ssl-tls/) | 为什么生产环境优先 Full (strict)。 |
-| [Cache / CDN](/platform/cache/) | 静态资源怎么减少回源，哪些内容要绕过缓存。 |
-| [DDoS Protection](/platform/ddos/)、[WAF](/platform/waf/)、[Rules](/platform/rules/) | 基础防护和规则怎么放。 |
-| [账单与预算](/platform/billing/) | Workers Paid、域名计划、附加产品和按量计费怎么分开看。 |
+| [Cache / CDN](/platform/cache/) | 静态资源减少回源的方式，以及需要绕过缓存的内容类型。 |
+| [DDoS Protection](/platform/ddos/)、[WAF](/platform/waf/)、[Rules](/platform/rules/) | 基础防护和规则配置方式。 |
+| [账单与预算](/platform/billing/) | Workers Paid、域名计划、附加产品和按量计费的边界。 |
 
 ## 第二轮：开发者平台
 

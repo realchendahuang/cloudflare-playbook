@@ -1,20 +1,20 @@
 # Cloudflare Playbook
 
-一份面向独立开发者和一人公司的 Cloudflare 实战指南：从免费套餐、Pages、Workers、R2、D1、KV、Email 到完整项目部署，能省钱的地方狠狠省。
+面向独立开发者和小型团队的 Cloudflare 实战指南，覆盖免费额度、Pages、Workers、R2、D1、KV、Email 和项目部署。
 
 主要回答：
 
-- Cloudflare 免费额度到底能跑什么。
-- 独立开发者项目先接哪些能力。
-- Workers Paid、域名计划、R2、D1、AI、日志这些费用怎么分开看。
+- Cloudflare 免费额度适用范围。
+- 独立开发者项目的基础能力组合。
+- Workers Paid、域名计划、R2、D1、AI、日志等费用边界。
 - 常见场景该使用哪些 Cloudflare 能力。
-- 安全、成本、缓存、日志、上传、评论和后台入口怎么处理。
+- 安全、成本、缓存、日志、上传、评论和后台入口的处理方式。
 
 线上阅读：[cloudflare-playbook.chendahuang.top](https://cloudflare-playbook.chendahuang.top/)
 
 ## 推荐阅读顺序
 
-| 顺序 | 先读 |
+| 顺序 | 推荐阅读 |
 | --- | --- |
 | 1 | [免费额度大全](src/content/docs/platform/free-paid.md) |
 | 2 | [学习路线](src/content/docs/start/index.md) |
