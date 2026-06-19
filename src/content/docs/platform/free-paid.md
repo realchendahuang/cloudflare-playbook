@@ -3,7 +3,7 @@ title: 免费额度大全
 description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界。
 ---
 
-最后核对日期：2026-06-18。额度和价格以 Cloudflare 官方价格、限制和账单页面为准。
+额度和价格会变化，付费前再做一次核对。
 
 看免费额度先分清三件事：
 
@@ -116,7 +116,7 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 
 ## 进阶能力
 
-下面这些产品按触发信号阅读。触发信号明确后，再去对应页面和官方文档核对。
+下面这些产品按触发信号阅读。触发信号明确后，再核对最新口径。
 
 | 产品 / 能力 | 什么时候再看 |
 | --- | --- |
@@ -141,16 +141,3 @@ description: Cloudflare 免费额度、5 美元/月 Workers Paid 和付费边界
 | Workers Paid 等于 Cloudflare Pro。 | Workers Paid 是账号级开发者平台订阅；Pro / Business 是域名计划。 |
 | 预算提醒会自动封顶。 | 它只发邮件，不暂停服务，也不停止按量计费。 |
 | 日志越多越安全。 | 日志要能定位问题，也要控制采样、留存和敏感字段。 |
-
-## 事实来源
-
-| 主题 | 官方入口 |
-| --- | --- |
-| 全量文档索引 | [Cloudflare llms.txt](https://developers.cloudflare.com/llms.txt)、[Docs directory](https://developers.cloudflare.com/directory/) |
-| Workers、Static Assets、Builds、Logs | [Workers Pricing](https://developers.cloudflare.com/workers/platform/pricing/)、[Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)、[Workers Static Assets Billing and Limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)、[Workers Builds Limits & Pricing](https://developers.cloudflare.com/workers/ci-cd/builds/limits-and-pricing/) |
-| 账单与预算 | [Cloudflare Billing Docs](https://developers.cloudflare.com/billing/)、[Usage-based billing](https://developers.cloudflare.com/billing/understand/usage-based-billing/)、[Budget alerts](https://developers.cloudflare.com/billing/manage/budget-alerts/) |
-| 静态站、数据与队列 | [Pages Limits](https://developers.cloudflare.com/pages/platform/limits/)、[D1 Pricing](https://developers.cloudflare.com/d1/platform/pricing/)、[D1 Limits](https://developers.cloudflare.com/d1/platform/limits/)、[KV Pricing](https://developers.cloudflare.com/kv/platform/pricing/)、[R2 Pricing](https://developers.cloudflare.com/r2/pricing/)、[Queues Pricing](https://developers.cloudflare.com/queues/platform/pricing/)、[Durable Objects Pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/) |
-| 安全与访问 | [DNS records quota](https://developers.cloudflare.com/dns/manage-dns-records/)、[WAF Custom rules](https://developers.cloudflare.com/waf/custom-rules/)、[WAF Rate limiting rules](https://developers.cloudflare.com/waf/rate-limiting-rules/)、[Turnstile Plans](https://developers.cloudflare.com/turnstile/plans/)、[Zero Trust plans](https://www.cloudflare.com/plans/zero-trust-services/)、[Cloudflare One account limits](https://developers.cloudflare.com/cloudflare-one/account-limits/) |
-| AI 与搜索 | [Workers AI Pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)、[AI Gateway Pricing](https://developers.cloudflare.com/ai-gateway/reference/pricing/)、[AI Search Limits & pricing](https://developers.cloudflare.com/ai-search/platform/limits-pricing/)、[Vectorize Pricing](https://developers.cloudflare.com/vectorize/platform/pricing/) |
-| 媒体、实时与浏览器 | [Images Pricing](https://developers.cloudflare.com/images/pricing/)、[Stream Pricing](https://developers.cloudflare.com/stream/pricing/)、[Realtime SFU Pricing](https://developers.cloudflare.com/realtime/sfu/pricing/)、[Browser Run Pricing](https://developers.cloudflare.com/browser-run/pricing/)、[Zaraz Pricing](https://developers.cloudflare.com/zaraz/pricing-info/) |
-| 开源源码与示例 | [cloudflare/cloudflare-docs](https://github.com/cloudflare/cloudflare-docs)、[cloudflare/workers-sdk](https://github.com/cloudflare/workers-sdk)、[cloudflare/templates](https://github.com/cloudflare/templates)、[withastro/starlight](https://github.com/withastro/starlight)、[Pagefind/pagefind](https://github.com/Pagefind/pagefind)、[twikoojs/twikoo-cloudflare](https://github.com/twikoojs/twikoo-cloudflare) |

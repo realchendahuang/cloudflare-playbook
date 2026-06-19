@@ -18,11 +18,10 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | --- | --- | --- |
 | 1 | [免费额度大全](src/content/docs/platform/free-paid.md) | 0 元能跑到哪里，5 美元 Workers Paid 买到什么。 |
 | 2 | [学习路线](src/content/docs/start/index.md) | 第一次读 Cloudflare 时该按什么顺序看。 |
-| 3 | [产品索引](src/content/docs/platform/index.md) | 把 Cloudflare 官方产品整理成普通项目能用的分类。 |
+| 3 | [产品索引](src/content/docs/platform/index.md) | 把 Cloudflare 产品整理成普通项目能用的分类。 |
 | 4 | [架构模式](src/content/docs/architecture/index.md) | 按项目类型组合产品。 |
 | 5 | [最佳实践](src/content/docs/best-practices/index.md) | 处理成本、安全、数据、日志和上线边界。 |
 | 6 | [实战案例](src/content/docs/recipes/index.md) | 看具体场景怎么落地。 |
-| 7 | [官方资料索引](src/content/docs/reference/index.md) | 回到 Cloudflare 官方文档和可验证来源。 |
 
 ## 内容地图
 
@@ -37,7 +36,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 
 | 章节 | 内容 |
 | --- | --- |
-| [产品索引](src/content/docs/platform/index.md) | 按 Application performance、Application security、Core platform、Developer platform 等官方大类整理阅读路径。 |
+| [产品索引](src/content/docs/platform/index.md) | 按入口、性能、安全、开发者平台等常用视角整理阅读路径。 |
 | [Fundamentals](src/content/docs/platform/fundamentals.md) | 账号、域名、代理状态、源站保护、权限和排障入口。 |
 | [Workers](src/content/docs/platform/workers.md) | 动态接口、第三方回调、评论、表单、代理和轻后端入口。 |
 | [Workers Static Assets](src/content/docs/platform/static-assets.md) | 文档站、官网、博客和前端构建产物的静态资产层。 |
@@ -48,7 +47,7 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | [流量调度](src/content/docs/platform/traffic-routing.md) | 负载均衡、健康检查、四层入口、路径优化和私网调度。 |
 | [源站保护与流量洪峰](src/content/docs/platform/origin-surge.md) | 源站被打满、合法峰值、回源压力、Waiting Room、Smart Shield、APO。 |
 | [公共网络能力](src/content/docs/platform/public-network-specialties.md) | 1.1.1.1、Radar、Time Services、Web3、China Network、Google tag gateway。 |
-| [治理、合规与学习路径](src/content/docs/platform/governance-compliance-learning.md) | 合规、脚本安全、官方支持、学习材料和团队治理。 |
+| [治理、合规与学习路径](src/content/docs/platform/governance-compliance-learning.md) | 合规、脚本安全、支持渠道、学习材料和团队治理。 |
 | [进阶协议与工具](src/content/docs/platform/edge-protocols-utilities.md) | Web3、Time Services、Randomness Beacon、Privacy Gateway、Tenant API 等补充能力。 |
 | [进阶开发者能力](src/content/docs/platform/developer-network-additions.md) | 事务邮件、功能灰度、构建产物、代码执行、R2 查询和助手协作。 |
 | [WAF](src/content/docs/platform/waf.md) | 后台、登录、评论、上传、搜索和写接口的应用安全过滤。 |
@@ -98,10 +97,3 @@ Cloudflare Playbook 是一个面向普通开发者、独立开发者和小团队
 | [案例总览](src/content/docs/recipes/index.md) | 可复用的 Workers、D1、R2、上传、评论和接口案例入口。 |
 | [Worker 接口 + D1](src/content/docs/recipes/worker-api-d1.md) | 轻量评论接口、输入校验、预编译 SQL、D1 数据边界和生产检查。 |
 | [R2 签名上传](src/content/docs/recipes/r2-signed-upload.md) | Worker 代理上传、预签名 URL、私有下载、权限设计和生产检查。 |
-
-### 资料索引
-
-| 章节 | 内容 |
-| --- | --- |
-| [官方资料](src/content/docs/reference/index.md) | 官方文档、变更日志、GitHub 仓库、示例模板和学习资料。 |
-| [Cloudflare 文档地图](src/content/docs/reference/cloudflare-docs-map.md) | 把 Cloudflare 官方文档大类整理成可阅读的产品路径。 |

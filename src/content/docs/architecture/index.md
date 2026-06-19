@@ -1,6 +1,6 @@
 ---
 title: 架构模式
-description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
+description: 常见 Cloudflare 架构组合和判断顺序。
 ---
 
 一个项目先按类型选择产品组合，再看安全、成本和升级边界。
@@ -40,5 +40,3 @@ description: 常见 Cloudflare 架构组合、判断顺序和官方对照。
 | 慢任务异步 | 邮件、审核、导入、AI 后处理进 Queues / Workflows。 |
 | 免费边界先算 | 先看静态请求、Workers 请求、CPU、D1 读写行数、R2 操作，再谈升级。 |
 | 安全前置 | 写入口先有 Turnstile、限流、WAF 或身份边界。 |
-
-更多官方架构资料见 [Reference Architecture](https://developers.cloudflare.com/reference-architecture/) 和 [Use cases](https://developers.cloudflare.com/use-cases/)。
