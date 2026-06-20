@@ -2,16 +2,15 @@
 
 独立开发者的 Cloudflare 单页实战手册。
 
-从免费额度、能力清单、推荐栈、开源项目到上线检查，按一个页面组织，方便阅读、搜索和贡献。
+从免费额度、能力清单、推荐栈、开源项目到上线检查，按一个页面组织，方便阅读和搜索。
 
 - [先看结论](#先看结论)
 - [按场景选型](#按场景选型)
 - [免费额度](#免费额度)
 - [学习路线](#学习路线)
 - [能力清单](#能力清单)
-- [Awesome Cloudflare Projects](#awesome-cloudflare-projects)
+- [开源项目案例](#开源项目案例)
 - [官方资源](#官方资源)
-- [贡献方式](#贡献方式)
 
 ## 先看结论
 
@@ -149,7 +148,7 @@ Workers Logs 看真实错误
 | Cron 太频繁 | 先按业务真实频率跑 |
 | 日志成本上升 | 本地开发和生产日志分级 |
 
-## Awesome Cloudflare Projects
+## 开源项目案例
 
 ### 博客、文档和 CMS
 
@@ -206,21 +205,3 @@ Workers Logs 看真实错误
 | [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/workers-best-practices/) | 查 Workers 官方最佳实践 |
 | [Workers Examples](https://developers.cloudflare.com/workers/examples/) | 找单点功能示例 |
 | [cloudflare/templates](https://github.com/cloudflare/templates) | 找官方起步模板 |
-| [zhuima/awesome-cloudflare](https://github.com/zhuima/awesome-cloudflare) | 找中文开源项目池 |
-
-## 贡献方式
-
-新增项目请放到对应分类下。
-
-推荐格式：
-
-```markdown
-| [owner/repo](https://github.com/owner/repo) | Workers、D1、R2 | 一句话说明可借鉴点 |
-```
-
-收录标准：
-
-- 项目必须真实使用 Cloudflare 能力。
-- 描述只写一句话。
-- 标明 Workers、Pages、D1、R2、KV、Durable Objects、AI Gateway 等核心组合。
-- 引用前检查许可证、维护状态和最近提交。
