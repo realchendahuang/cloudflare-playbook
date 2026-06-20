@@ -10,33 +10,12 @@ outline: deep
 </section>
 
 <div class="quick-grid">
-  <a href="#先看结论"><strong>先看结论</strong><span>先拿默认选型，再按需求调整。</span></a>
   <a href="#_1-免费额度"><strong>免费额度</strong><span>每个服务免费多少，超出怎么算。</span></a>
   <a href="#_2-服务选型"><strong>服务选型</strong><span>每个服务适合什么、不适合什么。</span></a>
   <a href="#_3-开源项目"><strong>开源项目</strong><span>按用途整理可参考项目。</span></a>
   <a href="#_4-5-套餐"><strong>$5 套餐</strong><span>值不值得买，什么时候买。</span></a>
   <a href="#官方资源"><strong>官方资源</strong><span>文档、模板和项目池。</span></a>
 </div>
-
-## 先看结论
-
-如果你是独立开发者，Cloudflare 可以先按这套默认栈理解：
-
-| 需求 | 默认方案 | 什么时候升级 |
-| --- | --- | --- |
-| 官网、文档、博客 | Pages 或 Workers Static Assets | 需要统一 Worker 工程时切到 Static Assets |
-| 小后端、Webhook、API | Workers + Hono | CPU、日志、队列和数据访问进入瓶颈 |
-| 关系数据 | D1 | 需要复杂事务、多区域主库或已有 Postgres |
-| 文件和图片 | R2 | 需要图片处理、视频流、生命周期管理 |
-| 缓存和配置 | KV | 需要强一致状态时换 D1 或 Durable Objects |
-| 实时房间和协作 | Durable Objects | 单房间、单文档、单用户状态需要强一致 |
-| 防滥用 | Turnstile + WAF + Access | 后台、上传、登录、Webhook 必须补入口保护 |
-
-<div class="callout-strip">
-先解决上线、成本和安全，再考虑复杂架构。早期项目最重要的是跑得起来、查得到问题、账单不会失控。
-</div>
-
----
 
 ## 1. 免费额度
 
