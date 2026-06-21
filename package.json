@@ -2,7 +2,7 @@
   "name": "cloudflare-playbook",
   "version": "0.1.0",
   "private": true,
-  "description": "Vibe coding 时代的 Cloudflare 实战手册——用 AI 写代码，用 Cloudflare 免费部署到全球。",
+  "description": "AI 编程时代的 Cloudflare 实战手册——用 AI 写代码，用 Cloudflare 部署到全球。",
   "type": "module",
   "engines": {
     "node": ">=22.12.0"

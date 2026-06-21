@@ -3,9 +3,9 @@ import { readFile, writeFile } from 'node:fs/promises'
 const sourcePath = new URL('../docs/index.md', import.meta.url)
 const readmePath = new URL('../README.md', import.meta.url)
 
-const readmeIntro = `# Cloudflare Playbook
+const readmeIntro = `# Cloudflare 实战手册
 
-Vibe coding 时代的 Cloudflare 实战手册——用 AI 写代码，用 Cloudflare 免费部署到全球。
+AI 编程时代的 Cloudflare 实战手册——用 AI 写代码，用 Cloudflare 部署到全球。
 
 在线阅读：[cloudflare-playbook.chendahuang.top](https://cloudflare-playbook.chendahuang.top/)
 
@@ -13,13 +13,16 @@ Vibe coding 时代的 Cloudflare 实战手册——用 AI 写代码，用 Cloudf
 
 \`\`\`mermaid
 flowchart TD
-  A[Cloudflare 功能模块] --> B[站点基础]
-  A --> C[计算]
-  A --> D[数据存储]
-  A --> E[AI]
-  A --> F[媒体]
-  A --> G[安全]
-  A --> H[观测]
+  A[Cloudflare 实战手册] --> B[站点基础<br/>DNS / SSL / CDN / Rules]
+  A --> C[计算<br/>Workers / Pages / DO / Workflows / Queues]
+  A --> D[数据存储<br/>D1 / KV / R2 / Hyperdrive / Vectorize]
+  A --> E[AI<br/>Workers AI / AI Gateway / Agents SDK]
+  A --> F[媒体<br/>Images / Stream / Realtime / Browser]
+  A --> G[安全<br/>Turnstile / Access / WAF / Rate Limiting]
+  A --> H[观测<br/>Log Explorer / Observability / Analytics]
+  A --> I[AI 编程工作流<br/>Skill / MCP / Wrangler]
+  A --> J[计费与额度<br/>Free vs Paid 对比]
+  A --> K[架构模式<br/>常见组合与 trade-off]
 \`\`\`
 `
 
@@ -27,11 +30,10 @@ const toc = `## 目录
 
 - [1. Cloudflare 功能模块](#1-cloudflare-功能模块)
 - [2. AI 编程工作流](#2-ai-编程工作流)
-- [3. 免费额度](#3-免费额度)
-- [4. $5 套餐](#4-5-套餐)
-- [5. 开源项目](#5-开源项目)
-- [6. 避坑指南](#6-避坑指南)
-- [7. 国内访问](#7-国内访问)
+- [3. 计费与额度](#3-计费与额度)
+- [4. 开源项目](#4-开源项目)
+- [5. 避坑指南](#5-避坑指南)
+- [6. 国内访问](#6-国内访问)
 - [官方资源](#官方资源)
 `
 
