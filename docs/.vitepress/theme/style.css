@@ -181,8 +181,13 @@
   justify-content: center;
   border-radius: 8px;
   background: rgba(244, 129, 32, 0.10);
-  font-size: 16px;
-  line-height: 1;
+  color: var(--vp-c-brand-1);
+}
+
+.quick-grid .card-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
 }
 
 .quick-grid .card-body {

@@ -20,6 +20,7 @@
     "url": "https://github.com/realchendahuang/cloudflare-playbook.git"
   },
   "devDependencies": {
+    "lucide-vue-next": "^1.0.0",
     "vitepress": "^1.6.4",
     "wrangler": "^4.100.0"
   }
