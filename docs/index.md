@@ -29,7 +29,7 @@ import { Cloud, Bot, Rocket, Wallet, Zap, Package, AlertTriangle, Globe, Search,
 
 ## 1. 服务介绍
 
-Cloudflare 的服务按起步入口、计算、数据与存储、安全、AI 五类整理。每个服务先给一句话定义，再展开讲——从 vibe coding 的视角，说清楚什么时候你会用到它、坑在哪。
+Cloudflare 的服务按起步入口、计算、数据与存储、安全、AI 五类整理。每个服务说清楚什么时候你会用到、坑在哪。
 
 ### <Compass class="cat-icon" /> 起步入口 {#起步入口}
 
