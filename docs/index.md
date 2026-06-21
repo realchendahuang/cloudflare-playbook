@@ -254,84 +254,95 @@ Workers 里的自定义指标和事件分析引擎。
 
 ## 2. AI 编程工作流
 
-AI 写 Cloudflare 项目，最容易出问题的地方不是语法，而是选错运行时、绑定、存储和计费口径。正确工作流是：先让 AI 理解 Cloudflare 的边界，再让它写代码。
+AI 写 Cloudflare 代码最容易翻车的地方不是语法，而是它根本不知道 Cloudflare 有什么、边界在哪。解决办法很简单：给 AI 装上 Cloudflare 的"说明书"和"工具箱"，它就会自己查、自己写、自己部署。别一上来手动配 20 个 MCP——人类已经够累了，别再折磨自己。
 
-### 先定架构，再让 AI 写代码
+### 三分钟搞定
 
-开始前先把这几件事说清楚：
+**用 Codex（OpenAI 官方客户端）：**
 
-- 项目类型：静态站、API、全栈应用、Agent、图床、监控、实时协作。
-- 数据形态：结构化数据用 D1，文件用 R2，读多写少缓存用 KV，单实体强一致状态用 Durable Objects。
-- 任务形态：同步请求用 Workers，异步任务用 Queues，多步骤长流程用 Workflows，系统依赖和长进程用 Containers。
-- 安全边界：公开接口要限流，表单和注册要 Turnstile，内部后台优先用 Access。
-- 成本边界：先按 Free 额度设计，确认需要更长 CPU、更高 subrequests、更多日志或 Containers 时再上 Workers Paid。
-
-一个好用的提示词结构是：
-
-```text
-我要做一个 Cloudflare 项目：
-- 类型：
-- 用户会上传/读取什么数据：
-- 是否需要登录：
-- 是否需要后台任务：
-- 是否需要 AI：
-- 期望免费额度内先跑起来：
-
-请先给我 Cloudflare 产品组合，再给目录结构、wrangler 配置、数据表、API 路由和部署步骤。
-不要把密钥写进代码，不要把需要强一致的数据放 KV，不要缓存登录后的私有响应。
+```bash
+cd your-cloudflare-project
+codex
 ```
 
-### 选型顺序
+进入 Codex 后输入 `/plugins`，搜索 `Cloudflare`，回车安装。完事。这一步会自动把 Cloudflare 的 Skill、MCP、集成一股脑装好，不用你管。
 
-不要从框架开始选，从运行形态开始选：
+**用 Claude Code（Anthropic 官方客户端）：**
 
-- 纯静态文档、官网、博客：Pages 或 Workers Static Assets。
-- 前端 + 少量 API：Workers Static Assets + Workers。
-- REST API、Webhook、MCP Server：Workers + Hono/itty-router/原生 Fetch。
-- 需要 SQL：Workers + D1；已有 Postgres/MySQL：Workers + Hyperdrive。
-- 文件上传和下载：Workers + R2；图片展示再加 Images。
-- 后台任务：用户请求写入 Queues，消费者 Worker 慢慢处理。
-- 多步骤流程：Workflows 管状态、重试、sleep 和等待外部事件。
-- 聊天、协作、房间、Agent 状态：Durable Objects。
-- RAG：R2/D1 存原文，Vectorize 存 embedding，Workers AI 或外部模型生成回答。
-- 多 provider AI 调用：AI Gateway 放在模型调用前面，统一观测、缓存、限流。
+```bash
+cd your-cloudflare-project
+claude
+```
 
-### 资料入口
+进入 Claude Code 后依次输入这两行：
 
-写代码前先让 AI 参考这些入口：
+```text
+/plugin marketplace add cloudflare/skills
+/plugin install cloudflare@cloudflare
+```
 
-- [Cloudflare Workers Examples](https://developers.cloudflare.com/workers/examples/)：单点功能示例，比如 CORS、缓存、WebSocket、Turnstile。
-- [cloudflare/templates](https://github.com/cloudflare/templates)：官方起步模板，适合直接拆目录和配置。
-- [create-cloudflare](https://developers.cloudflare.com/pages/get-started/c3/)：官方脚手架，适合新项目起步。
-- [cloudflare/agents](https://github.com/cloudflare/agents)：Agents SDK 示例，适合看 Durable Objects + Agent 状态怎么组织。
-- [Workers Bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/)：查 D1、R2、KV、Vectorize、AI、Queues 等绑定怎么写。
-- [Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)：写前先看限制，尤其是 CPU、subrequests、Worker size。
+完事。效果跟 Codex 那边一样。
 
-### 本地循环
+### 这些东西分别是干嘛的
 
-AI 生成代码后，不要直接部署。按这个循环走：
+**Skill = 说明书**
 
-1. 本地安装依赖，跑 `pnpm build` 或对应框架的 build。
-2. 用 `wrangler dev` 或框架 dev server 跑本地服务。
-3. 先测最小路径：主页、健康检查、一个读接口、一个写接口。
-4. 需要绑定的资源先建出来：D1、R2、KV、Queues、Vectorize、Durable Objects。
-5. 密钥用 `wrangler secret put` 或 Secrets Store，不写进 `.env.example` 之外的文件。
-6. 让 AI 根据实际报错修，不要让它凭空重构。
-7. 部署后用 Workers Logs、Log Explorer、Trace 和真实 URL 验证。
+让 AI 懂 Cloudflare 怎么开发。Workers、Pages、R2、D1、KV、Queues、Durable Objects、Agents SDK、Wrangler、Email 这些它都会写。装上之后 AI 就不会把你当成在写普通 Node.js 项目了。
 
-### 给 AI 的项目规则
+**MCP = 连接器**
 
-项目里最好长期保留一份 AI 规则文件，比如 `AGENTS.md`、`CLAUDE.md` 或 `.cursorrules`。里面写清楚：
+让 AI 能连你的 Cloudflare 账号和官方文档。插件装好后下面这些会自动注册，不用自己一个个加：
 
-- 运行环境是 Cloudflare Workers，不是普通 Node.js server。
-- 能用 Web API 就用 Web API；Node.js 兼容能力要查官方支持列表。
-- 所有 Cloudflare 资源通过 bindings 访问，不在代码里拼账号密钥。
-- D1 查询必须考虑索引和 rows_read。
-- KV 只能放最终一致、读多写少的数据。
-- R2 只存对象，权限、归属、索引放 D1。
-- Worker 里不要做长时间 CPU 重活；重任务拆到 Queues、Workflows 或 Containers。
-- 登录态、个人数据、后台 API 默认不缓存。
-- 公开表单、登录、上传和 AI 调用入口要有 Turnstile、限流或鉴权。
+- **Docs MCP**：让 AI 能查官方文档（日常必开）
+- **Cloudflare API MCP**：让 AI 能操作你的账号（要上线、改配置时再开）
+- **Observability MCP**：让 AI 能看线上日志（排查问题时开）
+- **Workers Builds MCP**：让 AI 能看构建记录
+- **Browser Run MCP**：让 AI 能开浏览器帮你测
+
+**Wrangler = 真正干活的命令行工具**
+
+Skill 和 MCP 都是"让 AI 懂"，真正要在你电脑上跑起来、部署上线，还得靠 Wrangler。在项目里装一下：
+
+```bash
+npm i -D wrangler@latest
+```
+
+日常用得最多的就这三个命令：
+
+```bash
+npx wrangler dev          # 本地跑起来
+npx wrangler deploy       # 部署上线
+npx wrangler tail         # 看实时日志
+```
+
+### 万能通用方案
+
+如果你不想用插件，或者用的不是 Codex / Claude Code（比如 OpenCode、Pi 等其他 agent），可以直接装官方 Skill 包，一条命令搞定：
+
+```bash
+npx skills add https://github.com/cloudflare/skills
+```
+
+这个仓库是 Cloudflare 官方维护的，支持 Claude Code、OpenCode、OpenAI Codex、Pi 等主流 agent。
+
+### 新项目从零开始
+
+如果连项目都还没建，先建项目：
+
+```bash
+npm create cloudflare@latest -- my-worker
+```
+
+跟着提示选就行。建完进去装 Wrangler、装插件，开始让 AI 写。
+
+### 一句话总结
+
+```text
+插件先装  → 让 AI 懂 Cloudflare
+Wrangler 跟上 → 让 AI 能真跑
+Docs MCP 默认开 → 让 AI 能查文档
+要动账号再开 API MCP → 让 AI 能上线改配置
+```
 
 ---
 
