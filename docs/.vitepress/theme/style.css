@@ -22,7 +22,6 @@
   --vp-c-divider: rgba(255, 232, 204, 0.16);
 }
 
-/* 单页手册需要更宽的正文和更强的章节分隔。 */
 .VPDoc:not(.has-sidebar) .container {
   max-width: 1420px !important;
 }
