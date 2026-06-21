@@ -57,6 +57,27 @@
   font-size: 16px;
 }
 
+.vp-doc h3 .cat-icon {
+  display: inline-flex;
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: middle;
+  margin-right: 0.3em;
+  color: var(--vp-c-brand-1);
+  stroke-width: 2;
+}
+
+.vp-doc h4 .svc-icon {
+  display: inline-flex;
+  width: 0.85em;
+  height: 0.85em;
+  vertical-align: middle;
+  margin-right: 0.3em;
+  color: var(--vp-c-text-2);
+  opacity: 0.7;
+  stroke-width: 1.75;
+}
+
 .vp-doc p {
   font-size: 15px;
   line-height: 1.75;

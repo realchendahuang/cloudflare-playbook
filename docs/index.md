@@ -4,7 +4,7 @@ outline: deep
 ---
 
 <script setup>
-import { Cloud, Bot, Rocket, Wallet, Zap, Package, AlertTriangle, Globe, Search, ClipboardList, Link } from 'lucide-vue-next'
+import { Cloud, Bot, Rocket, Wallet, Zap, Package, AlertTriangle, Globe, Search, ClipboardList, Link, Compass, Cpu, Database, Shield, Brain, Lock, Server, ListFilter, Code, FileText, Boxes, GitBranch, ArrowLeftRight, Container, Clock, Table, Key, HardDrive, Layers, Scan, UserCheck, LockKeyhole, ShieldAlert, Gauge, Umbrella, Braces, BrainCircuit, Network } from 'lucide-vue-next'
 </script>
 
 <section class="onepage-hero">
@@ -31,152 +31,152 @@ import { Cloud, Bot, Rocket, Wallet, Zap, Package, AlertTriangle, Globe, Search,
 
 Cloudflare 的服务按起步入口、计算、数据与存储、安全、AI 五类整理。每个服务先给一句话定义，再展开讲——从 vibe coding 的视角，说清楚什么时候你会用到它、坑在哪。
 
-### 起步入口
+### <Compass class="cat-icon" /> 起步入口 {#起步入口}
 
-#### DNS
+#### <Globe class="svc-icon" /> DNS {#dns}
 域名解析入口，Cloudflare 最基础的服务。
 
 你买了域名之后，第一件事就是把域名的 NS（Name Server）记录改到 Cloudflare。改完之后，域名的解析就归 CF 管了。所有项目都从这一步开始，免费无限，所有计划都包含。
 
-#### SSL/TLS
+#### <Lock class="svc-icon" /> SSL/TLS {#ssl-tls}
 浏览器到 CF 边缘、CF 边缘到你源站的加密。
 
 HTTPS 那把小锁就是它管的。默认自动开启，你不用做什么——域名解析到 CF 之后证书自动签发自动续期。除非你要用自定义证书链（比如企业内网场景），否则不用碰这个设置。
 
-#### Cache / CDN
+#### <Server class="svc-icon" /> Cache / CDN {#cache-cdn}
 静态资源、页面和 API 响应的全球缓存。
 
 你的文件存在 CF 的全球节点上，用户访问时从离他最近的节点拿，不用每次回源站。静态资源缓存不额外计费。做 vibe coding 时，AI 生成的静态站默认就能享受这个加速。动态内容（比如用户个人化数据）别缓存，用 Rules 精细控制哪些路径缓存、哪些不缓存。
 
-#### Rules
+#### <ListFilter class="svc-icon" /> Rules {#rules}
 重定向、缓存、Header、Origin 规则的统一入口。
 
 想把旧域名 301 到新域名、想给某些路径加个 Header、想控制某个路径缓存多久——这些不用写代码，在 Rules 里配就行。简单操作用 Rules，别为重定向和 Header 专门写 Worker，杀鸡不用牛刀。
 
-### 计算
+### <Cpu class="cat-icon" /> 计算 {#计算}
 
-#### Workers
+#### <Code class="svc-icon" /> Workers {#workers}
 跑在 CF 边缘的 JS/TS 函数，全球部署。
 
 这是 vibe coding 里你最常打交道的服务。AI 帮你生成的 Hono、Express、或者纯 TS API，基本都能直接部署到 Workers。代码推上去之后自动分布到全球 300+ 节点，用户请求自动打到最近的节点。Free 计划 CPU 10ms/请求上限——对普通 API 够用，但如果要做图片处理、AI 推理这种重活，会撞到这个限制，这时候要么上 $5 套餐（CPU 上限提到 5 分钟），要么把重任务切到 Workflows 或 Containers。
 
-#### Workers Static Assets
+#### <Package class="svc-icon" /> Workers Static Assets {#workers-static-assets}
 Worker 项目里的静态文件托管，前端和 API 强绑定。
 
 AI 生成 Next.js、Vite、或者任何前端框架的项目时，用这个部署最顺。前端文件（HTML/CSS/JS/图片）当静态资源托管，API 路由走 Worker——一个项目一套搞定。关键优势：静态资源请求免费且无限，不消耗 Workers 配额，只有真正调 API 的动态请求才计费。纯静态站（没有 API）用 Pages 更简单。
 
-#### Pages
+#### <FileText class="svc-icon" /> Pages {#pages}
 Git 集成的静态站和全栈前端部署。
 
 连 GitHub/GitLab 仓库，push 一下自动构建部署，适合文档站、官网、博客、prototype。和 Workers Static Assets 的区别：Pages 更偏 Git 集成工作流，Static Assets 更偏"一个 Worker 项目里前后端一起跑"。需要和 Worker 深度集成时用 Static Assets 更顺——Pages Functions 本质就是 Worker，不是独立产品。
 
-#### Durable Objects
+#### <Boxes class="svc-icon" /> Durable Objects {#durable-objects}
 单实体强一致状态 + WebSocket，跑在边缘的有状态对象。
 
 Workers 本身是无状态的，每次请求可能打到不同节点。但有些场景需要状态——比如聊天房间、协作画板、在线游戏、或者一个 AI Agent 的对话状态。Durable Objects 就是解决这个的：每个 DO 实例代表一个"房间"或"对象"，状态强一致，支持 WebSocket 长连接。Agents SDK 底层就是用 DO 存 Agent 状态的，做实时协作或 Agent 时绕不开。Free 计划只能用 SQLite 后端，KV 后端必须 Paid。
 
-#### Workflows
+#### <GitBranch class="svc-icon" /> Workflows {#workflows}
 多步骤、长时运行的持久化任务，自带重试和状态机。
 
 AI 生成的代码里经常有多步流程：先调 API A，再处理数据，再调 API B，最后存数据库。如果在 Worker 里手写，中间任何一步失败都要自己处理重试和状态恢复。Workflows 把这些封装好了——你定义步骤，它管重试、管状态、管持久化。订单处理、数据迁移、AI 编排都适用。单次同步请求别用，那是 Workers 的活。
 
-#### Queues
+#### <ArrowLeftRight class="svc-icon" /> Queues {#queues}
 异步消息队列，解耦生产者和消费者。
 
 有些事不想让用户等——发邮件、生成图片、处理上传文件。把任务扔进 Queues，Worker 在后台慢慢消费，用户立刻拿到"处理中"的响应。生产者和消费者解耦，高峰时自动削峰。单消息 128 KB 上限，需要同步返回结果别用。
 
-#### Containers
+#### <Container class="svc-icon" /> Containers {#containers}
 跑 Docker 容器，长时进程，支持原生 TCP。
 
 Workers 跑不了的东西——比如 Python/Go 后端用了原生库、需要长时进程、需要 TCP 连接——放 Containers 里。它就是 CF 上的 Docker。比 Workers 重，启动慢，按资源计费。AI 生成的后端如果用了 Workers 跑不了的库，上 Containers。轻量 API 还是用 Workers 更快更便宜。
 
-#### Cron Triggers
+#### <Clock class="svc-icon" /> Cron Triggers {#cron-triggers}
 定时触发 Worker。
 
 定时任务。每小时抓一次数据、每天清理一次 D1、每分钟轮询一个 API——配个 Cron Trigger 就行。Free 计划 5 个/账号，Paid 250 个。复杂的多步定时任务别硬塞 Cron，用 Workflows 更稳。
 
-### 数据与存储
+### <Database class="cat-icon" /> 数据与存储 {#数据与存储}
 
-#### D1
+#### <Table class="svc-icon" /> D1 {#d1}
 SQLite 风格的边缘关系数据库。
 
 AI 生成应用时的默认数据库。语法和 SQLite 一样，会写 SQL 就能用，用 Drizzle ORM 或者直接 SQL 都行。有个坑要注意：D1 的计费按 rows_read（扫描行数）算，不是返回行数——一条 SELECT 如果没加索引扫了 10 万行，就算只返回 1 行也按 10 万行计费。所以索引一定要加好。复杂事务、高并发写入、需要 Postgres 特性时，D1 可能不够，考虑用 Hyperdrive 连外部数据库。
 
-#### KV
+#### <Key class="svc-icon" /> KV {#kv}
 全球读多写少的键值存储，最终一致。
 
 存配置、存短链映射、存缓存——读多写少的场景用它最合适。但别拿它当主数据库：它是最终一致不是强一致（写入后不是立刻全球可见），同一 key 1 次/秒写入限制。库存、余额、计数这种需要强一致的场景不能用，用 D1 或 DO。存配置和缓存是它最合适的位置。
 
-#### R2
+#### <HardDrive class="svc-icon" /> R2 {#r2}
 S3 兼容对象存储，出口流量永久免费。
 
 存文件——图片、视频、附件、导出、备份。S3 兼容意味着 AWS SDK 直接能用。最大的优势是出口流量永久免费：用户下载你 R2 里的文件不收流量费，这点和 S3、Vercel Blob 明显不同。vibe coding 里存用户上传文件的首选。免费额度（10 GB 存储 + 100 万 A 类操作 + 1000 万 B 类操作）和 Workers 计划无关，不买 $5 套餐也能用。结构化数据查询别用，那是 D1 的活。
 
-#### Hyperdrive
+#### <Zap class="svc-icon" /> Hyperdrive {#hyperdrive}
 连接已有的外部 Postgres/MySQL 并在边缘加速。
 
 你已经有数据库在别处（Supabase、Neon、自建 Postgres），不想迁移到 CF，但想让边缘访问更快。Hyperdrive 在边缘做连接池和查询缓存，减少每次回源的开销。从别处迁移到 CF 时过渡用最合适。想要 CF 原生数据库用 D1。
 
-#### Vectorize
+#### <Search class="svc-icon" /> Vectorize {#vectorize}
 向量数据库。
 
 做 RAG（检索增强生成）和语义搜索时用。把文本转成 embedding 存进 Vectorize，查询时找最相似的向量返回。做 AI 问答系统时这是存储层——存文档的 embedding，用户提问时检索相关文档喂给 LLM。需要 Workers Paid 才能用。
 
-#### DO Storage
+#### <Layers class="svc-icon" /> DO Storage {#do-storage}
 Durable Objects 自带的单实体强一致存储。
 
 和 Durable Objects 绑定，不独立用。每个 DO 实例有自己的 SQLite 存储，适合存房间状态、计数器、会话这种单实体数据。大规模数据存储别用，用 D1 或 R2。
 
-### 安全
+### <Shield class="cat-icon" /> 安全 {#安全}
 
-#### Turnstile
+#### <UserCheck class="svc-icon" /> Turnstile {#turnstile}
 免费验证码，替代 reCAPTCHA。
 
 表单、登录、注册、评论都能加。无限免费无月度上限，不像 reCAPTCHA 有用量限制。AI 生成登录页时直接接 Turnstile，用户点一下就过，不用找图片选红绿灯。接法简单，前端嵌个 widget，后端验个 token 就行。
 
-#### Access
+#### <LockKeyhole class="svc-icon" /> Access {#access}
 零信任访问控制。
 
 想给你的 admin 后台、内部工具加层认证，但不想写登录系统——用 Access。配好之后访问指定路径要先通过 CF 的身份验证（Google、GitHub、SAML 都支持）。50 用户免费，超过需要 Cloudflare One 订阅。vibe coding 做内部工具时，用它保护后台最省事。
 
-#### WAF
+#### <ShieldAlert class="svc-icon" /> WAF {#waf}
 Web 应用防火墙。
 
 防 SQL 注入、XSS、常见攻击。基础规则集免费默认开，不用管。自定义规则要付费。AI 生成的代码可能有安全漏洞，WAF 是一层兜底防护——但别指望它替代代码安全，该修的漏洞还是要修。
 
-#### Rate Limiting
+#### <Gauge class="svc-icon" /> Rate Limiting {#rate-limiting}
 请求频率限制。
 
 防滥用、防爬。API 上线前加一层 rate limit，防 AI 爬虫和恶意请求把额度吃光。可以按 IP、按路径配阈值。$5 套餐有更细的自定义规则。
 
-#### DDoS 防护
+#### <Umbrella class="svc-icon" /> DDoS 防护 {#ddos-防护}
 自动 L3/L4/L7 防护。
 
 所有项目默认开启，不可关，不用管。被 DDoS 攻击时 CF 自动帮你挡，不额外收费。
 
-#### API Shield
+#### <Braces class="svc-icon" /> API Shield {#api-shield}
 API 保护层。
 
 schema 验证、防滥用。有公开 API 时配 schema 验证，挡掉格式错误的请求——不符合 schema 的请求直接被 CF 挡掉，不会打到你的 Worker。
 
-### AI
+### <Brain class="cat-icon" /> AI {#ai}
 
-#### Workers AI
+#### <BrainCircuit class="svc-icon" /> Workers AI {#workers-ai}
 在 CF 边缘跑模型推理。
 
 不用调外部 API，直接在 CF 边缘跑 LLM、图片分类、Embedding、语音转文字。每天 1 万 Neurons 免费（Free 和 Paid 都有），注意可用模型列表，不是所有模型都有。Free 超出报错，Paid 超出按 $0.011/千 Neurons 计费。做 AI 应用时，Workers AI 适合轻量推理，重活还是调外部 API（OpenAI、Anthropic）更稳。
 
-#### AI Gateway
+#### <Network class="svc-icon" /> AI Gateway {#ai-gateway}
 AI API 调用的代理和观测层。
 
 同时用 OpenAI、Anthropic、Workers AI 时，用 AI Gateway 统一入口。它能帮你做三件事：缓存（相同 prompt 不重复调 API 省钱）、限流（防额度失控）、观测（看每次调用的延迟、token 数、成本）。免费，作为代理层不额外收费。AI 编程时配一个 AI Gateway 是好习惯，尤其是多 provider 场景。
 
-#### Vectorize
+#### <Scan class="svc-icon" /> Vectorize {#vectorize-ai}
 向量数据库，见数据与存储。
 
 AI 问答系统的存储层。需要 Workers Paid。
 
-#### Agents SDK
+#### <Bot class="svc-icon" /> Agents SDK {#agents-sdk}
 构建有状态 AI Agent 的框架。
 
 做多轮对话、工具调用、持久化 Agent 时用。底层用 Durable Objects 存状态，Agent 的对话历史、工具调用结果都持久化在 DO 里。做 AI Agent 应用时这是 CF 官方推荐路径——不用自己搭状态管理，SDK 帮你封装好了。
