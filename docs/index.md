@@ -6,7 +6,6 @@ outline: deep
 <section class="onepage-hero">
   <p class="onepage-kicker">CLOUDFLARE PLAYBOOK</p>
   <h1 class="onepage-title">独立开发者的 Cloudflare 单页实战手册</h1>
-  <p class="onepage-subtitle">从免费额度、能力清单、推荐栈、开源项目到上线检查，按一个页面组织，方便阅读和搜索。</p>
 </section>
 
 <div class="quick-grid">
