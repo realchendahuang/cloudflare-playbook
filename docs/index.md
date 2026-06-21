@@ -4,22 +4,23 @@ outline: deep
 ---
 
 <section class="onepage-hero">
-  <p class="onepage-kicker">CLOUDFLARE PLAYBOOK</p>
-  <h1 class="onepage-title">Vibe coding 时代的 Cloudflare 实战手册——用 AI 写代码，用 Cloudflare 免费部署到全球。</h1>
+  <p class="onepage-kicker">Cloudflare Playbook</p>
+  <h1 class="onepage-title">Vibe Coding 时代的 Cloudflare 实战手册</h1>
+  <p class="onepage-subtitle">用 AI 写代码，用 Cloudflare 免费部署到全球。涵盖服务介绍、部署流程、免费额度与常见坑。</p>
 </section>
 
 <div class="quick-grid">
-  <a href="#_1-服务介绍"><strong>服务介绍</strong><span>每个服务是什么、能干嘛、怎么用。</span></a>
-  <a href="#_2-ai-编程工作流"><strong>AI 编程工作流</strong><span>Skill、MCP、Rules 的搭配方案。</span></a>
-  <a href="#_3-开发与部署"><strong>开发与部署</strong><span>从本地开发到上线的完整流程。</span></a>
-  <a href="#_4-免费额度"><strong>免费额度</strong><span>每个服务免费多少，超出怎么算。</span></a>
-  <a href="#_5-5-套餐"><strong>$5 套餐</strong><span>值不值得买，什么时候买。</span></a>
-  <a href="#_6-开源项目"><strong>开源项目</strong><span>按用途整理可参考的项目。</span></a>
-  <a href="#_7-常见坑"><strong>常见坑</strong><span>实际踩过的坑和解法。</span></a>
-  <a href="#_8-国内访问"><strong>国内访问</strong><span>国内用户访问 CF 的注意事项。</span></a>
-  <a href="#_9-排查问题"><strong>排查问题</strong><span>出错时怎么定位和排查。</span></a>
-  <a href="#_10-完整案例"><strong>完整案例</strong><span>按应用类型分类的部署方案。</span></a>
-  <a href="#官方资源"><strong>官方资源</strong><span>文档、模板和项目池。</span></a>
+  <a href="#_1-服务介绍"><div class="card-icon">☁️</div><div class="card-body"><strong>服务介绍</strong><span>每个服务是什么、能干嘛、怎么用</span></div></a>
+  <a href="#_2-ai-编程工作流"><div class="card-icon">🤖</div><div class="card-body"><strong>AI 编程工作流</strong><span>Skill、MCP、Rules 的搭配方案</span></div></a>
+  <a href="#_3-开发与部署"><div class="card-icon">🚀</div><div class="card-body"><strong>开发与部署</strong><span>从本地开发到上线的完整流程</span></div></a>
+  <a href="#_4-免费额度"><div class="card-icon">💰</div><div class="card-body"><strong>免费额度</strong><span>每个服务免费多少，超出怎么算</span></div></a>
+  <a href="#_5-5-套餐"><div class="card-icon">⚡</div><div class="card-body"><strong>$5 套餐</strong><span>值不值得买，什么时候买</span></div></a>
+  <a href="#_6-开源项目"><div class="card-icon">📦</div><div class="card-body"><strong>开源项目</strong><span>按用途整理可参考的项目</span></div></a>
+  <a href="#_7-常见坑"><div class="card-icon">⚠️</div><div class="card-body"><strong>常见坑</strong><span>实际踩过的坑和解法</span></div></a>
+  <a href="#_8-国内访问"><div class="card-icon">🌏</div><div class="card-body"><strong>国内访问</strong><span>国内用户访问 CF 的注意事项</span></div></a>
+  <a href="#_9-排查问题"><div class="card-icon">🔍</div><div class="card-body"><strong>排查问题</strong><span>出错时怎么定位和排查</span></div></a>
+  <a href="#_10-完整案例"><div class="card-icon">📋</div><div class="card-body"><strong>完整案例</strong><span>按应用类型分类的部署方案</span></div></a>
+  <a href="#官方资源"><div class="card-icon">🔗</div><div class="card-body"><strong>官方资源</strong><span>文档、模板和项目池</span></div></a>
 </div>
 
 ## 1. 服务介绍
