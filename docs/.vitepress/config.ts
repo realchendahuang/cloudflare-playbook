@@ -6,6 +6,9 @@ export default defineConfig({
   description: '独立开发者的 Cloudflare 单页实战手册',
   lang: 'zh-CN',
   cleanUrls: true,
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
+  ],
   themeConfig: {
     logo: { text: 'CF' },
     nav: [
