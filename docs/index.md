@@ -5,7 +5,7 @@ outline: deep
 
 <section class="onepage-hero">
   <p class="onepage-kicker">CLOUDFLARE PLAYBOOK</p>
-  <h1 class="onepage-title">独立开发者的 Cloudflare 实战手册</h1>
+  <h1 class="onepage-title">面向独立开发者和小型团队的 Cloudflare 实战指南，覆盖赛博菩萨的免费额度、实践玩法、踩坑经验等干货。</h1>
 </section>
 
 <div class="quick-grid">
