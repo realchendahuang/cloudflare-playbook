@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
+import { withMermaid } from 'vitepress-plugin-mermaid';
 
-export default defineConfig({
+export default withMermaid(defineConfig({
   title: 'Cloudflare 实战手册',
   description: 'AI 编程时代的 Cloudflare 实战手册——用 AI 写代码，用 Cloudflare 部署到全球。',
   lang: 'zh-CN',
@@ -47,4 +48,4 @@ export default defineConfig({
       copyright: 'Released under CC BY-SA 4.0'
     }
   }
-});
+}));

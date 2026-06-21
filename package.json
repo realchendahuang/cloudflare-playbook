@@ -22,7 +22,16 @@
   },
   "devDependencies": {
     "lucide-vue-next": "^1.0.0",
+    "mermaid": "^11.15.0",
     "vitepress": "^1.6.4",
+    "vitepress-plugin-mermaid": "^2.0.17",
     "wrangler": "^4.100.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
   }
 }
