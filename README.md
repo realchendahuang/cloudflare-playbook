@@ -2,6 +2,8 @@
 
 独立开发者的 Cloudflare 实战手册。
 
+在线阅读：[cloudflare-playbook.chendahuang.top](https://cloudflare-playbook.chendahuang.top/)
+
 - [1. 免费额度](#1-免费额度)
 - [2. 服务选型](#2-服务选型)
 - [3. 开源项目](#3-开源项目)
