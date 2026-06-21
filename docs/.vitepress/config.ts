@@ -2,9 +2,12 @@ import { defineConfig } from 'vitepress';
 
 export default defineConfig({
   title: 'Cloudflare Playbook',
-  description: '独立开发者的 Cloudflare 实战手册',
+  description: 'Vibe Coding 时代的 Cloudflare 实战手册',
   lang: 'zh-CN',
   cleanUrls: true,
+  sitemap: {
+    hostname: 'https://cloudflare-playbook.chendahuang.top'
+  },
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
   ],

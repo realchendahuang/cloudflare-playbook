@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cloudflare-playbook.chendahuang.top/sitemap.xml
