@@ -4,7 +4,7 @@ outline: deep
 ---
 
 <script setup>
-import { Cloud, Bot, Wallet, Zap, Package, AlertTriangle, Globe, Search, ClipboardList, Link, Compass, Cpu, Database, Shield, Brain, Lock, Server, ListFilter, Code, FileText, Boxes, GitBranch, ArrowLeftRight, Container, Clock, Table, Key, HardDrive, Layers, Scan, UserCheck, LockKeyhole, ShieldAlert, Gauge, Umbrella, Braces, BrainCircuit, Network, Image, Video, Radio, MonitorPlay } from 'lucide-vue-next'
+import { Cloud, Bot, Wallet, Zap, Package, AlertTriangle, Globe, Search, ClipboardList, Link, Compass, Cpu, Database, Shield, Brain, Lock, Server, ListFilter, Code, FileText, Boxes, GitBranch, ArrowLeftRight, Container, Clock, Table, Key, HardDrive, Layers, Scan, UserCheck, LockKeyhole, ShieldAlert, Gauge, Umbrella, Braces, BrainCircuit, Network, Image, Video, Radio, MonitorPlay, ShoppingCart } from 'lucide-vue-next'
 </script>
 
 <section class="onepage-hero">
@@ -20,6 +20,7 @@ import { Cloud, Bot, Wallet, Zap, Package, AlertTriangle, Globe, Search, Clipboa
   <a href="#_4-开源项目"><div class="card-icon"><Package /></div><div class="card-body"><strong>开源项目</strong><span>按用途整理可参考的项目</span></div></a>
   <a href="#_5-避坑指南"><div class="card-icon"><AlertTriangle /></div><div class="card-body"><strong>避坑指南</strong><span>官方文档提炼的工程约束与对策</span></div></a>
   <a href="#_6-国内访问"><div class="card-icon"><Globe /></div><div class="card-body"><strong>国内访问</strong><span>国内用户访问 CF 的注意事项</span></div></a>
+  <a href="/domain"><div class="card-icon"><ShoppingCart /></div><div class="card-body"><strong>域名</strong><span>购买、比价、后缀与托管到 CF</span></div></a>
   <a href="#官方资源"><div class="card-icon"><Link /></div><div class="card-body"><strong>官方资源</strong><span>文档、模板和项目池</span></div></a>
 </div>
 
@@ -1583,6 +1584,16 @@ Cloudflare China Network 文档里专门有一页 [ICP](https://developers.cloud
 ### 合规边界一句话
 
 ICP 备案、内容合规、数据出境是法律问题，不是 Cloudflare 能替你解决的。技术方案只回答“能不能访问”，不回答“该不该这么部署”。
+
+---
+
+## 7. 域名
+
+Cloudflare 只管 DNS 托管，不管买卖域名。域名在哪买、买什么后缀、买完怎么把 NS 指到 Cloudflare、要不要备案、要不要跨境转移——这一段单独拎成一篇子页讲清楚：比价的坑（**首年价 ≠ 续费价**）、各 TLD 的实务定位、改 NS 步骤、国内 vs 国外的差异、域名转移流程，以及 Cloudflare Registrar 不支持的后缀怎么兜底。
+
+一句话记住：**注册商去便宜的地方买（比续费价）、DNS 永远托管到 Cloudflare**，这两个动作可以拆开做。
+
+详细内容见 → [域名购买、托管与转移](/domain)
 
 ---
 

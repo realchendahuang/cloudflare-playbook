@@ -34,10 +34,25 @@ const toc = `## 目录
 - [4. 开源项目](#4-开源项目)
 - [5. 避坑指南](#5-避坑指南)
 - [6. 国内访问](#6-国内访问)
+- [7. 域名](#7-域名)
 - [官方资源](#官方资源)
 `
 
+const domainIntro = `\n## 7. 域名
+
+Cloudflare 只管 DNS 托管，不管买卖域名。域名在哪买、买什么后缀、买完怎么把 NS 指到 Cloudflare、要不要备案、要不要跨境转移——这一段单独拎成一篇子页讲清楚：比价的坑（**首年价 ≠ 续费价**）、各 TLD 的实务定位、改 NS 步骤、国内 vs 国外的差异、域名转移流程，以及 Cloudflare Registrar 不支持的后缀怎么兜底。
+
+一句话记住：**注册商去便宜的地方买（比续费价）、DNS 永远托管到 Cloudflare**，这两个动作可以拆开做。
+
+详细内容见在线子页：[域名购买、托管与转移](https://cloudflare-playbook.chendahuang.top/domain)
+
+### 域名详细内容（节选自子页）
+
+`
+
 const source = await readFile(sourcePath, 'utf8')
+const domainPath = new URL('../docs/domain.md', import.meta.url)
+const domainSource = await readFile(domainPath, 'utf8')
 const body = source
   // 去掉 VitePress frontmatter。
   .replace(/^---\n[\s\S]*?\n---\n+/, '')
@@ -52,4 +67,20 @@ const body = source
   .replace(/[ \t]+\{#[^}]+}[ \t]*$/gm, '')
   .trim()
 
-await writeFile(readmePath, `${readmeIntro}\n${toc}\n${body}\n`, 'utf8')
+const domainBody = domainSource
+  .replace(/^---\n[\s\S]*?\n---\n+/, '')
+  .replace(/<script setup>[\s\S]*?<\/script>\n+/g, '')
+  .replace(/<section class="onepage-hero">[\s\S]*?<\/section>\n+/g, '')
+  .replace(/<div class="quick-grid">[\s\S]*?<\/div>\n+/g, '')
+  // 子页原来的 ## 标题降级为 ###，嵌套在 "## 7. 域名" 下面，保持 README 层级不冲突。
+  .replace(/^## /gm, '### ')
+  .replace(/^### /gm, '#### ')
+  .replace(/^(#{3,4})\s+<[^>]+>\s+/gm, '$1 ')
+  .replace(/[ \t]+\{#[^}]+}[ \t]*$/gm, '')
+  .trim()
+
+await writeFile(readmePath, `${readmeIntro}\n${toc}\n${body.replace(/^## 7\. 域名[\s\S]*?---\n\n## 官方资源/m, `${domainIntro}${domainBody}
+
+---
+
+## 官方资源`)}\n`, 'utf8')

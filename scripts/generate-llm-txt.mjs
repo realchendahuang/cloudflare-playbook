@@ -13,6 +13,8 @@ const header = `# Cloudflare 实战手册（llm.txt）
 `
 
 const source = await readFile(sourcePath, 'utf8')
+const domainPath = new URL('../docs/domain.md', import.meta.url)
+const domainSource = await readFile(domainPath, 'utf8')
 const body = source
   .replace(/^---\n[\s\S]*?\n---\n+/, '')
   .replace(/<script setup>[\s\S]*?<\/script>\n+/g, '')
@@ -21,5 +23,13 @@ const body = source
   .replace(/^(#{3,4})\s+<[^>]+class="(?:cat|svc)-icon"[^>]*\/>\s+/gm, '$1 ')
   .replace(/[ \t]+\{#[^}]+}[ \t]*$/gm, '')
 
-await writeFile(outputPath, `${header}${body.trim()}\n`, 'utf8')
+const domainBody = domainSource
+  .replace(/^---\n[\s\S]*?\n---\n+/, '')
+  .replace(/<script setup>[\s\S]*?<\/script>\n+/g, '')
+  .replace(/<section class="onepage-hero">[\s\S]*?<\/section>\n+/g, '')
+  .replace(/<div class="quick-grid">[\s\S]*?<\/div>\n+/g, '')
+  .replace(/^(#{3,4})\s+<[^>]+>\s+/gm, '$1 ')
+  .replace(/[ \t]+\{#[^}]+}[ \t]*$/gm, '')
+
+await writeFile(outputPath, `${header}${body.trim()}\n\n---\n\n${domainBody.trim()}\n`, 'utf8')
 console.log('Generated docs/public/llm.txt')

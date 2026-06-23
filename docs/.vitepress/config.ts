@@ -12,6 +12,7 @@ export default withMermaid(defineConfig({
   },
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+    ['meta', { name: 'impact-site-verification', value: '9a0987ea-1a38-4f72-9047-94b3928e3d80' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Cloudflare 实战手册' }],
     ['meta', { property: 'og:description', content: 'AI 编程时代的 Cloudflare 实战手册——用 AI 写代码，用 Cloudflare 部署到全球。' }],
@@ -24,6 +25,7 @@ export default withMermaid(defineConfig({
     logo: { text: 'CF' },
     nav: [
       { text: '手册', link: '/' },
+      { text: '域名', link: '/domain' },
       { text: 'GitHub', link: 'https://github.com/realchendahuang/cloudflare-playbook' }
     ],
     search: {
