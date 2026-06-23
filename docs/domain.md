@@ -10,7 +10,7 @@ import { Globe, ShoppingCart, Tags, Server, ArrowLeftRight, ShieldCheck, Plane }
 <section class="onepage-hero">
   <p class="onepage-kicker">Domain</p>
   <h1 class="onepage-title">域名购买、托管与转移</h1>
-  <p class="onepage-subtitle">比价 → 选后缀 → 改 NS 托管到 Cloudflare → 跨境转移。把"域名"这一段单独拎出来讲清楚，避免首年价和续费价、国内备案、域名转移这些常见坑。</p>
+  <p class="onepage-subtitle">比价 → 选后缀 → 改 NS 托管到 Cloudflare → 跨境转移。首年价和续费价、国内备案、域名转移这些常见坑，这里一次讲清楚。</p>
 </section>
 
 <div class="quick-grid">
@@ -24,9 +24,9 @@ import { Globe, ShoppingCart, Tags, Server, ArrowLeftRight, ShieldCheck, Plane }
 
 ## 买域名前先比价
 
-域名是按年续费的长期资产，**注册商报的"价格"通常只是首年促销价，续费价才是你长期付的钱**。这是新手最大、最常见的坑，下面把它单拎出来讲。
+域名是按年续费的长期资产，**注册商报的"价格"通常只是首年促销价，续费价才是你长期付的钱**。这是新手最大、最常见的坑。
 
-### 首次价 vs 续费价：会咬人的三种结构
+### 首次价 vs 续费价：三种价格要分清
 
 注册商定价一般长这样：
 
@@ -41,7 +41,7 @@ import { Globe, ShoppingCart, Tags, Server, ArrowLeftRight, ShieldCheck, Plane }
 - **转移 / 续费锁**：自动续费默认开启，部分注册商靠这个赚"忘记取消"的钱。建议关掉自动续费，到期前手动续，避免被溢价 .ai / .io 这种高价注册商套住。
 - **汇率与币种**：境外注册商以美元 / 欧元结算，加上发卡行外汇手续费，实际价格比标价贵 1%–3%。.ai 这种 $70+/年的后缀，差额要算进总成本。
 
-一句话：**比价永远比"续费价"那一栏，别被首年价骗了。**
+**比价永远比"续费价"那一栏，别被首年价骗了。**
 
 ### 推荐的比价网站
 
@@ -80,11 +80,9 @@ import { Globe, ShoppingCart, Tags, Server, ArrowLeftRight, ShieldCheck, Plane }
 | **.com** | Verisign（美国） | $10 / $10 | 通用、商业、所有项目首选 | 最稳、流动性最好、二手市场大；买不到理想名字时考虑买二手 |
 | **.net** | Verisign | $12 / $13 | 技术类、社区 | 是 .com 的退而求其次，别当首选 |
 | **.org** | PIR | $10 / $11 | 非营利、开源项目 | 商业用途可能被质疑，不要乱用 |
-| **.io** | 英国印度洋领地注册局 | $30 / $35 | 技术创业、SaaS、工具 | 续费价偏贵；2024 年主权移交后注册局政策变化，长期持有需关注 |
+| **.io** | 英国印度洋领地注册局 | $30 / $35 | 技术创业、SaaS、工具 | 续费偏贵；2024 年查戈斯群岛主权移交后，英国政府与毛里求斯已达成保留 .io 注册局的协议，**短期不受影响**，注册局续签中，长期持有需关注政策 |
 | **.ai** | Anguilla 注册局 | $70 起 / $70 起，**最少买 2 年** | AI 产品、AI 创业公司 | 价格高、最低注册期 2 年规则各家执行略有差异；声誉好但贵 |
-| **.dev** / **.app** / **.page** / **.xyz** 之外的 Google 注册局后缀 | Google | $12–$20 | 开发者、产品落地页 | **强制 HTTPS**（HSTS preload），没配 HTTPS 证书前页面打不开；Google 注册局多数支持 |
-| **.app** | Google | $14 / $14 | App 落地页、移动产品 | 同上，强制 HTTPS |
-| **.dev** | Google | $12 / $13 | 开发者文档、工具站 | 同上 |
+| **.app** / **.dev** / **.page** / **.day** / **.ing** 等 Google 注册局后缀 | Google | $12–$20 | 开发者、产品落地页 | **强制 HTTPS**（HSTS preload），没配 HTTPS 证书前页面打不开 |
 | **.xyz** | Genesis / Generation X | $1 / $11 | 实验、临时项目、个人玩具 | 首年极便宜但**垃圾邮件/钓鱼声誉差**，做正经产品慎用 |
 | **.co** | Colombia 注册局 | $20 / $25 | 创业、短域名替代 .com | "company" 联想，但续费比 .com 贵 |
 | **.me** | Montenegro | $5/$20 | 个人主页、简历 | 首年促销多，续费价跳得明显 |
@@ -95,10 +93,11 @@ import { Globe, ShoppingCart, Tags, Server, ArrowLeftRight, ShieldCheck, Plane }
 
 几个实务判断：
 
-- **能 .com 就 .com**：用户记得住、邮箱不进垃圾箱、二手转卖容易。
+- **能 .com 就 .com**：用户记得住、邮箱不进垃圾箱、二手转卖容易。理想名字被占时去二手市场（aftermarket）买，常用平台：Dan.com、Sedo、Afternic、Namesilo aftermarket。
 - **AI / 技术创业走 .ai 或 .dev**：品牌识别度强，但 .ai 价格高、最少 2 年起，预算有限就先用 .com + 子路径。
 - **.dev / .app / .page 这类 Google 后缀强制 HTTPS**：没部署好证书就配 NS 到 Cloudflare，站点会直接打不开。提前确认 Cloudflare 已出 Universal SSL。
 - **避坑**：后缀首年价越低、续费价跳得越猛的，越是"续费套利"型注册商套路。看 Domcomp 续费价那一列。
+- **续费日历提醒**：境外高价后缀（.ai / .io / .tech 等）建议**关掉自动续费**，用日历提醒在到期前 1 个月手动续；避免某天发现被按原价扣了 $80 还退不回来。
 - **.cn / .中国 走国内**：涉及实名和备案，下一节国内 vs 国外专门讲。
 
 ---
@@ -110,8 +109,20 @@ import { Globe, ShoppingCart, Tags, Server, ArrowLeftRight, ShieldCheck, Plane }
 ### 为什么要托管到 Cloudflare
 
 - 免费 CDN、免费 Universal SSL、免费基础 WAF/DDoS 防护、免费 DNS 解析。
-- DNS 托管本身不收费，**你也不必在 Cloudflare Registrar 买域名**——别的注册商买的域名一样可以托管过来。
+- DNS 托管本身不收费，**你也不必在 Cloudflare Registrar 买域名**，别的注册商买的域名一样可以托管过来。
 - 后续绑 Workers、Pages、R2 自定义域名、Email Routing，都要求域名先托管在 Cloudflare。
+
+### 在 Cloudflare 买域名 vs 别处买但托管到 CF
+
+很多人把这两件事混在一起。其实它们是两个独立动作：
+
+| 你在哪买域名 | 是否能托管到 CF DNS | 续费由谁收 | 适合 |
+| --- | --- | --- | --- |
+| **Cloudflare Registrar** | 自动托管（无需改 NS） | CF，按 ICANN 批零成本价，最便宜 | CF 支持的后缀 + 长期持有的核心域 |
+| **Spaceship / Porkbun / Namecheap 等** | 需改 NS 到 CF（三步流程） | 原注册商 | CF 不支持的后缀（.ai / .io / .sh 等），或想保留多家注册商 |
+| **阿里云 / 腾讯云** | 需改 NS 到 CF（需实名 + 短信验证） | 原注册商 | 国内备案场景 |
+
+记住：**DNS 托管 ≠ 域名买卖**。CF Registrar 支持的后缀能省续费差价，不支持的就在别处买、DNS 照样托管到 CF。
 
 ### 整体流程（三步）
 
@@ -151,11 +162,24 @@ DNS 记录配好之后，Cloudflare 后台每条记录旁边有个云图标：
 
 国内源站或国内 CDN 指向场景就设灰云；海外加速、Workers/Pages 自定义域名场景必须橙云。一条一条切换即可，不是全局开关。详见主手册 [国内访问 → 橙云 vs 灰云](/#橙云-vs-灰云)。
 
+### DNSSEC：托管后建议立刻开
+
+DNSSEC 给 DNS 解析加密码签名，防止解析被中间人篡改、域名被劫持。Cloudflare 全程免费。
+
+开法：
+
+1. Cloudflare 控制台 → 你的域名 → **DNS** → **Settings** → **DNSSEC** → **Enable DNSSEC**。
+2. CF 自动生成 DS 记录，弹窗里给你 key tag / algorithm / digest type / digest。
+3. 把这些参数填回**注册商后台的 DNSSEC 配置页**（多数注册商叫 "DS records" 或 "DNSSEC"）。
+4. 等待全球传播（最长 48 小时），用 [dnschecker.org](https://dnschecker.org/) 查 `DS` 记录是否已全球可见。
+
+开完后所有权威解析都带有 RRSIG 签名，递归解析器（如 1.1.1.1、8.8.8.8）会自动校验。**这一步是免费的"域名防伪"，强烈建议开**。注意：开 DNSSEC 期间不要再去改 NS，否则可能进入"签名失败"状态导致解析异常。
+
 ---
 
 ## 国内买 vs 国外买
 
-这一节是大量开发者纠结的核心，直接上对比表：
+很多开发者在这件事上纠结，直接上对比表：
 
 | 维度 | 国内注册商（阿里云 / 腾讯云 / 华为云 / 西部数码） | 国外注册商（Cloudflare / Spaceship / Porkbun / Namecheap） |
 | --- | --- | --- |
@@ -172,7 +196,7 @@ DNS 记录配好之后，Cloudflare 后台每条记录旁边有个云图标：
 | 域名转移出去 | 实名通过即可拿 EPP 码转出 | 拿 EPP 码即可转出 |
 | 适合 | 国内正式经营、需要备案、企业业务 | 海外为主、个人项目、不打算备案 |
 
-### 关键结论
+### 结论
 
 - **你要在国内服务器上跑网站并对公众开放**：必须备案 → **只能在工信部批复的境内注册商处买域名**（阿里云 / 腾讯云 / 华为云 / 西部数码）。境外域名要备案，得先把域名**转入**境内注册商。
 - **你服务器在境外（含 Cloudflare）**：不需要备案，**强烈建议直接在境外买**：Cloudflare Registrar 续费成本价、Spaceship / Porkbun 价格低+WHOIS 隐私免费，体验和成本都更优。
@@ -198,7 +222,7 @@ DNS 记录配好之后，Cloudflare 后台每条记录旁边有个云图标：
 - **60 天锁**：注册后 60 天内、刚改过注册人信息 60 天内、刚转移进来 60 天内，都不能再次转移。这是 ICANN 规则，所有注册商统一。
 - **续费宽限期**：域名过期后还有 0–45 天 "Renewal Grace Period"，期间可续费不解锁转移；超过进入 "Redemption Period"（赎回期，价格 $80+ 才能救回来），更超过就进入待删除，需要重新抢注。别拖到过期再转移。
 - **特殊 TLD 转移规则不同**：
-  - `.uk` / `.co.uk` 用 **IPS Tag** 而非 EPP 码——改 IPS Tag 到新注册商即可。
+  - `.uk` / `.co.uk` 用 **IPS Tag** 而非 EPP 码，改 IPS Tag 到新注册商即可。
   - `.ca` 加拿大注册局有特别规则。
   - `.eu` 不能跨注册局转，只能在 EURid 体系内。
   - `.cn` 在境外注册商之间转移受 CNNIC 实名规则限制，部分不允许。
@@ -209,6 +233,21 @@ DNS 记录配好之后，Cloudflare 后台每条记录旁边有个云图标：
 - **境外 → 国内**（要备案）：常见操作。境外的 Namecheap / Cloudflare 域名拿 EPP 码，在新注册商（阿里云/腾讯云）发起转入，转入后域名在境内注册商名下，可走备案。转入会被要求实名认证。
 - **国内 → 境外**（不要备案、省钱、统一管理）：拿 EPP 码发起转移。但**国内注册商可能以"实名审核未通过/正在备案"等理由限制转移**，极端情况要走工单。建议在域名到期前留出 1–2 个月缓冲。
 - **转移期间 DNS 不中断**：NS 记录不会因为注册商变更而自动改，继续用原 Cloudflare NS。但要确保新注册商不会偷偷改回默认 NS（个别会），转移完成后第一时间核对 NS 仍是 Cloudflare 的两条。
+
+### 域名转移 vs 域名过户：两件不同的事
+
+新手最容易混的两个概念：
+
+| | 域名转移（Registrar Transfer） | 域名过户（Ownership Transfer） |
+| --- | --- | --- |
+| 做什么 | 换注册商 | 换持有人（owner） |
+| 标志 | EPP Auth Code + 新注册商发起 | 改注册人信息 / 内部 push / 账户间转移 |
+| 影响续费 | 影响，转移成功后按新注册商价续费 | 不影响，仍是原注册商 |
+| 影响 DNS | 不影响（NS 不变） | 不影响 |
+| ICANN 60 天锁 | 改注册人信息后 60 天内**禁止转移注册商**（部分注册商可豁免） | 过户后 60 天内**不能再改注册人信息**（部分注册商可豁免） |
+| 常见场景 | 续费太贵、想统一在 CF、要备案 | 域名卖给别人、转给公司主体 |
+
+**转移 = 换店续费；过户 = 换主人**。先把所有权稳住（过户），再决定是否换注册商（转移），两个动作不要同时进行，以免同时踩两个 60 天锁。
 
 ---
 
@@ -225,9 +264,9 @@ DNS 记录配好之后，Cloudflare 后台每条记录旁边有个云图标：
 
 ### 2. Cloudflare Registrar 不支持该后缀
 
-不影响 DNS 托管——**你在任何注册商买的域名，都能托管到 Cloudflare DNS**。Registrar 支不支持只影响"能不能在 Cloudflare 直接续费"。Cloudflare 不支持的 .ai / .sh / .io 等后缀，**在原注册商续费、DNS 照样托管到 Cloudflare**，这是很多人日常的做法。
+不影响 DNS 托管：**你在任何注册商买的域名，都能托管到 Cloudflare DNS**。Registrar 支不支持只影响"能不能在 Cloudflare 直接续费"。Cloudflare 不支持的 .ai / .sh / .io 等后缀，**在原注册商续费、DNS 照样托管到 Cloudflare**，这是很多人日常的做法。
 
-### 兜底一句话
+### 兜底方案
 
 DNS 托管 ≠ 域名买卖。两个动作可以拆开：**注册商买便宜的地方买（比续费价）、DNS 永远托管到 Cloudflare**。能做到这一步，无论后缀贵贱、备案与否、国内国外，都能找到合理路径。
 
