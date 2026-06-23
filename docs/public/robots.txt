@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cloudflare-playbook.chendahuang.top/sitemap.xml
+Sitemap: https://chendahuang.com/playbook/cloudflare/sitemap.xml

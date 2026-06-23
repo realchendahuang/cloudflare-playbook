@@ -5,13 +5,16 @@ export default withMermaid(defineConfig({
   title: 'Cloudflare 实战手册',
   description: 'AI 编程时代的 Cloudflare 实战手册——用 AI 写代码，用 Cloudflare 部署到全球。',
   lang: 'zh-CN',
+  // 子路径部署：把 Cloudflare 手册归到个人品牌主域的 playbook 栏目下。
+  base: '/playbook/cloudflare/',
+  outDir: './.vitepress/dist/playbook/cloudflare',
   cleanUrls: true,
   lastUpdated: true,
   sitemap: {
-    hostname: 'https://cloudflare-playbook.chendahuang.top'
+    hostname: 'https://chendahuang.com/playbook/cloudflare/'
   },
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/playbook/cloudflare/favicon.svg' }],
     ['meta', { name: 'impact-site-verification', value: '9a0987ea-1a38-4f72-9047-94b3928e3d80' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Cloudflare 实战手册' }],

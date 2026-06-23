@@ -1,6 +1,6 @@
 # Cloudflare 实战手册（llm.txt）
 
-> 这是 https://cloudflare-playbook.chendahuang.top/ 的纯文本版，专为 AI agent 设计。
+> 这是 https://chendahuang.com/playbook/cloudflare/ 的纯文本版，专为 AI agent 设计。
 > 涵盖 Cloudflare 功能模块、AI 编程工作流、计费、架构模式、避坑指南。
 > 用户可以把这个 URL 发给你让你快速了解 Cloudflare 全貌。
 > 官方文档查询请用 Cloudflare Docs MCP（cloudflare-docs）。
@@ -87,7 +87,7 @@ npx wrangler tail     # 实时日志
 如果你想让 AI 快速了解 Cloudflare 全貌，把下面这行发给它：
 
 ```text
-阅读 https://cloudflare-playbook.chendahuang.top/llm.txt 了解 Cloudflare 平台全貌，然后帮我……
+阅读 https://chendahuang.com/playbook/cloudflare/llm.txt 了解 Cloudflare 平台全貌，然后帮我……
 ```
 
 这个文件是本手册的纯文本版，涵盖功能模块、架构模式、计费、避坑指南。AI 读完就能结合 Skill 和 MCP 帮你干活。

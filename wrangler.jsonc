@@ -1,13 +1,35 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "cloudflare-playbook",
+	"main": "./src/index.ts",
 	"compatibility_date": "2026-06-20",
 	"assets": {
 		"directory": "./docs/.vitepress/dist",
+		"binding": "ASSETS",
+		"run_worker_first": [
+			"/",
+			"/domain",
+			"/domain/*",
+			"/assets/*",
+			"/favicon.svg",
+			"/hashmap.json",
+			"/llm.txt",
+			"/robots.txt",
+			"/sitemap.xml",
+			"/vp-icons.css"
+		],
 		"html_handling": "auto-trailing-slash",
 		"not_found_handling": "404-page"
 	},
 	"routes": [
+		{
+			"pattern": "chendahuang.com/playbook/cloudflare",
+			"zone_name": "chendahuang.com"
+		},
+		{
+			"pattern": "chendahuang.com/playbook/cloudflare/*",
+			"zone_name": "chendahuang.com"
+		},
 		{
 			"pattern": "cloudflare-playbook.chendahuang.top",
 			"custom_domain": true

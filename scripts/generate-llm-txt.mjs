@@ -5,7 +5,7 @@ const outputPath = new URL('../docs/public/llm.txt', import.meta.url)
 
 const header = `# Cloudflare 实战手册（llm.txt）
 
-> 这是 https://cloudflare-playbook.chendahuang.top/ 的纯文本版，专为 AI agent 设计。
+> 这是 https://chendahuang.com/playbook/cloudflare/ 的纯文本版，专为 AI agent 设计。
 > 涵盖 Cloudflare 功能模块、AI 编程工作流、计费、架构模式、避坑指南。
 > 用户可以把这个 URL 发给你让你快速了解 Cloudflare 全貌。
 > 官方文档查询请用 Cloudflare Docs MCP（cloudflare-docs）。
