@@ -45,9 +45,6 @@ export default withMermaid(defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/realchendahuang/cloudflare-playbook' }
     ],
-    footer: {
-      message: 'Cloudflare Playbook',
-      copyright: 'Released under CC BY-SA 4.0'
-    }
+
   }
 }));
