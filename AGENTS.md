@@ -30,6 +30,6 @@ Cloudflare Worker：cloudflare-playbook
 构建目录：docs/.vitepress/dist
 Worker 入口：src/index.ts
 主文档：docs/index.md
-扩展文档：docs/domain.md
+扩展文档：docs/agents.md、docs/domain.md
 README 同步：pnpm sync:readme
 ```

@@ -8,6 +8,8 @@
 		"binding": "ASSETS",
 		"run_worker_first": [
 			"/",
+			"/agents",
+			"/agents/*",
 			"/domain",
 			"/domain/*",
 			"/assets/*",

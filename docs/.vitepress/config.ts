@@ -36,6 +36,7 @@ export default withMermaid(defineConfig({
     logo: { text: 'CF' },
     nav: [
       { text: '手册', link: '/' },
+      { text: 'Agents', link: '/agents' },
       { text: '域名', link: '/domain' },
       { text: 'GitHub', link: 'https://github.com/realchendahuang/cloudflare-playbook' }
     ],
