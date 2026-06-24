@@ -13,6 +13,14 @@ export default withMermaid(defineConfig({
   sitemap: {
     hostname: 'https://chendahuang.com/playbook/cloudflare/'
   },
+  vite: {
+    build: {
+      // Mermaid's runtime and Wardley parser chunks are intentionally about 600 KB
+      // uncompressed. Keep the warning close to that measured size so real growth
+      // still shows up.
+      chunkSizeWarningLimit: 700
+    }
+  },
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/playbook/cloudflare/favicon.svg' }],
     ['meta', { name: 'impact-site-verification', value: '9a0987ea-1a38-4f72-9047-94b3928e3d80' }],

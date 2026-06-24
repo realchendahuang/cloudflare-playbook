@@ -11,8 +11,9 @@
   "scripts": {
     "dev": "vitepress dev docs --host 127.0.0.1",
     "start": "vitepress dev docs --host 127.0.0.1",
-    "build": "pnpm sync:readme && pnpm gen:llmtxt && vitepress build docs",
+    "build": "pnpm clean:dist && pnpm sync:readme && pnpm gen:llmtxt && vitepress build docs",
     "preview": "vitepress preview docs --host 127.0.0.1",
+    "clean:dist": "node scripts/clean-dist.mjs",
     "sync:readme": "node scripts/sync-readme.mjs",
     "gen:llmtxt": "node scripts/generate-llm-txt.mjs",
     "deploy:quick": "node scripts/deploy.mjs",
