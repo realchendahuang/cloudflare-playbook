@@ -4,7 +4,7 @@ outline: deep
 ---
 
 <script setup>
-import { Globe, ShoppingCart, Tags, Server, ArrowLeftRight, ShieldCheck, Plane } from 'lucide-vue-next'
+import { Globe, ShoppingCart, Tags, Server, ArrowLeftRight, ShieldCheck, Plane } from '@lucide/vue'
 </script>
 
 <section class="onepage-hero">
