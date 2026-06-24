@@ -4,6 +4,7 @@ outline: deep
 ---
 
 <script setup>
+import { withBase } from 'vitepress'
 import { Cloud, Bot, Wallet, Zap, Package, AlertTriangle, Globe, Search, ClipboardList, Link, Compass, Cpu, Database, Shield, Brain, Lock, Server, ListFilter, Code, FileText, Boxes, GitBranch, ArrowLeftRight, Container, Clock, Table, Key, HardDrive, Layers, Scan, UserCheck, LockKeyhole, ShieldAlert, Gauge, Umbrella, Braces, BrainCircuit, Network, Image, Video, Radio, MonitorPlay, ShoppingCart } from 'lucide-vue-next'
 </script>
 
@@ -20,7 +21,7 @@ import { Cloud, Bot, Wallet, Zap, Package, AlertTriangle, Globe, Search, Clipboa
   <a href="#_4-开源项目"><div class="card-icon"><Package /></div><div class="card-body"><strong>开源项目</strong><span>按用途整理可参考的项目</span></div></a>
   <a href="#_5-避坑指南"><div class="card-icon"><AlertTriangle /></div><div class="card-body"><strong>避坑指南</strong><span>官方文档提炼的工程约束与对策</span></div></a>
   <a href="#_6-国内访问"><div class="card-icon"><Globe /></div><div class="card-body"><strong>国内访问</strong><span>国内用户访问 CF 的注意事项</span></div></a>
-  <a href="/domain"><div class="card-icon"><ShoppingCart /></div><div class="card-body"><strong>域名</strong><span>购买、比价、后缀与托管到 CF</span></div></a>
+  <a :href="withBase('/domain')"><div class="card-icon"><ShoppingCart /></div><div class="card-body"><strong>域名</strong><span>购买、比价、后缀与托管到 CF</span></div></a>
   <a href="#官方资源"><div class="card-icon"><Link /></div><div class="card-body"><strong>官方资源</strong><span>文档、模板和项目池</span></div></a>
 </div>
 

@@ -15,6 +15,7 @@
     "preview": "vitepress preview docs --host 127.0.0.1",
     "sync:readme": "node scripts/sync-readme.mjs",
     "gen:llmtxt": "node scripts/generate-llm-txt.mjs",
+    "deploy:quick": "node scripts/deploy.mjs",
     "deploy": "pnpm build && wrangler deploy"
   },
   "repository": {
