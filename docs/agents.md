@@ -10,7 +10,7 @@ import { Network, Cpu, Brain, BrainCircuit, Code, GitBranch, CircleCheck, Coins,
 <section class="onepage-hero">
   <p class="onepage-kicker">Cloudflare Playbook</p>
   <h1 class="onepage-title">Cloudflare Agents</h1>
-  <p class="onepage-subtitle">让 AI Agent 长期在线的运行平台——你的 Agent 常住云端，24 小时在线、能记住、能主动。</p>
+  <p class="onepage-subtitle">一次部署，常驻云端——无需值守，无请求时休眠待命，有消息时自动唤醒执行。</p>
 </section>
 
 <div class="quick-grid">
