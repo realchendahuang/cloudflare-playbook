@@ -10,7 +10,7 @@ import { Network, Cpu, Brain, BrainCircuit, Code, GitBranch, CircleCheck, Coins,
 <section class="onepage-hero">
   <p class="onepage-kicker">Cloudflare Playbook</p>
   <h1 class="onepage-title">Cloudflare Agents</h1>
-  <p class="onepage-subtitle">让 AI Agent 长期在线的运行平台——有公网入口、有持久状态、能定时执行、能调用工具，空闲休眠、按需唤醒。底层是 Durable Objects，上层是 Agents SDK；其中 <code>@cloudflare/think</code> 把 Claude Code 的能力搬到了云端，是这套体系里最值得展开讲的部分。</p>
+  <p class="onepage-subtitle">让 AI Agent 长期在线的运行平台——有公网入口、能记住对话、能定时干活、能调工具，空闲休眠所以挂着几乎不花钱。核心是 <code>@cloudflare/think</code>：把 Claude Code 搬到云端，长期在线、能定时、部署重启能恢复。怎么选、怎么用，下面展开。</p>
 </section>
 
 <div class="quick-grid">
