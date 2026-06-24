@@ -4,41 +4,27 @@ outline: deep
 ---
 
 <script setup>
-import { Bot, Brain, Link, Sparkles, Workflow, Mail, Eye, Cpu, Network, BrainCircuit, Coins, Rocket, GitBranch, CircleCheck, BotMessageSquare, Code, FileText } from '@lucide/vue'
+import { Network, Cpu, Brain, BrainCircuit, Code, GitBranch, CircleCheck, Coins, Rocket, Link } from '@lucide/vue'
 </script>
 
 <section class="onepage-hero">
   <p class="onepage-kicker">Cloudflare Playbook</p>
   <h1 class="onepage-title">Cloudflare Agents</h1>
-  <p class="onepage-subtitle">让 AI Agent 长期在线的运行平台——有公网入口、有持久状态、能定时执行、能调用工具，空闲休眠、按需唤醒。在 AI 编程时代，你用 Claude Code / Codex 在本地把 Agent 写出来，部署到 Cloudflare 长期运行；这篇从"要什么、指哪里"的角度讲清它是什么、独立开发者能用它做什么、怎么给 AI 编程工具下准确的需求。</p>
+  <p class="onepage-subtitle">让 AI Agent 长期在线的运行平台——有公网入口、有持久状态、能定时执行、能调用工具，空闲休眠、按需唤醒。底层是 Durable Objects，上层是 Agents SDK；其中 `@cloudflare/think` 把 Claude Code 的能力搬到了云端，长期在线、有入口、能定时，是这套体系里最值得关注的东西。</p>
 </section>
 
 <div class="quick-grid">
-  <a href="#本篇定位"><div class="card-icon"><Bot /></div><div class="card-body"><strong>本篇定位</strong><span>为什么不讲 API 细节</span></div></a>
   <a href="#它是什么"><div class="card-icon"><Network /></div><div class="card-body"><strong>它是什么</strong><span>长期在线的 Agent 运行平台</span></div></a>
-  <a href="#为什么现在值得看"><div class="card-icon"><Sparkles /></div><div class="card-body"><strong>为什么现在值得看</strong><span>门槛从"怎么写"变成"要什么"</span></div></a>
   <a href="#与现有工具的关系"><div class="card-icon"><Cpu /></div><div class="card-body"><strong>与现有工具的关系</strong><span>Claude Code / Codex / Think 的分工</span></div></a>
+  <a href="#think-云端版-claude-code"><div class="card-icon"><Brain /></div><div class="card-body"><strong>Think：云端版 Claude Code</strong><span>本次重点：把 Claude Code 搬到云端</span></div></a>
   <a href="#适用场景"><div class="card-icon"><BrainCircuit /></div><div class="card-body"><strong>适用场景</strong><span>六个 think-starter 对号入座</span></div></a>
-  <a href="#think-本次重点"><div class="card-icon"><Brain /></div><div class="card-body"><strong>Think：本次重点</strong><span>云端版 Claude Code</span></div></a>
   <a href="#给-ai-编程工具的需求写法"><div class="card-icon"><Code /></div><div class="card-body"><strong>给 AI 编程工具的需求写法</strong><span>需求模板 + 喂文档姿势</span></div></a>
   <a href="#可参考的项目"><div class="card-icon"><GitBranch /></div><div class="card-body"><strong>可参考的项目</strong><span>starter、examples、awesome-agents</span></div></a>
-  <a href="#长期运行的注意事项"><div class="card-icon"><CircleCheck /></div><div class="card-body"><strong>长期运行的注意事项</strong><span>AI 容易漏的七条</span></div></a>
+  <a href="#长期运行的注意事项"><div class="card-icon"><CircleCheck /></div><div class="card-body"><strong>长期运行的注意事项</strong><span>七条容易漏的边界条件</span></div></a>
   <a href="#成本与计费"><div class="card-icon"><Coins /></div><div class="card-body"><strong>成本与计费</strong><span>$5 起，按 CPU 时间算</span></div></a>
   <a href="#完整需求样例"><div class="card-icon"><Rocket /></div><div class="card-body"><strong>完整需求样例</strong><span>可直接丢给 AI 的需求文档</span></div></a>
   <a href="#官方资源"><div class="card-icon"><Link /></div><div class="card-body"><strong>官方资源</strong><span>文档、模板、项目池</span></div></a>
 </div>
-
-## 本篇定位
-
-先讲清楚这篇不做什么、做什么。
-
-**不讲 API 细节。** Agent 类的字段、`setState` 的签名、`schedule` 的三种参数、AI SDK 的 adapter 怎么换——这些官方文档已经写得很全，而且当前 Codex、Claude Code 这类 AI 编程工具读着文档就能帮你写好、部署好。人去背 API 的性价比已经不高。
-
-**讲什么：它是什么、能用在哪些场景、对独立开发者有什么价值、怎么给 AI 编程工具下准确的需求、长期跑要注意什么。** 这些是 AI 工具不会主动替你判断的部分——选哪个 starter、接什么入口、给什么权限、成本怎么收口、什么任务该交给 Workflows 而不是 Agent。读完这篇你应该能：一句话讲清 Cloudflare Agents 是什么；判断自己的需求该不该用它；给 Codex / Claude Code 写一份准确到能直接出活的需求。
-
-一句话收口：**AI 编程时代，教程的价值从"教你敲代码"转向"教你下对需求、避对坑"。** 这篇按这个立场写。
-
----
 
 ## 它是什么
 
@@ -52,9 +38,9 @@ Cloudflare Agents 是 Cloudflare 的 AI Agent 运行平台。底层是 [Durable 
 
 部署一次就由 Cloudflare 全球网络承载，官方说能扩到数千万个实例。它把 Agent 从本地 demo 变成能长期在线服务用户的产品。
 
-技术栈是 [Agents SDK](https://github.com/cloudflare/agents)，底层跑在 Durable Objects 上。SDK 现在已经长成一个完整生态（见下文 [Think：本次重点](#think-本次重点) 和 [可参考的项目](#可参考的项目)），不只是早期的裸 Agent 类。
+技术栈是 [Agents SDK](https://github.com/cloudflare/agents)，底层跑在 Durable Objects 上。SDK 现在已经长成一个完整生态（见下文 [Think：云端版 Claude Code](#think-云端版-claude-code) 和 [可参考的项目](#可参考的项目)），不只是早期的裸 Agent 类。
 
-<Workflow class="cat-icon" /> 官网把一个 Agent 的结构归纳成四层，理解这四层就知道它长什么样：
+官网把一个 Agent 的结构归纳成四层，理解这四层就知道它长什么样：
 
 ```mermaid
 flowchart TD
@@ -66,19 +52,6 @@ flowchart TD
 ```
 
 来源：[Cloudflare Agents 官网](https://agents.cloudflare.com/)、[Agents 开发文档](https://developers.cloudflare.com/agents/)、[cloudflare/agents](https://github.com/cloudflare/agents)。
-
----
-
-## 为什么现在值得看
-
-因为 AI 编程工具改变了门槛所在。
-
-一年前写 Cloudflare Agents 教程，门槛在"怎么写"——Agent 类怎么继承、state 怎么同步、schedule 签名是什么、AI SDK adapter 怎么换。现在 Codex、Claude Code 读着官方文档就能帮你把这些写好、部署好。门槛从"怎么写"变成了**"要什么"和"指哪里"**：
-
-- 你跟 AI 说"用 think 的 personal-assistant starter 做一个每天总结我 GitHub 提交的 Telegram 助手，用 Workers AI"，它能帮你把 starter 拉下来、改好系统提示、接好 Telegram、部署上去。
-- 但它**不会主动替你判断**的几件事：这个需求该用 Think 还是裸 Agent、该不该把长任务拆给 Workflows、定时任务要不要幂等、升到 Paid 之后失去"超了报错"的自动刹车要不要设防、Browser 工具别滥用。
-
-所以这篇的定位是补 AI 工具留下的空缺：**讲清产品形态和选型，讲清长期运行的边界条件，讲清怎么给 AI 下对需求。** API 细节交给官方文档和 AI 工具。
 
 ---
 
@@ -98,7 +71,7 @@ flowchart TD
 
 **1. Claude Code / Codex 是本地编程 Agent，Cloudflare Agents 是在线运行平台。** Claude Code 帮你写代码，价值在这次编程任务里；关掉终端它就停了。Cloudflare Agents 解决另一头：你写完一个 Agent 之后，怎么让它长期在线、能被用户和 webhook 找到、能记住之前的对话、能按计划定时执行。两者经常配合——用 Claude Code 把 Agent 写出来，再用 Cloudflare Agents 把它部署上线。
 
-**2. `@cloudflare/think` 是"云端版 Claude Code"，是这次最大的变化。** Think 是 Agents SDK 里的一个高层基类（详见下文 [Think：本次重点](#think-本次重点)），它把 Claude Code / Codex 在本地干的事——文件读写、技能系统、沙箱代码执行——搬到了云端，并且加上了长期在线、公网入口、定时任务、部署恢复。本地用 Claude Code 造 Agent，部署上去的 Agent 本身也可以是"云端 Claude Code"。
+**2. `@cloudflare/think` 是"云端版 Claude Code"，是这套体系里最值得关注的东西。** Think 是 Agents SDK 里的一个高层基类（详见下文 [Think：云端版 Claude Code](#think-云端版-claude-code)），它把 Claude Code / Codex 在本地干的事——文件读写、技能系统、沙箱代码执行——搬到了云端，并且加上了长期在线、公网入口、定时任务、部署恢复。本地用 Claude Code 造 Agent，部署上去的 Agent 本身也可以是"云端 Claude Code"。
 
 **3. Hermes 是成品助理，Cloudflare Agents 是运行平台。** Hermes 把"个人助理"这件事做完了，你开箱就用，但形态受产品边界限制。Cloudflare Agents 不替你定义助理长什么样，它给你公网入口、持久状态、定时调度、工具调用，助理本身是你自己设计的。
 
@@ -108,36 +81,9 @@ flowchart TD
 
 ---
 
-## 适用场景
+## Think：云端版 Claude Code
 
-官方的 [think-starters](https://github.com/cloudflare/agents/tree/main/think-starters) 正好是一份场景菜单——六个模板对应六类典型用例，每个都是"一条命令拉下来、改改就能用"的起点。按你的需求对号入座：
-
-<div class="scenario-grid">
-  <a href="#think-本次重点" class="scenario-card"><strong><BotMessageSquare /> Personal Assistant</strong><span>有持久记忆、能定时主动执行的个人助理。典型：每天早上总结你的 GitHub 提交发到 Telegram</span></a>
-  <a href="#think-本次重点" class="scenario-card"><strong><Code /> Coding Agent</strong><span>云端编程 Agent，有虚拟文件系统、技能系统、沙箱代码执行。典型：让用户在网页里跟一个"云端 Claude Code"对话</span></a>
-  <a href="#think-本次重点" class="scenario-card"><strong><FileText /> Customer Support</strong><span>客服 Agent，带订单查询工具和转人工技能。典型：电商网站的 AI 客服</span></a>
-  <a href="#think-本次重点" class="scenario-card"><strong><CircleCheck /> Business Workflow</strong><span>带人工审批的后台操作 Agent。典型：退款超过 $100 要人工确认、每天发运营 digest</span></a>
-  <a href="#think-本次重点" class="scenario-card"><strong><GitBranch /> Webhook Agent</strong><span>幂等处理外部 webhook 事件。典型：GitHub webhook 进来总结 issue、重复 POST 不重跑</span></a>
-  <a href="#think-本次重点" class="scenario-card"><strong><Bot /> Basic</strong><span>最小聊天 Agent，流式响应、消息持久化、断线恢复。适合作为自定义起点</span></a>
-</div>
-
-think-starters 之外，还有三类典型场景有对应的官方实现：
-
-<Mail class="svc-icon" /> **邮件助理。** Cloudflare 官方开源的 [Agentic Inbox](https://github.com/cloudflare/agentic-inbox) 是一个完整的自托管邮件客户端，跑在 Workers 上：收信走 Email Routing，每个邮箱一个独立 Durable Object + SQLite，AI Agent 有 9 个邮件工具，能读 inbox、搜会话、起草回复。邮件是最典型的长期个人工作流——收信、分类、总结、起草、定时清理。
-
-<Eye class="svc-icon" /> **网页巡检。** 官方 [Browser Agent](https://developers.cloudflare.com/agents/examples/browser-agent/) 能浏览网页、检查页面、截图、调试前端。适合写一个实用小工具：每天自动检查你的网站有没有挂、页面有没有报错、截图有没有异常。
-
-<BrainCircuit class="svc-icon" /> **语音 Agent。** SDK 的 [Voice mixins](https://developers.cloudflare.com/agents/api-reference/voice/)（`withVoice`）提供实时 STT/TTS、打断、对话持久化。适合做语音助手、电话客服这类语音进语音出的场景。
-
-按"真实工作流"而非"聊天框"来选场景，是长期跑得下去的关键——下文 [长期运行的注意事项](#长期运行的注意事项) 第一条会展开。
-
-来源：[think-starters](https://github.com/cloudflare/agents/tree/main/think-starters)、[awesome-agents](https://github.com/cloudflare/awesome-agents)、[Agents examples](https://developers.cloudflare.com/agents/examples/chat-agent/)。
-
----
-
-## Think：本次重点
-
-`@cloudflare/think` 是 Agents SDK 里的一个高层基类，这次调研里最重磅的发现。它本质是"云端版 Claude Code / Codex"——把本地编程 Agent 的核心能力搬到了云端，再加上了长期在线、公网入口、定时任务、部署恢复。
+`@cloudflare/think` 是 Agents SDK 里的一个高层基类，也是这套体系里最重磅的东西。它本质是"云端版 Claude Code / Codex"——把本地编程 Agent 的核心能力搬到了云端，再加上了长期在线、公网入口、定时任务、部署恢复。
 
 ### 和 Claude Code / Codex 的能力对照
 
@@ -180,13 +126,48 @@ think-starters 之外，还有三类典型场景有对应的官方实现：
 - **Messengers**：接 Telegram（Slack/Discord 在路上），每个 Chat SDK 线程跑在自己的 Think 子 Agent 里，避免上下文串线。
 - **Workspace + Skills + Code execution**：虚拟文件系统、Agent Skills 目录、`codemode` 沙箱执行——云端 Claude Code 的那套能力。
 
+### 怎么起一个 Think 项目
+
+一条命令：
+
+```bash
+npm create think -- --template personal-assistant
+```
+
+六个模板可选（详见下文 [适用场景](#适用场景)）：`personal-assistant` / `coding-agent` / `customer-support` / `business-workflow` / `webhook-agent` / `basic`。拉下来改 `getModel` / `getSystemPrompt` / `getTools` / `getScheduledTasks` 四个方法就能上线。
+
 > Think 目前标记为 Experimental，API 稳定但毕业前可能调整。详见 [Think 文档](https://developers.cloudflare.com/agents/api-reference/think/) 和 [think 包 README](https://github.com/cloudflare/agents/tree/main/packages/think)。
 
 ---
 
-## 给 AI 编程工具的需求写法
+## 适用场景
 
-这是 AI 编程时代教程的核心一节：不教你敲代码，教你**怎么给 Codex / Claude Code 写一份准确到能直接出活的需求**。
+官方的 [think-starters](https://github.com/cloudflare/agents/tree/main/think-starters) 正好是一份场景菜单——六个模板对应六类典型用例，每个都是"一条命令拉下来、改改就能用"的起点。按你的需求对号入座：
+
+<div class="scenario-grid">
+  <a href="#think-云端版-claude-code" class="scenario-card"><strong>💬 Personal Assistant</strong><span>有持久记忆、能定时主动执行的个人助理。典型：每天早上总结你的 GitHub 提交发到 Telegram</span></a>
+  <a href="#think-云端版-claude-code" class="scenario-card"><strong>💻 Coding Agent</strong><span>云端编程 Agent，有虚拟文件系统、技能系统、沙箱代码执行。典型：让用户在网页里跟一个"云端 Claude Code"对话</span></a>
+  <a href="#think-云端版-claude-code" class="scenario-card"><strong>🎧 Customer Support</strong><span>客服 Agent，带订单查询工具和转人工技能。典型：电商网站的 AI 客服</span></a>
+  <a href="#think-云端版-claude-code" class="scenario-card"><strong>✅ Business Workflow</strong><span>带人工审批的后台操作 Agent。典型：退款超过 $100 要人工确认、每天发运营 digest</span></a>
+  <a href="#think-云端版-claude-code" class="scenario-card"><strong>🔗 Webhook Agent</strong><span>幂等处理外部 webhook 事件。典型：GitHub webhook 进来总结 issue、重复 POST 不重跑</span></a>
+  <a href="#think-云端版-claude-code" class="scenario-card"><strong>🤖 Basic</strong><span>最小聊天 Agent，流式响应、消息持久化、断线恢复。适合作为自定义起点</span></a>
+</div>
+
+think-starters 之外，还有三类典型场景有对应的官方实现：
+
+**📧 邮件助理。** Cloudflare 官方开源的 [Agentic Inbox](https://github.com/cloudflare/agentic-inbox) 是一个完整的自托管邮件客户端，跑在 Workers 上：收信走 Email Routing，每个邮箱一个独立 Durable Object + SQLite，AI Agent 有 9 个邮件工具，能读 inbox、搜会话、起草回复。邮件是最典型的长期个人工作流——收信、分类、总结、起草、定时清理。
+
+**👁️ 网页巡检。** 官方 [Browser Agent](https://developers.cloudflare.com/agents/examples/browser-agent/) 能浏览网页、检查页面、截图、调试前端。适合写一个实用小工具：每天自动检查你的网站有没有挂、页面有没有报错、截图有没有异常。
+
+**🎙️ 语音 Agent。** SDK 的 [Voice mixins](https://developers.cloudflare.com/agents/api-reference/voice/)（`withVoice`）提供实时 STT/TTS、打断、对话持久化。适合做语音助手、电话客服这类语音进语音出的场景。
+
+按"真实工作流"而非"聊天框"来选场景，是长期跑得下去的关键——下文 [长期运行的注意事项](#长期运行的注意事项) 第一条会展开。
+
+来源：[think-starters](https://github.com/cloudflare/agents/tree/main/think-starters)、[awesome-agents](https://github.com/cloudflare/awesome-agents)、[Agents examples](https://developers.cloudflare.com/agents/examples/chat-agent/)。
+
+---
+
+## 给 AI 编程工具的需求写法
 
 ### 需求模板
 
@@ -322,7 +303,7 @@ Cloudflare Agents 没有单独的计费项——**按它底层用到的资源算
 
 ## 完整需求样例
 
-把全篇收敛成一份能直接丢给 Codex / Claude Code 的需求文档。这是 AI 编程时代的"十分钟教程"——不教你敲代码，教你下对需求。
+把全篇收敛成一份能直接丢给 Codex / Claude Code 的需求文档。
 
 做一个个人长期工作流助手，功能三件：
 
