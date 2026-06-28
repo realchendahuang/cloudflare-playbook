@@ -10,11 +10,11 @@ import { Mail, Send, Inbox, Shield, Gauge, AlertTriangle, Link, Brain, ListFilte
 <section class="onepage-hero">
   <p class="onepage-kicker">Email</p>
   <h1 class="onepage-title">Cloudflare Email</h1>
-  <p class="onepage-subtitle">邮件是 AI Agent 的原生接口——收信即触发，AI 理解、分类、调动工具、异步回复，全链路在 Cloudflare 内闭环。出站 Email Sending 三种方式（Public Beta），入站 Email Routing + Email Workers 已 GA，自动 DKIM/SPF/DMARC、托管 IP 声誉。</p>
+  <p class="onepage-subtitle">Cloudflare 的邮件收发服务——出站 Email Sending 发送事务邮件（Public Beta，需 Workers Paid），入站 Email Routing 把邮件交给 Workers 处理或转发邮箱（GA，Free 可用）。自动 DKIM/SPF/DMARC 对齐、托管 IP 声誉、退信自动重试与抑制。因为入站处理程序就是 Workers，能直接调 Workers AI、R2、Queues、Durable Objects，所以"邮件 + AI Agent"是它在发布期主推的一个用例方向。</p>
 </section>
 
 <div class="quick-grid">
-  <a href="#为什么邮件是-agent-的原生接口"><div class="card-icon"><Brain /></div><div class="card-body"><strong>Agent 的原生接口</strong><span>邮件不是通知通道，是触发器</span></div></a>
+  <a href="#邮件在-agent-体系里的角色"><div class="card-icon"><Brain /></div><div class="card-body"><strong>邮件与 Agent</strong><span>发布期主推的用例方向</span></div></a>
   <a href="#产品定位"><div class="card-icon"><Mail /></div><div class="card-body"><strong>产品定位</strong><span>Sending + Routing 统一入口</span></div></a>
   <a href="#三种发送方式怎么选"><div class="card-icon"><Send /></div><div class="card-body"><strong>三种发送方式</strong><span>Binding / REST / SMTP 怎么选</span></div></a>
   <a href="#接收-email-routing--email-workers"><div class="card-icon"><Inbox /></div><div class="card-body"><strong>接收 + Email Workers</strong><span>收信即触发 Agent</span></div></a>
@@ -28,29 +28,26 @@ import { Mail, Send, Inbox, Shield, Gauge, AlertTriangle, Link, Brain, ListFilte
   <a href="#官方资源"><div class="card-icon"><Link /></div><div class="card-body"><strong>官方资源</strong><span>文档、博客、示例</span></div></a>
 </div>
 
-## 为什么邮件是 Agent 的原生接口
+## 邮件在 Agent 体系里的角色
 
-这一节先讲视角，再看功能。
+先说清楚边界：Cloudflare Email Service 的**基础定位是邮件收发基础设施**（官方文档原话："Send transactional emails and route incoming emails to Workers or email addresses"），事务邮件、认证邮件、通知、自定义地址这些都是它的常规用法。
 
-传统邮件服务（SES、Mailgun、Postmark 那一代）是给**人类应用**做通知通道的：应用产生事件 → 拼模板 → 发邮件给人看。发是主诉求，收是次要的，处理基本是"转发到另一个邮箱"。
+但 Cloudflare 在 2026 年 4 月 Email Service 公测发布时（Agents Week），明确把"邮件 + Agent"作为主推方向。发布博客标题就是 "Cloudflare Email Service: now in public beta. **Ready for your agents**"，原话：
 
-Cloudflare Email Service 的官方定位不是这个。它有一篇博客叫 [Email for Agents](https://blog.cloudflare.com/email-for-agents/)，核心论点是：
+> "Email is the most accessible interface in the world. It is ubiquitous. There's no need for a custom chat application, no custom SDK for each channel. Everyone already has an email address."
+> "With Email Routing, you can receive email to your application or agent. With Email Sending, you can reply to emails or send outbounds to notify your users when your agents are done doing work."
+> "Email is becoming a core interface for agents, and developers need infrastructure purpose-built for it."
 
-> "A chatbot responds in the moment or not at all. An agent thinks, acts, and communicates on its own timeline."
-> "Email agents receive a message, orchestrate work across the platform, and respond asynchronously."
+之所以邮件适合 Agent，官方给的几个理由：
 
-翻译过来就是：**邮件对 Agent 不是"通知通道"，是"触发器和异步通信通道"**。一封邮件进来 = 一个 Agent 被唤醒、拿到上下文、开始干活；干完不是实时回，是异步回——可能是几秒后，也可能是跑完一个长任务后。这和聊天机器人（实时、来一条回一条、不回就没了）是两种东西。
+- **不用让用户装任何客户端**——邮件地址全世界都有，Agent 不需要为每个渠道做 SDK。
+- **入站邮件直接触发 Worker**——等于一个自带协议解析的入口，地址模式还能做路由（`support@` 走客服、`agent+user123@` 走某个实例）。
+- **异步天然合适**——Agent 可以跑很久再回，可以调度后续，这点比实时聊天更适合 Agent 的节奏。
+- **收发在同一平台闭环**——Email Routing 收、Workers AI 处理、Email Sending 回，不跨服务不跨鉴权。
 
-这个视角有几个推论，决定了下面所有功能怎么用：
+需要分清的是：这是官方在发布期主推的**用例方向**和一个参考实现（agentic-inbox），不是说 Email Service 只有 Agent 这一种用法。下面既讲邮件服务本身的能力与边界，也讲它和 Agent 结合这个方向怎么落地。
 
-- **收信比发信更值钱。** 传统邮件服务把收信做得很弱（转发而已），Cloudflare 把收信做成 Email Worker 的触发事件——等于给每个 Agent 一个自带协议解析的 webhook 入口，而协议是全世界最通用的邮件，不用让用户装任何客户端。
-- **邮件地址就是 Agent 路由。** `support@` 路由到客服 Agent，`sales@` 路由到销售 Agent，`agent+user123@` 用子地址路由到某个具体实例——不用单独给每个 Agent 配入口，一个域名铺开所有 Agent。
-- **收发在同一平台闭环。** 收进来用 Email Routing，AI 处理用 Workers AI + Durable Objects，回复出去用 Email Sending——不跨服务、不跨鉴权，状态也留在 Cloudflare。
-- **异步是特性不是缺陷。** Agent 可以跑很久再回，可以调度后续跟进，可以在边缘情况下升级人工——这恰好是邮件天然支持的节奏，比强行塞进实时聊天更合适。
-
-从这个视角出发，邮件系统的主线是"怎么变成 Agent 的 I/O"，而不是 SMTP 参数本身——参数细节查阅官方文档即可，这里聚焦能力边界和踩坑点。
-
-来源：[Email for Agents 博客](https://blog.cloudflare.com/email-for-agents/)、[Email Service 文档](https://developers.cloudflare.com/email-service/)。
+来源：[Email for Agents 发布博客](https://blog.cloudflare.com/email-for-agents/)、[Email Service 文档](https://developers.cloudflare.com/email-service/)。
 
 ---
 
