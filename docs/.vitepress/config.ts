@@ -38,6 +38,7 @@ export default withMermaid(defineConfig({
       { text: '手册', link: '/' },
       { text: 'Agents', link: '/agents' },
       { text: '域名', link: '/domain' },
+      { text: '邮件', link: '/email' },
       { text: 'GitHub', link: 'https://github.com/realchendahuang/cloudflare-playbook' }
     ],
     search: {
