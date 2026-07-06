@@ -922,6 +922,7 @@ Workers 里的自定义指标和事件分析引擎。
 
 > 官方项目（cloudflare/agents、cloudflare/vibesdk、cloudflare/moltworker）见上方"官方仓库和模板"。
 
+- [langgenius/mosoo](https://github.com/langgenius/mosoo)：开源 alpha 的 Cloudflare-native Agent cloud，Web/API/Driver 三层，使用 Workers、Durable Objects、D1、R2、Queues 和 Sandbox/Containers 承载 App-local Agents，适合看 Agent runtime 怎么落到 Cloudflare。
 - [smigolsmigol/llmkit](https://github.com/smigolsmigol/llmkit)：Workers + Durable Objects 的 AI API gateway，重点是成本跟踪、预算、限流和多 provider。
 - [TBXark/ChatGPT-Telegram-Workers](https://github.com/TBXark/ChatGPT-Telegram-Workers)：Telegram ChatGPT Bot 的经典 Workers 项目，适合入门 Bot + Worker。
 - [huarzone/Text2img-Cloudflare-Workers](https://github.com/huarzone/Text2img-Cloudflare-Workers)：Cloudflare AI + Workers 的文生图服务。
